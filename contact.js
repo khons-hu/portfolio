@@ -12,13 +12,19 @@ copy.es=["Escribir a Patrick", "Tu correo", "Mensaje", "Enviar correo", "Tu corr
 const pending={en:'Email delivery is awaiting activation. Please use the email-app link for now.',sk:'Odosielanie čaká na aktiváciu. Zatiaľ použi odkaz na emailovú aplikáciu.',hu:'Az e-mail-küldés aktiválásra vár. Egyelőre használd a levelezőre mutató hivatkozást.',pl:'Wysyłanie czeka na aktywację. Na razie użyj odnośnika do poczty.',cs:'Odesílání čeká na aktivaci. Zatím použij odkaz na emailovou aplikaci.',de:'Der E-Mail-Versand wartet auf die Aktivierung. Nutze vorerst den Link zur E-Mail-App.'};
 pending.es='El envío espera activación. Usa por ahora el enlace a tu aplicación de correo.';
 Object.keys(copy).forEach(k=>copy[k].push(pending[k]));
-const language=document.querySelector('#guide-language'),dialog=document.querySelector('#guide-dialog');
-const details=document.createElement('details');details.className='guide-contact';
-details.innerHTML='<summary></summary><form><label for="contact-email"></label><input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required><label for="contact-message"></label><textarea id="contact-message" name="message" rows="4" minlength="10" maxlength="3000" required></textarea><div class="contact-trap" aria-hidden="true"><label for="contact-website">Leave blank</label><input id="contact-website" name="website" tabindex="-1" autocomplete="off"></div><p class="contact-notice"></p><button type="submit"></button> <a href="mailto:ptr.obrtal@gmail.com"></a><p class="contact-status" role="status" aria-live="polite"></p></form>';
-dialog.querySelector('#guide-form').before(details);
-const form=details.querySelector('form'),button=form.querySelector('button'),status=form.querySelector('.contact-status');let busy=false,statusKey=deliveryEnabled?null:10;button.disabled=!deliveryEnabled;
-const strings=()=>copy[language.value]||copy.en;
-function translate(){const t=strings();details.querySelector('summary').textContent=t[0];form.querySelector('[for="contact-email"]').textContent=t[1];form.querySelector('[for="contact-message"]').textContent=t[2];button.textContent=t[busy?5:3];form.querySelector('.contact-notice').textContent=t[4];form.querySelector('a').textContent=t[9];status.textContent=statusKey===null?'':t[statusKey];}
-language.addEventListener('change',translate);translate();
-form.addEventListener('submit',async event=>{event.preventDefault();if(!deliveryEnabled||busy||!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));try{KhonsuContact.payload(data);}catch{statusKey=8;translate();return;}busy=true;button.disabled=true;form.setAttribute('aria-busy','true');statusKey=5;translate();try{await KhonsuContact.send(data);statusKey=6;/* Retain the draft until the visitor chooses to change it. */}catch(error){statusKey=error.message==='activation'?10:7;}finally{busy=false;button.disabled=false;form.removeAttribute('aria-busy');translate();}});
+function mountContact(host,prefix,language,compact=false){
+const panel=document.createElement(compact?'details':'div');panel.className='guide-contact'+(compact?'':' page-contact');
+const heading=compact?'summary':'h3';
+panel.innerHTML=`<${heading}></${heading}><form><label for="${prefix}-email"></label><input id="${prefix}-email" name="email" type="email" autocomplete="email" maxlength="254" required><label for="${prefix}-message"></label><textarea id="${prefix}-message" name="message" rows="4" minlength="10" maxlength="3000" required></textarea><div class="contact-trap" aria-hidden="true"><label for="${prefix}-website">Leave blank</label><input id="${prefix}-website" name="website" tabindex="-1" autocomplete="off"></div><p class="contact-notice"></p><button type="submit"></button> <a href="mailto:ptr.obrtal@gmail.com"></a><p class="contact-status" role="status" aria-live="polite"></p></form>`;
+if(compact)host.querySelector('#guide-form').before(panel);else host.append(panel);
+const form=panel.querySelector('form'),button=form.querySelector('button'),status=form.querySelector('.contact-status');let busy=false,statusKey=deliveryEnabled?null:10;button.disabled=!deliveryEnabled;
+function translate(){const t=copy[language()]||copy.en;panel.querySelector(heading).textContent=t[0];form.querySelector(`[for="${prefix}-email"]`).textContent=t[1];form.querySelector(`[for="${prefix}-message"]`).textContent=t[2];button.textContent=t[busy?5:3];form.querySelector('.contact-notice').textContent=t[4];form.querySelector('a').textContent=t[9];status.textContent=statusKey===null?'':t[statusKey];}
+form.addEventListener('submit',async event=>{event.preventDefault();if(!deliveryEnabled||busy||!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));try{KhonsuContact.payload(data);}catch{statusKey=8;translate();return;}busy=true;button.disabled=true;form.setAttribute('aria-busy','true');statusKey=5;translate();try{await KhonsuContact.send(data);statusKey=6;/* Keep this form's draft after submission. */}catch(error){statusKey=error.message==='activation'?10:7;}finally{busy=false;button.disabled=false;form.removeAttribute('aria-busy');translate();}});
+translate();return translate;
+}
+const guideLanguage=document.querySelector('#guide-language');
+const translateGuide=mountContact(document.querySelector('#guide-dialog'),'contact',()=>guideLanguage.value,true);
+guideLanguage.addEventListener('change',translateGuide);
+const translatePage=mountContact(document.querySelector('#contact'),'page-contact',()=>globalThis.PortfolioI18n?.language||document.documentElement.lang);
+window.addEventListener('portfolio:language',translatePage);
 })();

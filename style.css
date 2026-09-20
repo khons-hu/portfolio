@@ -61,3 +61,5 @@ footer>#motion-toggle{justify-self:end;text-align:right}
 @media(pointer:coarse){#guide-dialog.guide-typing .guide-intro,#guide-dialog.guide-typing .guide-suggestions,#guide-dialog.guide-typing .guide-contact{display:none}#guide-dialog.guide-typing #guide-log{min-height:0}}
 /* Expanded contact forms remain reachable with mouse, keyboard and touch. */
 #guide-dialog{overflow-y:auto}#guide-dialog>*{flex-shrink:0}#guide-log{flex-shrink:1}
+
+.page-contact{margin:32px 0 0;padding:24px;max-width:620px}.page-contact h3{margin:0;font:28px var(--serif);color:var(--ink)}.page-contact form{margin-top:20px}.page-contact label{font-size:14px}.page-contact button{min-height:44px}.page-contact textarea{min-height:140px}.page-contact .contact-status:empty{display:none}@media(max-width:600px){.page-contact{padding:20px}.page-contact input,.page-contact textarea{font-size:16px}}
