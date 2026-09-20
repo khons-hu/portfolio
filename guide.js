@@ -1,6 +1,6 @@
 /* A local, rule-based portfolio guide. No model, network calls or chat storage. */
 (function () {
-  const normalize = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9+ ]/g, ' ').replace(/\s+/g, ' ').trim();
+  const normalize = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g,'l').replace(/ß/g,'ss').replace(/[^a-z0-9+ ]/g, ' ').replace(/\s+/g, ' ').trim();
   const topics = [
     {id:'work', keys:['what do you do','co robis','cim sa zivis','l2','support','integration','integrations','integracie','integracii','luigi','lbx','praca','praci','pracujes','work','job','audit'], en:'Patrick works in L2 technical support and integrations at Luigi’s Box. He investigates browser behaviour, APIs, product feeds and analytics, audits integrations, verifies fixes, and prepares engineering handovers. Luigi’s Box builds search and product discovery for e-commerce.', sk:'Patrick pracuje v L2 technickej podpore a integráciách v Luigi’s Box. Rieši správanie webu, API, produktové feedy a analytiku, robí audity integrácií, overuje opravy a pripravuje podklady pre vývojárov. Luigi’s Box tvorí vyhľadávanie a odporúčanie produktov pre e-shopy.', section:'about'},
     {id:'spotify', keys:['spotify','rotation','playlist','hudba','music'], en:'His Spotify rotation is a local Python script that combines favourite and recently played tracks into a private playlist. It runs on a schedule without recurring AI calls. The source is not public.', sk:'Spotify rotation je lokálny Python skript, ktorý skladá súkromný playlist z obľúbených a nedávno počúvaných skladieb. Beží podľa rozvrhu bez priebežných AI volaní. Zdrojový kód nie je verejný.', project:'rotation'},
@@ -15,23 +15,41 @@
     {id:'ai', keys:['agi','rsi','agents','agent','ai','models','modely','llm'], en:'He follows AGI, recursive self-improvement, and new model releases, and tries coding agents in his own work. His interest in learning systems also appears in his PPO thesis project.', sk:'Sleduje AGI, rekurzívne sebazlepšovanie a nové modely. Coding agentov skúša vo vlastnej práci. Learning systémom sa venoval aj v diplomovke s PPO.', section:'now'},
     {id:'games', keys:['cs2','counter strike','games','gaming','hry','hras','hrava'], en:'Counter-Strike is part of both his programming background and his free time. For ranks and match stats, you’ll have to ask Patrick. This guide didn’t queue with him.', sk:'Counter-Strike patrí k jeho programátorským začiatkom aj voľnému času. Rank a štatistiky sa musíš opýtať Patricka. Tento sprievodca s ním ešte nehral.', section:'about'}
   ];
+  const locales=typeof module!=='undefined'&&module.exports?require('./guide-locales.js'):GUIDE_LOCALES;
+  const extraKeys={work:['mit dolgozol','mivel foglalkozol','munka','dolgozik','prace','pracujesz','pracuji','co delas','prace','arbeit','beruf','was machst du','integracio','integracje'],spotify:['zene','lejatszasi lista','muzyka','hudba','musik'],cpp:['folyamatok','procesami','prozesse'],study:['egyetem','diploma','tanult','wyksztalcenie','studia','uczelni','vzdelani','diplomova','abschluss','studium','universitat'],projects:['projektek','projekteken','projektjeid','projektjei','projektet','projektach','projektami','jakimi projektami','projektow','projektech','projekten','projekte','zbudowal'],contact:['kapcsolat','elerhetoseg','elerni','skontaktowac','zatrudnic','erreichen','kontaktovat'],about:['ki vagy','kicsoda','magadrol','kim jestes','o sobie','wer bist du','uber dich','kdo jsi','o sobe'],ai:['mesterseges intelligencia','modellek','sztuczna inteligencja','modelle','kunstliche intelligenz'],games:['jatekok','jatszol','gry','grasz','hrajes','spiele','spielst']};
+  topics.forEach((topic,index)=>{topic.keys.push(...(extraKeys[topic.id]||[]));Object.keys(locales).forEach(lang=>topic[lang]=locales[lang].answers[index]);});
+  const englishUI=['A small guide to Patrick’s work.','Prepared answers, not an AI model. Questions stay in this tab and disappear on reload.','Answer language','Ask about the portfolio…','Send question','Clear chat','Open project ↗','View section ↗','Work','Projects','Why Codex?','LOCAL GUIDE · NO API','Close guide'];
+  const slovakUI=['Malý sprievodca Patrickovou prácou.','Pripravené odpovede, nie AI model. Otázky zostávajú v tejto karte a po obnovení zmiznú.','Jazyk odpovedí','Opýtaj sa na portfólio…','Odoslať otázku','Vymazať chat','Otvoriť projekt ↗','Pozrieť sekciu ↗','Práca','Projekty','Prečo Codex?','LOKÁLNY SPRIEVODCA · BEZ API','Zavrieť'];
+  function ui(language){return locales[language]?.ui||(language==='sk'?slovakUI:englishUI);}
   function answer(text, language) {
     const q = normalize(text);
     const sk = language === 'sk';
-    if (/\b(password|secret|salary|address|heslo|plat|bydlisko)\b/.test(q)) return {text:sk?'Poznám len verejné informácie z portfólia. Súkromné údaje tu nenájdeš.':'I only know the public portfolio. Private details aren’t available here.'};
-    if (/\b(hello|hi|hey|ahoj|cau)\b/.test(q) && q.split(' ').length < 4) return {text:sk?'Ahoj! Som lokálny sprievodca portfóliom, nie Patrick ani AI model. Čo ťa zaujíma?':'Hey! I’m a local portfolio guide, not Patrick or an AI model. What would you like to explore?'};
+    const loc=locales[language];
+    if (/\b(password|secret|salary|address|heslo|plat|bydlisko|jelszo|fizetes|haslo|wynagrodzenie|passwort|gehalt)\b/.test(q)) return {text:loc?.privacy||(sk?'Poznám len verejné informácie z portfólia. Súkromné údaje tu nenájdeš.':'I only know the public portfolio. Private details aren’t available here.')};
+    if (/\b(hello|hi|hey|ahoj|cau|szia|udv|czesc|hej|hallo|servus)\b/.test(q) && q.split(' ').length < 4) return {text:loc?.greeting||(sk?'Ahoj! Som lokálny sprievodca portfóliom, nie Patrick ani AI model. Čo ťa zaujíma?':'Hey! I’m a local portfolio guide, not Patrick or an AI model. What would you like to explore?')};
     const scored = topics.map(topic => ({topic,score:topic.keys.reduce((score,key)=>score+((' '+q+' ').includes(' '+key+' ')?key.includes(' ')?3:2:0),0)})).sort((a,b)=>b.score-a.score);
-    if (!scored[0].score) return {text:sk?'Toto neviem spoľahlivo priradiť. Skús prácu, projekty, C++, Spotify alebo Codex. Poznám iba pripravené informácie z tohto webu.':'I can’t reliably match that question. Try work, projects, C++, Spotify, or Codex. I only know the prepared information on this site.'};
-    const t=scored[0].topic;return {text:sk?t.sk:t.en,project:t.project,section:t.section};
+    if (!scored[0].score) return {text:loc?.fallback||(sk?'Toto neviem spoľahlivo priradiť. Skús prácu, projekty, C++, Spotify alebo Codex. Poznám iba pripravené informácie z tohto webu.':'I can’t reliably match that question. Try work, projects, C++, Spotify, or Codex. I only know the prepared information on this site.')};
+    const t=scored[0].topic;return {text:t[language]||t.en,project:t.project,section:t.section};
   }
-  if (typeof module !== 'undefined' && module.exports) module.exports={answer};
+  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui};
   if (typeof document === 'undefined') return;
   const dialog=document.querySelector('#guide-dialog'),log=document.querySelector('#guide-log'),input=document.querySelector('#guide-question'),lang=document.querySelector('#guide-language');
+  function translateUI(){
+    const t=ui(lang.value);dialog.lang=lang.value;
+    document.querySelectorAll('.guide-intro p').forEach((p,i)=>p.textContent=t[i]);
+    document.querySelector('label[for="guide-language"]').textContent=t[2];input.placeholder=t[3];document.querySelector('label[for="guide-question"]').textContent=t[3];
+    document.querySelector('#guide-form button').setAttribute('aria-label',t[4]);document.querySelector('#guide-clear').textContent=t[5];
+    document.querySelectorAll('[data-question]').forEach((b,i)=>{if(i<3)b.textContent=t[8+i];});
+    document.querySelector('#guide-dialog .terminal-bottom span').textContent=t[11];document.querySelector('[data-close="guide-dialog"]').setAttribute('aria-label',t[12]);
+    try{localStorage.setItem('khonsu-guide-language',lang.value);}catch{}
+  }
+  try{const stored=localStorage.getItem('khonsu-guide-language');const preferred=stored||navigator.language.split('-')[0];if([...lang.options].some(o=>o.value===preferred))lang.value=preferred;}catch{}
+  lang.addEventListener('change',translateUI);translateUI();
   function append(text, who, result) {
-    const row=document.createElement('div');row.className='guide-message '+who;
+    const row=document.createElement('div');row.className='guide-message '+who;if(who==='guide')row.lang=lang.value;
     const p=document.createElement('p');p.textContent=text;row.append(p);
     if(result&&(result.project||result.section)){
-      const button=document.createElement('button');button.className='guide-action';button.textContent=lang.value==='sk'?(result.project?'Otvoriť projekt ↗':'Pozrieť sekciu ↗'):(result.project?'Open project ↗':'View section ↗');
+      const button=document.createElement('button');button.className='guide-action';button.textContent=ui(lang.value)[result.project?6:7];
       button.addEventListener('click',()=>{dialog.close();if(result.project)showProject(result.project);else document.getElementById(result.section).scrollIntoView({behavior:document.documentElement.classList.contains('motion-off')?'instant':'smooth'});});row.append(button);
     }
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();row.scrollIntoView({block:'nearest',behavior:'instant'});

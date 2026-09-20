@@ -32,6 +32,10 @@ Desktop and 390px viewport visually reviewed. No horizontal overflow on mobile. 
 
 ## Ask khonsu guide
 
-Local rule-based chat in guide.js, with prepared English and Slovak answers. No API calls, model downloads, tracking, or persisted chat history. The visible language selector chooses the reply language. Supports project dialogs and section navigation, caps history at 30 messages, and safely renders visitor text with textContent. Unknown questions receive a fallback. Edit the topic records when public profile facts change.
+Local rule-based chat in guide.js, with prepared English, Slovak, Hungarian, Polish, Czech and German answers. No API calls, model downloads, tracking, or persisted chat history. The language selector translates the guide interface and chooses the reply language. Only the language preference is saved locally. Supports project dialogs and section navigation, caps history at 30 messages, and safely renders visitor text with textContent. Unknown questions receive a fallback. Edit the topic records when public profile facts change.
 
 Verified: topic routing, Slovak accents, unknown/private-question fallbacks, opening a project from chat, clearing conversation, and mobile dialog layout.
+
+## Appearance
+
+Light/dark toggle in the header. Initially follows the system theme, then remembers the visitor’s choice locally. Both themes retain the lunar artwork and respect reduced motion.
