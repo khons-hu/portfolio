@@ -30,3 +30,6 @@ html[data-theme=light] .hero-shade::after{opacity:1}
 
 /* Contact stays distinct from local guide questions. */
 .guide-contact{margin:0 1.25rem 1rem;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}.guide-contact summary{cursor:pointer;font-weight:600}.guide-contact form{display:grid;gap:.6rem;margin-top:1rem}.guide-contact input,.guide-contact textarea{width:100%;min-width:0;padding:.7rem;border:1px solid var(--line);border-radius:8px;background:var(--night);color:var(--ink);font:inherit}.guide-contact textarea{resize:vertical;max-height:240px}.guide-contact button{padding:.7rem;border:1px solid var(--line);border-radius:8px;background:var(--night);color:var(--ink);cursor:pointer}.guide-contact button:disabled{opacity:.6;cursor:wait}.guide-contact p,.guide-contact a{font-size:.8rem;line-height:1.5}.guide-contact .contact-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.guide-contact :focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+#project-source { margin-inline-start: 1.5rem; }
+@media (max-width: 480px) { #project-source { margin-inline-start: 0; display: block; margin-top: 1rem; } #project-source[hidden] { display: none; } }
