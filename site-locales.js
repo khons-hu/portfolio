@@ -780,7 +780,7 @@ const PROJECT_NOTES = {
       "On request, it also searches by mood, activity or artist and favours familiar artists in the results. Mood matching is approximate, not audio analysis.",
       "The playlist is saved privately and checked after writing. This is a personal tool running on my Mac. The source is not published."
     ],
-    "dots": ["Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.", "Five levels, a power-up shop and guest play. No login or shared leaderboard. Source is available. Public deployment is pending."],
+    "dots": ["Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.", "Five levels, a power-up shop and guest play. No login or shared leaderboard. Play the browser edition online or explore the original source."],
     "bot": [
       "An earlier JavaScript Discord music bot. Historical repository; current Discord and music-service compatibility is unverified."
     ],
@@ -822,7 +822,7 @@ const PROJECT_NOTES = {
       "Na požiadanie vyhľadá hudbu podľa nálady, aktivity alebo interpreta a vo výsledkoch uprednostní známych interpretov. Nálada je približná, nejde o analýzu zvuku.",
       "Playlist uloží súkromne a overí jeho obsah. Je to osobný nástroj na mojom Macu. Zdrojový kód nie je zverejnený."
     ],
-    "dots": ["Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.", "Päť úrovní, obchod s bonusmi a hranie bez účtu. Bez prihlásenia a spoločného rebríčka. Kód je dostupný, verejné nasadenie ešte čaká."],
+    "dots": ["Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.", "Päť úrovní, obchod s bonusmi a hranie bez účtu. Bez prihlásenia a spoločného rebríčka. Browser verziu si môžeš zahrať online alebo si pozrieť pôvodný kód."],
     "bot": [
       "Starší JavaScript Discord bot na hudbu. Historický repozitár, kompatibilita s dnešnými Discord a hudobnými API nie je overená."
     ],
@@ -864,7 +864,7 @@ const PROJECT_NOTES = {
       "Kérésre hangulat, tevékenység vagy előadó alapján is keres, és az ismert előadókat előnyben részesíti a találatok között. A hangulat szerinti szűrés közelítő, nem hangelemzés.",
       "A lejátszási listát privátként menti, majd ellenőrzi. Saját eszköz, a Macemen fut. A forráskód nem nyilvános."
     ],
-    "dots": ["Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.", "Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A forráskód elérhető, a nyilvános telepítés még várat magára."],
+    "dots": ["Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.", "Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A böngészős változat online játszható, az eredeti forráskód is elérhető."],
     "bot": [
       "Korábbi JavaScript Discord-zenerobot. Régi repozitórium, a mai Discord- és zenei szolgáltatásokkal való kompatibilitás nincs ellenőrizve."
     ],
@@ -906,7 +906,7 @@ const PROJECT_NOTES = {
       "Na życzenie wyszukuje też muzykę według nastroju, aktywności lub wykonawcy i preferuje znanych wykonawców w wynikach. Dopasowanie nastroju jest przybliżone, bez analizy dźwięku.",
       "Zapisuje playlistę jako prywatną i sprawdza jej zawartość. To osobiste narzędzie działające na moim Macu. Kod nie jest publiczny."
     ],
-    "dots": ["Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.", "Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Kod jest dostępny, publiczne wdrożenie jeszcze czeka."],
+    "dots": ["Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.", "Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Wersja przeglądarkowa działa online, dostępny jest też oryginalny kod."],
     "bot": [
       "Starszy bot muzyczny Discord w JavaScript. Historyczne repozytorium, zgodność z obecnymi usługami niepotwierdzona."
     ],
@@ -948,7 +948,7 @@ const PROJECT_NOTES = {
       "Auf Anfrage sucht es auch nach Stimmung, Aktivität oder Künstler und bevorzugt vertraute Künstler in den Ergebnissen. Die Stimmung wird nur grob zugeordnet, nicht per Audioanalyse.",
       "Die Playlist wird privat gespeichert und anschließend geprüft. Ein persönliches Tool auf meinem Mac. Der Quellcode ist nicht öffentlich."
     ],
-    "dots": ["2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.", "Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Quellcode verfügbar, öffentliche Bereitstellung steht noch aus."],
+    "dots": ["2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.", "Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Die Browser-Version ist online spielbar, der ursprüngliche Quellcode ist ebenfalls verfügbar."],
     "bot": [
       "Ein früherer JavaScript-Musikbot für Discord. Historisches Repository, aktuelle Kompatibilität mit Discord und Musikdiensten ungeprüft."
     ],
@@ -990,7 +990,7 @@ const PROJECT_NOTES = {
       "A petición, también busca por ánimo, actividad o artista y prioriza artistas conocidos entre los resultados. El ajuste al ánimo es aproximado, sin análisis de audio.",
       "Guarda la playlist como privada y comprueba su contenido. Es una herramienta personal que funciona en mi Mac. El código no es público."
     ],
-    "dots": ["Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.", "Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. Código disponible, publicación pendiente."],
+    "dots": ["Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.", "Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. La versión de navegador se puede jugar online y el código original está disponible."],
     "bot": [
       "Bot musical de Discord anterior en JavaScript. Repositorio histórico; compatibilidad actual con Discord y servicios musicales no verificada."
     ],
@@ -1032,7 +1032,7 @@ const PROJECT_NOTES = {
       "Na požádání vyhledá hudbu podle nálady, aktivity nebo interpreta a ve výsledcích upřednostní známé interprety. Nálada je přibližná, nejde o analýzu zvuku.",
       "Playlist uloží soukromě a ověří jeho obsah. Je to osobní nástroj na mém Macu. Zdrojový kód není zveřejněný."
     ],
-    "dots": ["Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.", "Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Kód je dostupný, veřejné nasazení ještě čeká."],
+    "dots": ["Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.", "Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Prohlížečovou verzi si můžeš zahrát online nebo si prohlédnout původní kód."],
     "bot": [
       "Starší JavaScript Discord bot na hudbu. Historický repozitář, kompatibilita s dnešními Discord a hudebními API není ověřená."
     ],
