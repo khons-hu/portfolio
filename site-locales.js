@@ -759,7 +759,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Official OpenAI and DeepMind news, coding-tool releases, service status, RSS and OPML export.",
-      "Save links, mark items read and choose sources. Importance labels explain their rules. Tibo’s X is linked, not automatically monitored.",
+      "Save links, mark items read and choose sources. Importance labels explain their rules. Tibo’s X is linked, not automatically monitored. Optional Jev reading order uses precomputed scores. It does not hide posts or change alerts.",
       "Public source. A hosted daily digest is configured on free services. Device registration is required; delivery remains unverified."
     ],
     "thinkroom": [
@@ -801,7 +801,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Oficiálne novinky OpenAI a DeepMind, vydania vývojárskych nástrojov, stav služieb a export RSS a OPML.",
-      "Ukladaj odkazy, označuj prečítané a vyberaj zdroje. Dôležitosť má vysvetlené pravidlá. Tibovo X je odkaz, nie automaticky sledovaný zdroj.",
+      "Ukladaj odkazy, označuj prečítané a vyberaj zdroje. Dôležitosť má vysvetlené pravidlá. Tibovo X je odkaz, nie automaticky sledovaný zdroj. Voliteľné poradie od Jev používa vopred vypočítané skóre. Neskrýva príspevky ani nemení upozornenia.",
       "Verejný zdrojový kód. Denný serverový súhrn je nastavený na bezplatných službách. Treba zaregistrovať zariadenie, doručenie ešte nie je overené."
     ],
     "thinkroom": [
@@ -843,7 +843,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Hivatalos OpenAI- és DeepMind-hírek, fejlesztői kiadások, szolgáltatásállapot, RSS- és OPML-export.",
-      "Linkek mentése, olvasott állapot és forrásválasztás. A fontossági címkék megmagyarázzák szabályaikat. Tibo X-fiókja csak hivatkozás, nincs automatikus figyelés.",
+      "Linkek mentése, olvasott állapot és forrásválasztás. A fontossági címkék megmagyarázzák szabályaikat. Tibo X-fiókja csak hivatkozás, nincs automatikus figyelés. Az opcionális Jev-sorrend előre kiszámított pontszámokat használ. Nem rejt el bejegyzéseket és nem módosítja az értesítéseket.",
       "Nyilvános forráskód. A napi szerveres összefoglaló ingyenes szolgáltatásokon be van állítva. Eszközregisztráció kell, a kézbesítés még nincs ellenőrizve."
     ],
     "thinkroom": [
@@ -885,7 +885,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Oficjalne wiadomości OpenAI i DeepMind, wydania narzędzi, status usług oraz eksport RSS i OPML.",
-      "Zapisuj linki, oznaczaj przeczytane i wybieraj źródła. Etykiety ważności wyjaśniają zasady. X Tiba jest linkiem, bez automatycznego monitorowania.",
+      "Zapisuj linki, oznaczaj przeczytane i wybieraj źródła. Etykiety ważności wyjaśniają zasady. X Tiba jest linkiem, bez automatycznego monitorowania. Opcjonalna kolejność Jev korzysta z wcześniej obliczonych ocen. Nie ukrywa wpisów ani nie zmienia powiadomień.",
       "Publiczny kod. Codzienne podsumowanie na serwerze jest skonfigurowane na bezpłatnych usługach. Wymagana rejestracja urządzenia, dostarczenie niepotwierdzone."
     ],
     "thinkroom": [
@@ -927,7 +927,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Offizielle OpenAI- und DeepMind-Nachrichten, Tool-Releases, Dienststatus sowie RSS- und OPML-Export.",
-      "Links speichern, als gelesen markieren und Quellen wählen. Wichtigkeitsmarkierungen erklären ihre Regeln. Tibos X ist verlinkt, nicht automatisch überwacht.",
+      "Links speichern, als gelesen markieren und Quellen wählen. Wichtigkeitsmarkierungen erklären ihre Regeln. Tibos X ist verlinkt, nicht automatisch überwacht. Die optionale Jev-Reihenfolge nutzt vorberechnete Bewertungen. Beiträge bleiben sichtbar und Benachrichtigungen unverändert.",
       "Öffentlicher Code. Ein täglicher Server-Digest ist bei kostenlosen Diensten eingerichtet. Geräteregistrierung nötig; Zustellung noch unbestätigt."
     ],
     "thinkroom": [
@@ -969,7 +969,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Noticias oficiales de OpenAI y DeepMind, lanzamientos de herramientas, estado de servicios y exportación RSS y OPML.",
-      "Guarda enlaces, marca lo leído y elige fuentes. Las etiquetas explican su importancia. El X de Tibo está enlazado, sin seguimiento automático.",
+      "Guarda enlaces, marca lo leído y elige fuentes. Las etiquetas explican su importancia. El X de Tibo está enlazado, sin seguimiento automático. El orden opcional de Jev usa puntuaciones precalculadas. No oculta publicaciones ni cambia los avisos.",
       "Código público. Resumen diario configurado en servicios gratuitos. Hay que registrar el dispositivo; la entrega aún no está verificada."
     ],
     "thinkroom": [
@@ -1011,7 +1011,7 @@ const PROJECT_NOTES = {
     ],
     "signal": [
       "Oficiální novinky OpenAI a DeepMind, vydání vývojářských nástrojů, stav služeb a export RSS a OPML.",
-      "Ukládej odkazy, označuj přečtené a vybírej zdroje. Důležitost má vysvětlená pravidla. Tibovo X je odkaz, ne automaticky sledovaný zdroj.",
+      "Ukládej odkazy, označuj přečtené a vybírej zdroje. Důležitost má vysvětlená pravidla. Tibovo X je odkaz, ne automaticky sledovaný zdroj. Volitelné pořadí od Jev používá předem vypočítaná skóre. Neskrývá příspěvky ani nemění upozornění.",
       "Veřejný zdrojový kód. Denní serverový přehled je nastaven na bezplatných službách. Je třeba registrovat zařízení, doručení ještě není ověřené."
     ],
     "thinkroom": [
