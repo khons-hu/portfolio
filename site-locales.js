@@ -123,7 +123,8 @@ const SITE_LOCALES = {
     "On my desk ↗": "Čomu sa venujem ↗",
     "Open contact links ↗": "Otvoriť kontakty ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Osobná rotácia a playlisty podľa nálady na požiadanie. Lokálne cez Python.",
-    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicou, LCD a malou hrou na zneškodnenie bomby. Univerzitný tímový projekt."
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicou, LCD a malou hrou na zneškodnenie bomby. Univerzitný tímový projekt.",
+    "Details": "Podrobnosti"
   },
   "hu": {
     "Skip to content": "Ugrás a tartalomra",
@@ -248,7 +249,8 @@ const SITE_LOCALES = {
     "On my desk ↗": "Amivel foglalkozom ↗",
     "Open contact links ↗": "Kapcsolatok megnyitása ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Személyes válogatás és hangulathoz illő lejátszási listák kérésre. Helyben, Pythonnal.",
-    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Számológép billentyűzettel, LCD-vel és egy kis bombahatástalanító játékkal. Egyetemi csapatmunka."
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Számológép billentyűzettel, LCD-vel és egy kis bombahatástalanító játékkal. Egyetemi csapatmunka.",
+    "Details": "Részletek"
   },
   "pl": {
     "Skip to content": "Przejdź do treści",
@@ -373,7 +375,8 @@ const SITE_LOCALES = {
     "On my desk ↗": "Nad czym pracuję ↗",
     "Open contact links ↗": "Otwórz kontakty ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Osobista rotacja i playlisty według nastroju na życzenie. Lokalnie, w Pythonie.",
-    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulator z klawiaturą, LCD i małą grą w rozbrajanie bomby. Projekt zespołowy ze studiów."
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulator z klawiaturą, LCD i małą grą w rozbrajanie bomby. Projekt zespołowy ze studiów.",
+    "Details": "Szczegóły"
   },
   "de": {
     "Skip to content": "Zum Inhalt",
@@ -498,7 +501,8 @@ const SITE_LOCALES = {
     "On my desk ↗": "Auf meinem Schreibtisch ↗",
     "Open contact links ↗": "Kontaktlinks öffnen ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Persönliche Rotation und Playlists nach Stimmung auf Anfrage. Lokal mit Python.",
-    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Ein Taschenrechner mit Tastenfeld, LCD und einem kleinen Bombenentschärfungsspiel. Ein Uni-Teamprojekt."
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Ein Taschenrechner mit Tastenfeld, LCD und einem kleinen Bombenentschärfungsspiel. Ein Uni-Teamprojekt.",
+    "Details": "Details"
   },
   "es": {
     "Skip to content": "Ir al contenido",
@@ -623,7 +627,8 @@ const SITE_LOCALES = {
     "On my desk ↗": "En mi mesa ↗",
     "Open contact links ↗": "Abrir contactos ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Una rotación personal y playlists según el ánimo, a petición. En local, con Python.",
-    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Una calculadora con teclado, LCD y un pequeño juego de desactivar bombas. Un proyecto universitario en equipo."
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Una calculadora con teclado, LCD y un pequeño juego de desactivar bombas. Un proyecto universitario en equipo.",
+    "Details": "Detalles"
   },
   "cs": {
     "Skip to content": "Přeskočit na obsah",
@@ -748,7 +753,8 @@ const SITE_LOCALES = {
     "On my desk ↗": "Čemu se věnuji ↗",
     "Open contact links ↗": "Otevřít kontakty ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Osobní rotace a playlisty podle nálady na požádání. Lokálně přes Python.",
-    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicí, LCD a malou hrou na zneškodnění bomby. Univerzitní týmový projekt."
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicí, LCD a malou hrou na zneškodnění bomby. Univerzitní týmový projekt.",
+    "Details": "Podrobnosti"
   }
 };
 const PROJECT_NOTES = {
