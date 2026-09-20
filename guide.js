@@ -46,6 +46,16 @@
   if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui};
   if (typeof document === 'undefined') return;
   const dialog=document.querySelector('#guide-dialog'),log=document.querySelector('#guide-log'),input=document.querySelector('#guide-question'),lang=document.querySelector('#guide-language');
+  // iOS keyboards shrink the visual viewport, not the layout viewport.
+  function fitGuideViewport(){
+    const viewport=window.visualViewport;
+    if(!viewport)return;
+    dialog.style.setProperty('--guide-visible-height',`${viewport.height}px`);
+    dialog.style.setProperty('--guide-visible-top',`${viewport.offsetTop}px`);
+  }
+  window.visualViewport?.addEventListener('resize',fitGuideViewport);
+  window.visualViewport?.addEventListener('scroll',fitGuideViewport);
+  fitGuideViewport();
   function translateUI(){
     const t=ui(lang.value);dialog.lang=lang.value;
     document.querySelector('#guide-title').textContent=globalThis.PortfolioI18n?.t('☾ ask khonsu',lang.value)||'☾ ask khonsu';
@@ -70,7 +80,7 @@
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();row.scrollIntoView({block:'nearest',behavior:'instant'});
   }
   function ask(text){if(!text.trim())return;append(text.trim().slice(0,300),'visitor');const result=answer(text,lang.value);append(result.text,'guide',result);input.value='';}
-  document.querySelector('#guide-launcher').addEventListener('click',()=>{dialog.showModal();input.focus();});
+  document.querySelector('#guide-launcher').addEventListener('click',()=>{dialog.showModal();if(!matchMedia('(pointer: coarse)').matches)input.focus();});
   document.querySelector('#guide-form').addEventListener('submit',e=>{e.preventDefault();ask(input.value);});
   document.querySelectorAll('[data-question]').forEach(button=>button.addEventListener('click',()=>ask(button.dataset.question)));
   document.querySelector('#guide-clear').addEventListener('click',()=>{log.replaceChildren();input.value='';input.focus();});

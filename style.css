@@ -53,3 +53,7 @@ footer>#motion-toggle{justify-self:end;text-align:right}
 #site-language{max-width:110px;min-width:0;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:8px 5px;font:11px var(--sans)}
 @media(max-width:760px){.site-header{height:auto;min-height:100px;flex-wrap:wrap;padding-block:16px;gap:14px}.site-header nav{order:3;flex-basis:100%;justify-content:center;flex-wrap:wrap}.header-tools{margin-left:auto}.terminal-toggle kbd{display:none}#site-language{max-width:95px}.hero-content{padding-top:40px}}
 @media(max-width:600px){footer>#motion-toggle{min-height:3.4em}}
+
+/* Keep touch form text readable without Safari focus zoom. Pinch zoom stays enabled. */
+@media (pointer:coarse){input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!important}button,select{min-height:44px}dialog{overflow-y:auto;overscroll-behavior:contain}}
+@media (pointer:coarse){#guide-dialog[open]{top:calc(var(--guide-visible-top,0px) + 12px);bottom:auto;margin:0 auto;max-height:calc(var(--guide-visible-height,100dvh) - 24px);overflow-y:auto}#guide-dialog> *{flex-shrink:0}#guide-log{flex-shrink:1}#guide-form{min-height:44px}}
