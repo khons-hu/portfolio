@@ -13,7 +13,7 @@ const GUIDE_LOCALES = {
  'Patrick a TUKE-n szerzett informatikai mesterdiplomát. Diplomamunkájában PPO-alapú megerősítéses tanuló ágenseket és LLM-alapú pályagenerálást kapcsolt össze egy többjátékos játékhoz.',
  'Spotify rotation: személyes automatizálás. Dots: React és Java. CSLYS: Discord-bot. Folyamatok közötti kommunikáció: C++. A nyilvános projektek többsége régebbi.',
  'GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Megmutathatom az elérhetőségeket, de nem küldhetek üzenetet Patrick nevében.',
- 'Patrick Obrtal, online khonsu. C++ és Counter-Strike volt a kezdet, majd informatika a TUKE-n. Ma Customer Support Partner L2 munkakörben dolgozik a Luigi’s Boxnál, kódoló ágensekkel kísérletezik és CS2-zik.',
+ 'Patrick Obrtal, online khonsu. A nevet nagyjából 2022 óta használja, a Moon Knight inspirálta. C++ és Counter-Strike volt a kezdet, majd informatika a TUKE-n. Ma Customer Support Partner L2 munkakörben dolgozik a Luigi’s Boxnál, kódoló ágensekkel kísérletezik és CS2-zik.',
  'Az AGI-t, a rekurzív önfejlesztést és az új modelleket követi. Kódoló ágenseket próbál ki a saját munkájában, a diplomamunkájában pedig PPO-val foglalkozott.',
  'A Counter-Strike a programozói kezdeteihez és a szabadidejéhez is hozzátartozik. Rangért és statisztikákért kérdezd Patrickot. Ez az útmutató még nem játszott vele.'
  ]},
@@ -30,7 +30,7 @@ const GUIDE_LOCALES = {
  'Patrick ma tytuł magistra informatyki z TUKE. W pracy dyplomowej połączył agentów uczenia ze wzmocnieniem PPO z generowaniem map przez LLM dla gry wieloosobowej.',
  'Spotify rotation: osobista automatyzacja. Dots: React i Java. CSLYS: bot Discord. Komunikacja między procesami: C++. Większość publicznych repozytoriów jest starsza.',
  'GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Mogę pokazać linki, ale nie wysyłam wiadomości ani nie wypowiadam się w jego imieniu.',
- 'Patrick Obrtal, w sieci khonsu. Zaczął od C++ i Counter-Strike, studiował informatykę na TUKE, a teraz pracuje jako Customer Support Partner L2 w Luigi’s Box. Testuje agentów programistycznych i gra w CS2.',
+ 'Patrick Obrtal, w sieci khonsu. Używa tej nazwy mniej więcej od 2022 roku, z inspiracji Moon Knightem. Zaczął od C++ i Counter-Strike, studiował informatykę na TUKE, a teraz pracuje jako Customer Support Partner L2 w Luigi’s Box. Testuje agentów programistycznych i gra w CS2.',
  'Śledzi AGI, rekurencyjne samodoskonalenie i nowe modele. Testuje agentów programistycznych we własnej pracy. W pracy dyplomowej zajmował się też PPO.',
  'Counter-Strike to część jego początków z programowaniem i czasu wolnego. O rangę i statystyki zapytaj Patricka. Ten przewodnik jeszcze z nim nie grał.'
  ]},
@@ -47,7 +47,7 @@ const GUIDE_LOCALES = {
  'Patrick má magisterské vzdělání v informatice z TUKE. V diplomové práci spojil PPO agenty s generováním map pomocí LLM pro multiplayerovou hru.',
  'Spotify rotation: osobní automatizace. Dots: React a Java. CSLYS: Discord bot. Meziprocesová komunikace: C++. Většina veřejných repozitářů je starší.',
  'GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Ukážu odkazy, ale nemůžu poslat zprávu ani mluvit jeho jménem.',
- 'Patrick Obrtal, online khonsu. Začal s C++ a Counter-Strike, vystudoval informatiku na TUKE a dnes pracuje jako Customer Support Partner L2 v Luigi’s Box. Zkouší coding agenty a stále hraje CS2.',
+ 'Patrick Obrtal, online khonsu. Jméno používá přibližně od roku 2022, inspirované Moon Knightem. Začal s C++ a Counter-Strike, vystudoval informatiku na TUKE a dnes pracuje jako Customer Support Partner L2 v Luigi’s Box. Zkouší coding agenty a stále hraje CS2.',
  'Sleduje AGI, rekurzivní sebezdokonalování a nové modely. Coding agenty zkouší ve vlastní práci. V diplomové práci se věnoval PPO.',
  'Counter-Strike patří k jeho programátorským začátkům i volnému času. Na rank a statistiky se zeptej Patricka. Tento průvodce s ním ještě nehrál.'
  ]},
@@ -64,7 +64,7 @@ const GUIDE_LOCALES = {
  'Patrick hat einen Master in Informatik von der TUKE. Seine Abschlussarbeit kombinierte PPO-Agenten für bestärkendes Lernen mit LLM-basierter Kartengenerierung für ein Mehrspielerspiel.',
  'Spotify rotation: persönliche Automatisierung. Dots: React und Java. CSLYS: Discord-Bot. Prozesskommunikation: C++. Die meisten öffentlichen Repositories sind älter.',
  'GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Ich kann die Links zeigen, aber keine Nachrichten senden oder für Patrick sprechen.',
- 'Patrick Obrtal, online khonsu. Er begann mit C++ und Counter-Strike, studierte Informatik an der TUKE und arbeitet heute als Customer Support Partner L2 bei Luigi’s Box. Er probiert Coding-Agenten aus und spielt CS2.',
+ 'Patrick Obrtal, online khonsu. Den Namen nutzt er ungefähr seit 2022, inspiriert von Moon Knight. Er begann mit C++ und Counter-Strike, studierte Informatik an der TUKE und arbeitet heute als Customer Support Partner L2 bei Luigi’s Box. Er probiert Coding-Agenten aus und spielt CS2.',
  'Er verfolgt AGI, rekursive Selbstverbesserung und neue Modelle und testet Coding-Agenten bei eigenen Aufgaben. Auch seine Abschlussarbeit mit PPO behandelte lernende Systeme.',
  'Counter-Strike gehört zu seinen Programmieranfängen und seiner Freizeit. Frag Patrick nach Rang und Spielstatistiken. Dieser Guide hat noch nicht mit ihm gespielt.'
  ]}
