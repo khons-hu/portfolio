@@ -57,3 +57,5 @@ footer>#motion-toggle{justify-self:end;text-align:right}
 /* Keep touch form text readable without Safari focus zoom. Pinch zoom stays enabled. */
 @media (pointer:coarse){input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!important}button,select{min-height:44px}dialog{overflow-y:auto;overscroll-behavior:contain}}
 @media (pointer:coarse){#guide-dialog[open]{top:calc(var(--guide-visible-top,0px) + 12px);bottom:auto;margin:0 auto;max-height:calc(var(--guide-visible-height,100dvh) - 24px);overflow-y:auto}#guide-dialog> *{flex-shrink:0}#guide-log{flex-shrink:1}#guide-form{min-height:44px}}
+
+@media(pointer:coarse){#guide-dialog.guide-typing .guide-intro,#guide-dialog.guide-typing .guide-suggestions,#guide-dialog.guide-typing .guide-contact{display:none}#guide-dialog.guide-typing #guide-log{min-height:0}}

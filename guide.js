@@ -52,6 +52,8 @@
     if(!viewport)return;
     dialog.style.setProperty('--guide-visible-height',`${viewport.height}px`);
     dialog.style.setProperty('--guide-visible-top',`${viewport.offsetTop}px`);
+    dialog.classList.toggle('guide-typing',document.activeElement===input&&viewport.height<window.innerHeight*.8);
+    if(dialog.open&&dialog.contains(document.activeElement))requestAnimationFrame(()=>document.activeElement.scrollIntoView({block:'nearest'}));
   }
   window.visualViewport?.addEventListener('resize',fitGuideViewport);
   window.visualViewport?.addEventListener('scroll',fitGuideViewport);
