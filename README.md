@@ -39,3 +39,12 @@ Verified: topic routing, Slovak accents, unknown/private-question fallbacks, ope
 ## Appearance
 
 Light/dark toggle in the header. Initially follows the system theme, then remembers the visitor’s choice locally. Both themes retain the lunar artwork and respect reduced motion.
+
+
+## Contact email
+
+Ask Khonsu contains a separate six-language contact form addressed only to ptr.obrtal@gmail.com. It sends the reply email and message through FormSubmit. It never includes guide questions or chat history. No API key or email credentials are bundled.
+
+The recipient activation email was requested. Delivery remains disabled (`deliveryEnabled` in contact.js) until the recipient confirms the FormSubmit email and a real delivery test succeeds. After that, enable the flag and deploy. The mailto fallback remains available. A successful provider response means submission accepted, not proven inbox delivery.
+
+Run `node --test tests/*.test.cjs` for validation, payload isolation, activation/failure handling and the theme regression checks. FormSubmit provides spam filtering. The local honeypot is only an extra signal, not a server-side abuse guarantee.

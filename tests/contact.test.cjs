@@ -1,0 +1,7 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');const {payload,send}=require('../contact-core.js');
+const valid={email:'visitor@example.com',message:'Hello Patrick, I have a question.'};
+test('only explicit contact data goes to a fixed destination',async()=>{let call;await send({...valid,chat:'private chat',_cc:'other@example.com'},async(url,options)=>{call={url,body:JSON.parse(options.body)};return {ok:true,json:async()=>({success:'true'})}});assert.equal(call.url,'https://formsubmit.co/ajax/ptr.obrtal@gmail.com');assert.deepEqual(Object.keys(call.body).sort(),['_subject','_template','email','message'].sort());});
+test('reject invalid or oversized fields',()=>{for(const form of [{...valid,email:'bad'},{...valid,message:'short'},{...valid,message:'x'.repeat(3001)}])assert.throws(()=>payload(form));});
+test('honeypot prevents network calls',async()=>{let called=false;await assert.rejects(send({...valid,website:'bot'},async()=>{called=true}),/blocked/);assert.equal(called,false)});
+test('activation is not represented as a sent message',async()=>{await assert.rejects(send(valid,async()=>({ok:true,json:async()=>({success:'false',message:'This form needs Activation.'})})),/activation/)});
+test('provider and network failures never count as success',async()=>{await assert.rejects(send(valid,async()=>({ok:false,json:async()=>({success:true})})),/delivery/);await assert.rejects(send(valid,async()=>{throw Error('offline')}),/offline/)});
