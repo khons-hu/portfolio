@@ -37,3 +37,14 @@ html[data-theme=light] .hero-shade::after{opacity:1}
 #project-dialog .primary-link[hidden]{display:none}
 #project-android{margin-inline-start:1.25rem}
 @media(max-width:480px){#project-android{display:block;margin:1rem 0 0}}
+
+/* Keep the credit centered independently of the motion label width. */
+footer{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+footer>.wordmark{justify-self:start}
+footer>span{justify-self:center}
+footer>#motion-toggle{justify-self:end;text-align:right}
+@media(max-width:600px){
+  footer{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  footer>#motion-toggle{grid-column:2;grid-row:1}
+  footer>span{grid-column:1 / -1;grid-row:2}
+}
