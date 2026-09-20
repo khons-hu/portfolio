@@ -1,9 +1,12 @@
 /* Bind authored text once. Dynamic content uses t() explicitly; user text is never scanned. */
 (function () {
   const names = {en:'English',sk:'Slovenčina',hu:'Magyar',pl:'Polski',de:'Deutsch',es:'Español',cs:'Čeština'};
-  const resolve = value => {const lang=String(value || '').toLowerCase().split('-')[0]; return Object.hasOwn(names,lang) ? lang : 'en';};
-  let language = resolve(navigator.language);
-  try { const saved=localStorage.getItem('khonsu-language'); if(saved) language=resolve(saved); } catch {}
+  const match = value => {const lang=String(value || '').toLowerCase().split(/[-_]/)[0]; return Object.hasOwn(names,lang) ? lang : null;};
+  const resolve = value => match(value) || 'en';
+  const choose = saved => match(saved) || (navigator.languages || [navigator.language]).map(match).find(Boolean) || 'en';
+  let saved;
+  try { saved=localStorage.getItem('khonsu-language'); } catch {}
+  let language = choose(saved);
   const t = (text,lang=language) => SITE_LOCALES[lang]?.[text] || text;
   const bindings=[];
   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
@@ -26,8 +29,8 @@
     bindings.forEach(update=>update());
     window.dispatchEvent(new CustomEvent('portfolio:language',{detail:language}));
   }
-  window.PortfolioI18n={t,get language(){return language;},resolve,names,notes:id=>PROJECT_NOTES[language]?.[id]||PROJECT_NOTES.en[id]||[]};
+  window.PortfolioI18n={t,get language(){return language;},resolve,choose,names,notes:id=>PROJECT_NOTES[language]?.[id]||PROJECT_NOTES.en[id]||[]};
   selector.addEventListener('change',()=>apply(selector.value));
-  window.addEventListener('storage',e=>{if(e.key==='khonsu-language')apply(e.newValue||navigator.language,false);});
+  window.addEventListener('storage',e=>{if(e.key==='khonsu-language')apply(choose(e.newValue),false);});
   apply(language,false);
 })();
