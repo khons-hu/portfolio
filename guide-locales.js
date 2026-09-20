@@ -1,7 +1,7 @@
 // Curated translations. Kept local with the portfolio, never fetched from a service.
 const GUIDE_LOCALES = {
  hu: {
- ui:['Rövid útmutató Patrick munkáihoz.','Előre megírt válaszok, nem AI-modell. A kérdések ebben a lapban maradnak, és újratöltéskor eltűnnek.','Válasz nyelve','Kérdezz a portfólióról…','Kérdés küldése','Beszélgetés törlése','Projekt megnyitása ↗','Szakasz megtekintése ↗','Munka','Projektek','Miért Codex?','HELYI ÚTMUTATÓ · NINCS API','Bezárás'],
+ ui:['Rövid útmutató Patrick munkáihoz.','Előre megírt válaszok, nem AI-modell. A kérdések ebben a lapban maradnak, és újratöltéskor eltűnnek.','Válasz nyelve','Kérdezz a portfólióról…','Kérdés küldése','Beszélgetés törlése','Projekt megnyitása ↗','Szakasz megtekintése ↗','Munka','Projektek','Rólam','HELYI ÚTMUTATÓ · NINCS API','Bezárás'],
  fallback:'Ezt a kérdést nem tudom biztosan felismerni. Kérdezz a munkáról, projektekről, C++-ról, Spotifyról vagy Codexről.', privacy:'Csak a portfólió nyilvános adatait ismerem. Magánadatokat nem tudok megadni.', greeting:'Szia! Helyi portfólió-útmutató vagyok, nem Patrick és nem AI-modell. Mi érdekel?',
  answers:[
  'Patrick L2 technikai támogatással és integrációkkal foglalkozik a Luigi’s Boxnál. Böngészőhibákat, API-kat, termékadatokat és analitikát vizsgál, integrációkat ellenőriz és javításokat tesztel. A Luigi’s Box keresést és termékajánlást fejleszt webáruházaknak.',
@@ -18,7 +18,7 @@ const GUIDE_LOCALES = {
  'A Counter-Strike a programozói kezdeteihez és a szabadidejéhez is hozzátartozik. Rangért és statisztikákért kérdezd Patrickot. Ez az útmutató még nem játszott vele.'
  ]},
  pl: {
- ui:['Krótki przewodnik po pracy Patricka.','Gotowe odpowiedzi, nie model AI. Pytania zostają w tej karcie i znikają po odświeżeniu.','Język odpowiedzi','Zapytaj o portfolio…','Wyślij pytanie','Wyczyść rozmowę','Otwórz projekt ↗','Zobacz sekcję ↗','Praca','Projekty','Dlaczego Codex?','LOKALNY PRZEWODNIK · BEZ API','Zamknij'],
+ ui:['Krótki przewodnik po pracy Patricka.','Gotowe odpowiedzi, nie model AI. Pytania zostają w tej karcie i znikają po odświeżeniu.','Język odpowiedzi','Zapytaj o portfolio…','Wyślij pytanie','Wyczyść rozmowę','Otwórz projekt ↗','Zobacz sekcję ↗','Praca','Projekty','O mnie','LOKALNY PRZEWODNIK · BEZ API','Zamknij'],
  fallback:'Nie potrafię pewnie dopasować tego pytania. Zapytaj o pracę, projekty, C++, Spotify lub Codex.',privacy:'Znam tylko publiczne informacje z portfolio. Nie udostępniam prywatnych danych.',greeting:'Cześć! Jestem lokalnym przewodnikiem po portfolio, nie Patrickiem ani modelem AI. Co Cię interesuje?',
  answers:[
  'Patrick zajmuje się wsparciem technicznym L2 i integracjami w Luigi’s Box. Sprawdza działanie przeglądarki, API, dane produktów i analitykę, audytuje integracje i weryfikuje poprawki. Luigi’s Box tworzy wyszukiwanie i rekomendacje dla e-commerce.',
@@ -35,7 +35,7 @@ const GUIDE_LOCALES = {
  'Counter-Strike to część jego początków z programowaniem i czasu wolnego. O rangę i statystyki zapytaj Patricka. Ten przewodnik jeszcze z nim nie grał.'
  ]},
  cs: {
- ui:['Malý průvodce Patrickovou prací.','Připravené odpovědi, ne AI model. Otázky zůstávají v této kartě a po obnovení zmizí.','Jazyk odpovědí','Zeptej se na portfolio…','Odeslat otázku','Vymazat chat','Otevřít projekt ↗','Zobrazit sekci ↗','Práce','Projekty','Proč Codex?','MÍSTNÍ PRŮVODCE · BEZ API','Zavřít'],
+ ui:['Malý průvodce Patrickovou prací.','Připravené odpovědi, ne AI model. Otázky zůstávají v této kartě a po obnovení zmizí.','Jazyk odpovědí','Zeptej se na portfolio…','Odeslat otázku','Vymazat chat','Otevřít projekt ↗','Zobrazit sekci ↗','Práce','Projekty','O mně','MÍSTNÍ PRŮVODCE · BEZ API','Zavřít'],
  fallback:'Tuto otázku neumím spolehlivě přiřadit. Zkus práci, projekty, C++, Spotify nebo Codex.',privacy:'Znám jen veřejné informace z portfolia. Soukromé údaje tu nejsou.',greeting:'Ahoj! Jsem místní průvodce portfoliem, ne Patrick ani AI model. Co tě zajímá?',
  answers:[
  'Patrick pracuje v L2 technické podpoře a integracích v Luigi’s Box. Zkoumá chování webu, API, produktové feedy a analytiku, audituje integrace a ověřuje opravy. Luigi’s Box vyvíjí vyhledávání a doporučování produktů pro e-shopy.',
@@ -52,7 +52,7 @@ const GUIDE_LOCALES = {
  'Counter-Strike patří k jeho programátorským začátkům i volnému času. Na rank a statistiky se zeptej Patricka. Tento průvodce s ním ještě nehrál.'
  ]},
  de: {
- ui:['Ein kleiner Wegweiser durch Patricks Arbeit.','Vorbereitete Antworten, kein KI-Modell. Fragen bleiben in diesem Tab und verschwinden beim Neuladen.','Antwortsprache','Frag etwas zum Portfolio…','Frage senden','Chat leeren','Projekt öffnen ↗','Abschnitt ansehen ↗','Arbeit','Projekte','Warum Codex?','LOKALER GUIDE · KEINE API','Schließen'],
+ ui:['Ein kleiner Wegweiser durch Patricks Arbeit.','Vorbereitete Antworten, kein KI-Modell. Fragen bleiben in diesem Tab und verschwinden beim Neuladen.','Antwortsprache','Frag etwas zum Portfolio…','Frage senden','Chat leeren','Projekt öffnen ↗','Abschnitt ansehen ↗','Arbeit','Projekte','Über mich','LOKALER GUIDE · KEINE API','Schließen'],
  fallback:'Diese Frage kann ich nicht sicher zuordnen. Frag nach Arbeit, Projekten, C++, Spotify oder Codex.',privacy:'Ich kenne nur die öffentlichen Portfolio-Inhalte. Private Angaben sind hier nicht verfügbar.',greeting:'Hallo! Ich bin ein lokaler Portfolio-Guide, nicht Patrick und kein KI-Modell. Was interessiert dich?',
  answers:[
  'Patrick arbeitet im technischen L2-Support und an Integrationen bei Luigi’s Box. Er untersucht Browser-Verhalten, APIs, Produktdaten und Analytics, prüft Integrationen und verifiziert Korrekturen. Luigi’s Box entwickelt Produktsuche und Empfehlungen für Onlineshops.',
