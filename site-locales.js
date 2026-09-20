@@ -41,7 +41,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Týždenný výber účtov na X a vývojárov na GitHube podľa toho, čo práve skúšam.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBOVÁ HRA",
     "EARLIER PROJECT": "STARŠÍ PROJEKT",
-    "A web game connecting a React interface with a Java backend.": "Webová hra s React rozhraním a Java backendom.",
+    "My 2023 React game, adapted for browser-only play with its original look.": "Moja React hra z roku 2023, upravená na hranie v prehliadači s pôvodným vzhľadom.",
     "A Discord bot with music playback, built as an earlier personal project.": "Starší osobný projekt: Discord bot s prehrávaním hudby.",
     "UNIVERSITY TEAM PROJECT": "UNIVERZITNÝ TÍMOVÝ PROJEKT",
     "Between processes": "Medzi procesmi",
@@ -165,7 +165,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Heti válogatás X-fiókokból és GitHub-fejlesztőkből az aktuális érdeklődésem szerint.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBES JÁTÉK",
     "EARLIER PROJECT": "KORÁBBI PROJEKT",
-    "A web game connecting a React interface with a Java backend.": "Webes játék React felülettel és Java backenddel.",
+    "My 2023 React game, adapted for browser-only play with its original look.": "A 2023-as React játékom, böngészős játékra átalakítva, az eredeti megjelenéssel.",
     "A Discord bot with music playback, built as an earlier personal project.": "Korábbi saját projekt: Discord-bot zenelejátszással.",
     "UNIVERSITY TEAM PROJECT": "EGYETEMI CSAPATPROJEKT",
     "Between processes": "Folyamatok között",
@@ -289,7 +289,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Cotygodniowy wybór kont X i programistów GitHuba według moich zainteresowań.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT GRA WEBOWA",
     "EARLIER PROJECT": "WCZEŚNIEJSZY PROJEKT",
-    "A web game connecting a React interface with a Java backend.": "Gra webowa łącząca React z backendem w Javie.",
+    "My 2023 React game, adapted for browser-only play with its original look.": "Moja gra React z 2023 roku, przystosowana do przeglądarki z oryginalnym wyglądem.",
     "A Discord bot with music playback, built as an earlier personal project.": "Wcześniejszy projekt osobisty: bot Discord z muzyką.",
     "UNIVERSITY TEAM PROJECT": "UCZELNIANY PROJEKT ZESPOŁOWY",
     "Between processes": "Między procesami",
@@ -413,7 +413,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Wöchentliche Auswahl von X-Konten und GitHub-Entwicklern passend zu meinen Interessen.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBSPIEL",
     "EARLIER PROJECT": "FRÜHERES PROJEKT",
-    "A web game connecting a React interface with a Java backend.": "Ein Webspiel mit React-Oberfläche und Java-Backend.",
+    "My 2023 React game, adapted for browser-only play with its original look.": "Mein React-Spiel von 2023, für den Browser angepasst und im ursprünglichen Design.",
     "A Discord bot with music playback, built as an earlier personal project.": "Ein früheres persönliches Projekt: Discord-Bot mit Musikwiedergabe.",
     "UNIVERSITY TEAM PROJECT": "TEAMPROJEKT AN DER UNI",
     "Between processes": "Zwischen Prozessen",
@@ -537,7 +537,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Selección semanal de cuentas de X y desarrolladores de GitHub según mis intereses.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT JUEGO WEB",
     "EARLIER PROJECT": "PROYECTO ANTERIOR",
-    "A web game connecting a React interface with a Java backend.": "Juego web con interfaz React y backend Java.",
+    "My 2023 React game, adapted for browser-only play with its original look.": "Mi juego React de 2023, adaptado al navegador con su aspecto original.",
     "A Discord bot with music playback, built as an earlier personal project.": "Un proyecto personal anterior: bot de Discord con música.",
     "UNIVERSITY TEAM PROJECT": "PROYECTO UNIVERSITARIO EN EQUIPO",
     "Between processes": "Entre procesos",
@@ -661,7 +661,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Týdenní výběr účtů na X a vývojářů na GitHubu podle toho, co právě zkouším.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBOVÁ HRA",
     "EARLIER PROJECT": "STARŠÍ PROJEKT",
-    "A web game connecting a React interface with a Java backend.": "Webová hra s React rozhraním a Java backendem.",
+    "My 2023 React game, adapted for browser-only play with its original look.": "Moje React hra z roku 2023, upravená pro hraní v prohlížeči s původním vzhledem.",
     "A Discord bot with music playback, built as an earlier personal project.": "Starší osobní projekt: Discord bot s přehráváním hudby.",
     "UNIVERSITY TEAM PROJECT": "UNIVERZITNÍ TÝMOVÝ PROJEKT",
     "Between processes": "Mezi procesy",
@@ -780,9 +780,7 @@ const PROJECT_NOTES = {
       "On request, it also searches by mood, activity or artist and favours familiar artists in the results. Mood matching is approximate, not audio analysis.",
       "The playlist is saved privately and checked after writing. This is a personal tool running on my Mac. The source is not published."
     ],
-    "dots": [
-      "An earlier full-stack web game with React and Spring Boot. Archived work, not a recently maintained product."
-    ],
+    "dots": ["Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.", "Five levels, a power-up shop and guest play. No login or shared leaderboard. Source is available. Public deployment is pending."],
     "bot": [
       "An earlier JavaScript Discord music bot. Historical repository; current Discord and music-service compatibility is unverified."
     ],
@@ -824,9 +822,7 @@ const PROJECT_NOTES = {
       "Na požiadanie vyhľadá hudbu podľa nálady, aktivity alebo interpreta a vo výsledkoch uprednostní známych interpretov. Nálada je približná, nejde o analýzu zvuku.",
       "Playlist uloží súkromne a overí jeho obsah. Je to osobný nástroj na mojom Macu. Zdrojový kód nie je zverejnený."
     ],
-    "dots": [
-      "Staršia full-stack webová hra s Reactom a Spring Bootom. Archívna práca, nie aktuálne udržiavaný produkt."
-    ],
+    "dots": ["Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.", "Päť úrovní, obchod s bonusmi a hranie bez účtu. Bez prihlásenia a spoločného rebríčka. Kód je dostupný, verejné nasadenie ešte čaká."],
     "bot": [
       "Starší JavaScript Discord bot na hudbu. Historický repozitár, kompatibilita s dnešnými Discord a hudobnými API nie je overená."
     ],
@@ -868,9 +864,7 @@ const PROJECT_NOTES = {
       "Kérésre hangulat, tevékenység vagy előadó alapján is keres, és az ismert előadókat előnyben részesíti a találatok között. A hangulat szerinti szűrés közelítő, nem hangelemzés.",
       "A lejátszási listát privátként menti, majd ellenőrzi. Saját eszköz, a Macemen fut. A forráskód nem nyilvános."
     ],
-    "dots": [
-      "Korábbi full-stack webes játék Reacttel és Spring Boottal. Archív munka, nem frissen karbantartott termék."
-    ],
+    "dots": ["Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.", "Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A forráskód elérhető, a nyilvános telepítés még várat magára."],
     "bot": [
       "Korábbi JavaScript Discord-zenerobot. Régi repozitórium, a mai Discord- és zenei szolgáltatásokkal való kompatibilitás nincs ellenőrizve."
     ],
@@ -912,9 +906,7 @@ const PROJECT_NOTES = {
       "Na życzenie wyszukuje też muzykę według nastroju, aktywności lub wykonawcy i preferuje znanych wykonawców w wynikach. Dopasowanie nastroju jest przybliżone, bez analizy dźwięku.",
       "Zapisuje playlistę jako prywatną i sprawdza jej zawartość. To osobiste narzędzie działające na moim Macu. Kod nie jest publiczny."
     ],
-    "dots": [
-      "Starsza gra full-stack z React i Spring Boot. Praca archiwalna, nie aktualnie utrzymywany produkt."
-    ],
+    "dots": ["Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.", "Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Kod jest dostępny, publiczne wdrożenie jeszcze czeka."],
     "bot": [
       "Starszy bot muzyczny Discord w JavaScript. Historyczne repozytorium, zgodność z obecnymi usługami niepotwierdzona."
     ],
@@ -956,9 +948,7 @@ const PROJECT_NOTES = {
       "Auf Anfrage sucht es auch nach Stimmung, Aktivität oder Künstler und bevorzugt vertraute Künstler in den Ergebnissen. Die Stimmung wird nur grob zugeordnet, nicht per Audioanalyse.",
       "Die Playlist wird privat gespeichert und anschließend geprüft. Ein persönliches Tool auf meinem Mac. Der Quellcode ist nicht öffentlich."
     ],
-    "dots": [
-      "Ein früheres Full-Stack-Webspiel mit React und Spring Boot. Archivierte Arbeit, kein aktuell gepflegtes Produkt."
-    ],
+    "dots": ["2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.", "Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Quellcode verfügbar, öffentliche Bereitstellung steht noch aus."],
     "bot": [
       "Ein früherer JavaScript-Musikbot für Discord. Historisches Repository, aktuelle Kompatibilität mit Discord und Musikdiensten ungeprüft."
     ],
@@ -1000,9 +990,7 @@ const PROJECT_NOTES = {
       "A petición, también busca por ánimo, actividad o artista y prioriza artistas conocidos entre los resultados. El ajuste al ánimo es aproximado, sin análisis de audio.",
       "Guarda la playlist como privada y comprueba su contenido. Es una herramienta personal que funciona en mi Mac. El código no es público."
     ],
-    "dots": [
-      "Juego web full-stack anterior con React y Spring Boot. Trabajo archivado, no un producto mantenido actualmente."
-    ],
+    "dots": ["Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.", "Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. Código disponible, publicación pendiente."],
     "bot": [
       "Bot musical de Discord anterior en JavaScript. Repositorio histórico; compatibilidad actual con Discord y servicios musicales no verificada."
     ],
@@ -1044,9 +1032,7 @@ const PROJECT_NOTES = {
       "Na požádání vyhledá hudbu podle nálady, aktivity nebo interpreta a ve výsledcích upřednostní známé interprety. Nálada je přibližná, nejde o analýzu zvuku.",
       "Playlist uloží soukromě a ověří jeho obsah. Je to osobní nástroj na mém Macu. Zdrojový kód není zveřejněný."
     ],
-    "dots": [
-      "Starší full-stack webová hra s Reactem a Spring Bootem. Archivní práce, ne aktuálně udržovaný produkt."
-    ],
+    "dots": ["Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.", "Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Kód je dostupný, veřejné nasazení ještě čeká."],
     "bot": [
       "Starší JavaScript Discord bot na hudbu. Historický repozitář, kompatibilita s dnešními Discord a hudebními API není ověřená."
     ],
