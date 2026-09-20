@@ -52,6 +52,11 @@ function showProject(id) {
   document.querySelector('#project-category').textContent = project.category.split(' · ').map(t).join(' · ');
   document.querySelector('#project-description').textContent = document.querySelector(`[data-project="${id}"] .project-info p`)?.textContent || t(project.description);
   document.querySelector('#project-notes').replaceChildren(...(globalThis.PortfolioI18n?.notes(id) || project.notes).map(note => { const p = document.createElement('p'); p.textContent = note; return p; }));
+  const preview = document.querySelector('#project-preview');
+  const previewUrl = document.querySelector(`[data-project="${id}"] .project-preview img`)?.getAttribute('src');
+  preview.hidden = !previewUrl;
+  if (previewUrl) preview.src = previewUrl;
+  else preview.removeAttribute('src');
   const link = document.querySelector('#project-link');
   const liveUrl = project.live ? project.url : null;
   link.hidden = !liveUrl;
@@ -66,7 +71,10 @@ function showProject(id) {
   const android = document.querySelector('#project-android');
   android.hidden = !project.android;
   if (project.android) android.href = project.android; else android.removeAttribute('href');
-  if(!projectDialog.open) projectDialog.showModal();
+  if (!projectDialog.open) {
+    projectDialog.showModal();
+    projectDialog.scrollTop = 0;
+  }
 }
 window.addEventListener('portfolio:language',()=>{const status=document.querySelector('#copy-status');if(status.dataset.message)status.textContent=t(status.dataset.message);updateMotion();if(projectDialog.open && activeProject)showProject(activeProject);});
 document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => showProject(button.dataset.project)));
