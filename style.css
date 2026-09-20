@@ -11,3 +11,12 @@
 
 .portfolio-art{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:24px;background:linear-gradient(145deg,#182e40,#090f16);gap:8px}.portfolio-art>span{font:100px Georgia,serif;color:#afcee3}.portfolio-art .art-caption{position:static;text-align:left}
 @media(max-width:360px){.site-header{height:100px;flex-wrap:wrap;align-content:center;gap:10px}.site-header nav{order:3;width:100%;justify-content:center}h1{font-size:62px;letter-spacing:-3px}.hero-actions{gap:16px;flex-wrap:wrap}.hero-foot{gap:12px}.project-meta{flex-wrap:wrap;gap:6px}}
+
+/* One local lightning accent, never a full-screen flash or repeating effect. */
+#theme-toggle{position:relative;isolation:isolate}
+#theme-toggle::after{content:"";position:absolute;pointer-events:none;inset:-12px;opacity:0;background:#6e9fbd;clip-path:polygon(68% 0,43% 39%,65% 36%,30% 100%,43% 52%,23% 57%);transform:rotate(14deg);z-index:-1}
+.theme-changing #theme-toggle::after{animation:theme-arc 800ms ease-out both}
+.theme-changing body,.theme-changing .about-section,.theme-changing .hero-landscape,.theme-changing .hero-shade{transition:background-color 650ms ease,color 650ms ease,opacity 650ms ease}
+@keyframes theme-arc{0%{opacity:0;transform:rotate(14deg) scale(.88)}35%{opacity:.38}100%{opacity:0;transform:rotate(14deg) scale(1.08)}}
+.motion-off #theme-toggle::after,.page-hidden #theme-toggle::after{display:none;animation:none!important}
+@media(prefers-reduced-motion:reduce){#theme-toggle::after{display:none;animation:none!important}}
