@@ -28,9 +28,9 @@ if ('IntersectionObserver' in window) {
 } else document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
 
 const projects = {
-  rotation: { title: 'A rotation of my own', category: 'PERSONAL EXPERIMENT · PYTHON / SPOTIFY API', description: 'A local automation that builds a private Spotify playlist from my recent listening and favourites.', notes: ['The script combines short-term and medium-term favourites with recently played tracks, removes duplicates, and limits repetition by artist.', 'A local scheduler checks when an update is due. The recurring job uses the Spotify API directly, without ongoing LLM calls or Codex token usage.', 'This is a personal experiment. The source is not published.'] },
+  rotation: { title: 'Spotify rotation', category: 'PERSONAL EXPERIMENT · PYTHON / SPOTIFY API', description: 'A local automation that builds a private Spotify playlist from my recent listening and favourites.', notes: ['The script combines short-term and medium-term favourites with recently played tracks, removes duplicates, and limits repetition by artist.', 'A local scheduler checks when an update is due. The recurring job uses the Spotify API directly, without ongoing LLM calls or Codex token usage.', 'This is a personal experiment. The source is not published.'] },
   dots: { title: 'Dots', category: 'EARLIER PROJECT · REACT / SPRING BOOT', description: 'A web game built with a React frontend and Spring Boot backend.', notes: ['An earlier example of my full-stack work, connecting an interactive browser interface with a Java backend.', 'This repository is an archive of that stage of my development, not a recently maintained product.'], url: 'https://github.com/khons-hu/Dots' },
-  bot: { title: 'CSLYS Discord Bot', category: 'EARLIER PROJECT · JAVASCRIPT', description: 'A JavaScript Discord bot with music playback.', notes: ['One of my earlier projects, built around a place where friends spend time together.', 'The repository is historical. Music services and Discord APIs have changed since it was built.'], url: 'https://github.com/khons-hu/CSLYS-Discord-Bot' },
+  bot: { title: 'CSLYS Discord Bot', category: 'EARLIER PROJECT · JAVASCRIPT', description: 'A JavaScript Discord bot with music playback.', notes: ['An earlier personal project combining JavaScript, Discord commands, and music playback.', 'The repository is historical. Music services and Discord APIs have changed since it was built.'], url: 'https://github.com/khons-hu/CSLYS-Discord-Bot' },
   ipc: { title: 'Between processes', category: 'UNIVERSITY TEAM PROJECT · C++', description: 'A team project exploring inter-process communication.', notes: ['Work from university, focused on how processes exchange information and coordinate.', 'Included as a snapshot of my C++ background.'], url: 'https://github.com/khons-hu/Inter-process-communication' }
 };
 const projectDialog = document.querySelector('#project-dialog');
@@ -89,10 +89,10 @@ function run(raw) {
   historyPosition = history.length; draft = ''; input.value = '';
   const responses = {
     help: ['about     the person behind the handle\nprojects  selected builds & experiments\nwork      L2 support & integrations\nnow       what I’m exploring\ncontact   find me elsewhere\nclear     clear this session\nclose     back to the page'],
-    about: ['Patrick Obrtal. Online, khonsu.\nC++ roots, a master’s in Computer Science from TUKE,\nand a habit of learning by building.', [['Read about me ↗', '#about']]],
+    about: ['Patrick Obrtal. Online, khonsu.\nC++ roots, a master’s in Computer Science from TUKE,\nI now work on integrations at Luigi’s Box.', [['Read about me ↗', '#about']]],
     projects: ['rotation  · local Spotify automation\ndots      · React + Spring Boot web game\nbot       · JavaScript Discord music bot\nipc       · C++ inter-process communication\n\nChoose a project card on the page for its notes.', [['Explore selected work ↗', '#projects']]],
     work: ['L2 technical support & integrations at Luigi’s Box.\nBrowser debugging, APIs, feeds, audits, and analytics.\nReproduce → trace → fix → verify.', [['More about my work ↗', '#about']]],
-    now: ['Agents and coding tools. New model capabilities.\nAGI and recursive self-improvement.\nTrying things myself, not just following the release notes.', [['On my desk ↗', '#now']]],
+    now: ['Agents and coding tools. New model capabilities.\nAGI and recursive self-improvement.\nI use coding agents and try new tools in my own projects.', [['On my desk ↗', '#now']]],
     contact: ['GitHub: khons-hu\nX: @ptr1337_\nDiscord: khons.hu', [['Open contact links ↗', '#contact']]]
   };
   if (command === 'clear') output.replaceChildren();
