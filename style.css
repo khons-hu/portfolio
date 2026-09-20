@@ -14,9 +14,16 @@
 
 /* One local lightning accent, never a full-screen flash or repeating effect. */
 #theme-toggle{position:relative;isolation:isolate}
-#theme-toggle::after{content:"";position:absolute;pointer-events:none;inset:-12px;opacity:0;background:#6e9fbd;clip-path:polygon(68% 0,43% 39%,65% 36%,30% 100%,43% 52%,23% 57%);transform:rotate(14deg);z-index:-1}
-.theme-changing #theme-toggle::after{animation:theme-arc 800ms ease-out both}
-.theme-changing body,.theme-changing .about-section,.theme-changing .hero-landscape,.theme-changing .hero-shade{transition:background-color 650ms ease,color 650ms ease,opacity 650ms ease}
+#theme-toggle::after{content:"";position:absolute;pointer-events:none;inset:-12px;opacity:0;background:#6e9fbd;clip-path:polygon(68% 0,43% 39%,65% 36%,30% 100%,43% 52%,23% 57%);transform:rotate(14deg);z-index:1}
+.theme-changing #theme-toggle::after{animation:theme-arc 650ms ease-out both}
+.theme-changing body,.theme-changing .about-section,.theme-changing .project-card,.theme-changing .project-info,.theme-changing .hero-landscape,.theme-changing .hero-copy,.theme-changing .interest-line,.theme-changing dialog,.theme-changing .terminal-header,.theme-changing .terminal-bottom,.theme-changing .terminal-entry,.theme-changing .terminal-shortcuts button,.theme-changing #terminal-dialog,.theme-changing #guide-launcher,.theme-changing .guide-message,.theme-changing #guide-question,.theme-changing #guide-form>button,.theme-changing #theme-toggle,.theme-changing nav,.theme-changing h1,.theme-changing h2,.theme-changing h3,.theme-changing p,.theme-changing a,.theme-changing em{transition:background-color 600ms ease,color 600ms ease,border-color 600ms ease,opacity 600ms ease}
+/* Crossfade the light hero shade instead of switching a gradient abruptly. */
+.hero-shade::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f0f4f7 0%,#f0f4f7bd 30%,#f0f4f710 85%),linear-gradient(0deg,#f0f4f7,transparent 30%,transparent 70%,#f0f4f7);opacity:0}
+html[data-theme=light] .hero-shade{background:linear-gradient(90deg,#090f16 0%,#090f16c9 28%,#090f1620 75%),linear-gradient(0deg,#090f16 0%,transparent 27%,transparent 75%,#090f16 100%)}
+html[data-theme=light] .hero-shade::after{opacity:1}
+.theme-changing .hero-shade::after{transition:opacity 600ms ease}
+#theme-toggle[aria-busy=true]{border-color:var(--ice)}
+.motion-off .hero-shade::after,.page-hidden .hero-shade::after{transition:none!important}
 @keyframes theme-arc{0%{opacity:0;transform:rotate(14deg) scale(.88)}35%{opacity:.38}100%{opacity:0;transform:rotate(14deg) scale(1.08)}}
 .motion-off #theme-toggle::after,.page-hidden #theme-toggle::after{display:none;animation:none!important}
 @media(prefers-reduced-motion:reduce){#theme-toggle::after{display:none;animation:none!important}}

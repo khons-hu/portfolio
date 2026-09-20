@@ -1,26 +1,43 @@
-// Run before styles to avoid flashing the wrong saved theme.
+// Apply the saved theme before styles load. User clicks are queued, never discarded.
 (function(){
  const preference=matchMedia('(prefers-color-scheme: light)');
  const root=document.documentElement,reduced=matchMedia('(prefers-reduced-motion: reduce)');
- let nextSwitch=0,effectTimer;
- const clearEffect=()=>{clearTimeout(effectTimer);root.classList.remove('theme-changing');};
- reduced.addEventListener('change',clearEffect);
- document.addEventListener('visibilitychange',()=>{if(document.hidden)clearEffect();});
  let saved;try{saved=localStorage.getItem('khonsu-theme');}catch{}
+ if(saved!=='light'&&saved!=='dark')saved=null;
+ let desired=saved||(preference.matches?'light':'dark'),busy=false,timer;
  function apply(theme){
-  document.documentElement.dataset.theme=theme;
+  root.dataset.theme=theme;
   const button=document.querySelector('#theme-toggle');
   if(button){button.textContent=theme==='light'?'☾':'☀';button.setAttribute('aria-label',theme==='light'?'Switch to dark mode':'Switch to light mode');button.title=button.getAttribute('aria-label');}
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#f0f4f7':'#090f16');
  }
- apply(saved==='light'||saved==='dark'?saved:preference.matches?'light':'dark');
- preference.addEventListener('change',()=>{if(!saved)apply(preference.matches?'light':'dark');});
+ function motionAllowed(){return !reduced.matches&&!root.classList.contains('motion-off')&&!document.hidden;}
+ function finish(){clearTimeout(timer);busy=false;root.classList.remove('theme-changing');document.querySelector('#theme-toggle')?.removeAttribute('aria-busy');if(root.dataset.theme!==desired)change();}
+ function change(){
+  if(busy||root.dataset.theme===desired)return;
+  // Keep a short transition window even without animation, so rapid clicks cannot strobe.
+  busy=true;
+  const button=document.querySelector('#theme-toggle');button?.setAttribute('aria-busy','true');
+  if(motionAllowed()){
+   root.classList.add('theme-changing');
+   // Establish transition properties before changing the CSS variables.
+   void document.body.offsetWidth;
+  }
+  apply(desired);
+  timer=setTimeout(finish,700);
+ }
+ function settle(){clearTimeout(timer);busy=false;root.classList.remove('theme-changing');document.querySelector('#theme-toggle')?.removeAttribute('aria-busy');apply(desired);}
+ reduced.addEventListener('change',settle);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)settle();});
+ preference.addEventListener('change',()=>{if(!saved){desired=preference.matches?'light':'dark';settle();}});
+ window.addEventListener('storage',event=>{if(event.key==='khonsu-theme'){saved=event.newValue==='light'||event.newValue==='dark'?event.newValue:null;desired=saved||(preference.matches?'light':'dark');settle();}});
+ apply(desired);
  document.addEventListener('DOMContentLoaded',()=>{
-  apply(document.documentElement.dataset.theme);
-  document.querySelector('#theme-toggle').addEventListener('click',()=>{
-   const now=performance.now();if(now<nextSwitch)return;nextSwitch=now+1200;
-   clearEffect();
-   if(!reduced.matches&&!root.classList.contains('motion-off')&&!document.hidden){root.classList.add('theme-changing');effectTimer=setTimeout(clearEffect,850);}
-   saved=document.documentElement.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('khonsu-theme',saved);}catch{}apply(saved);});
+  apply(desired);
+  document.querySelector('#theme-toggle')?.addEventListener('click',()=>{
+   desired=desired==='light'?'dark':'light';saved=desired;
+   try{localStorage.setItem('khonsu-theme',saved);}catch{}
+   change();
+  });
  });
 })();
