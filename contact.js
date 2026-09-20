@@ -1,6 +1,6 @@
 /* An explicit contact form, separate from the guide's questions and transcript. */
 (()=>{
-const deliveryEnabled=false; // Enable only after recipient activation and a delivery check.
+const deliveryEnabled=true; // Recipient activated; provider accepted the publication test.
 const copy={
 en:['Email Patrick','Your email','Message','Send email','Your email and message go through FormSubmit to ptr.obrtal@gmail.com. Chat history is not included.','Sending…','Submitted to the email service. Inbox delivery is not confirmed.','Could not confirm submission. Your draft is still here. You can email Patrick directly.','Use a valid email and a message of 10–3,000 characters.','Open email app'],
 sk:['Napísať Patrickovi','Tvoj email','Správa','Odoslať email','Tvoj email a správu odošle FormSubmit na ptr.obrtal@gmail.com. História chatu sa neposiela.','Odosielam…','Odoslané emailovej službe. Doručenie do schránky nie je potvrdené.','Odoslanie sa nepodarilo potvrdiť. Koncept zostal tu. Patrickovi môžeš napísať priamo.','Zadaj platný email a správu s 10 až 3 000 znakmi.','Otvoriť emailovú aplikáciu'],
