@@ -2,7 +2,7 @@
 
 Published on Vercel Hobby: https://khons-hu.vercel.app/
 
-Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. GitHub source remains private. Automatic Git deployment is not connected. The initial khonsu-ochre.vercel.app address redirects to the clean address.
+Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. GitHub source remains private. GitHub autodeploy is connected to khons-hu/portfolio. Pushes to main create Production deployments and update khons-hu.vercel.app. Verified with commit 26466a4 on 2026-09-20. The initial khonsu-ochre.vercel.app address redirects to the clean address.
 
 Static HTML, CSS, and JavaScript. No dependencies, build step, analytics, server functions, or ongoing API calls. Content is based on Patrick's approved public GitHub biography and the personal Spotify automation. Project artwork is illustrative, not a screenshot of the software.
 
@@ -12,7 +12,7 @@ Run `python3 -m http.server 4173 --bind 127.0.0.1` from this directory, then vis
 
 ## Vercel
 
-Import this directory as its own GitHub repository when approved. Select framework **Other**, no build command, output directory `.`. Vercel provides the `vercel.app` address. No paid services are needed for this static personal site within Hobby limits.
+The private repository khons-hu/portfolio is connected to the existing Vercel project. Static files deploy without a build step. Vercel provides the `vercel.app` address. No paid services are needed for this static personal site within Hobby limits.
 
 ## Interaction
 
