@@ -122,7 +122,8 @@ const SITE_LOCALES = {
     "More about my work ↗": "Viac o mojej práci ↗",
     "On my desk ↗": "Čomu sa venujem ↗",
     "Open contact links ↗": "Otvoriť kontakty ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobná rotácia a playlisty podľa nálady na požiadanie. Lokálne cez Python."
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobná rotácia a playlisty podľa nálady na požiadanie. Lokálne cez Python.",
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicou, LCD a malou hrou na zneškodnenie bomby. Univerzitný tímový projekt."
   },
   "hu": {
     "Skip to content": "Ugrás a tartalomra",
@@ -246,7 +247,8 @@ const SITE_LOCALES = {
     "More about my work ↗": "Bővebben a munkámról ↗",
     "On my desk ↗": "Amivel foglalkozom ↗",
     "Open contact links ↗": "Kapcsolatok megnyitása ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Személyes válogatás és hangulathoz illő lejátszási listák kérésre. Helyben, Pythonnal."
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Személyes válogatás és hangulathoz illő lejátszási listák kérésre. Helyben, Pythonnal.",
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Számológép billentyűzettel, LCD-vel és egy kis bombahatástalanító játékkal. Egyetemi csapatmunka."
   },
   "pl": {
     "Skip to content": "Przejdź do treści",
@@ -370,7 +372,8 @@ const SITE_LOCALES = {
     "More about my work ↗": "Więcej o mojej pracy ↗",
     "On my desk ↗": "Nad czym pracuję ↗",
     "Open contact links ↗": "Otwórz kontakty ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobista rotacja i playlisty według nastroju na życzenie. Lokalnie, w Pythonie."
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobista rotacja i playlisty według nastroju na życzenie. Lokalnie, w Pythonie.",
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulator z klawiaturą, LCD i małą grą w rozbrajanie bomby. Projekt zespołowy ze studiów."
   },
   "de": {
     "Skip to content": "Zum Inhalt",
@@ -494,7 +497,8 @@ const SITE_LOCALES = {
     "More about my work ↗": "Mehr über meine Arbeit ↗",
     "On my desk ↗": "Auf meinem Schreibtisch ↗",
     "Open contact links ↗": "Kontaktlinks öffnen ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Persönliche Rotation und Playlists nach Stimmung auf Anfrage. Lokal mit Python."
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Persönliche Rotation und Playlists nach Stimmung auf Anfrage. Lokal mit Python.",
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Ein Taschenrechner mit Tastenfeld, LCD und einem kleinen Bombenentschärfungsspiel. Ein Uni-Teamprojekt."
   },
   "es": {
     "Skip to content": "Ir al contenido",
@@ -618,7 +622,8 @@ const SITE_LOCALES = {
     "More about my work ↗": "Más sobre mi trabajo ↗",
     "On my desk ↗": "En mi mesa ↗",
     "Open contact links ↗": "Abrir contactos ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Una rotación personal y playlists según el ánimo, a petición. En local, con Python."
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Una rotación personal y playlists según el ánimo, a petición. En local, con Python.",
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Una calculadora con teclado, LCD y un pequeño juego de desactivar bombas. Un proyecto universitario en equipo."
   },
   "cs": {
     "Skip to content": "Přeskočit na obsah",
@@ -742,7 +747,8 @@ const SITE_LOCALES = {
     "More about my work ↗": "Více o mé práci ↗",
     "On my desk ↗": "Čemu se věnuji ↗",
     "Open contact links ↗": "Otevřít kontakty ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobní rotace a playlisty podle nálady na požádání. Lokálně přes Python."
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobní rotace a playlisty podle nálady na požádání. Lokálně přes Python.",
+    "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicí, LCD a malou hrou na zneškodnění bomby. Univerzitní týmový projekt."
   }
 };
 const PROJECT_NOTES = {
@@ -760,7 +766,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Official OpenAI and DeepMind news, coding-tool releases, service status, RSS and OPML export.",
       "Save links, mark items read and choose sources. Importance labels explain their rules. Tibo’s X is linked, not automatically monitored. Optional Jev reading order uses precomputed scores. It does not hide posts or change alerts.",
-      "Public source. A hosted daily digest is configured on free services. Device registration is required; delivery remains unverified."
+      "An optional daily digest runs on the server. Register each device separately. Web Push was tested in Brave on macOS. Phone delivery has not been tested."
     ],
     "thinkroom": [
       "Fifteen original exercises: coding, debugging, logic, prompts and agent skills. Plan, try, reveal hints gradually and reflect.",
@@ -780,12 +786,19 @@ const PROJECT_NOTES = {
       "On request, it also searches by mood, activity or artist and favours familiar artists in the results. Mood matching is approximate, not audio analysis.",
       "The playlist is saved privately and checked after writing. This is a personal tool running on my Mac. The source is not published."
     ],
-    "dots": ["Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.", "Five levels, a power-up shop and guest play. No login or shared leaderboard. Play the browser edition online or explore the original source."],
+    "dots": [
+      "Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.",
+      "Five levels, a power-up shop and guest play. No login or shared leaderboard. Play the browser edition online or explore the original source."
+    ],
     "bot": [
       "An earlier JavaScript Discord music bot. Historical repository; current Discord and music-service compatibility is unverified."
     ],
     "ipc": [
       "University team work on communication and coordination between processes. A snapshot of my C++ background."
+    ],
+    "calculator": [
+      "Built with a team at TUKE using an Arduino Uno, a keypad and an LCD. It evaluates arithmetic expressions with brackets and keeps calculation history.",
+      "The repository includes the source and circuit diagram. There is also a small bomb-defusal game. This is earlier hardware work, not a browser demo."
     ]
   },
   "sk": {
@@ -802,7 +815,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Oficiálne novinky OpenAI a DeepMind, vydania vývojárskych nástrojov, stav služieb a export RSS a OPML.",
       "Ukladaj odkazy, označuj prečítané a vyberaj zdroje. Dôležitosť má vysvetlené pravidlá. Tibovo X je odkaz, nie automaticky sledovaný zdroj. Voliteľné poradie od Jev používa vopred vypočítané skóre. Neskrýva príspevky ani nemení upozornenia.",
-      "Verejný zdrojový kód. Denný serverový súhrn je nastavený na bezplatných službách. Treba zaregistrovať zariadenie, doručenie ešte nie je overené."
+      "Voliteľný denný prehľad beží na serveri. Každé zariadenie treba pripojiť samostatne. Web Push je otestovaný v Brave na macOS. Doručenie na telefónoch zatiaľ nie."
     ],
     "thinkroom": [
       "Pätnásť pôvodných úloh: programovanie, debugging, logika, prompty a agent skills. Naplánuj postup, skús riešenie, postupne odhaľ nápovedy a zhodnoť ho.",
@@ -822,12 +835,19 @@ const PROJECT_NOTES = {
       "Na požiadanie vyhľadá hudbu podľa nálady, aktivity alebo interpreta a vo výsledkoch uprednostní známych interpretov. Nálada je približná, nejde o analýzu zvuku.",
       "Playlist uloží súkromne a overí jeho obsah. Je to osobný nástroj na mojom Macu. Zdrojový kód nie je zverejnený."
     ],
-    "dots": ["Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.", "Päť úrovní, obchod s bonusmi a hranie bez účtu. Bez prihlásenia a spoločného rebríčka. Browser verziu si môžeš zahrať online alebo si pozrieť pôvodný kód."],
+    "dots": [
+      "Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.",
+      "Päť úrovní, obchod s bonusmi a hranie bez účtu. Bez prihlásenia a spoločného rebríčka. Browser verziu si môžeš zahrať online alebo si pozrieť pôvodný kód."
+    ],
     "bot": [
       "Starší JavaScript Discord bot na hudbu. Historický repozitár, kompatibilita s dnešnými Discord a hudobnými API nie je overená."
     ],
     "ipc": [
       "Univerzitná tímová práca o komunikácii a koordinácii procesov. Ukážka mojich skúseností s C++."
+    ],
+    "calculator": [
+      "Tímový projekt na TUKE s Arduino Uno, klávesnicou a LCD. Vyhodnocuje aritmetické výrazy so zátvorkami a uchováva históriu výpočtov.",
+      "Repozitár obsahuje kód a schému zapojenia aj malú hru na zneškodnenie bomby. Je to starší hardvérový projekt, nie demo v prehliadači."
     ]
   },
   "hu": {
@@ -844,7 +864,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Hivatalos OpenAI- és DeepMind-hírek, fejlesztői kiadások, szolgáltatásállapot, RSS- és OPML-export.",
       "Linkek mentése, olvasott állapot és forrásválasztás. A fontossági címkék megmagyarázzák szabályaikat. Tibo X-fiókja csak hivatkozás, nincs automatikus figyelés. Az opcionális Jev-sorrend előre kiszámított pontszámokat használ. Nem rejt el bejegyzéseket és nem módosítja az értesítéseket.",
-      "Nyilvános forráskód. A napi szerveres összefoglaló ingyenes szolgáltatásokon be van állítva. Eszközregisztráció kell, a kézbesítés még nincs ellenőrizve."
+      "Az opcionális napi összefoglaló a szerveren fut. Minden eszközt külön kell csatlakoztatni. A Web Push macOS-en, Brave-ben tesztelve. Telefonos kézbesítés még nincs tesztelve."
     ],
     "thinkroom": [
       "Tizenöt saját feladat: kódolás, hibakeresés, logika, promptok és agent skillek. Tervezz, próbáld ki, kérj fokozatos segítséget és értékeld.",
@@ -864,12 +884,19 @@ const PROJECT_NOTES = {
       "Kérésre hangulat, tevékenység vagy előadó alapján is keres, és az ismert előadókat előnyben részesíti a találatok között. A hangulat szerinti szűrés közelítő, nem hangelemzés.",
       "A lejátszási listát privátként menti, majd ellenőrzi. Saját eszköz, a Macemen fut. A forráskód nem nyilvános."
     ],
-    "dots": ["Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.", "Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A böngészős változat online játszható, az eredeti forráskód is elérhető."],
+    "dots": [
+      "Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.",
+      "Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A böngészős változat online játszható, az eredeti forráskód is elérhető."
+    ],
     "bot": [
       "Korábbi JavaScript Discord-zenerobot. Régi repozitórium, a mai Discord- és zenei szolgáltatásokkal való kompatibilitás nincs ellenőrizve."
     ],
     "ipc": [
       "Egyetemi csapatmunka a folyamatok kommunikációjáról és koordinációjáról. Példa a C++-os hátteremre."
+    ],
+    "calculator": [
+      "A TUKE-n csapatban készült, Arduino Uno, billentyűzet és LCD használatával. Zárójeles számtani kifejezéseket értékel ki, és megőrzi a számítások előzményeit.",
+      "A repóban megtalálható a forráskód, a kapcsolási rajz és egy kis bombahatástalanító játék. Korábbi hardverprojekt, nem böngészős demó."
     ]
   },
   "pl": {
@@ -886,7 +913,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Oficjalne wiadomości OpenAI i DeepMind, wydania narzędzi, status usług oraz eksport RSS i OPML.",
       "Zapisuj linki, oznaczaj przeczytane i wybieraj źródła. Etykiety ważności wyjaśniają zasady. X Tiba jest linkiem, bez automatycznego monitorowania. Opcjonalna kolejność Jev korzysta z wcześniej obliczonych ocen. Nie ukrywa wpisów ani nie zmienia powiadomień.",
-      "Publiczny kod. Codzienne podsumowanie na serwerze jest skonfigurowane na bezpłatnych usługach. Wymagana rejestracja urządzenia, dostarczenie niepotwierdzone."
+      "Opcjonalne codzienne podsumowanie działa na serwerze. Każde urządzenie wymaga osobnej rejestracji. Web Push przetestowano w Brave na macOS. Dostarczenia na telefony jeszcze nie testowano."
     ],
     "thinkroom": [
       "Piętnaście autorskich zadań: kod, debugowanie, logika, prompty i agent skills. Zaplanuj, spróbuj, odsłaniaj wskazówki i oceń wynik.",
@@ -906,12 +933,19 @@ const PROJECT_NOTES = {
       "Na życzenie wyszukuje też muzykę według nastroju, aktywności lub wykonawcy i preferuje znanych wykonawców w wynikach. Dopasowanie nastroju jest przybliżone, bez analizy dźwięku.",
       "Zapisuje playlistę jako prywatną i sprawdza jej zawartość. To osobiste narzędzie działające na moim Macu. Kod nie jest publiczny."
     ],
-    "dots": ["Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.", "Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Wersja przeglądarkowa działa online, dostępny jest też oryginalny kod."],
+    "dots": [
+      "Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.",
+      "Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Wersja przeglądarkowa działa online, dostępny jest też oryginalny kod."
+    ],
     "bot": [
       "Starszy bot muzyczny Discord w JavaScript. Historyczne repozytorium, zgodność z obecnymi usługami niepotwierdzona."
     ],
     "ipc": [
       "Uczelniany projekt zespołowy o komunikacji i koordynacji procesów. Przykład mojego doświadczenia w C++."
+    ],
+    "calculator": [
+      "Projekt zespołowy na TUKE z Arduino Uno, klawiaturą i LCD. Oblicza wyrażenia arytmetyczne z nawiasami i zachowuje historię obliczeń.",
+      "Repozytorium zawiera kod, schemat połączeń i małą grę w rozbrajanie bomby. To starszy projekt sprzętowy, bez wersji przeglądarkowej."
     ]
   },
   "de": {
@@ -928,7 +962,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Offizielle OpenAI- und DeepMind-Nachrichten, Tool-Releases, Dienststatus sowie RSS- und OPML-Export.",
       "Links speichern, als gelesen markieren und Quellen wählen. Wichtigkeitsmarkierungen erklären ihre Regeln. Tibos X ist verlinkt, nicht automatisch überwacht. Die optionale Jev-Reihenfolge nutzt vorberechnete Bewertungen. Beiträge bleiben sichtbar und Benachrichtigungen unverändert.",
-      "Öffentlicher Code. Ein täglicher Server-Digest ist bei kostenlosen Diensten eingerichtet. Geräteregistrierung nötig; Zustellung noch unbestätigt."
+      "Eine optionale tägliche Zusammenfassung läuft auf dem Server. Jedes Gerät muss einzeln verbunden werden. Web Push wurde in Brave unter macOS getestet. Die Zustellung auf Handys wurde noch nicht getestet."
     ],
     "thinkroom": [
       "Fünfzehn eigene Aufgaben: Code, Fehlersuche, Logik, Prompts und Agent Skills. Planen, ausprobieren, Hinweise schrittweise öffnen und reflektieren.",
@@ -948,12 +982,19 @@ const PROJECT_NOTES = {
       "Auf Anfrage sucht es auch nach Stimmung, Aktivität oder Künstler und bevorzugt vertraute Künstler in den Ergebnissen. Die Stimmung wird nur grob zugeordnet, nicht per Audioanalyse.",
       "Die Playlist wird privat gespeichert und anschließend geprüft. Ein persönliches Tool auf meinem Mac. Der Quellcode ist nicht öffentlich."
     ],
-    "dots": ["2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.", "Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Die Browser-Version ist online spielbar, der ursprüngliche Quellcode ist ebenfalls verfügbar."],
+    "dots": [
+      "2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.",
+      "Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Die Browser-Version ist online spielbar, der ursprüngliche Quellcode ist ebenfalls verfügbar."
+    ],
     "bot": [
       "Ein früherer JavaScript-Musikbot für Discord. Historisches Repository, aktuelle Kompatibilität mit Discord und Musikdiensten ungeprüft."
     ],
     "ipc": [
       "Uni-Teamarbeit zu Kommunikation und Koordination zwischen Prozessen. Ein Einblick in meinen C++-Hintergrund."
+    ],
+    "calculator": [
+      "Im Team an der TUKE mit Arduino Uno, Tastenfeld und LCD gebaut. Wertet arithmetische Ausdrücke mit Klammern aus und speichert den Rechenverlauf.",
+      "Das Repository enthält Quellcode, Schaltplan und ein kleines Bombenentschärfungsspiel. Ein früheres Hardwareprojekt, keine Browser-Demo."
     ]
   },
   "es": {
@@ -970,7 +1011,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Noticias oficiales de OpenAI y DeepMind, lanzamientos de herramientas, estado de servicios y exportación RSS y OPML.",
       "Guarda enlaces, marca lo leído y elige fuentes. Las etiquetas explican su importancia. El X de Tibo está enlazado, sin seguimiento automático. El orden opcional de Jev usa puntuaciones precalculadas. No oculta publicaciones ni cambia los avisos.",
-      "Código público. Resumen diario configurado en servicios gratuitos. Hay que registrar el dispositivo; la entrega aún no está verificada."
+      "Un resumen diario opcional se ejecuta en el servidor. Hay que registrar cada dispositivo por separado. Web Push probado en Brave para macOS. El envío a teléfonos aún no se ha probado."
     ],
     "thinkroom": [
       "Quince ejercicios originales: código, depuración, lógica, prompts y agent skills. Planifica, prueba, descubre pistas y reflexiona.",
@@ -990,12 +1031,19 @@ const PROJECT_NOTES = {
       "A petición, también busca por ánimo, actividad o artista y prioriza artistas conocidos entre los resultados. El ajuste al ánimo es aproximado, sin análisis de audio.",
       "Guarda la playlist como privada y comprueba su contenido. Es una herramienta personal que funciona en mi Mac. El código no es público."
     ],
-    "dots": ["Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.", "Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. La versión de navegador se puede jugar online y el código original está disponible."],
+    "dots": [
+      "Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.",
+      "Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. La versión de navegador se puede jugar online y el código original está disponible."
+    ],
     "bot": [
       "Bot musical de Discord anterior en JavaScript. Repositorio histórico; compatibilidad actual con Discord y servicios musicales no verificada."
     ],
     "ipc": [
       "Trabajo universitario en equipo sobre comunicación y coordinación entre procesos. Una muestra de mi experiencia con C++."
+    ],
+    "calculator": [
+      "Creado en equipo en TUKE con Arduino Uno, teclado y LCD. Evalúa expresiones aritméticas con paréntesis y guarda el historial de cálculos.",
+      "El repositorio incluye código, esquema de conexiones y un pequeño juego de desactivar bombas. Es un proyecto anterior de hardware, sin demo web."
     ]
   },
   "cs": {
@@ -1012,7 +1060,7 @@ const PROJECT_NOTES = {
     "signal": [
       "Oficiální novinky OpenAI a DeepMind, vydání vývojářských nástrojů, stav služeb a export RSS a OPML.",
       "Ukládej odkazy, označuj přečtené a vybírej zdroje. Důležitost má vysvětlená pravidla. Tibovo X je odkaz, ne automaticky sledovaný zdroj. Volitelné pořadí od Jev používá předem vypočítaná skóre. Neskrývá příspěvky ani nemění upozornění.",
-      "Veřejný zdrojový kód. Denní serverový přehled je nastaven na bezplatných službách. Je třeba registrovat zařízení, doručení ještě není ověřené."
+      "Volitelný denní přehled běží na serveru. Každé zařízení je třeba připojit zvlášť. Web Push je otestovaný v Brave na macOS. Doručení na telefonech zatím ne."
     ],
     "thinkroom": [
       "Patnáct původních úloh: programování, debugging, logika, prompty a agent skills. Naplánuj postup, zkus řešení, postupně odhal nápovědy a zhodnoť ho.",
@@ -1032,12 +1080,19 @@ const PROJECT_NOTES = {
       "Na požádání vyhledá hudbu podle nálady, aktivity nebo interpreta a ve výsledcích upřednostní známé interprety. Nálada je přibližná, nejde o analýzu zvuku.",
       "Playlist uloží soukromě a ověří jeho obsah. Je to osobní nástroj na mém Macu. Zdrojový kód není zveřejněný."
     ],
-    "dots": ["Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.", "Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Prohlížečovou verzi si můžeš zahrát online nebo si prohlédnout původní kód."],
+    "dots": [
+      "Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.",
+      "Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Prohlížečovou verzi si můžeš zahrát online nebo si prohlédnout původní kód."
+    ],
     "bot": [
       "Starší JavaScript Discord bot na hudbu. Historický repozitář, kompatibilita s dnešními Discord a hudebními API není ověřená."
     ],
     "ipc": [
       "Univerzitní týmová práce o komunikaci a koordinaci procesů. Ukázka mých zkušeností s C++."
+    ],
+    "calculator": [
+      "Týmový projekt na TUKE s Arduino Uno, klávesnicí a LCD. Vyhodnocuje aritmetické výrazy se závorkami a uchovává historii výpočtů.",
+      "Repozitář obsahuje kód, schéma zapojení a malou hru na zneškodnění bomby. Jde o starší hardwarový projekt, nikoli demo v prohlížeči."
     ]
   }
 };
