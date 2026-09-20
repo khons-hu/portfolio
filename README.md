@@ -29,3 +29,9 @@ Edit index.html for the page and app.js for project notes and terminal summaries
 ## Verified locally
 
 Desktop and 390px viewport visually reviewed. No horizontal overflow on mobile. Verified project modal, Escape, terminal autocomplete, command execution, history, unknown-command handling, clear, and navigation closing the terminal. No browser console warnings or errors observed. OS reduced-motion preference is active on the test machine and correctly disables motion. Normal-motion timing and numerical CPU profiling have not been measured. Static site payload is approximately 289 KiB before HTTP compression.
+
+## Ask khonsu guide
+
+Local rule-based chat in guide.js, with prepared English and Slovak answers. No API calls, model downloads, tracking, or persisted chat history. The visible language selector chooses the reply language. Supports project dialogs and section navigation, caps history at 30 messages, and safely renders visitor text with textContent. Unknown questions receive a fallback. Edit the topic records when public profile facts change.
+
+Verified: topic routing, Slovak accents, unknown/private-question fallbacks, opening a project from chat, clearing conversation, and mobile dialog layout.
