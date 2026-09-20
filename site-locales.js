@@ -35,7 +35,6 @@ const SITE_LOCALES = {
     "A personal site with a terminal, a multilingual guide and a quieter approach to motion.": "Osobný web s terminálom, viacjazyčným sprievodcom a jemnými animáciami.",
     "LOCAL SPOTIFY AUTOMATION": "LOKÁLNA AUTOMATIZÁCIA SPOTIFY",
     "PERSONAL EXPERIMENT": "OSOBNÝ EXPERIMENT",
-    "Listening history into a private playlist. Local automation, no ongoing AI calls.": "História počúvania v súkromnom playliste. Lokálna automatizácia bez priebežných AI volaní.",
     "WEEKLY ROUTINES": "TÝŽDENNÉ RUTINY",
     "Scheduled workflows": "Naplánované workflowy",
     "Discovery routines": "Objavovanie nových ľudí",
@@ -122,7 +121,8 @@ const SITE_LOCALES = {
     "Explore selected work ↗": "Vybrané projekty ↗",
     "More about my work ↗": "Viac o mojej práci ↗",
     "On my desk ↗": "Čomu sa venujem ↗",
-    "Open contact links ↗": "Otvoriť kontakty ↗"
+    "Open contact links ↗": "Otvoriť kontakty ↗",
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobná rotácia a playlisty podľa nálady na požiadanie. Lokálne cez Python."
   },
   "hu": {
     "Skip to content": "Ugrás a tartalomra",
@@ -159,7 +159,6 @@ const SITE_LOCALES = {
     "A personal site with a terminal, a multilingual guide and a quieter approach to motion.": "Személyes oldal terminállal, többnyelvű útmutatóval és visszafogott animációkkal.",
     "LOCAL SPOTIFY AUTOMATION": "HELYI SPOTIFY-AUTOMATIZÁLÁS",
     "PERSONAL EXPERIMENT": "SAJÁT KÍSÉRLET",
-    "Listening history into a private playlist. Local automation, no ongoing AI calls.": "Hallgatási előzményekből privát lejátszási lista. Helyi automatizálás, ismétlődő AI-hívások nélkül.",
     "WEEKLY ROUTINES": "HETI RUTINOK",
     "Scheduled workflows": "Ütemezett munkafolyamatok",
     "Discovery routines": "Új emberek felfedezése",
@@ -246,7 +245,8 @@ const SITE_LOCALES = {
     "Explore selected work ↗": "Válogatott munkák ↗",
     "More about my work ↗": "Bővebben a munkámról ↗",
     "On my desk ↗": "Amivel foglalkozom ↗",
-    "Open contact links ↗": "Kapcsolatok megnyitása ↗"
+    "Open contact links ↗": "Kapcsolatok megnyitása ↗",
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Személyes válogatás és hangulathoz illő lejátszási listák kérésre. Helyben, Pythonnal."
   },
   "pl": {
     "Skip to content": "Przejdź do treści",
@@ -283,7 +283,6 @@ const SITE_LOCALES = {
     "A personal site with a terminal, a multilingual guide and a quieter approach to motion.": "Osobista strona z terminalem, wielojęzycznym przewodnikiem i spokojnymi animacjami.",
     "LOCAL SPOTIFY AUTOMATION": "LOKALNA AUTOMATYZACJA SPOTIFY",
     "PERSONAL EXPERIMENT": "OSOBISTY EKSPERYMENT",
-    "Listening history into a private playlist. Local automation, no ongoing AI calls.": "Historia słuchania jako prywatna playlista. Lokalna automatyzacja bez cyklicznych wywołań AI.",
     "WEEKLY ROUTINES": "COTYGODNIOWE RUTYNY",
     "Scheduled workflows": "Zaplanowane procesy",
     "Discovery routines": "Odkrywanie nowych osób",
@@ -370,7 +369,8 @@ const SITE_LOCALES = {
     "Explore selected work ↗": "Wybrane projekty ↗",
     "More about my work ↗": "Więcej o mojej pracy ↗",
     "On my desk ↗": "Nad czym pracuję ↗",
-    "Open contact links ↗": "Otwórz kontakty ↗"
+    "Open contact links ↗": "Otwórz kontakty ↗",
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobista rotacja i playlisty według nastroju na życzenie. Lokalnie, w Pythonie."
   },
   "de": {
     "Skip to content": "Zum Inhalt",
@@ -407,7 +407,6 @@ const SITE_LOCALES = {
     "A personal site with a terminal, a multilingual guide and a quieter approach to motion.": "Persönliche Website mit Terminal, mehrsprachigem Guide und dezenten Animationen.",
     "LOCAL SPOTIFY AUTOMATION": "LOKALE SPOTIFY-AUTOMATISIERUNG",
     "PERSONAL EXPERIMENT": "PERSÖNLICHES EXPERIMENT",
-    "Listening history into a private playlist. Local automation, no ongoing AI calls.": "Aus dem Hörverlauf wird eine private Playlist. Lokal automatisiert, ohne laufende KI-Aufrufe.",
     "WEEKLY ROUTINES": "WÖCHENTLICHE ROUTINEN",
     "Scheduled workflows": "Geplante Abläufe",
     "Discovery routines": "Neue Leute entdecken",
@@ -494,7 +493,8 @@ const SITE_LOCALES = {
     "Explore selected work ↗": "Ausgewählte Projekte ↗",
     "More about my work ↗": "Mehr über meine Arbeit ↗",
     "On my desk ↗": "Auf meinem Schreibtisch ↗",
-    "Open contact links ↗": "Kontaktlinks öffnen ↗"
+    "Open contact links ↗": "Kontaktlinks öffnen ↗",
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Persönliche Rotation und Playlists nach Stimmung auf Anfrage. Lokal mit Python."
   },
   "es": {
     "Skip to content": "Ir al contenido",
@@ -531,7 +531,6 @@ const SITE_LOCALES = {
     "A personal site with a terminal, a multilingual guide and a quieter approach to motion.": "Web personal con terminal, guía multilingüe y animaciones discretas.",
     "LOCAL SPOTIFY AUTOMATION": "AUTOMATIZACIÓN LOCAL DE SPOTIFY",
     "PERSONAL EXPERIMENT": "EXPERIMENTO PERSONAL",
-    "Listening history into a private playlist. Local automation, no ongoing AI calls.": "Tu historial en una playlist privada. Automatización local, sin llamadas continuas a IA.",
     "WEEKLY ROUTINES": "RUTINAS SEMANALES",
     "Scheduled workflows": "Flujos programados",
     "Discovery routines": "Descubrir gente nueva",
@@ -618,7 +617,8 @@ const SITE_LOCALES = {
     "Explore selected work ↗": "Proyectos destacados ↗",
     "More about my work ↗": "Más sobre mi trabajo ↗",
     "On my desk ↗": "En mi mesa ↗",
-    "Open contact links ↗": "Abrir contactos ↗"
+    "Open contact links ↗": "Abrir contactos ↗",
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Una rotación personal y playlists según el ánimo, a petición. En local, con Python."
   },
   "cs": {
     "Skip to content": "Přeskočit na obsah",
@@ -655,7 +655,6 @@ const SITE_LOCALES = {
     "A personal site with a terminal, a multilingual guide and a quieter approach to motion.": "Osobní web s terminálem, vícejazyčným průvodcem a jemnými animacemi.",
     "LOCAL SPOTIFY AUTOMATION": "LOKÁLNÍ AUTOMATIZACE SPOTIFY",
     "PERSONAL EXPERIMENT": "OSOBNÍ EXPERIMENT",
-    "Listening history into a private playlist. Local automation, no ongoing AI calls.": "Historie poslechu v soukromém playlistu. Lokální automatizace bez průběžných AI volání.",
     "WEEKLY ROUTINES": "TÝDENNÍ RUTINY",
     "Scheduled workflows": "Naplánované workflowy",
     "Discovery routines": "Objevování nových lidí",
@@ -742,7 +741,8 @@ const SITE_LOCALES = {
     "Explore selected work ↗": "Vybrané projekty ↗",
     "More about my work ↗": "Více o mé práci ↗",
     "On my desk ↗": "Čemu se věnuji ↗",
-    "Open contact links ↗": "Otevřít kontakty ↗"
+    "Open contact links ↗": "Otevřít kontakty ↗",
+    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobní rotace a playlisty podle nálady na požádání. Lokálně přes Python."
   }
 };
 const PROJECT_NOTES = {
@@ -776,8 +776,9 @@ const PROJECT_NOTES = {
       "Light/dark themes, reduced motion and animations paused in hidden tabs. GitHub deploys to Vercel; the source repository is private."
     ],
     "rotation": [
-      "A local Python script combines recent and longer-term favourites with listening history, removes duplicates and limits artist repetition.",
-      "A local scheduler checks for updates. Spotify API calls, no recurring LLM calls. A private personal experiment; source not published."
+      "A local Python script builds a private rotation from favourites and recent listening, without recurring AI calls.",
+      "On request, it also searches by mood, activity or artist and favours familiar artists in the results. Mood matching is approximate, not audio analysis.",
+      "The playlist is saved privately and checked after writing. This is a personal tool running on my Mac. The source is not published."
     ],
     "dots": [
       "An earlier full-stack web game with React and Spring Boot. Archived work, not a recently maintained product."
@@ -819,8 +820,9 @@ const PROJECT_NOTES = {
       "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Nasadenie z GitHubu na Vercel, zdrojový repozitár je súkromný."
     ],
     "rotation": [
-      "Lokálny Python skript spája krátkodobé aj dlhodobejšie obľúbené skladby s históriou, odstraňuje duplicity a obmedzuje opakovanie interpretov.",
-      "Lokálny plánovač kontroluje aktualizácie. Volania Spotify API, bez pravidelných LLM volaní. Súkromný osobný experiment, kód nie je zverejnený."
+      "Lokálny Python skript skladá súkromnú rotáciu z obľúbených a nedávno počúvaných skladieb, bez pravidelných AI volaní.",
+      "Na požiadanie vyhľadá hudbu podľa nálady, aktivity alebo interpreta a vo výsledkoch uprednostní známych interpretov. Nálada je približná, nejde o analýzu zvuku.",
+      "Playlist uloží súkromne a overí jeho obsah. Je to osobný nástroj na mojom Macu. Zdrojový kód nie je zverejnený."
     ],
     "dots": [
       "Staršia full-stack webová hra s Reactom a Spring Bootom. Archívna práca, nie aktuálne udržiavaný produkt."
@@ -862,8 +864,9 @@ const PROJECT_NOTES = {
       "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. GitHubról Vercelre települ, a forrásrepo privát."
     ],
     "rotation": [
-      "Helyi Python-szkript kombinálja a friss és régebbi kedvenceket a hallgatási előzményekkel, kiszűri az ismétlődéseket és korlátozza az előadóismétlést.",
-      "Helyi ütemező ellenőrzi a frissítést. Spotify API-hívások, ismétlődő LLM-hívások nélkül. Privát kísérlet, a forrás nem nyilvános."
+      "Egy helyi Python-szkript privát válogatást készít a kedvencekből és a nemrég hallgatott zenékből, rendszeres AI-hívások nélkül.",
+      "Kérésre hangulat, tevékenység vagy előadó alapján is keres, és az ismert előadókat előnyben részesíti a találatok között. A hangulat szerinti szűrés közelítő, nem hangelemzés.",
+      "A lejátszási listát privátként menti, majd ellenőrzi. Saját eszköz, a Macemen fut. A forráskód nem nyilvános."
     ],
     "dots": [
       "Korábbi full-stack webes játék Reacttel és Spring Boottal. Archív munka, nem frissen karbantartott termék."
@@ -905,8 +908,9 @@ const PROJECT_NOTES = {
       "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Wdrożenie z GitHuba na Vercel, repozytorium prywatne."
     ],
     "rotation": [
-      "Lokalny skrypt Python łączy nowsze i starsze ulubione z historią, usuwa duplikaty i ogranicza powtarzanie wykonawców.",
-      "Lokalny harmonogram sprawdza aktualizacje. Spotify API, bez cyklicznych wywołań LLM. Prywatny eksperyment, kod nieopublikowany."
+      "Lokalny skrypt w Pythonie tworzy prywatną rotację z ulubionych i ostatnio słuchanych utworów, bez cyklicznych wywołań AI.",
+      "Na życzenie wyszukuje też muzykę według nastroju, aktywności lub wykonawcy i preferuje znanych wykonawców w wynikach. Dopasowanie nastroju jest przybliżone, bez analizy dźwięku.",
+      "Zapisuje playlistę jako prywatną i sprawdza jej zawartość. To osobiste narzędzie działające na moim Macu. Kod nie jest publiczny."
     ],
     "dots": [
       "Starsza gra full-stack z React i Spring Boot. Praca archiwalna, nie aktualnie utrzymywany produkt."
@@ -948,8 +952,9 @@ const PROJECT_NOTES = {
       "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. GitHub deployt auf Vercel; das Quellrepo ist privat."
     ],
     "rotation": [
-      "Ein lokales Python-Skript kombiniert neuere und längerfristige Favoriten mit dem Hörverlauf, entfernt Dubletten und begrenzt Künstlerwiederholungen.",
-      "Ein lokaler Scheduler prüft Updates. Spotify-API-Aufrufe, keine regelmäßigen LLM-Aufrufe. Privates Experiment, Code unveröffentlicht."
+      "Ein lokales Python-Skript erstellt eine private Rotation aus Favoriten und zuletzt gehörten Titeln, ohne regelmäßige KI-Aufrufe.",
+      "Auf Anfrage sucht es auch nach Stimmung, Aktivität oder Künstler und bevorzugt vertraute Künstler in den Ergebnissen. Die Stimmung wird nur grob zugeordnet, nicht per Audioanalyse.",
+      "Die Playlist wird privat gespeichert und anschließend geprüft. Ein persönliches Tool auf meinem Mac. Der Quellcode ist nicht öffentlich."
     ],
     "dots": [
       "Ein früheres Full-Stack-Webspiel mit React und Spring Boot. Archivierte Arbeit, kein aktuell gepflegtes Produkt."
@@ -991,8 +996,9 @@ const PROJECT_NOTES = {
       "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. Despliegue desde GitHub a Vercel; repositorio privado."
     ],
     "rotation": [
-      "Un script Python local combina favoritos recientes y de más tiempo con el historial, elimina duplicados y limita la repetición de artistas.",
-      "Un programador local comprueba las actualizaciones. Llamadas a Spotify API, sin LLM recurrente. Experimento privado, código no publicado."
+      "Un script local de Python crea una rotación privada con favoritos y canciones recientes, sin llamadas recurrentes a IA.",
+      "A petición, también busca por ánimo, actividad o artista y prioriza artistas conocidos entre los resultados. El ajuste al ánimo es aproximado, sin análisis de audio.",
+      "Guarda la playlist como privada y comprueba su contenido. Es una herramienta personal que funciona en mi Mac. El código no es público."
     ],
     "dots": [
       "Juego web full-stack anterior con React y Spring Boot. Trabajo archivado, no un producto mantenido actualmente."
@@ -1034,8 +1040,9 @@ const PROJECT_NOTES = {
       "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Nasazení z GitHubu na Vercel, zdrojový repozitář je soukromý."
     ],
     "rotation": [
-      "Místní Python skript spojuje krátkodobé i dlouhodobější oblíbené skladby s historií, odstraňuje duplicity a omezuje opakování interpretů.",
-      "Místní plánovač kontroluje aktualizace. Volání Spotify API, bez pravidelných LLM volání. Soukromý osobní experiment, kód není zveřejněný."
+      "Lokální Python skript sestavuje soukromou rotaci z oblíbených a nedávno poslouchaných skladeb, bez pravidelných AI volání.",
+      "Na požádání vyhledá hudbu podle nálady, aktivity nebo interpreta a ve výsledcích upřednostní známé interprety. Nálada je přibližná, nejde o analýzu zvuku.",
+      "Playlist uloží soukromě a ověří jeho obsah. Je to osobní nástroj na mém Macu. Zdrojový kód není zveřejněný."
     ],
     "dots": [
       "Starší full-stack webová hra s Reactem a Spring Bootem. Archivní práce, ne aktuálně udržovaný produkt."
