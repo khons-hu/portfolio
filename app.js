@@ -8,14 +8,15 @@ function updateMotion() {
   const disabled = reducedMotion.matches || motionPreference === 'off';
   root.classList.toggle('motion-off', disabled);
   root.classList.toggle('js-motion', !disabled);
-  motionButton.textContent = reducedMotion.matches ? 'Motion: reduced' : `Motion: ${disabled ? 'off' : 'on'}`;
+  motionButton.textContent = motionPreference === 'off' ? 'Motion: off' : `Motion: system${reducedMotion.matches ? ' (reduced)' : ''}`;
+  motionButton.title = reducedMotion.matches ? 'Your system requests reduced motion. Animations stay off. Click to switch between system preference and always off.' : 'Click to switch between system preference and always off.';
   motionButton.setAttribute('aria-pressed', String(disabled));
-  motionButton.disabled = reducedMotion.matches;
+  motionButton.disabled = false;
 }
 updateMotion();
 reducedMotion.addEventListener('change', updateMotion);
 motionButton.addEventListener('click', () => {
-  motionPreference = root.classList.contains('motion-off') ? 'on' : 'off';
+  motionPreference = motionPreference === 'off' ? 'system' : 'off';
   try { localStorage.setItem('khonsu-motion', motionPreference); } catch {}
   updateMotion();
 });
