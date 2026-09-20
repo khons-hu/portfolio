@@ -1,6 +1,8 @@
 # khonsu / personal portfolio
 
-Local review draft. Not deployed or published.
+Published on Vercel Hobby: https://khons-hu.vercel.app/
+
+Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. GitHub source remains private. Automatic Git deployment is not connected. The initial khonsu-ochre.vercel.app address redirects to the clean address.
 
 Static HTML, CSS, and JavaScript. No dependencies, build step, analytics, server functions, or ongoing API calls. Content is based on Patrick's approved public GitHub biography and the personal Spotify automation. Project artwork is illustrative, not a screenshot of the software.
 
