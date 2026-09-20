@@ -8,8 +8,8 @@
  function apply(theme){
   root.dataset.theme=theme;
   const button=document.querySelector('#theme-toggle');
-  if(button){button.textContent=theme==='light'?'☾':'☀';button.setAttribute('aria-label',theme==='light'?'Switch to dark mode':'Switch to light mode');button.title=button.getAttribute('aria-label');}
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#f0f4f7':'#090f16');
+  if(button){button.textContent=theme==='light'?'☾':'☀';const label=theme==='light'?'Switch to dark mode':'Switch to light mode';button.setAttribute('aria-label',globalThis.PortfolioI18n?.t(label)||label);button.title=button.getAttribute('aria-label');}
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#d6d9d6':'#090f16');
  }
  function motionAllowed(){return !reduced.matches&&!root.classList.contains('motion-off')&&!document.hidden;}
  function finish(){clearTimeout(timer);busy=false;root.classList.remove('theme-changing');document.querySelector('#theme-toggle')?.removeAttribute('aria-busy');if(root.dataset.theme!==desired)change();}
@@ -31,6 +31,7 @@
  document.addEventListener('visibilitychange',()=>{if(document.hidden)settle();});
  preference.addEventListener('change',()=>{if(!saved){desired=preference.matches?'light':'dark';settle();}});
  window.addEventListener('storage',event=>{if(event.key==='khonsu-theme'){saved=event.newValue==='light'||event.newValue==='dark'?event.newValue:null;desired=saved||(preference.matches?'light':'dark');settle();}});
+ window.addEventListener('portfolio:language',()=>apply(root.dataset.theme||desired));
  apply(desired);
  document.addEventListener('DOMContentLoaded',()=>{
   apply(desired);

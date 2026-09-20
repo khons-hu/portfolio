@@ -1,4 +1,5 @@
 'use strict';
+const t = text => globalThis.PortfolioI18n?.t(text) || text;
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const motionButton = document.querySelector('#motion-toggle');
@@ -8,8 +9,8 @@ function updateMotion() {
   const disabled = reducedMotion.matches || motionPreference === 'off';
   root.classList.toggle('motion-off', disabled);
   root.classList.toggle('js-motion', !disabled);
-  motionButton.textContent = motionPreference === 'off' ? 'Motion: off' : `Motion: system${reducedMotion.matches ? ' (reduced)' : ''}`;
-  motionButton.title = reducedMotion.matches ? 'Your system requests reduced motion. Animations stay off. Click to switch between system preference and always off.' : 'Click to switch between system preference and always off.';
+  motionButton.textContent = t(motionPreference === 'off' ? 'Motion: off' : `Motion: system${reducedMotion.matches ? ' (reduced)' : ''}`);
+  motionButton.title = t(reducedMotion.matches ? 'Your system requests reduced motion. Animations stay off. Click to switch between system preference and always off.' : 'Click to switch between system preference and always off.');
   motionButton.setAttribute('aria-pressed', String(disabled));
   motionButton.disabled = false;
 }
@@ -41,18 +42,22 @@ const projects = {
   ipc: { title: 'Between processes', category: 'UNIVERSITY TEAM PROJECT · C++', description: 'A team project exploring inter-process communication.', notes: ['Work from university, focused on how processes exchange information and coordinate.', 'Included as a snapshot of my C++ background.'], url: 'https://github.com/khons-hu/Inter-process-communication' }
 };
 const projectDialog = document.querySelector('#project-dialog');
+let activeProject = null;
 function showProject(id) {
   const project = projects[id];
   if (!project) return;
-  document.querySelector('#project-title').textContent = project.title;
-  document.querySelector('#project-category').textContent = project.category;
-  document.querySelector('#project-description').textContent = project.description;
-  document.querySelector('#project-notes').replaceChildren(...project.notes.map(note => { const p = document.createElement('p'); p.textContent = note; return p; }));
+  activeProject = id;
+  document.querySelector('#project-title').textContent = t(project.title);
+  document.querySelector('#project-category').textContent = project.category.split(' · ').map(t).join(' · ');
+  document.querySelector('#project-description').textContent = document.querySelector(`[data-project="${id}"] .project-info p`)?.textContent || t(project.description);
+  document.querySelector('#project-notes').replaceChildren(...(globalThis.PortfolioI18n?.notes(id) || project.notes).map(note => { const p = document.createElement('p'); p.textContent = note; return p; }));
   const link = document.querySelector('#project-link');
   const liveUrl = project.live ? project.url : null;
   link.hidden = !liveUrl;
   if (liveUrl) link.href = liveUrl; else link.removeAttribute('href');
-  link.textContent = 'Open app ↗';
+  link.textContent = t('Open app ↗');
+  document.querySelector('#project-source').textContent = t('Source on GitHub ↗');
+  document.querySelector('#project-android').textContent = t('Android preview ↗');
   const source = document.querySelector('#project-source');
   const sourceUrl = project.source || (!project.live ? project.url : null);
   source.hidden = !sourceUrl || sourceUrl === liveUrl;
@@ -60,8 +65,9 @@ function showProject(id) {
   const android = document.querySelector('#project-android');
   android.hidden = !project.android;
   if (project.android) android.href = project.android; else android.removeAttribute('href');
-  projectDialog.showModal();
+  if(!projectDialog.open) projectDialog.showModal();
 }
+window.addEventListener('portfolio:language',()=>{const status=document.querySelector('#copy-status');if(status.dataset.message)status.textContent=t(status.dataset.message);updateMotion();if(projectDialog.open && activeProject)showProject(activeProject);});
 document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => showProject(button.dataset.project)));
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => document.getElementById(button.dataset.close).close()));
 document.querySelectorAll('dialog').forEach(dialog => {
@@ -90,7 +96,7 @@ function write(command, message, links = []) {
   const prompt = document.createElement('strong'); prompt.textContent = `❯ ${command}`;
   entry.append(prompt, document.createTextNode(message));
   links.forEach(([text, target]) => {
-    const a = document.createElement('a'); a.textContent = text; a.href = target;
+    const a = document.createElement('a'); a.textContent = t(text); a.href = target;
     a.addEventListener('click', () => terminal.close());
     entry.append(document.createTextNode('\n'), a);
   });
@@ -111,10 +117,18 @@ function run(raw) {
     now: ['Agents and coding tools. New model capabilities.\nAGI and recursive self-improvement.\nI use coding agents and try new tools in my own projects.', [['On my desk ↗', '#now']]],
     contact: ['GitHub: khons-hu\nX: @ptr1337_\nDiscord: khons.hu', [['Open contact links ↗', '#contact']]]
   };
+  if(globalThis.PortfolioI18n?.language !== 'en') {
+    const sectionText = selector => [...document.querySelectorAll(selector)].map(p=>p.textContent).join('\n\n');
+    responses.about[0] = sectionText('.about-intro > p:not(.eyebrow)');
+    responses.work[0] = sectionText('.work-detail > p:not(.eyebrow)');
+    responses.now[0] = sectionText('.now-grid article p');
+    responses.projects[0] = [...document.querySelectorAll('.project-info')].map(p=>p.querySelector('h3').textContent+'\n'+p.querySelector('p').textContent).join('\n\n');
+    responses.help = [['about · '+t('ABOUT ME'),'projects · '+t('SELECTED WORK'),'work · Customer Support Partner L2','now · '+t('ON MY DESK'),'contact · '+t('Contact'),'clear · '+t('Clear chat'),'close · '+t('Close terminal')].join('\n')];
+  }
   if (command === 'clear') output.replaceChildren();
   else if (command === 'close') terminal.close();
   else if (responses[command]) write(command, ...responses[command]);
-  else write(raw.trim(), `Unknown command. Try “help”.`);
+  else write(raw.trim(), t(`Unknown command. Try “help”.`));
 }
 document.querySelector('#terminal-form').addEventListener('submit', event => { event.preventDefault(); run(input.value); });
 document.querySelectorAll('[data-command]').forEach(button => button.addEventListener('click', () => { run(button.dataset.command); input.focus(); }));
@@ -135,6 +149,6 @@ input.addEventListener('keydown', event => {
 });
 document.querySelector('#copy-discord').addEventListener('click', async () => {
   const status = document.querySelector('#copy-status');
-  try { await navigator.clipboard.writeText('khons.hu'); status.textContent = 'Copied khons.hu. See you on Discord.'; }
-  catch { status.textContent = 'Find me on Discord: khons.hu'; }
+  try { await navigator.clipboard.writeText('khons.hu'); status.dataset.message='Copied khons.hu. See you on Discord.'; status.textContent = t(status.dataset.message); }
+  catch { status.dataset.message='Find me on Discord: khons.hu'; status.textContent = t(status.dataset.message); }
 });

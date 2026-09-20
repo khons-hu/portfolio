@@ -1,0 +1,33 @@
+/* Bind authored text once. Dynamic content uses t() explicitly; user text is never scanned. */
+(function () {
+  const names = {en:'English',sk:'Slovenčina',hu:'Magyar',pl:'Polski',de:'Deutsch',es:'Español',cs:'Čeština'};
+  const resolve = value => {const lang=String(value || '').toLowerCase().split('-')[0]; return Object.hasOwn(names,lang) ? lang : 'en';};
+  let language = resolve(navigator.language);
+  try { const saved=localStorage.getItem('khonsu-language'); if(saved) language=resolve(saved); } catch {}
+  const t = (text,lang=language) => SITE_LOCALES[lang]?.[text] || text;
+  const bindings=[];
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  while(walker.nextNode()) {
+    const node=walker.currentNode, parent=node.parentElement;
+    if(!parent || parent.closest('script,style,select,#guide-dialog,#terminal-output,#project-notes'))continue;
+    const key=node.nodeValue.trim();
+    if(!Object.hasOwn(SITE_LOCALES.sk,key))continue;
+    const leading=node.nodeValue.match(/^\s*/)[0], trailing=node.nodeValue.match(/\s*$/)[0];
+    bindings.push(()=>{node.nodeValue=leading+t(key)+trailing;});
+  }
+  document.querySelectorAll('[aria-label],[title],[alt]').forEach(el=>{
+    if(el.closest('#guide-dialog'))return;
+    for(const attr of ['aria-label','title','alt']){const key=el.getAttribute(attr);if(key && Object.hasOwn(SITE_LOCALES.sk,key))bindings.push(()=>el.setAttribute(attr,t(key)));}
+  });
+  const selector=document.querySelector('#site-language');
+  function apply(value,persist=true){
+    language=resolve(value);document.documentElement.lang=language;selector.value=language;
+    if(persist)try{localStorage.setItem('khonsu-language',language);}catch{}
+    bindings.forEach(update=>update());
+    window.dispatchEvent(new CustomEvent('portfolio:language',{detail:language}));
+  }
+  window.PortfolioI18n={t,get language(){return language;},resolve,names,notes:id=>PROJECT_NOTES[language]?.[id]||PROJECT_NOTES.en[id]||[]};
+  selector.addEventListener('change',()=>apply(selector.value));
+  window.addEventListener('storage',e=>{if(e.key==='khonsu-language')apply(e.newValue||navigator.language,false);});
+  apply(language,false);
+})();
