@@ -1198,3 +1198,52 @@ Object.assign(PROJECT_NOTES.de, {"save-democracy":["Ein Teamprojekt, das als Win
 Object.assign(PROJECT_NOTES.es, {"save-democracy":["Proyecto de equipo publicado en itch.io como prototipo para Windows.","Explora un mapa oscuro, busca pistas y lleva a una periodista desaparecida a un lugar seguro.","Un proyecto anterior de game jam. La versión descargable está en itch.io."]});
 Object.assign(PROJECT_NOTES.cs, {"save-democracy":["Týmový projekt vydaný na itch.io jako prototyp pro Windows.","Prozkoumej temnou mapu, hledej stopy a doveď pohřešovanou novinářku do bezpečí.","Starší projekt z game jamu. Stažitelný build je na itch.io."]});
 if(typeof module!=="undefined" && module.exports) module.exports={SITE_LOCALES,PROJECT_NOTES};
+
+Object.assign(SITE_LOCALES.sk, {
+  "Agents, in practice": "Agenti v praxi",
+  "I’m testing small, bounded agent workflows with OpenAI coding agents and Jev: triaging public updates, checking claims, and keeping project details honest. Scripts still handle the predictable parts.": "Skúšam malé, ohraničené agentové workflowy s coding agentmi od OpenAI a Jevom: triedenie verejných noviniek, overovanie tvrdení a udržiavanie projektových detailov poctivých. Predvídateľné časti stále riešia skripty.",
+  "Small tools, real checks": "Malé nástroje, reálne kontroly",
+  "I’m refining a quiet AI update inbox, an agent evaluation lab, and a practice workshop. The useful part is the boring QA, not just getting a demo online.": "Ladím tichý inbox AI noviniek, laboratórium na hodnotenie agentov a workshop na precvičovanie. Užitočná je aj nudná QA práca, nielen dostať demo online.",
+  "RL, models, and games": "RL, modely a hry",
+  "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Stále sledujem reinforcement learning, nové modely a multiplayerové herné nápady. Skúšam ich prakticky skôr, než sa naviažem na nejaký názor."
+});
+Object.assign(SITE_LOCALES.hu, {
+  "Agents, in practice": "Ágensek a gyakorlatban",
+  "I’m testing small, bounded agent workflows with OpenAI coding agents and Jev: triaging public updates, checking claims, and keeping project details honest. Scripts still handle the predictable parts.": "Kis, jól körülhatárolt ágens-munkafolyamatokat tesztelek OpenAI kódoló ágensekkel és Jevvel: nyilvános hírek válogatását, állítások ellenőrzését és projektrészletek pontosan tartását. A kiszámítható részeket továbbra is szkriptek kezelik.",
+  "Small tools, real checks": "Kis eszközök, valódi ellenőrzések",
+  "I’m refining a quiet AI update inbox, an agent evaluation lab, and a practice workshop. The useful part is the boring QA, not just getting a demo online.": "Egy nyugodt AI-hírbeérkezőt, egy ágensértékelő labort és egy gyakorlóműhelyt finomítok. A hasznos része a hétköznapi QA is, nem csak a demo élesítése.",
+  "RL, models, and games": "RL, modellek és játékok",
+  "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Továbbra is figyelem a megerősítéses tanulást, az új modelleket és a többjátékos játékötleteket. Mielőtt ragaszkodnék egy véleményhez, előbb gyakorlatban próbálom ki."
+});
+Object.assign(SITE_LOCALES.pl, {
+  "Agents, in practice": "Agenci w praktyce",
+  "I’m testing small, bounded agent workflows with OpenAI coding agents and Jev: triaging public updates, checking claims, and keeping project details honest. Scripts still handle the predictable parts.": "Testuję małe, ograniczone workflowy agentowe z agentami kodującymi OpenAI i Jev: selekcję publicznych aktualizacji, sprawdzanie twierdzeń i utrzymywanie rzetelnych szczegółów projektów. Przewidywalne części nadal obsługują skrypty.",
+  "Small tools, real checks": "Małe narzędzia, realne sprawdzenia",
+  "I’m refining a quiet AI update inbox, an agent evaluation lab, and a practice workshop. The useful part is the boring QA, not just getting a demo online.": "Dopracowuję spokojny inbox aktualizacji AI, laboratorium oceny agentów i warsztat ćwiczeń. Wartość daje też zwykłe QA, nie tylko postawienie dema online.",
+  "RL, models, and games": "RL, modele i gry",
+  "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Nadal obserwuję reinforcement learning, nowe modele i pomysły na gry multiplayer. Wolę sprawdzić je w praktyce, zanim przywiążę się do opinii."
+});
+Object.assign(SITE_LOCALES.de, {
+  "Agents, in practice": "Agenten in der Praxis",
+  "I’m testing small, bounded agent workflows with OpenAI coding agents and Jev: triaging public updates, checking claims, and keeping project details honest. Scripts still handle the predictable parts.": "Ich teste kleine, klar begrenzte Agenten-Workflows mit OpenAI Coding Agents und Jev: öffentliche Updates sortieren, Aussagen prüfen und Projektdetails ehrlich halten. Vorhersehbare Teile erledigen weiterhin Skripte.",
+  "Small tools, real checks": "Kleine Tools, echte Prüfungen",
+  "I’m refining a quiet AI update inbox, an agent evaluation lab, and a practice workshop. The useful part is the boring QA, not just getting a demo online.": "Ich verfeinere einen ruhigen AI-Update-Inbox, ein Labor für Agenten-Evaluierungen und einen Übungsworkshop. Der nützliche Teil ist auch die alltägliche QA, nicht nur ein Demo online zu bringen.",
+  "RL, models, and games": "RL, Modelle und Spiele",
+  "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Ich behalte Reinforcement Learning, neue Modelle und Multiplayer-Spielideen im Blick. Ich probiere Dinge praktisch aus, bevor ich mich auf eine Meinung festlege."
+});
+Object.assign(SITE_LOCALES.es, {
+  "Agents, in practice": "Agentes en la práctica",
+  "I’m testing small, bounded agent workflows with OpenAI coding agents and Jev: triaging public updates, checking claims, and keeping project details honest. Scripts still handle the predictable parts.": "Estoy probando flujos de agentes pequeños y acotados con agentes de programación de OpenAI y Jev: clasificar actualizaciones públicas, comprobar afirmaciones y mantener honestos los detalles de los proyectos. Los scripts siguen llevando las partes predecibles.",
+  "Small tools, real checks": "Herramientas pequeñas, comprobaciones reales",
+  "I’m refining a quiet AI update inbox, an agent evaluation lab, and a practice workshop. The useful part is the boring QA, not just getting a demo online.": "Estoy afinando una bandeja tranquila de actualizaciones de IA, un laboratorio de evaluación de agentes y un taller de práctica. Lo útil también es el QA rutinario, no solo publicar una demo.",
+  "RL, models, and games": "RL, modelos y juegos",
+  "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Sigo atento al aprendizaje por refuerzo, los modelos nuevos y las ideas de juegos multijugador. Prefiero probar las cosas antes de apegarme a una opinión."
+});
+Object.assign(SITE_LOCALES.cs, {
+  "Agents, in practice": "Agenti v praxi",
+  "I’m testing small, bounded agent workflows with OpenAI coding agents and Jev: triaging public updates, checking claims, and keeping project details honest. Scripts still handle the predictable parts.": "Zkouším malé, ohraničené agentové workflowy s coding agenty od OpenAI a Jevem: třídění veřejných novinek, ověřování tvrzení a poctivou údržbu detailů projektů. Předvídatelné části stále řeší skripty.",
+  "Small tools, real checks": "Malé nástroje, skutečné kontroly",
+  "I’m refining a quiet AI update inbox, an agent evaluation lab, and a practice workshop. The useful part is the boring QA, not just getting a demo online.": "Ladím tichý inbox AI novinek, laboratoř na hodnocení agentů a workshop na procvičování. Užitečná je i obyčejná QA práce, nejen dostat demo online.",
+  "RL, models, and games": "RL, modely a hry",
+  "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Pořád sleduji reinforcement learning, nové modely a multiplayerové herní nápady. Věci si raději vyzkouším prakticky, než se upnu na nějaký názor."
+});
