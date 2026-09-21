@@ -1154,4 +1154,47 @@ const PROJECT_NOTES = {
     ]
   }
 };
+Object.assign(SITE_LOCALES.sk, {
+  "GAME JAM TEAM PROJECT": "TÍMOVÝ PROJEKT Z GAME JAMU",
+  "FIND THE WAY OUT": "NAJDI CESTU VON",
+  "A team-made horror exploration prototype about finding a missing journalist and getting them to safety.": "Tímový hororový prieskumný prototyp o hľadaní nezvestnej novinárky a jej návrate do bezpečia.",
+  "View on itch.io ↗": "Pozrieť na itch.io ↗"
+});
+Object.assign(SITE_LOCALES.hu, {
+  "GAME JAM TEAM PROJECT": "GAME JAM CSAPATPROJEKT",
+  "FIND THE WAY OUT": "TALÁLD MEG A KIUTAT",
+  "A team-made horror exploration prototype about finding a missing journalist and getting them to safety.": "Csapatban készült horror felfedező prototípus egy eltűnt újságíró felkutatásáról és biztonságba juttatásáról.",
+  "View on itch.io ↗": "Megnyitás az itch.io-n ↗"
+});
+Object.assign(SITE_LOCALES.pl, {
+  "GAME JAM TEAM PROJECT": "ZESPOŁOWY PROJEKT GAME JAM",
+  "FIND THE WAY OUT": "ZNAJDŹ DROGĘ WYJŚCIA",
+  "A team-made horror exploration prototype about finding a missing journalist and getting them to safety.": "Zespołowy prototyp horroru eksploracyjnego o odnalezieniu zaginionej dziennikarki i doprowadzeniu jej w bezpieczne miejsce.",
+  "View on itch.io ↗": "Zobacz na itch.io ↗"
+});
+Object.assign(SITE_LOCALES.de, {
+  "GAME JAM TEAM PROJECT": "GAME-JAM-TEAMPROJEKT",
+  "FIND THE WAY OUT": "FINDE DEN AUSWEG",
+  "A team-made horror exploration prototype about finding a missing journalist and getting them to safety.": "Ein im Team entstandener Horror-Erkundungsprototyp über die Suche nach einer vermissten Journalistin und ihre Rettung.",
+  "View on itch.io ↗": "Auf itch.io ansehen ↗"
+});
+Object.assign(SITE_LOCALES.es, {
+  "GAME JAM TEAM PROJECT": "PROYECTO DE EQUIPO DE GAME JAM",
+  "FIND THE WAY OUT": "ENCUENTRA LA SALIDA",
+  "A team-made horror exploration prototype about finding a missing journalist and getting them to safety.": "Un prototipo de exploración de terror hecho en equipo sobre encontrar a una periodista desaparecida y llevarla a un lugar seguro.",
+  "View on itch.io ↗": "Ver en itch.io ↗"
+});
+Object.assign(SITE_LOCALES.cs, {
+  "GAME JAM TEAM PROJECT": "TÝMOVÝ PROJEKT Z GAME JAMU",
+  "FIND THE WAY OUT": "NAJDI CESTU VEN",
+  "A team-made horror exploration prototype about finding a missing journalist and getting them to safety.": "Týmový hororový průzkumný prototyp o hledání pohřešované novinářky a jejím odvedení do bezpečí.",
+  "View on itch.io ↗": "Zobrazit na itch.io ↗"
+});
+Object.assign(PROJECT_NOTES.en, {"save-democracy":["A team project published on itch.io as a Windows prototype.","Explore a dark map, look for clues and bring a missing journalist back to the safe area.","An earlier game-jam project. The downloadable build is hosted on itch.io."]});
+Object.assign(PROJECT_NOTES.sk, {"save-democracy":["Tímový projekt vydaný na itch.io ako Windows prototyp.","Preskúmaj tmavú mapu, hľadaj stopy a priveď nezvestnú novinárku do bezpečia.","Starší projekt z game jamu. Stiahnuteľný build je na itch.io."]});
+Object.assign(PROJECT_NOTES.hu, {"save-democracy":["Csapatprojekt, amely Windows prototípusként jelent meg itch.io-n.","Fedezd fel a sötét pályát, keress nyomokat és juttasd az eltűnt újságírót biztonságba.","Korábbi game jam projekt. A letölthető build itch.io-n érhető el."]});
+Object.assign(PROJECT_NOTES.pl, {"save-democracy":["Projekt zespołowy opublikowany na itch.io jako prototyp dla Windows.","Eksploruj mroczną mapę, szukaj wskazówek i doprowadź zaginioną dziennikarkę w bezpieczne miejsce.","Starszy projekt z game jamu. Wersja do pobrania jest na itch.io."]});
+Object.assign(PROJECT_NOTES.de, {"save-democracy":["Ein Teamprojekt, das als Windows-Prototyp auf itch.io veröffentlicht wurde.","Erkunde eine dunkle Karte, suche nach Hinweisen und bringe eine vermisste Journalistin in Sicherheit.","Ein früheres Game-Jam-Projekt. Der Download ist auf itch.io verfügbar."]});
+Object.assign(PROJECT_NOTES.es, {"save-democracy":["Proyecto de equipo publicado en itch.io como prototipo para Windows.","Explora un mapa oscuro, busca pistas y lleva a una periodista desaparecida a un lugar seguro.","Un proyecto anterior de game jam. La versión descargable está en itch.io."]});
+Object.assign(PROJECT_NOTES.cs, {"save-democracy":["Týmový projekt vydaný na itch.io jako prototyp pro Windows.","Prozkoumej temnou mapu, hledej stopy a doveď pohřešovanou novinářku do bezpečí.","Starší projekt z game jamu. Stažitelný build je na itch.io."]});
 if(typeof module!=="undefined" && module.exports) module.exports={SITE_LOCALES,PROJECT_NOTES};
