@@ -124,7 +124,9 @@ const SITE_LOCALES = {
     "Open contact links ↗": "Otvoriť kontakty ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Osobná rotácia a playlisty podľa nálady na požiadanie. Lokálne cez Python.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicou, LCD a malou hrou na zneškodnenie bomby. Univerzitný tímový projekt.",
-    "Details": "Podrobnosti"
+    "Details": "Podrobnosti",
+    "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Malé laboratórium na rozhodovanie agentov, browser úlohy, porovnávanie skills, kontroly nasadenia a tvrdení.",
+    "JavaScript · Agent evaluation": "JavaScript · Testovanie agentov"
   },
   "hu": {
     "Skip to content": "Ugrás a tartalomra",
@@ -250,7 +252,9 @@ const SITE_LOCALES = {
     "Open contact links ↗": "Kapcsolatok megnyitása ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Személyes válogatás és hangulathoz illő lejátszási listák kérésre. Helyben, Pythonnal.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Számológép billentyűzettel, LCD-vel és egy kis bombahatástalanító játékkal. Egyetemi csapatmunka.",
-    "Details": "Részletek"
+    "Details": "Részletek",
+    "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Kis labor az ágensek döntéseihez, böngészőfeladatokhoz, utasítások összehasonlításához, telepítések és állítások ellenőrzéséhez.",
+    "JavaScript · Agent evaluation": "JavaScript · Ágenstesztek"
   },
   "pl": {
     "Skip to content": "Przejdź do treści",
@@ -376,7 +380,9 @@ const SITE_LOCALES = {
     "Open contact links ↗": "Otwórz kontakty ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Osobista rotacja i playlisty według nastroju na życzenie. Lokalnie, w Pythonie.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulator z klawiaturą, LCD i małą grą w rozbrajanie bomby. Projekt zespołowy ze studiów.",
-    "Details": "Szczegóły"
+    "Details": "Szczegóły",
+    "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Małe laboratorium decyzji agentów, zadań przeglądarkowych, porównań instrukcji, wdrożeń i twierdzeń.",
+    "JavaScript · Agent evaluation": "JavaScript · Testy agentów"
   },
   "de": {
     "Skip to content": "Zum Inhalt",
@@ -502,7 +508,9 @@ const SITE_LOCALES = {
     "Open contact links ↗": "Kontaktlinks öffnen ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Persönliche Rotation und Playlists nach Stimmung auf Anfrage. Lokal mit Python.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Ein Taschenrechner mit Tastenfeld, LCD und einem kleinen Bombenentschärfungsspiel. Ein Uni-Teamprojekt.",
-    "Details": "Details"
+    "Details": "Details",
+    "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Ein kleines Labor für Agentenentscheidungen, Browseraufgaben, Anweisungsvergleiche, Deployments und Behauptungen.",
+    "JavaScript · Agent evaluation": "JavaScript · Agententests"
   },
   "es": {
     "Skip to content": "Ir al contenido",
@@ -628,7 +636,9 @@ const SITE_LOCALES = {
     "Open contact links ↗": "Abrir contactos ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Una rotación personal y playlists según el ánimo, a petición. En local, con Python.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Una calculadora con teclado, LCD y un pequeño juego de desactivar bombas. Un proyecto universitario en equipo.",
-    "Details": "Detalles"
+    "Details": "Detalles",
+    "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Un pequeño laboratorio de decisiones de agentes, tareas de navegador, instrucciones, despliegues y afirmaciones.",
+    "JavaScript · Agent evaluation": "JavaScript · Pruebas de agentes"
   },
   "cs": {
     "Skip to content": "Přeskočit na obsah",
@@ -754,7 +764,9 @@ const SITE_LOCALES = {
     "Open contact links ↗": "Otevřít kontakty ↗",
     "A personal rotation and mood playlists on request. Built locally with Python.": "Osobní rotace a playlisty podle nálady na požádání. Lokálně přes Python.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicí, LCD a malou hrou na zneškodnění bomby. Univerzitní týmový projekt.",
-    "Details": "Podrobnosti"
+    "Details": "Podrobnosti",
+    "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Malá laboratoř pro rozhodování agentů, úlohy v prohlížeči, porovnání instrukcí, nasazení a tvrzení.",
+    "JavaScript · Agent evaluation": "JavaScript · Testování agentů"
   }
 };
 const PROJECT_NOTES = {
@@ -805,6 +817,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "Built with a team at TUKE using an Arduino Uno, a keypad and an LCD. It evaluates arithmetic expressions with brackets and keeps calculation history.",
       "The repository includes the source and circuit diagram. There is also a small bomb-defusal game. This is earlier hardware work, not a browser demo."
+    ],
+    "proof": [
+      "20 browser tasks and measured report imports. Published Jev and keyword-baseline results include failures.",
+      "Model tests run locally with your own API key. A small sample, not a general model ranking."
     ]
   },
   "sk": {
@@ -854,6 +870,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "Tímový projekt na TUKE s Arduino Uno, klávesnicou a LCD. Vyhodnocuje aritmetické výrazy so zátvorkami a uchováva históriu výpočtov.",
       "Repozitár obsahuje kód a schému zapojenia aj malú hru na zneškodnenie bomby. Je to starší hardvérový projekt, nie demo v prehliadači."
+    ],
+    "proof": [
+      "20 browser úloh a import meraných reportov. Jev aj jednoduchý skript majú zverejnené výsledky vrátane chýb.",
+      "Modelové testy bežia lokálne s vlastným API kľúčom. Malá vzorka, nie všeobecný rebríček modelov."
     ]
   },
   "hu": {
@@ -903,6 +923,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "A TUKE-n csapatban készült, Arduino Uno, billentyűzet és LCD használatával. Zárójeles számtani kifejezéseket értékel ki, és megőrzi a számítások előzményeit.",
       "A repóban megtalálható a forráskód, a kapcsolási rajz és egy kis bombahatástalanító játék. Korábbi hardverprojekt, nem böngészős demó."
+    ],
+    "proof": [
+      "20 böngészőfeladat és mérési jelentések importálása. A Jev és egy egyszerű szkript eredményei a hibákkal együtt láthatók.",
+      "A modelltesztek helyben futnak saját API-kulccsal. Kis minta, nem általános modellrangsor."
     ]
   },
   "pl": {
@@ -952,6 +976,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "Projekt zespołowy na TUKE z Arduino Uno, klawiaturą i LCD. Oblicza wyrażenia arytmetyczne z nawiasami i zachowuje historię obliczeń.",
       "Repozytorium zawiera kod, schemat połączeń i małą grę w rozbrajanie bomby. To starszy projekt sprzętowy, bez wersji przeglądarkowej."
+    ],
+    "proof": [
+      "20 zadań przeglądarkowych i import raportów. Wyniki Jev i prostego skryptu zawierają również błędy.",
+      "Testy modeli działają lokalnie z własnym kluczem API. Mała próbka, nie ogólny ranking modeli."
     ]
   },
   "de": {
@@ -1001,6 +1029,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "Im Team an der TUKE mit Arduino Uno, Tastenfeld und LCD gebaut. Wertet arithmetische Ausdrücke mit Klammern aus und speichert den Rechenverlauf.",
       "Das Repository enthält Quellcode, Schaltplan und ein kleines Bombenentschärfungsspiel. Ein früheres Hardwareprojekt, keine Browser-Demo."
+    ],
+    "proof": [
+      "20 Browseraufgaben und Import gemessener Berichte. Ergebnisse von Jev und einem einfachen Skript zeigen auch Fehler.",
+      "Modelltests laufen lokal mit eigenem API-Schlüssel. Kleine Stichprobe, keine allgemeine Modellrangliste."
     ]
   },
   "es": {
@@ -1050,6 +1082,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "Creado en equipo en TUKE con Arduino Uno, teclado y LCD. Evalúa expresiones aritméticas con paréntesis y guarda el historial de cálculos.",
       "El repositorio incluye código, esquema de conexiones y un pequeño juego de desactivar bombas. Es un proyecto anterior de hardware, sin demo web."
+    ],
+    "proof": [
+      "20 tareas de navegador e importación de informes. Los resultados de Jev y un script sencillo incluyen los fallos.",
+      "Las pruebas de modelos se ejecutan localmente con una clave API propia. Una muestra pequeña, no una clasificación general."
     ]
   },
   "cs": {
@@ -1099,6 +1135,10 @@ const PROJECT_NOTES = {
     "calculator": [
       "Týmový projekt na TUKE s Arduino Uno, klávesnicí a LCD. Vyhodnocuje aritmetické výrazy se závorkami a uchovává historii výpočtů.",
       "Repozitář obsahuje kód, schéma zapojení a malou hru na zneškodnění bomby. Jde o starší hardwarový projekt, nikoli demo v prohlížeči."
+    ],
+    "proof": [
+      "20 úloh v prohlížeči a import naměřených reportů. Výsledky Jev i jednoduchého skriptu zahrnují také chyby.",
+      "Modelové testy běží lokálně s vlastním API klíčem. Malý vzorek, nikoli obecný žebříček modelů."
     ]
   }
 };
