@@ -77,7 +77,7 @@ function showProject(id) {
     projectDialog.scrollTop = 0;
   }
 }
-window.addEventListener('portfolio:language',()=>{const status=document.querySelector('#copy-status');if(status.dataset.message)status.textContent=t(status.dataset.message);updateMotion();if(projectDialog.open && activeProject)showProject(activeProject);});
+window.addEventListener('portfolio:language',()=>{const status=document.querySelector('#copy-status');if(status.dataset.message)status.textContent=t(status.dataset.message);updateMotion();updateTerminalWelcome();if(projectDialog.open && activeProject)showProject(activeProject);});
 document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => showProject(button.dataset.project)));
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => document.getElementById(button.dataset.close).close()));
 document.querySelectorAll('dialog').forEach(dialog => {
@@ -90,7 +90,24 @@ document.querySelectorAll('dialog').forEach(dialog => {
 const terminal = document.querySelector('#terminal-dialog');
 const input = document.querySelector('#command');
 const output = document.querySelector('#terminal-output');
-const commands = ['help', 'about', 'projects', 'work', 'now', 'contact', 'clear', 'close'];
+const commands = ['help', 'about', 'projects', 'work', 'now', 'contact', 'status', 'lore', 'theme', 'open', 'clear', 'close'];
+const terminalCopy = {
+  en: { welcome: 'A small index, not a fake shell.', hint: 'Try help, status, lore, or open khonrelay. Tab completes. ↑ ↓ recalls.', status: 'Public builds, kept deliberately small.', lore: 'khonsu came from a Moon Knight reference around 2022.\nIt stuck, so I kept it.', theme: 'Theme switched.', open: 'Choose a project after open. Try: open khonrelay.', help: 'status · live public builds\nlore · why khonsu\ntheme · switch light / dark\nopen <project> · project notes' },
+  sk: { welcome: 'Malý index, nie predstieraný shell.', hint: 'Skús help, status, lore alebo open khonrelay. Tab dopĺňa. ↑ ↓ história.', status: 'Verejné projekty, zámerne malé.', lore: 'khonsu vzniklo z odkazu na Moon Knight okolo roku 2022.\nOstalo to, tak som si to nechal.', theme: 'Téma prepnutá.', open: 'Za open vyber projekt. Skús: open khonrelay.', help: 'status · živé verejné projekty\nlore · prečo khonsu\ntheme · prepne svetlú / tmavú tému\nopen <project> · poznámky k projektu' },
+  hu: { welcome: 'Egy kis index, nem ál-shell.', hint: 'Próbáld: help, status, lore vagy open khonrelay. A Tab kiegészít. ↑ ↓ előzmények.', status: 'Nyilvános projektek, szándékosan kicsik.', lore: 'a khonsu név egy 2022 körüli Moon Knight utalásból jött.\nMegmaradt, ezért megtartottam.', theme: 'Téma váltva.', open: 'Az open után válassz projektet. Példa: open khonrelay.', help: 'status · élő nyilvános projektek\nlore · miért khonsu\ntheme · világos / sötét téma\nopen <project> · projektjegyzetek' },
+  pl: { welcome: 'Mały indeks, nie udawany shell.', hint: 'Spróbuj: help, status, lore albo open khonrelay. Tab uzupełnia. ↑ ↓ historia.', status: 'Publiczne projekty, celowo niewielkie.', lore: 'khonsu pochodzi od odniesienia do Moon Knight około 2022 roku.\nZostało ze mną, więc je zachowałem.', theme: 'Motyw przełączony.', open: 'Po open wybierz projekt. Spróbuj: open khonrelay.', help: 'status · publiczne projekty na żywo\nlore · skąd khonsu\ntheme · jasny / ciemny motyw\nopen <project> · notatki o projekcie' },
+  de: { welcome: 'Ein kleiner Index, keine Fake-Shell.', hint: 'Probiere help, status, lore oder open khonrelay. Tab ergänzt. ↑ ↓ Verlauf.', status: 'Öffentliche Projekte, bewusst klein gehalten.', lore: 'khonsu stammt von einer Moon-Knight-Referenz um 2022.\nDer Name blieb, also habe ich ihn behalten.', theme: 'Theme gewechselt.', open: 'Wähle ein Projekt nach open. Versuch: open khonrelay.', help: 'status · öffentliche Live-Projekte\nlore · warum khonsu\ntheme · helles / dunkles Theme\nopen <project> · Projektnotizen' },
+  es: { welcome: 'Un índice pequeño, no una shell falsa.', hint: 'Prueba help, status, lore u open khonrelay. Tab completa. ↑ ↓ historial.', status: 'Proyectos públicos, deliberadamente pequeños.', lore: 'khonsu viene de una referencia a Moon Knight alrededor de 2022.\nSe quedó, así que lo mantuve.', theme: 'Tema cambiado.', open: 'Elige un proyecto después de open. Prueba: open khonrelay.', help: 'status · proyectos públicos en vivo\nlore · por qué khonsu\ntheme · tema claro / oscuro\nopen <project> · notas del proyecto' },
+  cs: { welcome: 'Malý rejstřík, ne falešný shell.', hint: 'Zkus help, status, lore nebo open khonrelay. Tab doplňuje. ↑ ↓ historie.', status: 'Veřejné projekty, záměrně malé.', lore: 'khonsu vzniklo z odkazu na Moon Knight kolem roku 2022.\nZůstalo to, tak jsem si to nechal.', theme: 'Motiv přepnut.', open: 'Za open vyber projekt. Zkus: open khonrelay.', help: 'status · živé veřejné projekty\nlore · proč khonsu\ntheme · světlý / tmavý motiv\nopen <project> · poznámky k projektu' }
+};
+function terminalStrings() { return terminalCopy[globalThis.PortfolioI18n?.language] || terminalCopy.en; }
+function updateTerminalWelcome() {
+  const welcome = document.querySelector('#terminal-welcome');
+  const copy = terminalStrings();
+  welcome.replaceChildren(copy.welcome, document.createElement('br'));
+  const hint = document.createElement('span'); hint.textContent = copy.hint;
+  welcome.append(hint);
+}
 const history = [];
 let historyPosition = 0;
 let draft = '';
@@ -117,6 +134,8 @@ function write(command, message, links = []) {
 function run(raw) {
   const command = raw.trim().toLowerCase();
   if (!command) return;
+  const [verb, ...arguments_] = command.split(/\s+/);
+  const argument = arguments_.join(' ');
   history.push(raw.trim()); if (history.length > 60) history.shift();
   historyPosition = history.length; draft = ''; input.value = '';
   const responses = {
@@ -125,7 +144,9 @@ function run(raw) {
     projects: ['Khonproof · agent testing lab (source available)\nKhonodds · Polymarket research desk\nKhonrelay · AI news & RSS inbox\nKhonsolve · coding & reasoning practice\nKhonstash · Steam item watchlist (source available)\ncalculator · Arduino team project\nportfolio · this site, terminal & local guide\nrotation  · Spotify rotation & mood playlists\ndots      · original React game, browser edition (live)\nbot       · JavaScript Discord music bot\nipc       · C++ inter-process communication\n\nChoose a project card on the page for its notes.', [['Explore selected work ↗', '#projects']]],
     work: ['Customer Support Partner L2 at Luigi’s Box.\nBrowser debugging, APIs, feeds, audits, and analytics.\nReproduce → trace → fix → verify.', [['More about my work ↗', '#about']]],
     now: ['Agents and coding tools. New model capabilities.\nAGI and recursive self-improvement.\nI use coding agents and try new tools in my own projects.', [['On my desk ↗', '#now']]],
-    contact: ['GitHub: khons-hu\nX: @ptr1337_\nDiscord: khons.hu', [['Open contact links ↗', '#contact']]]
+    contact: ['GitHub: khons-hu\nX: @ptr1337_\nDiscord: khons.hu', [['Open contact links ↗', '#contact']]],
+    status: [terminalStrings().status+'\nkhons-hu.vercel.app · portfolio\nthinkroom-khonsu.vercel.app · Khonsolve\nquiet-signal-khonsu.vercel.app · Khonrelay\nmarket-watch-khonsu.vercel.app · Khonodds\ndots-khonsu.vercel.app · Dots', [['Open selected work ↗', '#projects']]],
+    lore: [terminalStrings().lore]
   };
   if(globalThis.PortfolioI18n?.language !== 'en') {
     const sectionText = selector => [...document.querySelectorAll(selector)].map(p=>p.textContent).join('\n\n');
@@ -133,9 +154,16 @@ function run(raw) {
     responses.work[0] = sectionText('.work-detail > p:not(.eyebrow)');
     responses.now[0] = sectionText('.now-grid article p');
     responses.projects[0] = [...document.querySelectorAll('.project-info')].map(p=>p.querySelector('h3').textContent+'\n'+p.querySelector('p').textContent).join('\n\n');
-    responses.help = [['about · '+t('ABOUT ME'),'projects · '+t('SELECTED WORK'),'work · Customer Support Partner L2','now · '+t('ON MY DESK'),'contact · '+t('Contact'),'clear · '+t('Clear chat'),'close · '+t('Close terminal')].join('\n')];
+    responses.help = [['about · '+t('ABOUT ME'),'projects · '+t('SELECTED WORK'),'work · Customer Support Partner L2','now · '+t('ON MY DESK'),'contact · '+t('Contact'),terminalStrings().help,'clear · '+t('Clear chat'),'close · '+t('Close terminal')].join('\n')];
   }
-  if (command === 'clear') output.replaceChildren();
+  const projectAliases = {proof:'proof',khonproof:'proof',khonsolve:'thinkroom',thinkroom:'thinkroom',khonrelay:'signal',signal:'signal',khonodds:'market',market:'market',khonstash:'steam',steam:'steam',dots:'dots',portfolio:'portfolio',spotify:'rotation',rotation:'rotation',calculator:'calculator',arduino:'calculator',bot:'bot',ipc:'ipc'};
+  if (verb === 'open') {
+    const id = projectAliases[argument];
+    if (!id) write(raw.trim(), terminalStrings().open);
+    else { terminal.close(); showProject(id); }
+  }
+  else if (command === 'theme') { document.querySelector('#theme-toggle').click(); write(command, terminalStrings().theme); }
+  else if (command === 'clear') output.replaceChildren();
   else if (command === 'close') terminal.close();
   else if (responses[command]) write(command, ...responses[command]);
   else write(raw.trim(), t(`Unknown command. Try “help”.`));
