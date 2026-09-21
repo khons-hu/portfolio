@@ -10,7 +10,7 @@ function setup(){
   return nodes.get(selector);
  }
  const document={querySelector(selector){
-  if(selector.includes('.project-preview img'))return selector.includes('thinkroom')?{getAttribute:()=> 'assets/previews/khonsolve.webp'}:null;
+  if(selector.includes('.dialog-preview-hidden'))return selector.includes('thinkroom')?{getAttribute:()=> 'assets/previews/khonsolve.webp'}:null;
   if(selector.includes('.project-info p'))return null;
   return node(selector);
  },createElement:()=>({textContent:''})};

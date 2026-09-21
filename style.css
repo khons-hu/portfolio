@@ -83,3 +83,5 @@ footer>#motion-toggle{justify-self:end;text-align:right}
 /* Keep project descriptions and accented labels readable at mobile sizes. */
 .project-meta{font-size:11px;letter-spacing:.3px;flex-wrap:wrap}
 .project-info p{font-size:15px;line-height:1.75}
+/* Card grid uses one typographic object system. Screenshots stay in project details. */
+.dialog-preview-hidden{display:none!important}

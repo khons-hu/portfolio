@@ -54,7 +54,7 @@ function showProject(id) {
   document.querySelector('#project-description').textContent = document.querySelector(`[data-project="${id}"] .project-info p`)?.textContent || t(project.description);
   document.querySelector('#project-notes').replaceChildren(...(globalThis.PortfolioI18n?.notes(id) || project.notes).map(note => { const p = document.createElement('p'); p.textContent = note; return p; }));
   const preview = document.querySelector('#project-preview');
-  const previewUrl = document.querySelector(`[data-project="${id}"] .project-preview img`)?.getAttribute('src');
+  const previewUrl = document.querySelector(`[data-project="${id}"] .dialog-preview-hidden`)?.getAttribute('src');
   preview.hidden = !previewUrl;
   if (previewUrl) preview.src = previewUrl;
   else preview.removeAttribute('src');
