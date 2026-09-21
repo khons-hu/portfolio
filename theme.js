@@ -24,7 +24,7 @@
    void document.body.offsetWidth;
   }
   apply(desired);
-  timer=setTimeout(finish,700);
+  timer=setTimeout(finish,520);
  }
  function settle(){clearTimeout(timer);busy=false;root.classList.remove('theme-changing');document.querySelector('#theme-toggle')?.removeAttribute('aria-busy');apply(desired);}
  reduced.addEventListener('change',settle);
