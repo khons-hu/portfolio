@@ -5,19 +5,23 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const motionButton = document.querySelector('#motion-toggle');
 let motionPreference;
 try { motionPreference = localStorage.getItem('khonsu-motion'); } catch {}
+if (!['system', 'on', 'off'].includes(motionPreference)) motionPreference = 'system';
 function updateMotion() {
-  const disabled = reducedMotion.matches || motionPreference === 'off';
+  const disabled = motionPreference === 'off' || (motionPreference === 'system' && reducedMotion.matches);
+  const forced = motionPreference === 'on';
   root.classList.toggle('motion-off', disabled);
+  root.classList.toggle('motion-force-on', forced);
   root.classList.toggle('js-motion', !disabled);
-  motionButton.textContent = t(motionPreference === 'off' ? 'Motion: off' : `Motion: system${reducedMotion.matches ? ' (reduced)' : ''}`);
-  motionButton.title = t(reducedMotion.matches ? 'Your system requests reduced motion. Animations stay off. Click to switch between system preference and always off.' : 'Click to switch between system preference and always off.');
-  motionButton.setAttribute('aria-pressed', String(disabled));
+  const label = motionPreference === 'on' ? 'Motion: on' : motionPreference === 'off' ? 'Motion: off' : `Motion: system${reducedMotion.matches ? ' (reduced)' : ''}`;
+  motionButton.textContent = t(label);
+  motionButton.title = t('Motion cycles through system, on, and off. “On” keeps the small interface transitions even when your system requests reduced motion.');
+  motionButton.setAttribute('aria-pressed', String(!disabled));
   motionButton.disabled = false;
 }
 updateMotion();
 reducedMotion.addEventListener('change', updateMotion);
 motionButton.addEventListener('click', () => {
-  motionPreference = motionPreference === 'off' ? 'system' : 'off';
+  motionPreference = motionPreference === 'system' ? 'on' : motionPreference === 'on' ? 'off' : 'system';
   try { localStorage.setItem('khonsu-motion', motionPreference); } catch {}
   updateMotion();
 });

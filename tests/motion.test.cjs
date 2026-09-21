@@ -10,12 +10,12 @@ function setup(reduced){
  vm.runInNewContext(source,{document:{documentElement:{classList:{toggle:(k,v)=>v?classes.add(k):classes.delete(k)}},querySelector:()=>button},matchMedia:()=>media,localStorage:{getItem:()=>null,setItem:(k,v)=>saved[k]=v}});
  return {button,classes,attrs,saved,click,media,change};
 }
-test('motion control remains usable under system reduced motion without enabling animation',()=>{
- const x=setup(true);assert.equal(x.button.disabled,false);assert.match(x.button.textContent,/system.*reduced/);
- x.click();assert.equal(x.button.textContent,'Motion: off');assert.equal(x.saved['khonsu-motion'],'off');
- x.click();assert.match(x.button.textContent,/system.*reduced/);assert(x.classes.has('motion-off'));assert(!x.classes.has('js-motion'));
- x.media.matches=false;x.change();assert(!x.classes.has('motion-off'));assert(x.classes.has('js-motion'));
+test('system reduced remains accessible and explicit On can override it',()=>{
+ const x=setup(true);assert.match(x.button.textContent,/system.*reduced/);assert(x.classes.has('motion-off'));
+ x.click();assert.equal(x.button.textContent,'Motion: on');assert(!x.classes.has('motion-off'));assert(x.classes.has('motion-force-on'));
+ x.click();assert.equal(x.button.textContent,'Motion: off');assert(x.classes.has('motion-off'));
+ x.click();assert.match(x.button.textContent,/system.*reduced/);assert.equal(x.saved['khonsu-motion'],'system');
 });
-test('motion off and system toggle normally and persist',()=>{
- const x=setup(false);assert(x.classes.has('js-motion'));x.click();assert(x.classes.has('motion-off'));x.click();assert(x.classes.has('js-motion'));assert.equal(x.saved['khonsu-motion'],'system');
+test('system, on and off cycle normally and persist',()=>{
+ const x=setup(false);assert(x.classes.has('js-motion'));x.click();assert(x.classes.has('motion-force-on'));x.click();assert(x.classes.has('motion-off'));x.click();assert(x.classes.has('js-motion'));assert.equal(x.saved['khonsu-motion'],'system');
 });
