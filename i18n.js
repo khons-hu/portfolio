@@ -29,7 +29,7 @@
     bindings.forEach(update=>update());
     window.dispatchEvent(new CustomEvent('portfolio:language',{detail:language}));
   }
-  window.PortfolioI18n={t,get language(){return language;},resolve,choose,names,notes:id=>PROJECT_NOTES[language]?.[id]||PROJECT_NOTES.en[id]||[]};
+  window.PortfolioI18n={t,get language(){return language;},resolve,choose,names,notes:id=>PROJECT_NOTES[language]?.[id]||PROJECT_NOTES.en[id]};
   selector.addEventListener('change',()=>apply(selector.value));
   window.addEventListener('storage',e=>{if(e.key==='khonsu-language')apply(choose(e.newValue),false);});
   apply(language,false);

@@ -16,7 +16,7 @@ test('locale resolver, storage failure and switching preserve bindings and fallb
  vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../i18n.js'),'utf8'),context);
  assert.equal(root.lang,'hu');assert.equal(node.nodeValue,' Munkák ');
  select.value='pl';events.change();assert.equal(root.lang,'pl');assert.equal(written['khonsu-language'],'pl');assert.equal(node.nodeValue,' Projekty ');
- const api=context.window.PortfolioI18n; context.navigator.languages=['fr-FR','pl-PL']; assert.equal(api.choose(null),'pl'); assert.equal(api.choose('de'),'de'); assert.equal(api.choose('unsupported'),'pl'); context.navigator.languages=['ja-JP']; assert.equal(api.choose(null),'en'); context.navigator.languages=['hu_HU']; assert.equal(api.choose(null),'hu');assert.equal(api.resolve('es-MX'),'es');assert.equal(api.resolve('__proto__'),'en');assert.equal(api.t('unmapped'),'unmapped');
+ const api=context.window.PortfolioI18n; context.navigator.languages=['fr-FR','pl-PL']; assert.equal(api.choose(null),'pl'); assert.equal(api.choose('de'),'de'); assert.equal(api.choose('unsupported'),'pl'); context.navigator.languages=['ja-JP']; assert.equal(api.choose(null),'en'); context.navigator.languages=['hu_HU']; assert.equal(api.choose(null),'hu');assert.equal(api.resolve('es-MX'),'es');assert.equal(api.resolve('__proto__'),'en');assert.equal(api.t('unmapped'),'unmapped');assert.equal(api.notes('new-project'),undefined);
  select.value='en';events.change();assert.equal(node.nodeValue,' Work ');
 });
 test('Spanish guide covers every topic and preserves private-data refusal',()=>{

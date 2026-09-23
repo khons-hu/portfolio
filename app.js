@@ -33,6 +33,24 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
 } else document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
 
+// Keep every project available without making visitors scroll through the whole archive.
+const projectCards = [...document.querySelectorAll('[data-project-group]')];
+const projectFilters = [...document.querySelectorAll('[data-project-filter]')];
+let projectFilter = 'all';
+function filterProjects() {
+  let count = 0;
+  for (const card of projectCards) {
+    card.hidden = projectFilter !== 'all' && card.dataset.projectGroup !== projectFilter;
+    if (!card.hidden) count++;
+  }
+  for (const button of projectFilters) button.setAttribute('aria-pressed', String(button.dataset.projectFilter === projectFilter));
+  document.querySelector('#project-count').textContent = t('{count} projects').replace('{count}', String(count));
+}
+for (const button of projectFilters) button.addEventListener('click', () => { projectFilter = button.dataset.projectFilter; filterProjects(); });
+document.querySelector('.project-filters').hidden = false;
+filterProjects();
+window.addEventListener('portfolio:language', filterProjects);
+
 const projects = {
   proof: {"title":"Khonproof","category":"CURRENT PROJECT · JAVASCRIPT","description":"A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.","notes":["20 browser tasks and measured report imports. Published Jev and keyword-baseline results include failures.","Model tests run locally with your own API key. A small sample, not a general model ranking."],"url":"https://github.com/khons-hu/khonproof"},
   calculator: {"title": "Arduino calculator", "category": "UNIVERSITY TEAM PROJECT · C/C++ / ARDUINO", "description": "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.", "notes": ["Built with a team at TUKE using an Arduino Uno, a keypad and an LCD. It evaluates arithmetic expressions with brackets and keeps calculation history.", "The repository includes the source and circuit diagram. There is also a small bomb-defusal game. This is earlier hardware work, not a browser demo."], "url": "https://github.com/khons-hu/Scientific-Calculator-Simplified---Semestral-Hardware-project"},
@@ -144,27 +162,32 @@ function run(raw) {
   const argument = arguments_.join(' ');
   history.push(raw.trim()); if (history.length > 60) history.shift();
   historyPosition = history.length; draft = ''; input.value = '';
+  const catalog = [...document.querySelectorAll('[data-project]')].map(card => ({
+    id: card.dataset.project,
+    title: projects[card.dataset.project].title,
+    description: card.querySelector('.project-info p').textContent
+  }));
   const responses = {
     help: ['about     the person behind the handle\nprojects  selected builds & experiments\nwork      Customer Support Partner L2\nnow       what I’m exploring\ncontact   find me elsewhere\nclear     clear this session\nclose     back to the page'],
     about: ['Patrick Obrtal. Online, khonsu.\nThe name dates to around 2022, inspired by Moon Knight.\nC++ roots, a master’s in Computer Science from TUKE,\nI now work as a Customer Support Partner L2 at Luigi’s Box.', [['Read about me ↗', '#about']]],
-    projects: ['Khonproof · agent testing lab (source available)\nKhonodds · Polymarket research desk\nKhonrelay · AI news & RSS inbox\nKhonsolve · coding & reasoning practice\nKhonstash · Steam item watchlist (source available)\ncalculator · Arduino team project\nportfolio · this site, terminal & local guide\nrotation  · Spotify rotation & mood playlists\ndots      · original React game, browser edition (live)\nbot       · JavaScript Discord music bot\nipc       · C++ inter-process communication\n\nChoose a project card on the page for its notes.', [['Explore selected work ↗', '#projects']]],
+    projects: [catalog.map(item => `${item.title} · open ${item.id}\n${item.description}`).join('\n\n'), [['Explore selected work ↗', '#projects']]],
     work: ['Customer Support Partner L2 at Luigi’s Box.\nBrowser debugging, APIs, feeds, audits, and analytics.\nReproduce → trace → fix → verify.', [['More about my work ↗', '#about']]],
     now: ['Agents and coding tools. New model capabilities.\nAGI and recursive self-improvement.\nI use coding agents and try new tools in my own projects.', [['On my desk ↗', '#now']]],
     contact: ['GitHub: khons-hu\nX: @ptr1337_\nDiscord: khons.hu', [['Open contact links ↗', '#contact']]],
-    status: [terminalStrings().status+'\nkhons-hu.vercel.app · portfolio\nthinkroom-khonsu.vercel.app · Khonsolve\nquiet-signal-khonsu.vercel.app · Khonrelay\nmarket-watch-khonsu.vercel.app · Khonodds\ndots-khonsu.vercel.app · Dots', [['Open selected work ↗', '#projects']]],
+    status: [terminalStrings().status, catalog.filter(item => projects[item.id].live).map(item => [item.title + ' ↗', projects[item.id].url])],
     lore: [terminalStrings().lore]
   };
+  responses.help[0] += '\n' + terminalStrings().help;
   if(globalThis.PortfolioI18n?.language !== 'en') {
     const sectionText = selector => [...document.querySelectorAll(selector)].map(p=>p.textContent).join('\n\n');
     responses.about[0] = sectionText('.about-intro > p:not(.eyebrow)');
     responses.work[0] = sectionText('.work-detail > p:not(.eyebrow)');
     responses.now[0] = sectionText('.now-grid article p');
-    responses.projects[0] = [...document.querySelectorAll('.project-info')].map(p=>p.querySelector('h3').textContent+'\n'+p.querySelector('p').textContent).join('\n\n');
     responses.help = [['about · '+t('ABOUT ME'),'projects · '+t('SELECTED WORK'),'work · Customer Support Partner L2','now · '+t('ON MY DESK'),'contact · '+t('Contact'),terminalStrings().help,'clear · '+t('Clear chat'),'close · '+t('Close terminal')].join('\n')];
   }
   const projectAliases = {proof:'proof',khonproof:'proof',khonsolve:'thinkroom',thinkroom:'thinkroom',khonrelay:'signal',signal:'signal',khonodds:'market',market:'market',khonstash:'steam',steam:'steam',dots:'dots','save-democracy':'save-democracy',save:'save-democracy',portfolio:'portfolio',spotify:'rotation',rotation:'rotation',calculator:'calculator',arduino:'calculator',bot:'bot',ipc:'ipc'};
   if (verb === 'open') {
-    const id = projectAliases[argument];
+    const id = projectAliases[argument] || (catalog.some(item => item.id === argument) ? argument : null);
     if (!id) write(raw.trim(), terminalStrings().open);
     else { terminal.close(); showProject(id); }
   }

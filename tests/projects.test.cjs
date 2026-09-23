@@ -16,7 +16,7 @@ function setup(){
  },createElement:()=>({textContent:''})};
  const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
  const context=vm.createContext({document,t:x=>x});
- vm.runInContext(source.slice(source.indexOf('const projects = {'),source.indexOf("window.addEventListener('portfolio:language'")),context);
+ vm.runInContext(source.slice(source.indexOf('const projects = {'),source.indexOf("window.addEventListener('portfolio:language'",source.indexOf('const projects = {'))),context);
  return {node,show:id=>vm.runInContext(`showProject(${JSON.stringify(id)})`,context)};
 }
 test('new project opens at the top and a source-only project clears the prior preview and demo',()=>{
@@ -34,4 +34,16 @@ test('new project opens at the top and a source-only project clears the prior pr
 });
 test('rerendering an already open project preserves the reading position',()=>{
  const {node,show}=setup();show('thinkroom');node('#project-dialog').scrollTop=170;show('thinkroom');assert.equal(node('#project-dialog').scrollTop,170);
+});
+test('project filters select groups and refresh translated counts',()=>{
+ const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
+ const cards=['tools','games','earlier','games'].map(projectGroup=>({dataset:{projectGroup},hidden:false}));
+ const buttons=['all','tools','games','earlier'].map(projectFilter=>({dataset:{projectFilter},attributes:{},setAttribute(k,v){this.attributes[k]=v;},addEventListener(k,fn){this[k]=fn;}}));
+ const count={textContent:''},group={hidden:true},events={};let translated=false;
+ const context={document:{querySelectorAll:selector=>selector==='[data-project-group]'?cards:buttons,querySelector:selector=>selector==='#project-count'?count:group},window:{addEventListener:(key,fn)=>events[key]=fn},t:text=>translated?'Počet projektov: {count}':text};
+ vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),context);
+ assert.equal(group.hidden,false);assert.equal(count.textContent,'4 projects');
+ buttons[2].click();assert.deepEqual(cards.map(card=>card.hidden),[true,false,true,false]);assert.equal(buttons[2].attributes['aria-pressed'],'true');assert.equal(count.textContent,'2 projects');
+ translated=true;events['portfolio:language']();assert.equal(count.textContent,'Počet projektov: 2');
+ buttons[0].click();assert(cards.every(card=>!card.hidden));
 });

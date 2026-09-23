@@ -1259,3 +1259,15 @@ Object.assign(SITE_LOCALES.cs, {
   "RL, models, and games": "RL, modely a hry",
   "I still keep an eye on reinforcement learning, new models, and multiplayer game ideas. I try things hands-on before I get attached to a take.": "Pořád sleduji reinforcement learning, nové modely a multiplayerové herní nápady. Věci si raději vyzkouším prakticky, než se upnu na nějaký názor."
 });
+
+Object.assign(SITE_LOCALES.sk, {"Filter projects": "Filtrovať projekty", "All projects": "Všetky projekty", "Tools & experiments": "Nástroje a experimenty", "Games": "Hry", "Earlier work": "Staršie práce", "{count} projects": "Počet projektov: {count}"});
+
+Object.assign(SITE_LOCALES.hu, {"Filter projects": "Projektek szűrése", "All projects": "Összes projekt", "Tools & experiments": "Eszközök és kísérletek", "Games": "Játékok", "Earlier work": "Korábbi munkák", "{count} projects": "Projektek száma: {count}"});
+
+Object.assign(SITE_LOCALES.pl, {"Filter projects": "Filtruj projekty", "All projects": "Wszystkie projekty", "Tools & experiments": "Narzędzia i eksperymenty", "Games": "Gry", "Earlier work": "Starsze prace", "{count} projects": "Liczba projektów: {count}"});
+
+Object.assign(SITE_LOCALES.de, {"Filter projects": "Projekte filtern", "All projects": "Alle Projekte", "Tools & experiments": "Tools & Experimente", "Games": "Spiele", "Earlier work": "Frühere Arbeiten", "{count} projects": "Projekte: {count}"});
+
+Object.assign(SITE_LOCALES.es, {"Filter projects": "Filtrar proyectos", "All projects": "Todos los proyectos", "Tools & experiments": "Herramientas y experimentos", "Games": "Juegos", "Earlier work": "Trabajos anteriores", "{count} projects": "Proyectos: {count}"});
+
+Object.assign(SITE_LOCALES.cs, {"Filter projects": "Filtrovat projekty", "All projects": "Všechny projekty", "Tools & experiments": "Nástroje a experimenty", "Games": "Hry", "Earlier work": "Starší práce", "{count} projects": "Počet projektů: {count}"});
