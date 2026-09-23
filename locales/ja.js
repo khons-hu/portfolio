@@ -5,6 +5,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "ja", {
   "site": {
+    "Listening now": "再生中",
+    "on Spotify": "Spotifyで",
     "Skip to content": "本文へ移動",
     "Work": "作品",
     "About": "自己紹介",

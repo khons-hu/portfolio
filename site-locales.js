@@ -1319,6 +1319,14 @@ PROJECT_NOTES.de.receipts = ["Ein kleines Browserspiel für eine oder zwei Perso
 PROJECT_NOTES.es.receipts = ["Un pequeño juego de navegador para una o dos personas. Recorre un mercado a la luz de la luna en vez de pasar de expediente en expediente.", "Busca al visitante, revisa las pruebas y corre a la zona de aceptar o rechazar. Los casos se mezclan en cada turno.", "Disponible en itch.io como prototipo público inicial. Sin cuenta, anuncios, chat, temporizadores ni mecánicas de estafas reales."];
 PROJECT_NOTES.cs.receipts = ["Malá hra v prohlížeči pro jednoho nebo dva hráče. Procházej trhem za měsíčního svitu místo proklikávání případů.", "Najdi návštěvníka, prozkoumej důkazy a přeběhni do zóny přijetí nebo odmítnutí. Případy se každou směnu zamíchají.", "Na itch.io je dostupný raný veřejný prototyp. Bez účtu, reklam, chatu, časovačů a mechanik skutečných podvodů."];
 
+// Listening now (Spotify).
+Object.assign(SITE_LOCALES.sk, {"Listening now":"Práve počúvam","on Spotify":"na Spotify"});
+Object.assign(SITE_LOCALES.hu, {"Listening now":"Most ezt hallgatom","on Spotify":"a Spotifyon"});
+Object.assign(SITE_LOCALES.pl, {"Listening now":"Teraz słucham","on Spotify":"w Spotify"});
+Object.assign(SITE_LOCALES.de, {"Listening now":"Gerade läuft","on Spotify":"auf Spotify"});
+Object.assign(SITE_LOCALES.es, {"Listening now":"Escuchando ahora","on Spotify":"en Spotify"});
+Object.assign(SITE_LOCALES.cs, {"Listening now":"Právě poslouchám","on Spotify":"na Spotify"});
+
 const extraSitePacks = typeof module !== 'undefined' && module.exports
   ? require('./language-data.js').EXTRA_LOCALE_PACKS : EXTRA_LOCALE_PACKS;
 for (const [language, pack] of Object.entries(extraSitePacks)) {

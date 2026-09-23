@@ -5,6 +5,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "zh", {
   "site": {
+    "Listening now": "正在听",
+    "on Spotify": "在 Spotify 上",
     "Skip to content": "跳转到内容",
     "Work": "作品",
     "About": "关于",

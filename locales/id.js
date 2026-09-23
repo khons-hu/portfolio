@@ -5,6 +5,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "id", {
   "site": {
+    "Listening now": "Sedang diputar",
+    "on Spotify": "di Spotify",
     "Skip to content": "Lewati ke konten",
     "Work": "Proyek",
     "About": "Tentang",

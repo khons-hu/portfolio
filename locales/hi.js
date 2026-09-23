@@ -5,6 +5,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "hi", {
   "site": {
+    "Listening now": "अभी सुन रहा हूँ",
+    "on Spotify": "Spotify पर",
     "Skip to content": "मुख्य सामग्री पर जाएँ",
     "Work": "काम",
     "About": "परिचय",

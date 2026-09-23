@@ -491,3 +491,14 @@ input[type=email],#project-share-address{direction:ltr;text-align:start}
 /* Without JavaScript, hide controls that cannot work; content, links and email stay available. */
 html:not(.js) :is(.details-label,.terminal-toggle,.text-button,#guide-launcher,#theme-toggle,#motion-toggle,.lang-picker){display:none}
 html:not(.js) .project-details{cursor:default}
+
+/* Listening now: one quiet line beside the playlist note, shown only while a track is confirmed playing. */
+.now-listening{margin:12px 0 0;max-width:72ch;font-size:14px;line-height:1.75;color:var(--muted);text-wrap:pretty}
+.listening-label{display:inline-flex;align-items:center;gap:8px;margin-inline-end:12px;font:500 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;vertical-align:1px}
+/* A still dot, not a pulse: nothing on the page animates continuously. */
+.listening-label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+.now-listening a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:4px;text-decoration-thickness:1px;overflow-wrap:anywhere;transition:text-decoration-color .18s ease}
+.now-listening a:hover{text-decoration-color:var(--accent)}
+.listening-sep,.listening-artist{color:var(--muted)}
+.js-motion .now-listening:not([hidden]){animation:entry-in .3s cubic-bezier(.2,.7,.2,1) both}
+:where(:lang(ar),:lang(ur),:lang(hi),:lang(bn)) .listening-label{letter-spacing:normal}

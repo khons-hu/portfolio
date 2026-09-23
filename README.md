@@ -36,6 +36,12 @@ Link previews use Open Graph and Twitter card tags with `assets/og-image.jpg` (1
 
 The floating guide button steps aside while a small link or button sits under it, using an IntersectionObserver sized to the button, with no scroll handler. Keyboard focus always brings it back. Without JavaScript, controls that need it (Notes, terminal, guide, theme, motion, language) are hidden; content, outside links and email stay available.
 
+## Listening now (Spotify)
+
+`api/now-playing.js` is a Vercel Node function that asks Spotify what is playing and returns only the track title, artists and its `open.spotify.com` link. It never returns history, artwork, device, playlist or progress details, and it refuses tokens with anything beyond read-only playback scopes. Answers are cached on the CDN for 30–60 seconds (up to 5 minutes when rate-limited or unconfigured), so visitors share one Spotify request. `now-playing.js` shows one quiet line in On my desk only while a track is confirmed playing and fresh; paused, private session, podcasts, ads, local files, errors and anything older than the track's end or 150 seconds stay hidden. It polls once a minute only while the tab is visible and stops for the visit if the server is unconfigured. The page never plays audio.
+
+Credentials live only in Vercel environment variables: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` and `SPOTIFY_REFRESH_TOKEN` (authorised with `user-read-currently-playing` only). To create the token, run `SPOTIFY_CLIENT_ID=… SPOTIFY_CLIENT_SECRET=… node scripts/spotify-now-playing-token.mjs` on your Mac; it opens Spotify's consent page, copies the refresh token to the clipboard without printing it, and is excluded from deployment. The redirect URI `http://127.0.0.1:8888/callback` must be listed in the Spotify app's settings. Add the three variables to the Production environment and redeploy. The local playlist tool (`com.khonsu.playlists`) keeps its own separate authorisation.
+
 ## Content updates
 
 Edit index.html for the page and project groups, app.js for project notes, project-links.js for public link slugs, and site-locales.js for translations. Edit terminal.js for commands and panels.js for the shared tool navigation. The terminal derives its project catalog from the cards. No private client details, CV download, invented results, or unpublished source links are included.

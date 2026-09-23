@@ -5,6 +5,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "ru", {
   "site": {
+    "Listening now": "Сейчас слушаю",
+    "on Spotify": "в Spotify",
     "Skip to content": "Перейти к содержимому",
     "Work": "Проекты",
     "About": "Обо мне",

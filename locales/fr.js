@@ -5,6 +5,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "fr", {
   "site": {
+    "Listening now": "En écoute",
+    "on Spotify": "sur Spotify",
     "Skip to content": "Aller au contenu",
     "Work": "Projets",
     "About": "À propos",
