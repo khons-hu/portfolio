@@ -207,6 +207,8 @@ footer>#motion-toggle:hover{color:var(--ink);border-color:var(--line-strong)}
 /* ---------- Dialogs ---------- */
 dialog{color:var(--ink);background:var(--raised);border:1px solid var(--line-strong);border-radius:16px;padding:28px 30px 26px;width:min(640px,calc(100% - 32px));max-width:none;max-height:min(88dvh,880px);box-shadow:var(--shadow);overscroll-behavior:contain}
 dialog::backdrop{background:rgba(2,7,12,.74)}
+/* Thin, theme-coloured scrollbars where browsers always show them (e.g. macOS "always" setting). */
+dialog,.panel-body{scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
 html[data-theme=light] dialog::backdrop{background:rgba(30,36,40,.34)}
 dialog[open]{animation:dialog-in .22s ease-out}
 .close-button{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:var(--muted);font-size:16px;line-height:1}
@@ -391,6 +393,8 @@ html[data-theme=light] #theme-toggle::after{background:#315f7c}
   .launcher-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .launcher-mark{font-size:22px}
 }
+/* Narrow desktop windows: keep the composer to one quiet line; `help` stays one tap away. */
+@media(max-width:480px){#terminal-hint{display:none}}
 @media(max-width:360px){
   .header-tools{gap:6px}
   .lang-picker{padding:0 24px 0 10px}
