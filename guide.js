@@ -1,4 +1,4 @@
-/* A local, rule-based portfolio guide. No model, network calls or chat storage. */
+/* Portfolio guide with optional server-side AI and a local fallback. */
 (function () {
   const normalize = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g,'l').replace(/ß/g,'ss').replace(/[\u064b-\u065f\u0670\u0640]/g,'').replace(/[^\p{L}\p{M}\p{N}+ ]/gu, ' ').replace(/\s+/g, ' ').trim();
   const topics = [
@@ -67,6 +67,8 @@
   if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui};
   if (typeof document === 'undefined') return;
   const dialog=document.querySelector('#guide-dialog'),log=document.querySelector('#guide-log'),input=document.querySelector('#guide-question'),lang=document.querySelector('#guide-language');
+  let aiAvailable=false,busy=false,conversation=[],requestId=0,controller;
+  const aiCopy=()=>CHAT_COPY[lang.value]||CHAT_COPY.en;
   // iOS keyboards shrink the visual viewport, not the layout viewport.
   function fitGuideViewport(){
     const viewport=window.visualViewport;
@@ -80,7 +82,8 @@
   window.visualViewport?.addEventListener('scroll',fitGuideViewport);
   fitGuideViewport();
   function translateUI(){
-    const t=ui(lang.value).map(text=>localeData.directionalText(text,lang.value));dialog.lang=lang.value;dialog.dir=localeData.languageDirection(lang.value);
+    const base=ui(lang.value).slice();if(aiAvailable){const c=aiCopy();base[0]=c[0];base[1]=c[1];base[11]=c[2];}
+    const t=base.map(text=>localeData.directionalText(text,lang.value));dialog.lang=lang.value;dialog.dir=localeData.languageDirection(lang.value);
     const pageText=text=>globalThis.PortfolioI18n?.t(text,lang.value)||text;
     const tabNames={'terminal-dialog':'Terminal','guide-dialog':'Ask khonsu','email-dialog':'Email'};
     dialog.querySelector('.panel-nav').setAttribute('aria-label',pageText('Portfolio tools'));
@@ -102,9 +105,9 @@
   lang.addEventListener('change',()=>{const next=lang.value;const load=globalThis.PortfolioI18n?.load||(()=>Promise.resolve());load(next).then(()=>{if(lang.value===next)translateUI();},()=>{});});
   translateUI();
   window.addEventListener('portfolio:language',()=>{lang.value=PortfolioI18n.language;lang.dispatchEvent(new Event('change'));});
-  function append(text, who, result) {
-    const row=document.createElement('div');row.className='guide-message '+who;if(who==='guide'){row.lang=lang.value;row.dir=localeData.languageDirection(lang.value);}else row.dir='auto';
-    const p=document.createElement('p');p.textContent=who==='guide'?localeData.directionalText(text,lang.value):text;row.append(p);
+  function append(text, who, result, language=lang.value) {
+    const row=document.createElement('div');row.className='guide-message '+who;if(who==='guide'){row.lang=language;row.dir=localeData.languageDirection(language);}else row.dir='auto';
+    const p=document.createElement('p');p.textContent=who==='guide'?localeData.directionalText(text,language):text;row.append(p);
     if(result&&(result.project||result.section)){
       // Project notes and sections stay on this page, so they use → rather than the outside-link ↗.
       const button=document.createElement('button');button.type='button';button.className='guide-action';button.textContent=ui(lang.value)[result.project?6:7].replace('↗',localeData.languageDirection(lang.value)==='rtl'?'←':'→');
@@ -112,11 +115,33 @@
     }
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();row.scrollIntoView({block:'nearest',behavior:'instant'});
   }
-  function ask(text){if(!text.trim())return;append(text.trim().slice(0,300),'visitor');const result=answer(text,lang.value);append(result.text,'guide',result);input.value='';}
+  const submit=document.querySelector('#guide-form button');
+  const status=document.querySelector('#guide-status');
+  function setBusy(value){busy=value;submit.disabled=value;log.setAttribute('aria-busy',String(value));status.textContent=value?aiCopy()[3]:'';}
+  async function ask(text){
+    if(busy||!text.trim())return;
+    const message=text.trim().slice(0,300),language=lang.value,id=++requestId;
+    append(message,'visitor');input.value='';
+    if(!aiAvailable){const result=answer(message,language);append(result.text,'guide',result);return;}
+    setBusy(true);controller=new AbortController();const current=controller;const timer=setTimeout(()=>current.abort(),15000);
+    try{
+      const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,language,history:conversation.slice(-4)}),signal:controller.signal});
+      if(!response.ok)throw new Error('unavailable');
+      const data=await response.json();if(typeof data.text!=='string'||!data.text.trim())throw new Error('empty');
+      if(id!==requestId)return;
+      append(data.text,'guide',null,language);conversation.push({role:'user',content:message},{role:'assistant',content:data.text});conversation=conversation.slice(-4);
+    }catch{
+      if(id!==requestId)return;
+      const result=answer(message,language);append((CHAT_COPY[language]||CHAT_COPY.en)[4]+'\n\n'+result.text,'guide',result,language);
+      conversation=[];
+    }finally{clearTimeout(timer);if(id===requestId)setBusy(false);}
+  }
+  // Probe once. Without configuration the existing local guide remains fully usable.
+  fetch('/api/chat',{signal:AbortSignal.timeout(5000)}).then(r=>r.ok?r.json():null).then(data=>{if(data?.available===true){aiAvailable=true;translateUI();}}).catch(()=>{});
   document.querySelector('#guide-launcher').addEventListener('click',()=>window.PortfolioPanels.open('guide-dialog',matchMedia('(pointer: coarse)').matches?null:'#guide-question'));
   document.querySelector('#guide-form').addEventListener('submit',e=>{e.preventDefault();ask(input.value);});
   document.querySelectorAll('[data-question]').forEach(button=>button.addEventListener('click',()=>ask(button.dataset.question)));
-  document.querySelector('#guide-clear').addEventListener('click',()=>{log.replaceChildren();input.value='';input.focus();});
+  document.querySelector('#guide-clear').addEventListener('click',()=>{requestId++;controller?.abort();conversation=[];setBusy(false);log.replaceChildren();input.value='';input.focus();});
   // The floating launcher steps aside while a link, button or field sits underneath it, then returns.
   // No scroll handler: an IntersectionObserver whose root box is the launcher's own footprint reports overlaps.
   const launcher=document.querySelector('#guide-launcher');

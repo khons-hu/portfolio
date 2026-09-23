@@ -84,3 +84,13 @@ Arabic and Urdu use right-to-left layouts, set before first paint by `theme.js` 
 `language-data.js` holds the common registry and loads packs on demand. English, Slovak, Hungarian, Polish, German, Spanish and Czech are built in (`site-locales.js`, `guide-locales.js`). The other ten live in `locales/<code>.js` and load only when chosen: `theme.js` starts the request in `<head>` for a saved or browser language, and switching waits for the pack before changing any text, so the page never mixes languages. If a pack cannot load, the page stays in the current language. `locales/guide-keywords.js` is always loaded so the guide matches a question in any script. Run `node --test tests/*.test.cjs` when changing a catalog or the language list.
 
 Language expansion validation: 45 Node tests, all ten added locales checked at 320px in both themes, Portuguese desktop layout and saved selection, Arabic guide/terminal/email panels, Chinese guide input, and Portuguese project notes. No real email was sent. These checks used a Chromium preview, not physical mobile devices.
+
+## Optional AI guide
+
+`api/chat.js` uses Groq's `openai/gpt-oss-20b` only when a visitor submits a question. Add `GROQ_API_KEY` to Vercel Production and redeploy to enable it. Keep that Groq account on the Free plan, without a billing upgrade. The provider quota is shared by all visitors. No paid fallback is configured. Vercel Hobby usage limits still apply.
+
+Without the key, the existing local guide works unchanged. With the key, the panel discloses Groq processing in all 17 languages. It sends the current question and at most two prior exchanges, holds chat history in tab memory, and renders plain text only. Clear cancels an outstanding reply and discards the browser history. Neither endpoint nor client logs or stores chat contents. Groq's own data policy applies: https://console.groq.com/docs/your-data
+
+The server supplies public guide facts, rejects custom roles and oversized histories, limits output, times out requests, and returns a labelled prepared answer on failures. The warm-instance throttle is best effort, not a distributed abuse or spending cap. Provider Free-plan limits remain essential. There are no tools, account access, email sending or browser access in the model. Prompt instructions reduce unsupported claims but cannot guarantee factual answers.
+
+Verify after setup: ask a follow-up, try Slovak and another language, clear during a pending request, and check that a missing/invalid key falls back honestly. Run `node --test tests/*.test.cjs` for regression checks. No live model answer has been verified yet.

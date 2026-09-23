@@ -18,21 +18,22 @@
 <meta property="og:image:alt" content="khonsu. Patrick. Or khonsu. A moonlit mountain range.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<script src="/theme.js?v=spotify-20260923"></script>
-<link rel="stylesheet" href="/style.css?v=spotify-20260923">
-<script src="/language-data.js?v=spotify-20260923" defer></script>
-<script src="/locales/guide-keywords.js?v=spotify-20260923" defer></script>
-<script src="/site-locales.js?v=spotify-20260923" defer></script>
-<script src="/i18n.js?v=spotify-20260923" defer></script>
-<script src="/app.js?v=spotify-20260923" defer></script>
-<script src="/panels.js?v=spotify-20260923" defer></script>
-<script src="/terminal.js?v=spotify-20260923" defer></script>
-<script src="/project-links.js?v=spotify-20260923" defer></script>
-<script src="/guide-locales.js?v=spotify-20260923" defer></script>
-<script src="/guide.js?v=spotify-20260923" defer></script>
-<script src="/contact-core.js?v=spotify-20260923" defer></script>
-<script src="/contact.js?v=spotify-20260923" defer></script>
-<script src="/now-playing.js?v=spotify-20260923" defer></script>
+<script src="/theme.js?v=chat-20260923"></script>
+<link rel="stylesheet" href="/style.css?v=chat-20260923">
+<script src="/language-data.js?v=chat-20260923" defer></script>
+<script src="/locales/guide-keywords.js?v=chat-20260923" defer></script>
+<script src="/site-locales.js?v=chat-20260923" defer></script>
+<script src="/i18n.js?v=chat-20260923" defer></script>
+<script src="/app.js?v=chat-20260923" defer></script>
+<script src="/panels.js?v=chat-20260923" defer></script>
+<script src="/terminal.js?v=chat-20260923" defer></script>
+<script src="/project-links.js?v=chat-20260923" defer></script>
+<script src="/guide-locales.js?v=chat-20260923" defer></script>
+<script src="/chat-copy.js?v=chat-20260923" defer></script>
+<script src="/guide.js?v=chat-20260923" defer></script>
+<script src="/contact-core.js?v=chat-20260923" defer></script>
+<script src="/contact.js?v=chat-20260923" defer></script>
+<script src="/now-playing.js?v=chat-20260923" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -100,7 +101,7 @@
 <dialog id="guide-dialog" class="tool-panel" aria-labelledby="guide-title">
 <div class="panel-head"><nav class="panel-nav" aria-label="Portfolio tools"><button type="button" data-panel="terminal-dialog">Terminal</button><button type="button" data-panel="guide-dialog" aria-current="page">Ask khonsu</button><button type="button" data-panel="email-dialog">Email</button></nav><button class="close-button" data-close="guide-dialog" aria-label="Close guide">✕</button></div>
 <div class="guide-body panel-body"><p id="guide-title" class="sr-only">☾ ask khonsu</p><div class="guide-intro"><p class="panel-lead">A small guide to Patrick’s work.</p><p>Prepared answers, not an AI model. Questions stay in this tab and disappear on reload.</p><div class="guide-language"><label for="guide-language">Answer language</label><select id="guide-language"><option value="en">English</option><option value="sk">Slovenčina</option><option value="hu">Magyar</option><option value="pl">Polski</option><option value="cs">Čeština</option><option value="de">Deutsch</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="zh">简体中文</option><option value="hi">हिन्दी</option><option value="ar">العربية</option><option value="bn">বাংলা</option><option value="ru">Русский</option><option value="ur">اردو</option><option value="id">Bahasa Indonesia</option><option value="ja">日本語</option></select></div></div><div id="guide-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation"></div></div>
-<div class="guide-composer panel-composer"><div class="guide-suggestions"><button type="button" data-question="What do you do at Luigi’s Box?">Work / práca</button><button type="button" data-question="Show me projects">Projects / projekty</button><button type="button" data-question="Who are you?">About me</button><button type="button" data-question="Show me C++">C++</button></div><form id="guide-form" class="composer-field" autocomplete="off"><label class="sr-only" for="guide-question">Your question / Tvoja otázka</label><input id="guide-question" dir="auto" placeholder="Ask in English or Slovak…" maxlength="300" required><button type="submit" aria-label="Send question">↑</button></form><div class="terminal-bottom panel-foot"><span>LOCAL GUIDE · NO API · NO CHAT STORAGE</span><button type="button" id="guide-clear">Clear chat</button></div></div>
+<div class="guide-composer panel-composer"><div class="guide-suggestions"><button type="button" data-question="What do you do at Luigi’s Box?">Work / práca</button><button type="button" data-question="Show me projects">Projects / projekty</button><button type="button" data-question="Who are you?">About me</button><button type="button" data-question="Show me C++">C++</button></div><span id="guide-status" role="status" aria-live="polite"></span><form id="guide-form" class="composer-field" autocomplete="off"><label class="sr-only" for="guide-question">Your question / Tvoja otázka</label><input id="guide-question" dir="auto" placeholder="Ask in English or Slovak…" maxlength="300" required><button type="submit" aria-label="Send question">↑</button></form><div class="terminal-bottom panel-foot"><span>LOCAL GUIDE · NO API · NO CHAT STORAGE</span><button type="button" id="guide-clear">Clear chat</button></div></div>
 </dialog>
 <dialog id="email-dialog" class="tool-panel" aria-labelledby="email-title"><div class="panel-head"><nav class="panel-nav" aria-label="Portfolio tools"><button type="button" data-panel="terminal-dialog">Terminal</button><button type="button" data-panel="guide-dialog">Ask khonsu</button><button type="button" data-panel="email-dialog" aria-current="page">Email</button></nav><button class="close-button" data-close="email-dialog" aria-label="Close email form">✕</button></div><div class="email-body panel-body"><p id="email-title" class="sr-only">Email Patrick</p><div id="email-panel-content"></div></div></dialog>
 </body></html>
