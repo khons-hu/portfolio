@@ -212,7 +212,7 @@
       "Temas: C++, ferramentas de desenvolvimento, agentes de programação, investigação em IA e CS2. Execuções limitadas, verificação de duplicados e justificação de cada escolha."
     ],
     "portfolio": [
-      "Projetos pesquisáveis, notas partilháveis, navegação por terminal e um pequeno guia com respostas preparadas em várias línguas. O guia funciona localmente, sem API de IA.",
+      "Projetos pesquisáveis, notas partilháveis, navegação por terminal e um pequeno guia em várias línguas. Quando disponível, responde um modelo de IA através do Groq; caso contrário, respostas preparadas.",
       "Temas claro e escuro, movimento reduzido e animações pausadas em separadores ocultos. O GitHub publica no Vercel; o repositório é privado."
     ],
     "rotation": [
@@ -282,7 +282,7 @@
       "ai": "Acompanha AGI, autoaperfeiçoamento recursivo e lançamentos de novos modelos, e experimenta agentes de programação no seu trabalho. O interesse em sistemas de aprendizagem aparece também na tese sobre PPO.",
       "games": "Counter-Strike faz parte do início da sua experiência em programação. Hoje trabalha nas suas próprias ferramentas e protótipos de jogos.",
       "calculator": "Criado em equipa na TUKE com Arduino Uno, teclado e LCD. Calcula expressões aritméticas com parênteses e guarda o histórico.",
-      "site": "Este portfólio usa HTML, CSS e JavaScript, com navegação por terminal, temas claro e escuro e um guia local em várias línguas. As atualizações vão do GitHub para o Vercel.",
+      "site": "Este portfólio usa HTML, CSS e JavaScript, com navegação por terminal, temas claro e escuro e um guia em várias línguas. Quando disponível, responde um modelo de IA através do Groq; caso contrário, respostas preparadas. As atualizações vão do GitHub para o Vercel.",
       "discovery": "Recomendações semanais para X e até três perfis relevantes do GitHub. Um agente de IA analisa candidatos. A primeira execução agendada ainda não foi verificada. Temas: C++, ferramentas de desenvolvimento, agentes de programação, investigação em IA e CS2. Execuções limitadas, verificação de duplicados e justificação de cada escolha.",
       "thinkroom": "Quinze exercícios originais: programação, depuração, lógica, prompts e competências de agentes. Planeia, tenta, revela dicas aos poucos e reflete. Testes JavaScript, TypeScript e Python executam localmente com limite de tempo. C/C++ têm um compilador local experimental. Go permite rascunhos, transferências e um playground externo. Exercícios escritos usam autoavaliação. Gratuito, código público. Sem conta nem chamadas pagas a IA.",
       "signal": "Notícias oficiais da OpenAI e DeepMind, lançamentos de ferramentas de programação, estado dos serviços, exportação RSS e OPML. Guarda links, marca itens como lidos e escolhe fontes. As etiquetas de importância explicam as regras. O X de Tibo é um link, não é monitorizado automaticamente. A ordenação opcional do Jev usa pontuações pré-calculadas e não oculta publicações nem altera alertas. Um resumo diário opcional corre no servidor. Regista cada dispositivo separadamente. Web Push testado no Brave no macOS. Entrega em telemóveis não testada. Filtros da classificação, posições de carteiras, atividade, listas de acompanhamento e notas locais. A classificação não prova ganhos repetíveis. Os alertas de transações exigem a página aberta. O bloco de notas de empresas de IA liga notícias oficiais e pesquisas da SEC, sem prever datas de IPO. Sem ligação de carteira nem negociação. Dados públicos do Polymarket através de uma API limitada.",

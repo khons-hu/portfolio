@@ -814,7 +814,7 @@ const PROJECT_NOTES = {
       "Topics: C++, developer tools, coding agents, AI research and CS2. Bounded runs, duplicate checks and reasons for each selection."
     ],
     "portfolio": [
-      "Plain HTML, CSS and JavaScript. Terminal navigation, project notes and a local guide in multiple languages. No AI API, model download or frontend framework.",
+      "Searchable projects, shareable project notes, terminal navigation and a small guide in multiple languages. It answers with an AI model through Groq when available and falls back to prepared answers.",
       "Light/dark themes, reduced motion and animations paused in hidden tabs. GitHub deploys to Vercel; the source repository is private."
     ],
     "rotation": [
@@ -867,7 +867,7 @@ const PROJECT_NOTES = {
       "Témy: C++, vývojárske nástroje, coding agenti, AI výskum a CS2. Obmedzené behy, kontrola duplicít a dôvod každého výberu."
     ],
     "portfolio": [
-      "Obyčajné HTML, CSS a JavaScript. Terminál, poznámky k projektom a lokálny sprievodca v viacerých jazykoch. Bez AI API, sťahovania modelu a frontend frameworku.",
+      "Vyhľadávanie projektov, odkazy na ich poznámky, navigácia cez terminál a malý sprievodca vo viacerých jazykoch. Keď je dostupný, odpovedá AI model cez Groq, inak pripravené odpovede.",
       "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Nasadenie z GitHubu na Vercel, zdrojový repozitár je súkromný."
     ],
     "rotation": [
@@ -920,7 +920,7 @@ const PROJECT_NOTES = {
       "Témák: C++, fejlesztői eszközök, kódoló ágensek, AI-kutatás és CS2. Korlátozott futások, duplikációellenőrzés és indoklás."
     ],
     "portfolio": [
-      "Egyszerű HTML, CSS és JavaScript. Terminál, projektjegyzetek és helyi útmutató több nyelven. Nincs AI API, modellletöltés vagy frontend-keretrendszer.",
+      "Kereshető projektek, megosztható projektjegyzetek, terminálos navigáció és egy kis többnyelvű útmutató. Ha elérhető, egy AI-modell válaszol a Groq szolgáltatáson keresztül, egyébként előre megírt válaszok.",
       "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. GitHubról Vercelre települ, a forrásrepo privát."
     ],
     "rotation": [
@@ -973,7 +973,7 @@ const PROJECT_NOTES = {
       "Tematy: C++, narzędzia, agenci, badania AI i CS2. Ograniczone przebiegi, kontrola duplikatów i uzasadnienia wyboru."
     ],
     "portfolio": [
-      "Zwykły HTML, CSS i JavaScript. Terminal, notatki projektów i lokalny przewodnik w wielu językach. Bez AI API, pobierania modelu i frameworka frontendowego.",
+      "Wyszukiwanie projektów, linki do notatek, nawigacja terminalem i mały przewodnik w wielu językach. Gdy to możliwe, odpowiada model AI przez Groq, a w razie potrzeby przygotowane odpowiedzi.",
       "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Wdrożenie z GitHuba na Vercel, repozytorium prywatne."
     ],
     "rotation": [
@@ -1026,7 +1026,7 @@ const PROJECT_NOTES = {
       "Themen: C++, Entwicklerwerkzeuge, Coding-Agenten, KI-Forschung und CS2. Begrenzte Läufe, Dublettenprüfung und Begründungen."
     ],
     "portfolio": [
-      "Einfaches HTML, CSS und JavaScript. Terminal, Projektnotizen und lokaler Guide in mehreren Sprachen. Keine KI-API, kein Modelldownload oder Frontend-Framework.",
+      "Durchsuchbare Projekte, teilbare Projektnotizen, Terminal-Navigation und ein kleiner Guide in mehreren Sprachen. Wenn verfügbar, antwortet ein KI-Modell über Groq, sonst vorbereitete Antworten.",
       "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. GitHub deployt auf Vercel; das Quellrepo ist privat."
     ],
     "rotation": [
@@ -1079,7 +1079,7 @@ const PROJECT_NOTES = {
       "Temas: C++, herramientas, agentes, investigación de IA y CS2. Ejecuciones limitadas, comprobación de duplicados y motivos de selección."
     ],
     "portfolio": [
-      "HTML, CSS y JavaScript. Terminal, notas y guía local en varios idiomas. Sin API de IA, descarga de modelos ni framework frontend.",
+      "Búsqueda de proyectos, notas que puedes compartir, navegación por terminal y una pequeña guía en varios idiomas. Cuando está disponible responde un modelo de IA a través de Groq; si no, respuestas preparadas.",
       "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. Despliegue desde GitHub a Vercel; repositorio privado."
     ],
     "rotation": [
@@ -1132,7 +1132,7 @@ const PROJECT_NOTES = {
       "Témata: C++, vývojářské nástroje, coding agenti, AI výzkum a CS2. Omezené běhy, kontrola duplicit a důvod každého výběru."
     ],
     "portfolio": [
-      "Obyčejné HTML, CSS a JavaScript. Terminál, poznámky k projektům a místní průvodce v více jazycích. Bez AI API, stahování modelu a frontend frameworku.",
+      "Vyhledávání projektů, odkazy na jejich poznámky, navigace přes terminál a malý průvodce ve více jazycích. Když je dostupný, odpovídá AI model přes Groq, jinak připravené odpovědi.",
       "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Nasazení z GitHubu na Vercel, zdrojový repozitář je soukromý."
     ],
     "rotation": [
@@ -1280,13 +1280,13 @@ Object.assign(SITE_LOCALES.de, {"1 project": "1 Projekt"});
 Object.assign(SITE_LOCALES.es, {"1 project": "1 proyecto"});
 Object.assign(SITE_LOCALES.cs, {"1 project": "1 projekt"});
 
-PROJECT_NOTES.en.portfolio[0] = "Searchable projects, shareable project notes, terminal navigation and a small guide with prepared answers in multiple languages. The guide runs locally, without an AI API.";
-PROJECT_NOTES.sk.portfolio[0] = "Vyhľadávanie projektov, odkazy na ich poznámky, navigácia cez terminál a malý sprievodca s pripravenými odpoveďami v viacerých jazykoch. Sprievodca funguje lokálne, bez AI API.";
-PROJECT_NOTES.hu.portfolio[0] = "Kereshető projektek, megosztható projektjegyzetek, terminálos navigáció és egy kis útmutató több nyelven előre megírt válaszokkal. Az útmutató helyben működik, AI API nélkül.";
-PROJECT_NOTES.pl.portfolio[0] = "Wyszukiwanie projektów, linki do notatek, nawigacja terminalem i mały przewodnik z przygotowanymi odpowiedziami w wielu językach. Przewodnik działa lokalnie, bez API AI.";
-PROJECT_NOTES.de.portfolio[0] = "Durchsuchbare Projekte, teilbare Projektnotizen, Terminal-Navigation und ein kleiner Guide mit vorbereiteten Antworten in mehreren Sprachen. Der Guide läuft lokal, ohne KI-API.";
-PROJECT_NOTES.es.portfolio[0] = "Búsqueda de proyectos, notas que puedes compartir, navegación por terminal y una pequeña guía con respuestas preparadas en varios idiomas. La guía funciona localmente, sin API de IA.";
-PROJECT_NOTES.cs.portfolio[0] = "Vyhledávání projektů, odkazy na jejich poznámky, navigace přes terminál a malý průvodce s připravenými odpověďmi v více jazycích. Průvodce funguje lokálně, bez AI API.";
+PROJECT_NOTES.en.portfolio[0] = "Searchable projects, shareable project notes, terminal navigation and a small guide in multiple languages. It answers with an AI model through Groq when available and falls back to prepared answers.";
+PROJECT_NOTES.sk.portfolio[0] = "Vyhľadávanie projektov, odkazy na ich poznámky, navigácia cez terminál a malý sprievodca vo viacerých jazykoch. Keď je dostupný, odpovedá AI model cez Groq, inak pripravené odpovede.";
+PROJECT_NOTES.hu.portfolio[0] = "Kereshető projektek, megosztható projektjegyzetek, terminálos navigáció és egy kis többnyelvű útmutató. Ha elérhető, egy AI-modell válaszol a Groq szolgáltatáson keresztül, egyébként előre megírt válaszok.";
+PROJECT_NOTES.pl.portfolio[0] = "Wyszukiwanie projektów, linki do notatek, nawigacja terminalem i mały przewodnik w wielu językach. Gdy to możliwe, odpowiada model AI przez Groq, a w razie potrzeby przygotowane odpowiedzi.";
+PROJECT_NOTES.de.portfolio[0] = "Durchsuchbare Projekte, teilbare Projektnotizen, Terminal-Navigation und ein kleiner Guide in mehreren Sprachen. Wenn verfügbar, antwortet ein KI-Modell über Groq, sonst vorbereitete Antworten.";
+PROJECT_NOTES.es.portfolio[0] = "Búsqueda de proyectos, notas que puedes compartir, navegación por terminal y una pequeña guía en varios idiomas. Cuando está disponible responde un modelo de IA a través de Groq; si no, respuestas preparadas.";
+PROJECT_NOTES.cs.portfolio[0] = "Vyhledávání projektů, odkazy na jejich poznámky, navigace přes terminál a malý průvodce ve více jazycích. Když je dostupný, odpovídá AI model přes Groq, jinak připravené odpovědi.";
 
 // Shared portfolio tools.
 Object.assign(SITE_LOCALES.sk, {"Portfolio tools": "Nástroje portfólia", "Ask khonsu": "Opýtaj sa khonsu", "Email": "Email", "Email Patrick": "Napísať Patrickovi", "Close email form": "Zavrieť emailový formulár", "Type a command…": "Napíš príkaz…", "Run command": "Spustiť príkaz", "Suggested commands": "Navrhované príkazy", "Tab completes · ↑ ↓ history · help for commands": "Tab dopĺňa · ↑ ↓ história · help zobrazí príkazy", "PORTFOLIO SHORTCUTS": "SKRATKY PO PORTFÓLIU", "Clear terminal": "Vymazať terminál", "Pick a project to read its notes.": "Vyber projekt a pozri si jeho poznámky.", "Use email to write me, or ask to open the guide.": "Príkaz email otvorí správu, ask otvorí sprievodcu."});

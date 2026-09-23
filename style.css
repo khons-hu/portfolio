@@ -273,6 +273,10 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 .composer-field input::placeholder{color:var(--muted);opacity:1}
 .composer-field>button{flex-shrink:0;width:42px;height:42px;border-radius:8px;background:var(--accent);color:var(--on-accent);font-size:20px;line-height:1}
 .composer-field>button:hover{background:var(--accent-strong)}
+.composer-field>button{transition:background-color .15s ease,opacity .15s ease}
+/* While a reply is on its way, send and suggestions rest; aria-disabled keeps them focusable. */
+.composer-field>button[aria-disabled=true]{opacity:.45;cursor:default}
+.composer-field>button[aria-disabled=true]:hover{background:var(--accent)}
 .composer-field>button:focus-visible{outline-offset:2px}
 .panel-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:34px;margin:6px 0 0;font:12px/1.5 var(--mono);color:var(--muted)}
 .panel-foot p{margin:0}
@@ -312,11 +316,20 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 #guide-language{min-height:34px;padding:0 10px;background:var(--surface);color:var(--ink);border:1px solid var(--line-strong);border-radius:var(--radius-s);font:13px var(--sans)}
 #guide-log{margin-top:8px}
 .guide-message{margin:12px 0 0;padding:12px 15px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:15px;line-height:1.65;overflow-wrap:anywhere}
-.guide-message p{margin:0;text-wrap:pretty}
+.guide-message p{margin:0;text-wrap:pretty;white-space:pre-line}
+.guide-message p+p{margin-top:.6em}
+/* Fallback replies say so first, quietly. */
+.guide-message .guide-note{font-size:13px;line-height:1.55;color:var(--muted)}
+.guide-message .guide-note+p{margin-top:.4em}
+/* Waiting for a reply: a still crescent and the waiting label, never a looping loader. */
+.guide-message.pending{display:flex;align-items:center;gap:9px;width:fit-content;color:var(--muted)}
+.guide-message.pending::before{content:"☾";content:"☾"/"";flex-shrink:0;color:var(--accent);font-size:17px;line-height:1}
 .guide-message.visitor{margin-left:auto;max-width:82%;width:fit-content;background:var(--surface-2);border-color:transparent;color:var(--ink)}
 .guide-action{display:inline-flex;align-items:center;min-height:36px;margin-top:6px;color:var(--accent);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
 .guide-suggestions{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 10px;padding:0 16px}
 .guide-suggestions::-webkit-scrollbar{display:none}
+.guide-suggestions button[aria-disabled=true]{opacity:.5;cursor:default}
+.guide-suggestions button[aria-disabled=true]:hover{border-color:var(--line-strong);color:inherit}
 
 /* Email */
 #email-panel-content .page-contact{padding:0;background:none;border:0;border-radius:0}
@@ -350,6 +363,8 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 /* Terminal and guide output arrive softly. */
 .js-motion .terminal-entry,.js-motion .guide-message{animation:entry-in .22s cubic-bezier(.2,.7,.2,1) both}
 @keyframes entry-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* The waiting line appears only if a reply takes longer than a moment, so quick answers never flash it. */
+.js-motion .guide-message.pending{animation:entry-in .2s cubic-bezier(.2,.7,.2,1) .3s both}
 /* The About accordion opens by height where the browser can interpolate it. */
 @supports (interpolate-size:allow-keywords){
   :root{interpolate-size:allow-keywords}

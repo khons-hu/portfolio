@@ -212,7 +212,7 @@
       "Topik: C++, alat pengembang, agen pemrograman, riset AI, dan CS2. Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan."
     ],
     "portfolio": [
-      "Proyek yang dapat dicari, catatan yang dapat dibagikan, navigasi terminal, dan panduan kecil dengan jawaban yang disiapkan dalam berbagai bahasa. Panduan berjalan lokal tanpa API AI.",
+      "Proyek yang dapat dicari, catatan yang dapat dibagikan, navigasi terminal, dan panduan kecil dalam berbagai bahasa. Jika tersedia, model AI menjawab melalui Groq; jika tidak, jawaban yang telah disiapkan ditampilkan.",
       "Tema terang/gelap, gerakan dikurangi, dan animasi berhenti saat tab tersembunyi. GitHub menerbitkan ke Vercel; repositori sumber bersifat privat."
     ],
     "rotation": [
@@ -282,7 +282,7 @@
       "ai": "Ia mengikuti AGI, peningkatan diri rekursif, dan rilis model baru, serta mencoba agen pemrograman dalam pekerjaannya. Ketertarikannya pada sistem pembelajaran juga tampak dalam tesis PPO.",
       "games": "Counter-Strike adalah bagian dari awal perjalanannya dalam pemrograman. Sekarang ia membuat alat dan prototipe game sendiri.",
       "calculator": "Dibuat bersama tim di TUKE dengan Arduino Uno, keypad, dan LCD. Menghitung ekspresi aritmetika dengan tanda kurung serta menyimpan riwayat.",
-      "site": "Portofolio ini memakai HTML, CSS, dan JavaScript, dengan navigasi terminal, tema terang dan gelap, serta panduan lokal dalam berbagai bahasa. Pembaruan diterbitkan dari GitHub ke Vercel.",
+      "site": "Portofolio ini memakai HTML, CSS, dan JavaScript, dengan navigasi terminal, tema terang dan gelap, serta panduan dalam berbagai bahasa. Jika tersedia, model AI menjawab melalui Groq; jika tidak, jawaban yang telah disiapkan ditampilkan. Pembaruan diterbitkan dari GitHub ke Vercel.",
       "discovery": "Rekomendasi X mingguan dan hingga tiga akun GitHub yang relevan. Agen AI meninjau kandidat. Jalannya jadwal pertama belum diverifikasi. Topik: C++, alat pengembang, agen pemrograman, riset AI, dan CS2. Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan.",
       "thinkroom": "Lima belas latihan asli: pemrograman, debugging, logika, prompt, dan keterampilan agen. Rencanakan, coba, buka petunjuk bertahap, lalu evaluasi. Pemeriksaan JavaScript, TypeScript, dan Python berjalan lokal dengan batas waktu. C/C++ memiliki compiler lokal eksperimental. Go mendukung draf, unduhan, dan playground eksternal. Tugas tertulis menggunakan evaluasi mandiri. Gratis, kode publik. Tanpa akun atau panggilan AI berbayar.",
       "signal": "Berita resmi OpenAI dan DeepMind, rilis alat pemrograman, status layanan, serta ekspor RSS dan OPML. Simpan tautan, tandai sudah dibaca, dan pilih sumber. Label kepentingan menjelaskan aturannya. Akun X Tibo hanya ditautkan, tidak dipantau otomatis. Urutan baca opsional Jev memakai skor yang sudah dihitung; tidak menyembunyikan kiriman atau mengubah peringatan. Ringkasan harian opsional berjalan di server. Daftarkan setiap perangkat secara terpisah. Web Push diuji di Brave pada macOS. Pengiriman ke ponsel belum diuji. Filter papan peringkat, posisi dompet, aktivitas, daftar pantauan, dan catatan lokal. Peringkat tidak membuktikan hasil yang bisa diulang. Peringatan perdagangan memerlukan halaman terbuka. Buku catatan perusahaan AI menautkan berita resmi dan pencarian SEC, tanpa meramalkan tanggal IPO. Tanpa sambungan dompet atau perdagangan. Data publik Polymarket melalui API yang dibatasi.",

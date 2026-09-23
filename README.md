@@ -57,7 +57,9 @@ Desktop, 390px and 320px layouts visually reviewed. Search, combined filters, em
 
 ## Ask khonsu guide
 
-Local rule-based chat in guide.js, with prepared English, Slovak, Hungarian, Polish, Czech, German and Spanish answers. No API calls, model downloads, tracking, or persisted chat history. The language selector translates the guide interface and chooses the reply language. Only the language preference is saved locally. Supports project dialogs and section navigation, caps history at 30 messages, and safely renders visitor text with textContent. Unknown questions receive a fallback. Edit the topic records when public profile facts change.
+guide.js answers through the optional AI endpoint (see Optional AI guide) and keeps a rule-based guide with prepared answers in every language for when AI is not configured or a request fails. No model downloads, tracking, or persisted chat history. The language selector translates the guide interface and chooses the reply language. Only the language preference is saved locally. Supports project dialogs and section navigation, caps the visible log at 30 messages, and renders every message as plain text with textContent. Unknown questions receive a fallback. Edit the topic records when public profile facts change.
+
+Chat interface: a waiting line (a still crescent, shown only after 300 ms) marks a pending reply and is announced through a status region. Replies keep their paragraphs; light Markdown markers from the model are removed, never rendered. Long replies open at their first line. While a reply is pending, send and the suggestions rest (`aria-disabled`, so focus stays), the field stays editable, and Clear cancels. A follow-up sent within five seconds waits out the server's per-visitor spacing, and one `Retry-After` 429 is retried once; other failures show a labelled prepared answer and keep the recent context.
 
 Verified: topic routing, Slovak accents, unknown/private-question fallbacks, opening a project from chat, clearing conversation, and mobile dialog layout.
 
