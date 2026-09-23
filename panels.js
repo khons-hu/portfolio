@@ -1,0 +1,39 @@
+/* One place to switch tools. Form drafts and guide replies remain in their own panels. */
+(() => {
+  const ids = ['terminal-dialog', 'guide-dialog', 'email-dialog'];
+  let returnFocus = null;
+  function open(id, selector) {
+    if (!ids.includes(id)) return;
+    const target = document.getElementById(id);
+    if (!document.querySelector('dialog[open]')) returnFocus = document.activeElement;
+    document.querySelectorAll('dialog[open]').forEach(dialog => { if (dialog !== target) dialog.close(); });
+    if (!target.open) target.showModal();
+    if (selector) target.querySelector(selector)?.focus();
+  }
+  document.querySelectorAll('[data-panel]').forEach(button => button.addEventListener('click', () => open(button.dataset.panel)));
+  for (const id of ids) document.getElementById(id).addEventListener('close', () => {
+    if (!document.querySelector('dialog[open]') && returnFocus?.isConnected && !returnFocus.closest('dialog')) returnFocus.focus({preventScroll:true});
+  });
+  window.PortfolioPanels = {open};
+  function translatePanels() {
+    const names = {'terminal-dialog':'Terminal', 'guide-dialog':'Ask khonsu', 'email-dialog':'Email'};
+    document.querySelectorAll('[data-panel]').forEach(button => { button.textContent = t(names[button.dataset.panel]); });
+    document.querySelectorAll('.panel-nav').forEach(nav => nav.setAttribute('aria-label', t('Portfolio tools')));
+  }
+  window.addEventListener('portfolio:language', translatePanels);
+  translatePanels();
+
+  // Keep the composer reachable when a mobile keyboard reduces the visible viewport.
+  function fitPanels() {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    for (const id of ['terminal-dialog', 'email-dialog']) {
+      const panel = document.getElementById(id);
+      panel.style.setProperty('--panel-height', `${viewport.height}px`);
+      panel.style.setProperty('--panel-top', `${viewport.offsetTop}px`);
+    }
+  }
+  window.visualViewport?.addEventListener('resize', fitPanels);
+  window.visualViewport?.addEventListener('scroll', fitPanels);
+  fitPanels();
+})();

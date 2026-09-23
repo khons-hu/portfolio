@@ -22,9 +22,8 @@ function translate(){const t=copy[language()]||copy.en;panel.querySelector(headi
 form.addEventListener('submit',async event=>{event.preventDefault();if(!deliveryEnabled||busy||!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));try{KhonsuContact.payload(data);}catch{statusKey=8;translate();return;}busy=true;button.disabled=true;form.setAttribute('aria-busy','true');statusKey=5;translate();try{await KhonsuContact.send(data);statusKey=6;/* Keep this form's draft after submission. */}catch(error){statusKey=error.message==='activation'?10:7;}finally{busy=false;button.disabled=false;form.removeAttribute('aria-busy');translate();}});
 translate();return translate;
 }
-const guideLanguage=document.querySelector('#guide-language');
-const translateGuide=mountContact(document.querySelector('#guide-dialog'),'contact',()=>guideLanguage.value,true);
-guideLanguage.addEventListener('change',translateGuide);
+const translateEmail=mountContact(document.querySelector('#email-panel-content'),'contact',()=>globalThis.PortfolioI18n?.language||document.documentElement.lang);
+window.addEventListener('portfolio:language',translateEmail);
 const translatePage=mountContact(document.querySelector('#contact'),'page-contact',()=>globalThis.PortfolioI18n?.language||document.documentElement.lang);
 window.addEventListener('portfolio:language',translatePage);
 })();

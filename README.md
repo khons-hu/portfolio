@@ -16,7 +16,9 @@ The private repository khons-hu/portfolio is connected to the existing Vercel pr
 
 ## Interaction
 
-`/` opens the terminal. Commands: `help`, `about`, `projects`, `work`, `now`, `contact`, `status`, `lore`, `theme`, `open <project>`, `clear`, `close`. The project list and live links follow the cards on the page. Try `open receipts` or `open khonrelay`. Tab completes unambiguous commands, arrows recall session history, and Escape closes dialogs.
+`/` opens the terminal. Commands: `help`, `about`, `projects`, `work`, `now`, `contact`, `status`, `lore`, `theme`, `ask`, `email`, `open <project>`, `clear`, `close`. The project list and live links follow the cards on the page. Try `open receipts` or `open khonrelay`. Suggested commands appear as you type. Tab completes unambiguous commands and project names, arrows recall session history while preserving your unfinished input, and Escape closes dialogs. The `projects` result has clickable notes. `clear` removes this terminal’s output and history.
+
+Terminal, Ask khonsu and Email share a small navigation strip. Switching between them keeps the current conversation and email draft in their separate panels. The command field stays visible while results scroll.
 
 Ordinary navigation works throughout. Compact project cards put the descriptions ahead of the artwork. Search by name, technology or topic, together with the tools, games and earlier-work filters. Search is local and is not stored or sent anywhere.
 
@@ -24,15 +26,15 @@ Cards open keyboard-accessible notes, with separate links to available demos, pl
 
 ## Motion and resource use
 
-Finite entrance and reveal transitions. Hover effects use transform. No animation loop, canvas, video, WebGL, scroll listener, polling or third-party font. Reveals stop observing after their first appearance. Hidden-tab motion is disabled. Motion has three saved choices: System follows the OS, On explicitly enables the small transitions, and Off disables them. Preferences are stored for this site in the visitor’s browser. Terminal output and history are bounded.
+Finite entrance and reveal transitions. Hover effects use transform. No animation loop, canvas, video, WebGL, page-scroll handler, polling or third-party font. Visual viewport events keep the terminal and email panel within the available screen height. Reveals stop observing after their first appearance. Hidden-tab motion is disabled. Motion has three saved choices: System follows the OS, On explicitly enables the small transitions, and Off disables them. Preferences are stored for this site in the visitor’s browser. Terminal output and history are bounded.
 
 ## Content updates
 
-Edit index.html for the page and project groups, app.js for project notes, project-links.js for public link slugs, and site-locales.js for translations. The terminal derives its project catalog from the cards. No private client details, CV download, invented results, or unpublished source links are included.
+Edit index.html for the page and project groups, app.js for project notes, project-links.js for public link slugs, and site-locales.js for translations. Edit terminal.js for commands and panels.js for the shared tool navigation. The terminal derives its project catalog from the cards. No private client details, CV download, invented results, or unpublished source links are included.
 
 ## Verified locally
 
-Desktop, 390px and 320px layouts visually reviewed. Search, combined filters, empty results, direct project links, copy feedback, Escape and restored focus checked in the browser. English, German and Hungarian UI exercised. Both themes reviewed. Clipboard failure and unknown links covered by automated tests. These are browser viewport checks, not real-device or BrowserStack tests. No horizontal overflow on mobile. Verified project modal, Escape, terminal autocomplete, command execution, history, unknown-command handling, clear, and navigation closing the terminal. No browser console warnings or errors observed. OS reduced-motion preference is active on the test machine and correctly disables motion. Normal-motion timing and numerical CPU profiling have not been measured.
+Desktop, 390px and 320px layouts visually reviewed. Search, combined filters, empty results, direct project links, copy feedback, Escape and restored focus checked in the browser. English, German and Hungarian UI exercised. Both themes reviewed. The updated terminal, shared navigation and email panel were also checked in English and Slovak at 390px and 320px. Command suggestions, project completion, clickable results, draft retention and separation from the page contact form were verified. No test email was sent during this UI pass. Clipboard failure and unknown links covered by automated tests. These are browser viewport checks, not real-device or BrowserStack tests. No horizontal overflow on mobile. Verified project modal, Escape, terminal autocomplete, command execution, history, unknown-command handling, clear, and navigation closing the terminal. No browser console warnings or errors observed. OS reduced-motion preference is active on the test machine and correctly disables motion. Normal-motion timing and numerical CPU profiling have not been measured.
 
 ## Ask khonsu guide
 
@@ -47,8 +49,8 @@ Light/dark toggle in the header. Initially follows the system theme, then rememb
 
 ## Contact email
 
-Both the contact section and Ask Khonsu offer a separate multilingual contact form addressed only to ptr.obrtal@gmail.com. It sends the reply email and message through FormSubmit. It never includes guide questions or chat history. No API key or email credentials are bundled.
+The contact section has a multilingual contact form addressed only to ptr.obrtal@gmail.com. The same form is available in the Email panel from the terminal or Ask khonsu. Their drafts are separate and remain only for the current page session. It sends the reply email and message through FormSubmit. It never includes guide questions or chat history. No API key or email credentials are bundled.
 
 The recipient is activated and FormSubmit accepted the publication test on 20 September 2026. Sending is enabled. The mailto fallback remains available. A successful provider response means submission accepted, not proven inbox delivery; inbox receipt has not been independently checked.
 
-Run `node --test tests/*.test.cjs` for validation, payload isolation, activation/failure handling and the theme regression checks. FormSubmit provides spam filtering. The local honeypot is only an extra signal, not a server-side abuse guarantee.
+Run `node --test tests/*.test.cjs` for contact validation, payload isolation, activation/failure handling, theme and project navigation regressions, and terminal completion, safe text rendering, history and output limits. FormSubmit provides spam filtering. The local honeypot is only an extra signal, not a server-side abuse guarantee.

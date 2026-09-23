@@ -85,7 +85,7 @@
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();row.scrollIntoView({block:'nearest',behavior:'instant'});
   }
   function ask(text){if(!text.trim())return;append(text.trim().slice(0,300),'visitor');const result=answer(text,lang.value);append(result.text,'guide',result);input.value='';}
-  document.querySelector('#guide-launcher').addEventListener('click',()=>{dialog.showModal();if(!matchMedia('(pointer: coarse)').matches)input.focus();});
+  document.querySelector('#guide-launcher').addEventListener('click',()=>window.PortfolioPanels.open('guide-dialog',matchMedia('(pointer: coarse)').matches?null:'#guide-question'));
   document.querySelector('#guide-form').addEventListener('submit',e=>{e.preventDefault();ask(input.value);});
   document.querySelectorAll('[data-question]').forEach(button=>button.addEventListener('click',()=>ask(button.dataset.question)));
   document.querySelector('#guide-clear').addEventListener('click',()=>{log.replaceChildren();input.value='';input.focus();});
