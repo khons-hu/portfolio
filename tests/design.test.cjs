@@ -6,6 +6,7 @@ const vm=require('node:vm');
 const read=file=>fs.readFileSync(path.join(__dirname,'..',file),'utf8');
 const html=read('index.html');
 const {SITE_LOCALES}=require('../site-locales.js');
+const {LANGUAGE_NAMES,EXTRA_LOCALE_PACKS}=require('../language-data.js');
 
 class Element {
  constructor(tag='div',text=''){this.tag=tag;this.text=text;this.children=[];this.events={};this.value='';this.open=true;this.hidden=false;this.attributes={};}
@@ -26,17 +27,17 @@ function terminal(language='en'){
  const projects={signal:{title:'Khonrelay',live:true,url:'https://example.com/relay'},dots:{title:'Dots',live:true,url:'https://example.com/dots'}};
  const cards=Object.keys(projects).map(id=>({dataset:{project:id},querySelector:()=>new Element('p',id+' description')}));
  const i18n={language};
- const context=vm.createContext({projects,t:value=>value,PortfolioI18n:i18n,matchMedia:()=>({matches:false}),showProject(){},
+ const context=vm.createContext({projects,EXTRA_LOCALE_PACKS,t:value=>value,PortfolioI18n:i18n,matchMedia:()=>({matches:false}),showProject(){},
   document:{querySelector:node,querySelectorAll:selector=>selector==='[data-project]'?cards:[],addEventListener(){},createElement:tag=>new Element(tag),createTextNode:text=>new Element('text',text)},
   window:{PortfolioPanels:{open(){}}}});
  vm.runInContext(read('terminal.js'),context);
  return {context,node,i18n};
 }
 
-test('help lists every command with a description in all seven languages',()=>{
+test('help lists every command with a description in all supported languages',()=>{
  const s=terminal();
  const languages=vm.runInContext('Object.keys(terminalCopy)',s.context);
- assert.deepEqual([...languages].sort(),['cs','de','en','es','hu','pl','sk']);
+ assert.deepEqual([...languages].sort(),Object.keys(LANGUAGE_NAMES).sort());
  for(const language of languages){
   s.i18n.language=language;s.node('#terminal-output').replaceChildren();
   s.context.run('help');

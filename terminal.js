@@ -25,6 +25,8 @@ const terminalCopy = {
   cs: { welcome: "Pár zkratek po tomto webu.", hint: "Projekty, něco o mně nebo zpráva. Vyber si níže nebo napiš help.", status: 'Veřejné projekty, záměrně malé.', lore: 'khonsu vzniklo z odkazu na Moon Knight kolem roku 2022.\nZůstalo to, tak jsem si to nechal.', theme: 'Motiv přepnut.', open: 'Za open vyber projekt. Zkus: open khonrelay.',
     commands: { about: 'kdo je za přezdívkou', projects: 'vybrané projekty a experimenty', now: 'co teď zkoumám', contact: 'kde mě najdeš', status: 'živé veřejné projekty', lore: 'proč khonsu', theme: 'přepne světlý / tmavý motiv', open: 'poznámky k projektu', ask: 'otevře Zeptej se khonsu', email: 'napiš Patrickovi', clear: 'vymaže výstup a historii', close: 'zpět na stránku' } }
 };
+// Commands stay in English so examples and completion work in every locale.
+for (const [lang, pack] of Object.entries(typeof EXTRA_LOCALE_PACKS === 'undefined' ? {} : EXTRA_LOCALE_PACKS)) terminalCopy[lang] = pack.terminal;
 function terminalStrings() { return terminalCopy[globalThis.PortfolioI18n?.language] || terminalCopy.en; }
 function helpRows() {
   const described = terminalStrings().commands;
@@ -33,8 +35,9 @@ function helpRows() {
 function updateTerminalWelcome() {
   const welcome = document.querySelector('#terminal-welcome');
   const copy = terminalStrings();
-  const hint = document.createElement('span'); hint.textContent = copy.hint;
-  welcome.replaceChildren(copy.welcome, hint);
+  const display=text=>typeof directionalText==='function'?directionalText(text,globalThis.PortfolioI18n?.language):text;
+  const hint = document.createElement('span'); hint.textContent = display(copy.hint);
+  welcome.replaceChildren(display(copy.welcome), hint);
   input.placeholder = t('Type a command…');
   renderSuggestions();
 }
@@ -52,14 +55,15 @@ document.addEventListener('keydown', event => {
 const onSiteLabel = text => t(text).replace('↗', '→');
 function write(command, message, links = [], projectItems = [], rows = []) {
   const entry = document.createElement('div'); entry.className = 'terminal-entry';
-  const prompt = document.createElement('strong'); prompt.textContent = `❯ ${command}`;
+  entry.lang=globalThis.PortfolioI18n?.language||'en';entry.dir=['ar','ur'].includes(entry.lang)?'rtl':'ltr';
+  const prompt = document.createElement('strong'); prompt.dir = 'ltr'; prompt.textContent = `❯ ${command}`;
   entry.append(prompt);
-  if (message) entry.append(document.createTextNode(message));
+  if (message) entry.append(document.createTextNode(typeof directionalText==='function'?directionalText(message,entry.lang):message));
   if (rows.length) {
     const list = document.createElement('dl'); list.className = 'terminal-help';
     for (const [name, description] of rows) {
       const term = document.createElement('dt'); term.textContent = name;
-      const detail = document.createElement('dd'); detail.textContent = description;
+      const detail = document.createElement('dd'); detail.textContent = typeof directionalText==='function'?directionalText(description,entry.lang):description;
       list.append(term, detail);
     }
     entry.append(list);

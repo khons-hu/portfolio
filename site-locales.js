@@ -814,7 +814,7 @@ const PROJECT_NOTES = {
       "Topics: C++, developer tools, coding agents, AI research and CS2. Bounded runs, duplicate checks and reasons for each selection."
     ],
     "portfolio": [
-      "Plain HTML, CSS and JavaScript. Terminal navigation, project notes and a local guide in seven languages. No AI API, model download or frontend framework.",
+      "Plain HTML, CSS and JavaScript. Terminal navigation, project notes and a local guide in multiple languages. No AI API, model download or frontend framework.",
       "Light/dark themes, reduced motion and animations paused in hidden tabs. GitHub deploys to Vercel; the source repository is private."
     ],
     "rotation": [
@@ -867,7 +867,7 @@ const PROJECT_NOTES = {
       "Témy: C++, vývojárske nástroje, coding agenti, AI výskum a CS2. Obmedzené behy, kontrola duplicít a dôvod každého výberu."
     ],
     "portfolio": [
-      "Obyčajné HTML, CSS a JavaScript. Terminál, poznámky k projektom a lokálny sprievodca v siedmich jazykoch. Bez AI API, sťahovania modelu a frontend frameworku.",
+      "Obyčajné HTML, CSS a JavaScript. Terminál, poznámky k projektom a lokálny sprievodca v viacerých jazykoch. Bez AI API, sťahovania modelu a frontend frameworku.",
       "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Nasadenie z GitHubu na Vercel, zdrojový repozitár je súkromný."
     ],
     "rotation": [
@@ -920,7 +920,7 @@ const PROJECT_NOTES = {
       "Témák: C++, fejlesztői eszközök, kódoló ágensek, AI-kutatás és CS2. Korlátozott futások, duplikációellenőrzés és indoklás."
     ],
     "portfolio": [
-      "Egyszerű HTML, CSS és JavaScript. Terminál, projektjegyzetek és helyi útmutató hét nyelven. Nincs AI API, modellletöltés vagy frontend-keretrendszer.",
+      "Egyszerű HTML, CSS és JavaScript. Terminál, projektjegyzetek és helyi útmutató több nyelven. Nincs AI API, modellletöltés vagy frontend-keretrendszer.",
       "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. GitHubról Vercelre települ, a forrásrepo privát."
     ],
     "rotation": [
@@ -973,7 +973,7 @@ const PROJECT_NOTES = {
       "Tematy: C++, narzędzia, agenci, badania AI i CS2. Ograniczone przebiegi, kontrola duplikatów i uzasadnienia wyboru."
     ],
     "portfolio": [
-      "Zwykły HTML, CSS i JavaScript. Terminal, notatki projektów i lokalny przewodnik w siedmiu językach. Bez AI API, pobierania modelu i frameworka frontendowego.",
+      "Zwykły HTML, CSS i JavaScript. Terminal, notatki projektów i lokalny przewodnik w wielu językach. Bez AI API, pobierania modelu i frameworka frontendowego.",
       "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Wdrożenie z GitHuba na Vercel, repozytorium prywatne."
     ],
     "rotation": [
@@ -1026,7 +1026,7 @@ const PROJECT_NOTES = {
       "Themen: C++, Entwicklerwerkzeuge, Coding-Agenten, KI-Forschung und CS2. Begrenzte Läufe, Dublettenprüfung und Begründungen."
     ],
     "portfolio": [
-      "Einfaches HTML, CSS und JavaScript. Terminal, Projektnotizen und lokaler Guide in sieben Sprachen. Keine KI-API, kein Modelldownload oder Frontend-Framework.",
+      "Einfaches HTML, CSS und JavaScript. Terminal, Projektnotizen und lokaler Guide in mehreren Sprachen. Keine KI-API, kein Modelldownload oder Frontend-Framework.",
       "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. GitHub deployt auf Vercel; das Quellrepo ist privat."
     ],
     "rotation": [
@@ -1079,7 +1079,7 @@ const PROJECT_NOTES = {
       "Temas: C++, herramientas, agentes, investigación de IA y CS2. Ejecuciones limitadas, comprobación de duplicados y motivos de selección."
     ],
     "portfolio": [
-      "HTML, CSS y JavaScript. Terminal, notas y guía local en siete idiomas. Sin API de IA, descarga de modelos ni framework frontend.",
+      "HTML, CSS y JavaScript. Terminal, notas y guía local en varios idiomas. Sin API de IA, descarga de modelos ni framework frontend.",
       "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. Despliegue desde GitHub a Vercel; repositorio privado."
     ],
     "rotation": [
@@ -1132,7 +1132,7 @@ const PROJECT_NOTES = {
       "Témata: C++, vývojářské nástroje, coding agenti, AI výzkum a CS2. Omezené běhy, kontrola duplicit a důvod každého výběru."
     ],
     "portfolio": [
-      "Obyčejné HTML, CSS a JavaScript. Terminál, poznámky k projektům a místní průvodce v sedmi jazycích. Bez AI API, stahování modelu a frontend frameworku.",
+      "Obyčejné HTML, CSS a JavaScript. Terminál, poznámky k projektům a místní průvodce v více jazycích. Bez AI API, stahování modelu a frontend frameworku.",
       "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Nasazení z GitHubu na Vercel, zdrojový repozitář je soukromý."
     ],
     "rotation": [
@@ -1280,13 +1280,13 @@ Object.assign(SITE_LOCALES.de, {"1 project": "1 Projekt"});
 Object.assign(SITE_LOCALES.es, {"1 project": "1 proyecto"});
 Object.assign(SITE_LOCALES.cs, {"1 project": "1 projekt"});
 
-PROJECT_NOTES.en.portfolio[0] = "Searchable projects, shareable project notes, terminal navigation and a small guide with prepared answers in seven languages. The guide runs locally, without an AI API.";
-PROJECT_NOTES.sk.portfolio[0] = "Vyhľadávanie projektov, odkazy na ich poznámky, navigácia cez terminál a malý sprievodca s pripravenými odpoveďami v siedmich jazykoch. Sprievodca funguje lokálne, bez AI API.";
-PROJECT_NOTES.hu.portfolio[0] = "Kereshető projektek, megosztható projektjegyzetek, terminálos navigáció és egy kis útmutató hét nyelven előre megírt válaszokkal. Az útmutató helyben működik, AI API nélkül.";
-PROJECT_NOTES.pl.portfolio[0] = "Wyszukiwanie projektów, linki do notatek, nawigacja terminalem i mały przewodnik z przygotowanymi odpowiedziami w siedmiu językach. Przewodnik działa lokalnie, bez API AI.";
-PROJECT_NOTES.de.portfolio[0] = "Durchsuchbare Projekte, teilbare Projektnotizen, Terminal-Navigation und ein kleiner Guide mit vorbereiteten Antworten in sieben Sprachen. Der Guide läuft lokal, ohne KI-API.";
-PROJECT_NOTES.es.portfolio[0] = "Búsqueda de proyectos, notas que puedes compartir, navegación por terminal y una pequeña guía con respuestas preparadas en siete idiomas. La guía funciona localmente, sin API de IA.";
-PROJECT_NOTES.cs.portfolio[0] = "Vyhledávání projektů, odkazy na jejich poznámky, navigace přes terminál a malý průvodce s připravenými odpověďmi v sedmi jazycích. Průvodce funguje lokálně, bez AI API.";
+PROJECT_NOTES.en.portfolio[0] = "Searchable projects, shareable project notes, terminal navigation and a small guide with prepared answers in multiple languages. The guide runs locally, without an AI API.";
+PROJECT_NOTES.sk.portfolio[0] = "Vyhľadávanie projektov, odkazy na ich poznámky, navigácia cez terminál a malý sprievodca s pripravenými odpoveďami v viacerých jazykoch. Sprievodca funguje lokálne, bez AI API.";
+PROJECT_NOTES.hu.portfolio[0] = "Kereshető projektek, megosztható projektjegyzetek, terminálos navigáció és egy kis útmutató több nyelven előre megírt válaszokkal. Az útmutató helyben működik, AI API nélkül.";
+PROJECT_NOTES.pl.portfolio[0] = "Wyszukiwanie projektów, linki do notatek, nawigacja terminalem i mały przewodnik z przygotowanymi odpowiedziami w wielu językach. Przewodnik działa lokalnie, bez API AI.";
+PROJECT_NOTES.de.portfolio[0] = "Durchsuchbare Projekte, teilbare Projektnotizen, Terminal-Navigation und ein kleiner Guide mit vorbereiteten Antworten in mehreren Sprachen. Der Guide läuft lokal, ohne KI-API.";
+PROJECT_NOTES.es.portfolio[0] = "Búsqueda de proyectos, notas que puedes compartir, navegación por terminal y una pequeña guía con respuestas preparadas en varios idiomas. La guía funciona localmente, sin API de IA.";
+PROJECT_NOTES.cs.portfolio[0] = "Vyhledávání projektů, odkazy na jejich poznámky, navigace přes terminál a malý průvodce s připravenými odpověďmi v více jazycích. Průvodce funguje lokálně, bez AI API.";
 
 // Shared portfolio tools.
 Object.assign(SITE_LOCALES.sk, {"Portfolio tools": "Nástroje portfólia", "Ask khonsu": "Opýtaj sa khonsu", "Email": "Email", "Email Patrick": "Napísať Patrickovi", "Close email form": "Zavrieť emailový formulár", "Type a command…": "Napíš príkaz…", "Run command": "Spustiť príkaz", "Suggested commands": "Navrhované príkazy", "Tab completes · ↑ ↓ history · help for commands": "Tab dopĺňa · ↑ ↓ história · help zobrazí príkazy", "PORTFOLIO SHORTCUTS": "SKRATKY PO PORTFÓLIU", "Clear terminal": "Vymazať terminál", "Pick a project to read its notes.": "Vyber projekt a pozri si jeho poznámky.", "Use email to write me, or ask to open the guide.": "Príkaz email otvorí správu, ask otvorí sprievodcu."});
@@ -1309,3 +1309,19 @@ Object.assign(SITE_LOCALES.pl, {"CURRENT GAME PROTOTYPE": "AKTUALNY PROTOTYP GRY
 Object.assign(SITE_LOCALES.de, {"CURRENT GAME PROTOTYPE": "AKTUELLER SPIELPROTOTYP", "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Ein kleines Marktspiel im Mondlicht. Bewege dich, prüfe, was zählt, und entscheide dann."});
 Object.assign(SITE_LOCALES.es, {"CURRENT GAME PROTOTYPE": "PROTOTIPO DE JUEGO ACTUAL", "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Un pequeño juego de mercado a la luz de la luna. Muévete, examina lo importante y decide."});
 Object.assign(SITE_LOCALES.cs, {"CURRENT GAME PROTOTYPE": "AKTUÁLNÍ HERNÍ PROTOTYP", "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Malá hra na trhu v měsíčním světle. Pohybuj se, prozkoumej, co je důležité, a pak se rozhodni."});
+
+// Project notes use stable IDs across every locale.
+PROJECT_NOTES.en.receipts = ["A small browser game for one or two people. Walk through a moonlit market instead of clicking through a casebook.", "Find the visitor, inspect the evidence, then run to a physical accept or reject zone. The cases are shuffled every shift.", "Released on itch.io as an early public prototype. No account, ads, chat, timers, or real-world scam mechanics."];
+PROJECT_NOTES.sk.receipts = ["Malá hra v prehliadači pre jedného alebo dvoch hráčov. Prechádzaj sa trhom pri mesačnom svite namiesto preklikávania prípadov.", "Nájdi návštevníka, preskúmaj dôkazy a prebehni do zóny prijatia alebo odmietnutia. Prípady sa každú zmenu premiešajú.", "Na itch.io je dostupný skorý verejný prototyp. Bez účtu, reklám, chatu, časovačov a mechaník skutočných podvodov."];
+PROJECT_NOTES.hu.receipts = ["Kis böngészős játék egy vagy két játékosnak. Sétálj a holdfényes piacon az ügyiratok végigkattintgatása helyett.", "Keresd meg a látogatót, nézd meg a bizonyítékokat, majd fuss az elfogadó vagy elutasító zónába. Az esetek minden műszakban keverednek.", "Korai, nyilvános prototípus az itch.io-n. Nincs fiók, reklám, chat, időzítő vagy valódi csalási mechanika."];
+PROJECT_NOTES.pl.receipts = ["Mała gra przeglądarkowa dla jednej lub dwóch osób. Spaceruj po targu w świetle księżyca zamiast przeklikiwać akta spraw.", "Znajdź gościa, sprawdź dowody i biegnij do strefy akceptacji lub odrzucenia. Sprawy są tasowane przy każdej zmianie.", "Wczesny publiczny prototyp na itch.io. Bez konta, reklam, czatu, odliczania i mechanik prawdziwych oszustw."];
+PROJECT_NOTES.de.receipts = ["Ein kleines Browserspiel für eine oder zwei Personen. Erkunde einen Markt im Mondlicht, statt dich durch Akten zu klicken.", "Finde den Besucher, prüfe die Hinweise und laufe dann in die Zone zum Annehmen oder Ablehnen. Die Fälle werden jede Schicht neu gemischt.", "Als früher öffentlicher Prototyp auf itch.io veröffentlicht. Ohne Konto, Werbung, Chat, Zeitdruck oder Mechaniken für echte Betrugsfälle."];
+PROJECT_NOTES.es.receipts = ["Un pequeño juego de navegador para una o dos personas. Recorre un mercado a la luz de la luna en vez de pasar de expediente en expediente.", "Busca al visitante, revisa las pruebas y corre a la zona de aceptar o rechazar. Los casos se mezclan en cada turno.", "Disponible en itch.io como prototipo público inicial. Sin cuenta, anuncios, chat, temporizadores ni mecánicas de estafas reales."];
+PROJECT_NOTES.cs.receipts = ["Malá hra v prohlížeči pro jednoho nebo dva hráče. Procházej trhem za měsíčního svitu místo proklikávání případů.", "Najdi návštěvníka, prozkoumej důkazy a přeběhni do zóny přijetí nebo odmítnutí. Případy se každou směnu zamíchají.", "Na itch.io je dostupný raný veřejný prototyp. Bez účtu, reklam, chatu, časovačů a mechanik skutečných podvodů."];
+
+const extraSitePacks = typeof module !== 'undefined' && module.exports
+  ? require('./language-data.js').EXTRA_LOCALE_PACKS : EXTRA_LOCALE_PACKS;
+for (const [language, pack] of Object.entries(extraSitePacks)) {
+  SITE_LOCALES[language] = pack.site;
+  PROJECT_NOTES[language] = pack.notes;
+}

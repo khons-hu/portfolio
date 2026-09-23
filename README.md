@@ -18,7 +18,7 @@ The private repository khons-hu/portfolio is connected to the existing Vercel pr
 
 `/` opens the terminal. Commands: `help`, `about`, `projects`, `work`, `now`, `contact`, `status`, `lore`, `theme`, `ask`, `email`, `open <project>`, `clear`, `close`. The project list and live links follow the cards on the page. Try `open receipts` or `open khonrelay`. Suggested commands appear as you type. Tab completes unambiguous commands and project names, arrows recall session history while preserving your unfinished input, and Escape closes dialogs. The `projects` result has clickable notes. `clear` removes this terminal’s output and history.
 
-Terminal, Ask khonsu and Email are tabs in one panel frame, so the frame and tabs stay in place when switching. Switching keeps the current conversation and email draft in their separate panels, and keyboard focus lands on the matching tab. The command field stays visible while results scroll. `help` is an aligned command table in all seven languages; command words stay untranslated. Touch screens hide the keyboard-only hint.
+Terminal, Ask khonsu and Email are tabs in one panel frame, so the frame and tabs stay in place when switching. Switching keeps the current conversation and email draft in their separate panels, and keyboard focus lands on the matching tab. The command field stays visible while results scroll. `help` is an aligned command table in every supported language; command words stay untranslated. Touch screens hide the keyboard-only hint.
 
 Ordinary navigation works throughout. Compact project cards (three, two or one per row) show a small lunar tile, the title, a tagline and a one-line description. Each card has on-page **Notes →** and, where one exists, one outside link: a filled pill for a hosted demo or playable build, an outlined pill for source, a download page or a playlist. Across the site ↗ leaves the site and → stays on the page. Search by name, technology or topic, together with the tools, games and earlier-work filters. Search is local and is not stored or sent anywhere.
 
@@ -61,3 +61,14 @@ The contact section has a multilingual contact form addressed only to ptr.obrtal
 The recipient is activated and FormSubmit accepted the publication test on 20 September 2026. Sending is enabled. The mailto fallback remains available. A successful provider response means submission accepted, not proven inbox delivery; inbox receipt has not been independently checked.
 
 Run `node --test tests/*.test.cjs` for contact validation, payload isolation, activation/failure handling, theme and project navigation regressions, and terminal completion, safe text rendering, history and output limits. FormSubmit provides spam filtering. The local honeypot is only an extra signal, not a server-side abuse guarantee.
+
+
+### Languages
+
+The page, project notes, terminal help and local guide support English, Slovak, Hungarian, Polish, German, Spanish, Czech, Portuguese, French, Simplified Chinese, Hindi, Arabic, Bengali, Russian, Urdu, Indonesian and Japanese. The native picker keeps the header compact. Saved choices take priority, followed by supported browser preferences, then English. Portuguese regional tags share one Portuguese catalog. Traditional Chinese is not relabelled as Simplified Chinese.
+
+Arabic and Urdu use right-to-left layouts. Handles, email addresses and terminal commands keep their original direction. All copy ships as local JavaScript. No translation API, tracking or model download is used. The guide still matches prepared topics, so translated answers do not make it an unrestricted chatbot. The new translations are model-assisted and have not had native-speaker review.
+
+`language-data.js` holds the common registry. The two `extra-locales-*.js` files contain the added page, note, terminal and guide catalogs, keyed by original strings or stable topic IDs. Run `node --test tests/*.test.cjs` when changing a catalog or the language list.
+
+Language expansion validation: 45 Node tests, all ten added locales checked at 320px in both themes, Portuguese desktop layout and saved selection, Arabic guide/terminal/email panels, Chinese guide input, and Portuguese project notes. No real email was sent. These checks used a Chromium preview, not physical mobile devices.

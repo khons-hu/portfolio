@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
+const {EXTRA_LOCALE_PACKS}=require('../language-data.js');
 
 class Element {
  constructor(tag='div',text=''){this.tag=tag;this.text=text;this.children=[];this.events={};this.value='';this.open=true;this.hidden=false;}
@@ -22,7 +23,7 @@ function setup(){
  const node=key=>{if(!nodes.has(key))nodes.set(key,new Element());return nodes.get(key);};
  const projects={signal:{title:'Khonrelay',live:true,url:'https://example.com/relay'},dots:{title:'Dots',live:true,url:'https://example.com/dots'}};
  const cards=Object.keys(projects).map(id=>({dataset:{project:id},querySelector:()=>new Element('p',id+' description')}));
- const context=vm.createContext({projects,t:value=>value,PortfolioI18n:{language:'en'},matchMedia:()=>({matches:false}),showProject:id=>opened.push(id),
+ const context=vm.createContext({projects,EXTRA_LOCALE_PACKS,t:value=>value,PortfolioI18n:{language:'en'},matchMedia:()=>({matches:false}),showProject:id=>opened.push(id),
  document:{querySelector:node,querySelectorAll:selector=>selector==='[data-project]'?cards:[],addEventListener(){},createElement:tag=>new Element(tag),createTextNode:text=>new Element('text',text)},
  window:{PortfolioPanels:{open:(...args)=>panels.push(args)}}});
  vm.runInContext(fs.readFileSync(path.join(__dirname,'../terminal.js'),'utf8'),context);
