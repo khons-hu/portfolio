@@ -29,7 +29,7 @@ async function accessToken(env, fetcher, now) {
   // is a configuration mistake on a public server, so it is refused rather than used.
   const allowed = new Set(['user-read-currently-playing', 'user-read-playback-state']);
   const scopes = String(data.scope || '').split(/\s+/).filter(Boolean);
-  if (scopes.some(scope => !allowed.has(scope))) throw Object.assign(new Error('scope'), { status: 403 });
+  if (scopes.some(scope => !allowed.has(scope))) throw Object.assign(new Error('scope:' + scopes.filter(scope => /^[a-z-]+$/.test(scope)).join(',')), { status: 403 });
   cachedToken = { value: data.access_token, expiresAt: now() + Math.max(60, Number(data.expires_in) || 3600) * 1000 };
   return cachedToken.value;
 }
