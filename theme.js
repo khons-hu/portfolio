@@ -1,3 +1,13 @@
+// Set language and reading direction before first paint, so Arabic and Urdu do not flip once the
+// deferred locale scripts arrive. i18n.js makes the final choice; keep this list in sync with LANGUAGE_NAMES.
+(function(){
+ const supported=['en','sk','hu','pl','de','es','cs','pt','fr','zh','hi','ar','bn','ru','ur','id','ja'];
+ const pick=value=>{const tag=String(value||'').toLowerCase().replace(/_/g,'-');if(/^zh-(?:hant|tw|hk|mo)(?:-|$)/.test(tag))return null;const lang=tag.split('-')[0];return supported.includes(lang)?lang:null;};
+ let saved;try{saved=localStorage.getItem('khonsu-language');}catch{}
+ const nav=typeof navigator!=='undefined'?navigator:{};
+ const lang=pick(saved)||(nav.languages||[nav.language]).map(pick).find(Boolean)||'en';
+ const root=document.documentElement;root.lang=lang;root.dir=['ar','ur'].includes(lang)?'rtl':'ltr';
+})();
 // Apply the saved theme before styles load. User clicks are queued, never discarded.
 (function(){
  const preference=matchMedia('(prefers-color-scheme: light)');

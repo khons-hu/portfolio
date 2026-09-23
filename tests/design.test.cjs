@@ -157,3 +157,27 @@ test('filter chips morph only when motion is allowed, and typing never waits for
  assert.deepEqual(run(false,true).calls,[],'motion off updates directly');
  assert.deepEqual(run(true,false).hidden,[true,true],'unsupported browsers still filter');
 });
+
+test('the project count keeps its number in right-to-left languages',()=>{
+ const {directionalText}=require('../language-data.js');
+ const source=read('app.js');
+ const cards=[['tools','Alpha'],['games','Beta']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
+ const nodes=new Map();const node=key=>{if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,dataset:{},addEventListener(k,fn){this[k]=fn;},focus(){}});return nodes.get(key);};
+ const catalog={'{count} projects':'{count} مشاريع','1 project':'مشروع واحد'};
+ vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),{document:{querySelectorAll:s=>s==='[data-project-group]'?cards:[],querySelector:node},window:{addEventListener(){}},t:text=>directionalText(catalog[text]||text,'ar')});
+ assert.equal(node('#project-count').textContent,'2 مشاريع');
+});
+
+test('reading direction is set before first paint and matches the language registry',()=>{
+ const {LANGUAGE_NAMES}=require('../language-data.js');
+ const source=read('theme.js');
+ const listed=JSON.parse(source.match(/const supported=(\[[^\]]+\])/)[1].replace(/'/g,'"'));
+ assert.deepEqual(listed,Object.keys(LANGUAGE_NAMES),'theme.js language list drifted from language-data.js');
+ const early=source.slice(0,source.indexOf('// Apply the saved theme'));
+ const run=(saved,languages)=>{const root={};vm.runInNewContext(early,{document:{documentElement:root},localStorage:{getItem:()=>saved},navigator:{languages}});return root.lang+'/'+root.dir;};
+ assert.equal(run('ar',['en-US']),'ar/rtl');
+ assert.equal(run(null,['ur-PK','en']),'ur/rtl');
+ assert.equal(run(null,['zh-TW','de-DE']),'de/ltr','Traditional Chinese is not relabelled');
+ assert.equal(run('xx',['ja-JP']),'ja/ltr');
+ assert.equal(run(null,['fr-CA']),'fr/ltr');
+});

@@ -66,7 +66,13 @@ test('RTL display isolates technical names without changing source copy',()=>{
  const displayed=directionalText(prose,'ar');
  assert(displayed.includes('\u2066C++\u2069'));
  assert(displayed.includes('\u2066Counter-Strike\u2069'));
- assert(displayed.includes('\u2066Luigi’s Box.\u2069'));
+ // Sentence punctuation stays with the RTL sentence instead of sticking to the Latin name.
+ assert(displayed.includes('\u2066Luigi’s Box\u2069.'));
+ assert.equal(directionalText('{count} مشاريع','ar'),'{count} مشاريع','placeholders survive for later replacement');
+ assert(directionalText('مشروع حالي · TypeScript / RSS','ar').includes('\u2066TypeScript / RSS\u2069'),'stacks keep their reading order');
+ assert.equal(directionalText('دليل صغير لأعمال Patrick.','ar'),'دليل صغير لأعمال \u2066Patrick\u2069.');
+ assert.equal(directionalText('(TUKE)','ar'),'(\u2066TUKE\u2069)','brackets stay outside the isolate');
+ assert(directionalText('ptr.obrtal@gmail.com و @ptr1337_','ar').includes('\u2066ptr.obrtal@gmail.com\u2069'));
  assert.equal(displayed.replace(/[\u2066\u2069]/g,''),prose);
  assert.equal(directionalText(prose,'en'),prose);
 });

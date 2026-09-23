@@ -1412,7 +1412,7 @@ const EXTRA_LOCALES_WEST = {
       "Portfolio tools": "Alat portofolio",
       "Ask khonsu": "Tanya khonsu",
       "Email": "Email",
-      "Email Patrick": "Email Patrick",
+      "Email Patrick": "Kirim email ke Patrick",
       "Close email form": "Tutup formulir email",
       "Type a command…": "Ketik perintah…",
       "Run command": "Jalankan perintah",
@@ -1658,7 +1658,7 @@ const EXTRA_LOCALES_WEST = {
       }
     },
     "contact": [
-      "Email Patrick",
+      "Kirim email ke Patrick",
       "Email Anda",
       "Pesan",
       "Kirim email",

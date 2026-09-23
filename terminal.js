@@ -52,7 +52,7 @@ document.addEventListener('keydown', event => {
   }
 });
 // ↗ always leaves the site; → stays on this page (a section or project notes).
-const onSiteLabel = text => t(text).replace('↗', '→');
+const onSiteLabel = text => t(text).replace('↗', typeof languageDirection === 'function' && languageDirection(globalThis.PortfolioI18n?.language) === 'rtl' ? '←' : '→');
 function write(command, message, links = [], projectItems = [], rows = []) {
   const entry = document.createElement('div'); entry.className = 'terminal-entry';
   entry.lang=globalThis.PortfolioI18n?.language||'en';entry.dir=['ar','ur'].includes(entry.lang)?'rtl':'ltr';
