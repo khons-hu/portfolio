@@ -62,7 +62,7 @@ test('terminal keeps ↗ for outside links and uses → for on-page destinations
 function dialog(){
  const nodes=new Map();
  const node=selector=>{if(!nodes.has(selector))nodes.set(selector,{textContent:'',hidden:false,open:false,scrollTop:0,attributes:{},replaceChildren(){},showModal(){this.open=true;},removeAttribute(key){delete this.attributes[key];delete this[key];},setAttribute(key,value){this.attributes[key]=String(value);},getAttribute(key){return this.attributes[key]??null;}});return nodes.get(selector);};
- const document={querySelector:selector=>selector.includes('.dialog-preview-hidden')||selector.includes('.project-info p')?null:node(selector),createElement:()=>({textContent:''})};
+ const document={querySelector:selector=>selector.includes('.dialog-preview-hidden')||selector.includes('.project-info p')?null:node(selector),querySelectorAll:()=>[],createElement:()=>({textContent:''})};
  const source=read('app.js');const context=vm.createContext({document,t:x=>x});
  vm.runInContext(source.slice(source.indexOf('const projects = {'),source.indexOf("window.addEventListener('portfolio:language'",source.indexOf('const projects = {'))),context);
  return {link:()=>node('#project-link'),source:()=>node('#project-source'),show:id=>vm.runInContext(`showProject(${JSON.stringify(id)})`,context)};
@@ -104,10 +104,10 @@ test('all local assets share one cache version',()=>{
 });
 
 test('switching panels focuses the matching tab unless a field was requested',()=>{
- const make=id=>{const tab={dataset:{panel:id},focus(){focused.push(id+':tab');}};const field={focus(){focused.push(id+':field');}};
-  return {id,open:false,listeners:{},tab,field,showModal(){this.open=true;},close(){this.open=false;pending.push(()=>this.listeners.close?.());},addEventListener(k,fn){this.listeners[k]=fn;},querySelector(selector){return selector===`[data-panel="${id}"]`?tab:field;},style:{setProperty(){}}};};
+ const make=id=>{const tab={dataset:{panel:id},focus(){focused.push(id+':tab');}};const field={focus(){focused.push(id+':field');}};const classes=new Set();
+  return {id,open:false,listeners:{},tab,field,classes,classList:{toggle:(k,on)=>on?classes.add(k):classes.delete(k),remove:k=>classes.delete(k),contains:k=>classes.has(k)},showModal(){this.open=true;},close(){this.open=false;pending.push(()=>this.listeners.close?.());},addEventListener(k,fn){this.listeners[k]=fn;},querySelector(selector){return selector===`[data-panel="${id}"]`?tab:field;},style:{setProperty(){}}};};
  const focused=[],pending=[];const flush=()=>pending.splice(0).forEach(fire=>fire());const dialogs=Object.fromEntries(['terminal-dialog','guide-dialog','email-dialog'].map(id=>[id,make(id)]));
- const context={t:x=>x,window:{addEventListener(){}},document:{getElementById:id=>dialogs[id],activeElement:{isConnected:true,closest:()=>null,focus(){focused.push('page');}},querySelector:selector=>selector==='dialog[open]'?Object.values(dialogs).find(d=>d.open)||null:null,querySelectorAll:selector=>selector==='dialog[open]'?Object.values(dialogs).filter(d=>d.open):[]}};
+ const timers=[];const context={t:x=>x,setTimeout:fn=>timers.push(fn),clearTimeout(){},window:{addEventListener(){}},document:{getElementById:id=>dialogs[id],activeElement:{isConnected:true,closest:()=>null,focus(){focused.push('page');}},querySelector:selector=>selector==='dialog[open]'?Object.values(dialogs).find(d=>d.open)||null:null,querySelectorAll:selector=>selector==='dialog[open]'?Object.values(dialogs).filter(d=>d.open):selector==='dialog'?Object.values(dialogs):[]}};
  vm.runInNewContext(read('panels.js'),context);
  const {open}=context.window.PortfolioPanels;
  // Dialog close events are queued by browsers, so the next panel is already open when they fire.
@@ -115,4 +115,44 @@ test('switching panels focuses the matching tab unless a field was requested',()
  assert.deepEqual(focused,['terminal-dialog:field','guide-dialog:tab','email-dialog:field']);
  assert.equal(Object.values(dialogs).filter(d=>d.open).length,1);
  dialogs['email-dialog'].close();flush();assert.equal(focused.at(-1),'page');
+});
+
+test('tab switches keep the frame still and hand-offs close the previous panel at once',()=>{
+ const focused=[],pending=[];const flush=()=>pending.splice(0).forEach(fire=>fire());
+ const make=id=>{const classes=new Set();return {id,open:false,listeners:{},classes,classList:{toggle:(k,on)=>on?classes.add(k):classes.delete(k),remove:k=>classes.delete(k)},showModal(){this.open=true;this.openedWith=[...classes];},close(){this.open=false;this.closedWith=[...classes];pending.push(()=>this.listeners.close?.());},addEventListener(k,fn){this.listeners[k]=fn;},querySelector:()=>({focus(){}}),style:{setProperty(){}}};};
+ const dialogs=Object.fromEntries(['terminal-dialog','guide-dialog','email-dialog','project-dialog'].map(id=>[id,make(id)]));
+ const timers=[];const context={t:x=>x,setTimeout:fn=>timers.push(fn),clearTimeout(){},window:{addEventListener(){}},document:{getElementById:id=>dialogs[id],activeElement:{isConnected:true,closest:()=>null,focus(){}},querySelector:s=>s==='dialog[open]'?Object.values(dialogs).find(d=>d.open)||null:null,querySelectorAll:s=>s==='dialog[open]'?Object.values(dialogs).filter(d=>d.open):s==='dialog'?Object.values(dialogs):[]}};
+ vm.runInNewContext(read('panels.js'),context);
+ const {open}=context.window.PortfolioPanels;
+ open('terminal-dialog');flush();
+ assert(!dialogs['terminal-dialog'].openedWith.includes('panel-switch'),'first open animates normally');
+ assert(!dialogs['terminal-dialog'].openedWith.includes('dialog-instant'));
+ open('guide-dialog');flush();
+ assert(dialogs['terminal-dialog'].closedWith.includes('dialog-instant'),'previous panel closes without a fade');
+ assert(dialogs['guide-dialog'].openedWith.includes('panel-switch'),'new panel appears without the pop');
+ timers.splice(0).forEach(fn=>fn());
+ assert(!dialogs['guide-dialog'].classes.has('panel-switch'),'normal close fade returns afterwards');
+ dialogs['guide-dialog'].close();flush();
+ assert(!dialogs['guide-dialog'].closedWith.includes('dialog-instant'),'Escape still fades out');
+});
+
+test('filter chips morph only when motion is allowed, and typing never waits for a transition',()=>{
+ const source=read('app.js');
+ const run=(motion,supported)=>{
+  const cards=[['tools','Alpha'],['games','Beta']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
+  const buttons=['all','games'].map(projectFilter=>({dataset:{projectFilter},attributes:{},setAttribute(k,v){this.attributes[k]=v;},addEventListener(k,fn){this[k]=fn;}}));
+  const nodes=new Map();const node=key=>{if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,dataset:{},addEventListener(k,fn){this[k]=fn;},focus(){}});return nodes.get(key);};
+  const calls=[];
+  const document={hidden:false,querySelectorAll:s=>s==='[data-project-group]'?cards:buttons,querySelector:node,documentElement:{classList:{contains:k=>k==='js-motion'&&motion}}};
+  if(supported)document.startViewTransition=update=>{calls.push('morph');update();};
+  vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),{document,window:{addEventListener(){}},t:x=>x});
+  buttons[1].click();
+  node('#project-search').value='zz';node('#project-search').input();
+  return {calls,hidden:cards.map(card=>card.hidden),filtered:Object.hasOwn(node('#project-grid').dataset,'filtered')};
+ };
+ const smooth=run(true,true);
+ assert.deepEqual(smooth.calls,['morph'],'one morph for the chip, none for typing');
+ assert.deepEqual(smooth.hidden,[true,true]);assert.equal(smooth.filtered,true);
+ assert.deepEqual(run(false,true).calls,[],'motion off updates directly');
+ assert.deepEqual(run(true,false).hidden,[true,true],'unsupported browsers still filter');
 });

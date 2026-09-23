@@ -26,6 +26,8 @@ Cards open keyboard-accessible notes. The notes put their outside links (demo, p
 
 ## Motion and resource use
 
+When motion is allowed: dialogs and tool panels fade in and out with their backdrop (discrete transitions where supported, a simple entrance elsewhere), switching Terminal / Ask khonsu / Email keeps the frame still and only fades the content, filter chips morph the project grid with View Transitions where supported (typing in search stays instant), the About accordion grows by height, terminal and guide output fades in, and cards lift 2 px on hover. The page behind an open dialog no longer scrolls. Motion Off, the system reduced-motion setting (unless Motion is On) and hidden tabs switch everything instantly.
+
 Finite entrance and reveal transitions. Hover effects use transform. No animation loop, canvas, video, WebGL, page-scroll handler, polling or third-party font. Visual viewport events keep the terminal and email panel within the available screen height. Reveals stop observing after their first appearance. Hidden-tab motion is disabled. Motion has three saved choices: System follows the OS, On explicitly enables the small transitions, and Off disables them. Preferences are stored for this site in the visitor’s browser. Terminal output and history are bounded.
 
 ## Content updates
@@ -49,7 +51,7 @@ Verified: topic routing, Slovak accents, unknown/private-question fallbacks, ope
 
 ## Appearance
 
-Light/dark toggle in the header. Initially follows the system theme, then remembers the visitor’s choice locally. Dark is midnight and ice; light is a warm paper tone rather than white, with the hero photo shown as a soft daylight negative. Switching fades colours for about 0.4 s with one small arc at the toggle; motion Off, reduced motion and hidden tabs skip it. System fonts only: Georgia for headlines, Avenir Next / Segoe UI / system UI for text and ui-monospace / Menlo for labels and commands. Styles live in one token-based `style.css`.
+Light/dark toggle in the header. Initially follows the system theme, then remembers the visitor’s choice locally. Dark is midnight and ice; light is a warm paper tone rather than white, with the hero photo shown as a soft daylight negative. Switching fades colours for about 0.4 s with one small arc at the toggle; motion Off, reduced motion and hidden tabs skip it. System fonts only: Georgia for the opening title, Avenir Next / Segoe UI / system UI for everything else, and ui-monospace / Menlo inside the terminal. Styles live in one token-based `style.css`.
 
 
 ## Contact email

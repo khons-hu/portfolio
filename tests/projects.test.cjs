@@ -13,7 +13,7 @@ function setup(){
   if(selector.includes('.dialog-preview-hidden'))return selector.includes('thinkroom')?{getAttribute:()=> 'assets/previews/khonsolve.webp'}:null;
   if(selector.includes('.project-info p'))return null;
   return node(selector);
- },createElement:()=>({textContent:''})};
+ },querySelectorAll:()=>[],createElement:()=>({textContent:''})};
  const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
  const context=vm.createContext({document,t:x=>x});
  vm.runInContext(source.slice(source.indexOf('const projects = {'),source.indexOf("window.addEventListener('portfolio:language'",source.indexOf('const projects = {'))),context);
@@ -43,7 +43,7 @@ function filters(){
  const cards=[['tools','Khonsolve Python coding'],['games','Dots React game'],['earlier','Calculator C++ Arduino'],['games','Receipts Godot game']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
  const buttons=['all','tools','games','earlier'].map(projectFilter=>({dataset:{projectFilter},attributes:{},setAttribute(k,v){this.attributes[k]=v;},addEventListener(k,fn){this[k]=fn;}}));
  const nodes=new Map();
- function node(key){if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,addEventListener(k,fn){this[k]=fn;},focus(){this.focused=true;}});return nodes.get(key);}
+ function node(key){if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,dataset:{},addEventListener(k,fn){this[k]=fn;},focus(){this.focused=true;}});return nodes.get(key);}
  const events={};let translated=false;
  const context={document:{querySelectorAll:selector=>selector==='[data-project-group]'?cards:buttons,querySelector:node},window:{addEventListener:(key,fn)=>events[key]=fn},t:text=>translated?'Počet projektov: {count}':text};
  vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),context);

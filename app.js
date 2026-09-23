@@ -25,7 +25,10 @@ motionButton.addEventListener('click', () => {
   try { localStorage.setItem('khonsu-motion', motionPreference); } catch {}
   updateMotion();
 });
-document.addEventListener('visibilitychange', () => root.classList.toggle('page-hidden', document.hidden));
+// Pages opened in a background tab start without motion too, not only after a visibility change.
+const syncHidden = () => root.classList.toggle('page-hidden', document.hidden);
+syncHidden();
+document.addEventListener('visibilitychange', syncHidden);
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
@@ -55,10 +58,15 @@ function filterProjects() {
   document.querySelector('#project-empty').hidden = count !== 0;
   document.querySelector('#project-search-clear').disabled = !projectSearch.value;
 }
-for (const button of projectFilters) button.addEventListener('click', () => { projectFilter = button.dataset.projectFilter; filterProjects(); });
-projectSearch.addEventListener('input', filterProjects);
-document.querySelector('#project-search-clear').addEventListener('click', () => { projectSearch.value = ''; filterProjects(); projectSearch.focus(); });
-document.querySelector('#project-reset').addEventListener('click', () => { projectSearch.value = ''; projectFilter = 'all'; filterProjects(); projectSearch.focus(); });
+// Chip and reset changes morph the shelf when motion is allowed. Typing stays instant so the field never lags.
+function morph(update) {
+  if (typeof document.startViewTransition === 'function' && document.documentElement.classList.contains('js-motion') && !document.hidden) document.startViewTransition(update);
+  else update();
+}
+for (const button of projectFilters) button.addEventListener('click', () => { projectFilter = button.dataset.projectFilter; morph(filterProjects); });
+projectSearch.addEventListener('input', () => { document.querySelector('#project-grid').dataset.filtered = ''; filterProjects(); });
+document.querySelector('#project-search-clear').addEventListener('click', () => { morph(() => { projectSearch.value = ''; filterProjects(); }); projectSearch.focus(); });
+document.querySelector('#project-reset').addEventListener('click', () => { morph(() => { projectSearch.value = ''; projectFilter = 'all'; filterProjects(); }); projectSearch.focus(); });
 document.querySelector('.project-filters').hidden = false;
 document.querySelector('.project-search').hidden = false;
 filterProjects();
@@ -114,6 +122,8 @@ function showProject(id) {
   android.hidden = !project.android;
   if (project.android) android.href = project.android; else android.removeAttribute('href');
   if (!projectDialog.open) {
+    // A terminal or guide hand-off closes at once, so two backdrops never fade together.
+    document.querySelectorAll('dialog').forEach(dialog => dialog.classList.toggle('dialog-instant', dialog !== projectDialog));
     projectDialog.showModal();
     projectDialog.scrollTop = 0;
   }

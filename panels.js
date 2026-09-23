@@ -2,12 +2,20 @@
 (() => {
   const ids = ['terminal-dialog', 'guide-dialog', 'email-dialog'];
   let returnFocus = null;
+  let switchTimer;
   function open(id, selector) {
     if (!ids.includes(id)) return;
     const target = document.getElementById(id);
-    if (!document.querySelector('dialog[open]')) returnFocus = document.activeElement;
+    const current = document.querySelector('dialog[open]');
+    if (!current) returnFocus = document.activeElement;
+    // Switching tabs keeps the frame still: the old panel closes at once and only the content fades.
+    const switching = Boolean(current && current !== target && ids.includes(current.id));
+    document.querySelectorAll('dialog').forEach(dialog => dialog.classList.toggle('dialog-instant', dialog !== target));
+    target.classList.toggle('panel-switch', switching);
     document.querySelectorAll('dialog[open]').forEach(dialog => { if (dialog !== target) dialog.close(); });
     if (!target.open) target.showModal();
+    clearTimeout(switchTimer);
+    if (switching) switchTimer = setTimeout(() => target.classList.remove('panel-switch'), 260);
     // Without a requested field, keep keyboard focus on the matching tab instead of the first one.
     target.querySelector(selector || `[data-panel="${id}"]`)?.focus();
   }
