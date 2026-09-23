@@ -95,7 +95,10 @@
     document.querySelector('#guide-dialog .terminal-bottom span').textContent=t[11];document.querySelector('[data-close="guide-dialog"]').setAttribute('aria-label',t[12]);
     try{localStorage.setItem('khonsu-guide-language',lang.value);}catch{}
   }
-  try{const stored=localStorage.getItem('khonsu-guide-language');const preferred=[...lang.options].some(o=>o.value===stored)?stored:(globalThis.PortfolioI18n?.language||navigator.language.split('-')[0]);if([...lang.options].some(o=>o.value===preferred))lang.value=preferred;}catch{}
+  // Start in the page's chosen language, including when scripts load after a change.
+  // A previous guide-only choice must not override a fresh page preference.
+  const preferred=globalThis.PortfolioI18n?.language||document.documentElement.lang||'en';
+  if([...lang.options].some(option=>option.value===preferred))lang.value=preferred;
   lang.addEventListener('change',translateUI);translateUI();
   window.addEventListener('portfolio:language',()=>{lang.value=PortfolioI18n.language;lang.dispatchEvent(new Event('change'));});
   function append(text, who, result) {
