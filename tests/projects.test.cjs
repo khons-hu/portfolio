@@ -6,7 +6,7 @@ const vm=require('node:vm');
 function setup(){
  const nodes=new Map();
  function node(selector){
-  if(!nodes.has(selector))nodes.set(selector,{textContent:'',hidden:false,open:false,scrollTop:180,attributes:{},replaceChildren(){},showModal(){this.open=true;},removeAttribute(key){delete this.attributes[key];delete this[key];},getAttribute(key){return this.attributes[key]??null;}});
+  if(!nodes.has(selector))nodes.set(selector,{textContent:'',hidden:false,open:false,scrollTop:180,attributes:{},replaceChildren(){},showModal(){this.open=true;},removeAttribute(key){delete this.attributes[key];delete this[key];},setAttribute(key,value){this.attributes[key]=String(value);},getAttribute(key){return this.attributes[key]??null;}});
   return nodes.get(selector);
  }
  const document={querySelector(selector){

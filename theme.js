@@ -9,7 +9,7 @@
   root.dataset.theme=theme;
   const button=document.querySelector('#theme-toggle');
   if(button){button.textContent=theme==='light'?'☾':'☀';const label=theme==='light'?'Switch to dark mode':'Switch to light mode';button.setAttribute('aria-label',globalThis.PortfolioI18n?.t(label)||label);button.title=button.getAttribute('aria-label');}
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#d6d9d6':'#090f16');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#e9e6df':'#090f16');
  }
  function motionAllowed(){return !root.classList.contains('motion-off')&&!document.hidden&&(root.classList.contains('motion-force-on')||!reduced.matches);}
  function finish(){clearTimeout(timer);busy=false;root.classList.remove('theme-changing');document.querySelector('#theme-toggle')?.removeAttribute('aria-busy');if(root.dataset.theme!==desired)change();}

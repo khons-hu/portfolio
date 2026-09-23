@@ -18,11 +18,11 @@ The private repository khons-hu/portfolio is connected to the existing Vercel pr
 
 `/` opens the terminal. Commands: `help`, `about`, `projects`, `work`, `now`, `contact`, `status`, `lore`, `theme`, `ask`, `email`, `open <project>`, `clear`, `close`. The project list and live links follow the cards on the page. Try `open receipts` or `open khonrelay`. Suggested commands appear as you type. Tab completes unambiguous commands and project names, arrows recall session history while preserving your unfinished input, and Escape closes dialogs. The `projects` result has clickable notes. `clear` removes this terminal’s output and history.
 
-Terminal, Ask khonsu and Email share a small navigation strip. Switching between them keeps the current conversation and email draft in their separate panels. The command field stays visible while results scroll.
+Terminal, Ask khonsu and Email are tabs in one panel frame, so the frame and tabs stay in place when switching. Switching keeps the current conversation and email draft in their separate panels, and keyboard focus lands on the matching tab. The command field stays visible while results scroll. `help` is an aligned command table in all seven languages; command words stay untranslated. Touch screens hide the keyboard-only hint.
 
-Ordinary navigation works throughout. Compact project cards put the descriptions ahead of the artwork. Search by name, technology or topic, together with the tools, games and earlier-work filters. Search is local and is not stored or sent anywhere.
+Ordinary navigation works throughout. Compact project cards (three, two or one per row) show a small lunar tile, the title, a tagline and a one-line description. Each card has on-page **Notes →** and, where one exists, one outside link: a filled pill for a hosted demo or playable build, an outlined pill for source, a download page or a playlist. Across the site ↗ leaves the site and → stays on the page. Search by name, technology or topic, together with the tools, games and earlier-work filters. Search is local and is not stored or sent anywhere.
 
-Cards open keyboard-accessible notes, with separate links to available demos, playlists or public source. “Copy project link” gives a direct address such as https://khons-hu.vercel.app/#project/khonrelay. It opens those notes on arrival. If clipboard access is unavailable, the address remains selectable. Shared links exclude query parameters.
+Cards open keyboard-accessible notes. The notes put their outside links (demo, playlist or itch.io page, public source, Android preview) above the longer text. “Copy project link” gives a direct address such as https://khons-hu.vercel.app/#project/khonrelay. It opens those notes on arrival. If clipboard access is unavailable, the address remains selectable. Shared links exclude query parameters.
 
 ## Motion and resource use
 
@@ -34,6 +34,11 @@ Edit index.html for the page and project groups, app.js for project notes, proje
 
 ## Verified locally
 
+2026-09-23 notebook refresh: `node --test tests/*.test.cjs` (40 tests) plus a scripted Chrome pass (52 checks) against the local server: search and filters, empty state, card notes versus outside links, deep links and hash reset, Escape and focus return, terminal completion, history with draft, help, clear, panel frame and draft isolation, empty-form validation with FormSubmit blocked at the network layer, five rapid theme toggles, motion cycling, header tab order, language picker and 320px layout. Screenshots compared before and after at 1440, 390 and 320px, both themes, all seven languages for visible labels. Chrome headless only; no physical device, Safari, Firefox or BrowserStack pass. No email was sent.
+
+Earlier pass:
+
+
 Desktop, 390px and 320px layouts visually reviewed. Search, combined filters, empty results, direct project links, copy feedback, Escape and restored focus checked in the browser. English, German and Hungarian UI exercised. Both themes reviewed. The updated terminal, shared navigation and email panel were also checked in English and Slovak at 390px and 320px. Command suggestions, project completion, clickable results, draft retention and separation from the page contact form were verified. No test email was sent during this UI pass. Clipboard failure and unknown links covered by automated tests. These are browser viewport checks, not real-device or BrowserStack tests. No horizontal overflow on mobile. Verified project modal, Escape, terminal autocomplete, command execution, history, unknown-command handling, clear, and navigation closing the terminal. No browser console warnings or errors observed. OS reduced-motion preference is active on the test machine and correctly disables motion. Normal-motion timing and numerical CPU profiling have not been measured.
 
 ## Ask khonsu guide
@@ -44,7 +49,7 @@ Verified: topic routing, Slovak accents, unknown/private-question fallbacks, ope
 
 ## Appearance
 
-Light/dark toggle in the header. Initially follows the system theme, then remembers the visitor’s choice locally. Both themes retain the lunar artwork and respect reduced motion.
+Light/dark toggle in the header. Initially follows the system theme, then remembers the visitor’s choice locally. Dark is midnight and ice; light is a warm paper tone rather than white, with the hero photo shown as a soft daylight negative. Switching fades colours for about 0.4 s with one small arc at the toggle; motion Off, reduced motion and hidden tabs skip it. System fonts only: Georgia for headlines, Avenir Next / Segoe UI / system UI for text and ui-monospace / Menlo for labels and commands. Styles live in one token-based `style.css`.
 
 
 ## Contact email

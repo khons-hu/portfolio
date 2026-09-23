@@ -23,8 +23,10 @@
     for(const attr of ['aria-label','title','alt']){const key=el.getAttribute(attr);if(key && Object.hasOwn(SITE_LOCALES.sk,key))bindings.push(()=>el.setAttribute(attr,t(key)));}
   });
   const selector=document.querySelector('#site-language');
+  const current=document.querySelector('.lang-current');
   function apply(value,persist=true){
     language=resolve(value);document.documentElement.lang=language;selector.value=language;
+    if(current)current.textContent=language.toUpperCase();
     if(persist)try{localStorage.setItem('khonsu-language',language);}catch{}
     bindings.forEach(update=>update());
     window.dispatchEvent(new CustomEvent('portfolio:language',{detail:language}));

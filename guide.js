@@ -79,7 +79,8 @@
     const row=document.createElement('div');row.className='guide-message '+who;if(who==='guide')row.lang=lang.value;
     const p=document.createElement('p');p.textContent=text;row.append(p);
     if(result&&(result.project||result.section)){
-      const button=document.createElement('button');button.className='guide-action';button.textContent=ui(lang.value)[result.project?6:7];
+      // Project notes and sections stay on this page, so they use → rather than the outside-link ↗.
+      const button=document.createElement('button');button.type='button';button.className='guide-action';button.textContent=ui(lang.value)[result.project?6:7].replace('↗','→');
       button.addEventListener('click',()=>{dialog.close();if(result.project)showProject(result.project);else document.getElementById(result.section).scrollIntoView({behavior:document.documentElement.classList.contains('motion-off')?'instant':'smooth'});});row.append(button);
     }
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();row.scrollIntoView({block:'nearest',behavior:'instant'});

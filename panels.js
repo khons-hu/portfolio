@@ -8,7 +8,8 @@
     if (!document.querySelector('dialog[open]')) returnFocus = document.activeElement;
     document.querySelectorAll('dialog[open]').forEach(dialog => { if (dialog !== target) dialog.close(); });
     if (!target.open) target.showModal();
-    if (selector) target.querySelector(selector)?.focus();
+    // Without a requested field, keep keyboard focus on the matching tab instead of the first one.
+    target.querySelector(selector || `[data-panel="${id}"]`)?.focus();
   }
   document.querySelectorAll('[data-panel]').forEach(button => button.addEventListener('click', () => open(button.dataset.panel)));
   for (const id of ids) document.getElementById(id).addEventListener('close', () => {
@@ -27,7 +28,7 @@
   function fitPanels() {
     const viewport = window.visualViewport;
     if (!viewport) return;
-    for (const id of ['terminal-dialog', 'email-dialog']) {
+    for (const id of ids) {
       const panel = document.getElementById(id);
       panel.style.setProperty('--panel-height', `${viewport.height}px`);
       panel.style.setProperty('--panel-top', `${viewport.offsetTop}px`);

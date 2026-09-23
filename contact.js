@@ -15,7 +15,7 @@ Object.keys(copy).forEach(k=>copy[k].push(pending[k]));
 function mountContact(host,prefix,language,compact=false){
 const panel=document.createElement(compact?'details':'div');panel.className='guide-contact'+(compact?'':' page-contact');
 const heading=compact?'summary':'h3';
-panel.innerHTML=`<${heading}></${heading}><form><label for="${prefix}-email"></label><input id="${prefix}-email" name="email" type="email" autocomplete="email" maxlength="254" required><label for="${prefix}-message"></label><textarea id="${prefix}-message" name="message" rows="4" minlength="10" maxlength="3000" required></textarea><div class="contact-trap" aria-hidden="true"><label for="${prefix}-website">Leave blank</label><input id="${prefix}-website" name="website" tabindex="-1" autocomplete="off"></div><p class="contact-notice"></p><button type="submit"></button> <a href="mailto:ptr.obrtal@gmail.com"></a><p class="contact-status" role="status" aria-live="polite"></p></form>`;
+panel.innerHTML=`<${heading}></${heading}><form><label for="${prefix}-email"></label><input id="${prefix}-email" name="email" type="email" autocomplete="email" maxlength="254" required><label for="${prefix}-message"></label><textarea id="${prefix}-message" name="message" rows="4" minlength="10" maxlength="3000" required></textarea><div class="contact-trap" aria-hidden="true"><label for="${prefix}-website">Leave blank</label><input id="${prefix}-website" name="website" tabindex="-1" autocomplete="off"></div><p class="contact-notice"></p><div class="contact-actions"><button type="submit"></button><a href="mailto:ptr.obrtal@gmail.com"></a></div><p class="contact-status" role="status" aria-live="polite"></p></form>`;
 if(compact)host.querySelector('#guide-form').before(panel);else host.append(panel);
 const form=panel.querySelector('form'),button=form.querySelector('button'),status=form.querySelector('.contact-status');let busy=false,statusKey=deliveryEnabled?null:10;button.disabled=!deliveryEnabled;
 function translate(){const t=copy[language()]||copy.en;panel.querySelector(heading).textContent=t[0];form.querySelector(`[for="${prefix}-email"]`).textContent=t[1];form.querySelector(`[for="${prefix}-message"]`).textContent=t[2];button.textContent=t[busy?5:3];form.querySelector('.contact-notice').textContent=t[4];form.querySelector('a').textContent=t[9];status.textContent=statusKey===null?'':t[statusKey];}
@@ -24,6 +24,6 @@ translate();return translate;
 }
 const translateEmail=mountContact(document.querySelector('#email-panel-content'),'contact',()=>globalThis.PortfolioI18n?.language||document.documentElement.lang);
 window.addEventListener('portfolio:language',translateEmail);
-const translatePage=mountContact(document.querySelector('#contact'),'page-contact',()=>globalThis.PortfolioI18n?.language||document.documentElement.lang);
+const translatePage=mountContact(document.querySelector('#contact-form-host')||document.querySelector('#contact'),'page-contact',()=>globalThis.PortfolioI18n?.language||document.documentElement.lang);
 window.addEventListener('portfolio:language',translatePage);
 })();
