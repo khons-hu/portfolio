@@ -35,15 +35,39 @@ test('new project opens at the top and a source-only project clears the prior pr
 test('rerendering an already open project preserves the reading position',()=>{
  const {node,show}=setup();show('thinkroom');node('#project-dialog').scrollTop=170;show('thinkroom');assert.equal(node('#project-dialog').scrollTop,170);
 });
-test('project filters select groups and refresh translated counts',()=>{
+test('switching project links resets the notes to their beginning',()=>{
+ const {node,show}=setup();show('thinkroom');node('#project-dialog').scrollTop=170;show('calculator');assert.equal(node('#project-dialog').scrollTop,0);
+});
+function filters(){
  const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
- const cards=['tools','games','earlier','games'].map(projectGroup=>({dataset:{projectGroup},hidden:false}));
+ const cards=[['tools','Khonsolve Python coding'],['games','Dots React game'],['earlier','Calculator C++ Arduino'],['games','Receipts Godot game']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
  const buttons=['all','tools','games','earlier'].map(projectFilter=>({dataset:{projectFilter},attributes:{},setAttribute(k,v){this.attributes[k]=v;},addEventListener(k,fn){this[k]=fn;}}));
- const count={textContent:''},group={hidden:true},events={};let translated=false;
- const context={document:{querySelectorAll:selector=>selector==='[data-project-group]'?cards:buttons,querySelector:selector=>selector==='#project-count'?count:group},window:{addEventListener:(key,fn)=>events[key]=fn},t:text=>translated?'Počet projektov: {count}':text};
+ const nodes=new Map();
+ function node(key){if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,addEventListener(k,fn){this[k]=fn;},focus(){this.focused=true;}});return nodes.get(key);}
+ const events={};let translated=false;
+ const context={document:{querySelectorAll:selector=>selector==='[data-project-group]'?cards:buttons,querySelector:node},window:{addEventListener:(key,fn)=>events[key]=fn},t:text=>translated?'Počet projektov: {count}':text};
  vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),context);
- assert.equal(group.hidden,false);assert.equal(count.textContent,'4 projects');
- buttons[2].click();assert.deepEqual(cards.map(card=>card.hidden),[true,false,true,false]);assert.equal(buttons[2].attributes['aria-pressed'],'true');assert.equal(count.textContent,'2 projects');
- translated=true;events['portfolio:language']();assert.equal(count.textContent,'Počet projektov: 2');
+ return {cards,buttons,node,language(){translated=true;events['portfolio:language']();},search(value){node('#project-search').value=value;node('#project-search').input();}};
+}
+test('project filters select groups and refresh translated counts',()=>{
+ const {cards,buttons,node,language}=filters();
+ assert.equal(node('.project-filters').hidden,false);assert.equal(node('#project-count').textContent,'4 projects');
+ buttons[2].click();assert.deepEqual(cards.map(card=>card.hidden),[true,false,true,false]);assert.equal(buttons[2].attributes['aria-pressed'],'true');assert.equal(node('#project-count').textContent,'2 projects');
+ language();assert.equal(node('#project-count').textContent,'Počet projektov: 2');
  buttons[0].click();assert(cards.every(card=>!card.hidden));
+});
+test('search combines words and categories, preserves C++, and recovers from no matches',()=>{
+ const {cards,buttons,node,search}=filters();
+ search('  C++ arduino ');assert.deepEqual(cards.map(card=>card.hidden),[true,true,false,true]);
+ buttons[2].click();assert(cards.every(card=>card.hidden));assert.equal(node('#project-empty').hidden,false);
+ node('#project-reset').click();assert(cards.every(card=>!card.hidden));assert.equal(node('#project-search').value,'');assert.equal(node('#project-search').focused,true);
+ search('games');assert.deepEqual(cards.map(card=>card.hidden),[true,false,true,false]);
+ search('PYTHON');assert.equal(cards[0].hidden,false);assert.equal(node('#project-count').textContent,'1 project');
+ node('#project-search-clear').click();assert(cards.every(card=>!card.hidden));assert.equal(node('#project-search-clear').disabled,true);
+ search('<script>alert(1)</script>');assert(cards.every(card=>card.hidden));
+});
+test('search matches translated text without accents and keeps original technology terms',()=>{
+ const {cards,search,language}=filters();
+ cards[0].textContent='Cvičenia na kód';language();search('cvicenia');assert.equal(cards[0].hidden,false);
+ search('python');assert.equal(cards[0].hidden,false);
 });

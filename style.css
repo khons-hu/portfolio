@@ -110,3 +110,37 @@ html[data-theme=light] #theme-toggle::after{background:#315f7c}
 .project-filters button:hover{color:var(--ink)}
 #project-count{margin-left:auto;font:12px var(--mono);color:var(--muted)}
 @media(max-width:600px){.project-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.project-filters[hidden]{display:none}#project-count{grid-column:1/-1;margin:4px 0 0}.project-filters button{padding:9px;font-size:12px}}
+
+/* Compact identity strips put the project description ahead of decorative space. */
+.project-art.portfolio-art{height:148px;flex-direction:row;align-items:center;justify-content:flex-start;gap:22px;padding:24px 27px;border-bottom:1px solid var(--line)}
+.portfolio-art>span{flex:0 0 102px;font-size:64px;line-height:1.1;letter-spacing:-3px}
+.portfolio-art .art-caption{font-size:19px;line-height:1.5;text-shadow:none;min-width:0}
+.portfolio-art .art-caption span{font-size:9px;letter-spacing:1.2px;display:block;margin-top:4px}
+.project-info{padding-top:20px}
+.project-info h3{line-height:1.35;margin-bottom:12px}
+.project-info p{max-width:48ch}
+@media(max-width:600px){.project-art.portfolio-art{height:118px;gap:15px;padding:20px 23px}.portfolio-art>span{flex-basis:82px;font-size:50px}.portfolio-art .art-caption{font-size:17px}.portfolio-art .art-caption span{font-size:8px;letter-spacing:.6px}.project-info{padding-top:20px}}
+
+[data-project="calculator"] .portfolio-art>span{font-size:36px;letter-spacing:-2px}
+@media(max-width:600px){[data-project="calculator"] .portfolio-art>span{font-size:28px}}
+
+/* Search belongs to the project shelf, not another floating control. */
+.project-search{display:flex;align-items:center;gap:20px;margin-bottom:18px}
+.project-search[hidden],#project-empty[hidden]{display:none}
+.project-search>label{font:12px var(--mono);color:var(--muted);flex-shrink:0}
+.project-search-field{display:flex;align-items:center;gap:10px;flex:1;max-width:580px}
+#project-search{width:100%;min-width:0;min-height:46px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:10px 13px;font:16px var(--sans)}
+#project-search::placeholder{color:var(--muted);opacity:1}
+#project-search-clear,#project-reset,#project-copy-link{background:transparent;border:1px solid var(--line);border-radius:5px;color:var(--ink);font:12px var(--mono);padding:10px 13px;min-height:44px;cursor:pointer}
+#project-search-clear{flex-shrink:0}
+#project-search-clear:disabled{opacity:.45;cursor:default}
+#project-empty{padding:30px 0 40px;border-block:1px solid var(--line);color:var(--muted)}
+#project-empty p{margin-bottom:15px}
+.project-share{border-top:1px solid var(--line);margin-top:28px;padding-top:20px;display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+#project-share-status{font-size:13px;color:var(--muted)}
+#project-share-address{width:100%;min-width:0;background:transparent;color:var(--ink);border:1px solid var(--line);padding:10px;border-radius:4px;font:14px var(--mono)}
+@media(max-width:600px){.project-search{align-items:stretch;flex-direction:column;gap:8px}.project-search-field{max-width:none;gap:8px}#project-search-clear{font-size:11px;padding-inline:10px}.portfolio-art .art-caption{overflow-wrap:anywhere}.project-meta{gap:8px;flex-wrap:wrap}}
+
+.project-dialog-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px}
+#project-dialog .project-dialog-actions>a{margin:0;min-height:44px;display:inline-flex;align-items:center}
+#project-dialog .project-dialog-actions>a[hidden]{display:none}
