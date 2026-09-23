@@ -38,6 +38,16 @@ const server = http.createServer(async (req, res) => {
     const data = await response.json();
     if (!response.ok || !data.refresh_token) throw new Error(`token exchange failed (${response.status})`);
     if (data.scope && data.scope.split(' ').some(s => s !== SCOPE)) throw new Error(`unexpected scope: ${data.scope}`);
+    // Existing Spotify apps may merge old permissions when refreshing. Verify the
+    // refresh grant too, before storing anything in a public deployment.
+    const refreshed = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: { Authorization: 'Basic ' + Buffer.from(`${id}:${secret}`).toString('base64'), 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: data.refresh_token })
+    });
+    const renewed = await refreshed.json();
+    if (!refreshed.ok || !renewed.access_token) throw new Error('refresh verification failed');
+    if (renewed.scope !== SCOPE) throw new Error('refresh permissions exceed currently-playing; use a separate Spotify app');
     // Quick check that the scope works, without printing anything personal.
     const check = await fetch('https://api.spotify.com/v1/me/player/currently-playing', { headers: { Authorization: `Bearer ${data.access_token}` } });
     execFileSync('pbcopy', { input: data.refresh_token });
