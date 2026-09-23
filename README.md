@@ -30,6 +30,12 @@ When motion is allowed: dialogs and tool panels fade in and out with their backd
 
 Finite entrance and reveal transitions. Hover effects use transform. No animation loop, canvas, video, WebGL, page-scroll handler, polling or third-party font. Visual viewport events keep the terminal and email panel within the available screen height. Reveals stop observing after their first appearance. Hidden-tab motion is disabled. Motion has three saved choices: System follows the OS, On explicitly enables the small transitions, and Off disables them. Preferences are stored for this site in the visitor’s browser. Terminal output and history are bounded.
 
+## Sharing, 404 and weight
+
+Link previews use Open Graph and Twitter card tags with `assets/og-image.jpg` (1200×630, made from the hero photo and wordmark). Direct project links share the same card. `404.html` is a small page in the site style with a home link; its short copy is in `not-found.js` for all 17 languages, and it loads no language packs. The hero photo is served as AVIF (`assets/moonlight.avif`, about 54 KB) with the JPEG as fallback. A visit in English downloads no extra language files.
+
+The floating guide button steps aside while a small link or button sits under it, using an IntersectionObserver sized to the button, with no scroll handler. Keyboard focus always brings it back. Without JavaScript, controls that need it (Notes, terminal, guide, theme, motion, language) are hidden; content, outside links and email stay available.
+
 ## Content updates
 
 Edit index.html for the page and project groups, app.js for project notes, project-links.js for public link slugs, and site-locales.js for translations. Edit terminal.js for commands and panels.js for the shared tool navigation. The terminal derives its project catalog from the cards. No private client details, CV download, invented results, or unpublished source links are included.
@@ -69,6 +75,6 @@ The page, project notes, terminal help and local guide support English, Slovak, 
 
 Arabic and Urdu use right-to-left layouts, set before first paint by `theme.js` so the page never flips after loading. The hero photo is mirrored and on-page arrows point left. Handles, email addresses, technology stacks and terminal commands keep their original direction; sentence punctuation and `{count}` placeholders stay outside those isolated runs. All copy ships as local JavaScript. No translation API, tracking or model download is used. The guide still matches prepared topics, so translated answers do not make it an unrestricted chatbot. The new translations are model-assisted and have not had native-speaker review.
 
-`language-data.js` holds the common registry. The two `extra-locales-*.js` files contain the added page, note, terminal and guide catalogs, keyed by original strings or stable topic IDs. Run `node --test tests/*.test.cjs` when changing a catalog or the language list.
+`language-data.js` holds the common registry and loads packs on demand. English, Slovak, Hungarian, Polish, German, Spanish and Czech are built in (`site-locales.js`, `guide-locales.js`). The other ten live in `locales/<code>.js` and load only when chosen: `theme.js` starts the request in `<head>` for a saved or browser language, and switching waits for the pack before changing any text, so the page never mixes languages. If a pack cannot load, the page stays in the current language. `locales/guide-keywords.js` is always loaded so the guide matches a question in any script. Run `node --test tests/*.test.cjs` when changing a catalog or the language list.
 
 Language expansion validation: 45 Node tests, all ten added locales checked at 320px in both themes, Portuguese desktop layout and saved selection, Arabic guide/terminal/email panels, Chinese guide input, and Portuguese project notes. No real email was sent. These checks used a Chromium preview, not physical mobile devices.

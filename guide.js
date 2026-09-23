@@ -15,7 +15,7 @@
     {id:'ai', keys:['agi','rsi','agents','agent','ai','models','modely','llm'], en:'He follows AGI, recursive self-improvement, and new model releases, and tries coding agents in his own work. His interest in learning systems also appears in his PPO thesis project.', sk:'Sleduje AGI, rekurzívne sebazlepšovanie a nové modely. Coding agentov skúša vo vlastnej práci. Learning systémom sa venoval aj v diplomovke s PPO.', section:'now'},
     {id:'games', keys:['cs2','counter strike','games','gaming','hry','hras','hrava'], en:'Counter-Strike is part of his programming background. These days he is working on his own tools and game prototypes.', sk:'Counter-Strike patrí k jeho programátorským začiatkom. Dnes pracuje na vlastných nástrojoch a herných prototypoch.', section:'about'}
   ];
-  const localeData=typeof module!=='undefined'&&module.exports?require('./language-data.js'):{EXTRA_LOCALE_PACKS,languageDirection,directionalText};
+  const localeData=typeof module!=='undefined'&&module.exports?require('./language-data.js'):{EXTRA_LOCALE_PACKS,GUIDE_KEYWORDS:globalThis.KHONSU_GUIDE_KEYWORDS||{},languageDirection,directionalText};
   const locales={...(typeof module!=='undefined'&&module.exports?require('./guide-locales.js'):GUIDE_LOCALES)};
   const extraKeys={work:['mit dolgozol','mivel foglalkozol','munka','dolgozik','prace','pracujesz','pracuji','co delas','prace','arbeit','beruf','was machst du','integracio','integracje'],spotify:['zene','lejatszasi lista','muzyka','hudba','musik'],cpp:['folyamatok','procesami','prozesse'],study:['egyetem','diploma','tanult','wyksztalcenie','studia','uczelni','vzdelani','diplomova','abschluss','studium','universitat'],projects:['projektek','projekteken','projektjeid','projektjei','projektet','projektach','projektami','jakimi projektami','projektow','projektech','projekten','projekte','zbudowal'],contact:['kapcsolat','elerhetoseg','elerni','skontaktowac','zatrudnic','erreichen','kontaktovat'],about:['ki vagy','kicsoda','magadrol','kim jestes','o sobie','wer bist du','uber dich','kdo jsi','o sobe'],ai:['mesterseges intelligencia','modellek','sztuczna inteligencja','modelle','kunstliche intelligenz'],games:['jatekok','jatszol','gry','grasz','hrajes','spiele','spielst']};
   topics.forEach((topic,index)=>{topic.keys.push(...(extraKeys[topic.id]||[]));Object.keys(locales).forEach(lang=>topic[lang]=locales[lang].answers[index]);});
@@ -35,14 +35,13 @@
   const spanishKeys={work:['trabajo','soporte','que haces','integraciones'],projects:['proyectos','proyecto'],about:['quien eres','sobre ti','nombre'],study:['universidad','tesis','estudios'],contact:['contacto','correo','contratar'],games:['juegos','juegas'],ai:['inteligencia artificial','modelos'],spotify:['musica'],site:['esta web','este sitio']};
   topics.forEach(topic=>topic.keys.push(...(spanishKeys[topic.id]||[])));
   // These packs use topic IDs so inserting a topic cannot shift the translations.
-  for (const [language, pack] of Object.entries(localeData.EXTRA_LOCALE_PACKS)) {
-    locales[language] = pack.guide;
-    for (const topic of topics) {
-      topic.translations ||= {};
-      topic.translations[language] = pack.guide.answers[topic.id];
-      topic.keys.push(...(pack.guide.keywords[topic.id] || []));
-    }
-  }
+  // Keywords for every language are always present, so a question matches in any script.
+  // Answer packs load with their language; lookups below read them when they arrive.
+  for (const keywords of Object.values(localeData.GUIDE_KEYWORDS||{}))
+    for (const topic of topics) topic.keys.push(...(keywords[topic.id] || []));
+  const packGuide = language => localeData.EXTRA_LOCALE_PACKS?.[language]?.guide;
+  for (const [language, pack] of Object.entries(localeData.EXTRA_LOCALE_PACKS||{}))
+    for (const topic of topics) { topic.translations ||= {}; topic.translations[language] = pack.guide.answers[topic.id]; }
   const matchesKey = (question,key) => {
     const value=normalize(key);
     if (!value) return false;
@@ -52,18 +51,18 @@
   };
   const englishUI=['A small guide to Patrick’s work.','Prepared answers, not an AI model. Questions stay in this tab and disappear on reload.','Answer language','Ask about the portfolio…','Send question','Clear chat','Open project ↗','View section ↗','Work','Projects','About me','LOCAL GUIDE · NO API','Close guide'];
   const slovakUI=['Malý sprievodca Patrickovou prácou.','Pripravené odpovede, nie AI model. Otázky zostávajú v tejto karte a po obnovení zmiznú.','Jazyk odpovedí','Opýtaj sa na portfólio…','Odoslať otázku','Vymazať chat','Otvoriť projekt ↗','Pozrieť sekciu ↗','Práca','Projekty','O mne','LOKÁLNY SPRIEVODCA · BEZ API','Zavrieť'];
-  function ui(language){return locales[language]?.ui||(language==='sk'?slovakUI:englishUI);}
+  function ui(language){return (locales[language]||packGuide(language))?.ui||(language==='sk'?slovakUI:englishUI);}
   function answer(text, language) {
     const q = normalize(text);
     const sk = language === 'sk';
-    const loc=locales[language];
+    const loc=locales[language]||packGuide(language);
     if (loc?.privacyKeys?.some(key=>matchesKey(q,key))) return {text:loc.privacy};
     if (loc?.greetings?.some(key=>q===normalize(key))) return {text:loc.greeting};
     if (/\b(contrasena|secreto|salario|direccion|password|secret|salary|address|heslo|plat|bydlisko|jelszo|fizetes|haslo|wynagrodzenie|passwort|gehalt)\b/.test(q)) return {text:loc?.privacy||(sk?'Poznám len verejné informácie z portfólia. Súkromné údaje tu nenájdeš.':'I only know the public portfolio. Private details aren’t available here.')};
     if (/\b(hola|buenas|hello|hi|hey|ahoj|cau|szia|udv|czesc|hej|hallo|servus)\b/.test(q) && q.split(' ').length < 4) return {text:loc?.greeting||(sk?'Ahoj! Som lokálny sprievodca portfóliom, nie Patrick ani AI model. Čo ťa zaujíma?':'Hey! I’m a local portfolio guide, not Patrick or an AI model. What would you like to explore?')};
     const scored = topics.map(topic => ({topic,score:topic.keys.reduce((score,key)=>score+(matchesKey(q,key)?key.includes(' ')?3:2:0),0)})).sort((a,b)=>b.score-a.score);
     if (!scored[0].score) return {text:loc?.fallback||(sk?'Toto neviem spoľahlivo priradiť. Skús prácu, projekty, C++, Spotify alebo kontakt. Poznám iba pripravené informácie z tohto webu.':'I can’t reliably match that question. Try work, projects, C++, Spotify, or contact. I only know the prepared information on this site.')};
-    const t=scored[0].topic;return {text:t.translations?.[language]||t[language]||t.en,project:t.project,section:t.section};
+    const t=scored[0].topic;return {text:t.translations?.[language]||packGuide(language)?.answers?.[t.id]||t[language]||t.en,project:t.project,section:t.section};
   }
   if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui};
   if (typeof document === 'undefined') return;
@@ -99,7 +98,9 @@
   // A previous guide-only choice must not override a fresh page preference.
   const preferred=globalThis.PortfolioI18n?.language||document.documentElement.lang||'en';
   if([...lang.options].some(option=>option.value===preferred))lang.value=preferred;
-  lang.addEventListener('change',translateUI);translateUI();
+  // An added answer language loads its pack first; until then the guide keeps its current copy.
+  lang.addEventListener('change',()=>{const next=lang.value;const load=globalThis.PortfolioI18n?.load||(()=>Promise.resolve());load(next).then(()=>{if(lang.value===next)translateUI();},()=>{});});
+  translateUI();
   window.addEventListener('portfolio:language',()=>{lang.value=PortfolioI18n.language;lang.dispatchEvent(new Event('change'));});
   function append(text, who, result) {
     const row=document.createElement('div');row.className='guide-message '+who;if(who==='guide'){row.lang=lang.value;row.dir=localeData.languageDirection(lang.value);}else row.dir='auto';
@@ -116,4 +117,26 @@
   document.querySelector('#guide-form').addEventListener('submit',e=>{e.preventDefault();ask(input.value);});
   document.querySelectorAll('[data-question]').forEach(button=>button.addEventListener('click',()=>ask(button.dataset.question)));
   document.querySelector('#guide-clear').addEventListener('click',()=>{log.replaceChildren();input.value='';input.focus();});
+  // The floating launcher steps aside while a link, button or field sits underneath it, then returns.
+  // No scroll handler: an IntersectionObserver whose root box is the launcher's own footprint reports overlaps.
+  const launcher=document.querySelector('#guide-launcher');
+  if('IntersectionObserver' in window&&launcher){
+    const targets=[...document.querySelectorAll('main :is(a,button,input,select,textarea,summary),footer :is(a,button)')].filter(el=>!el.closest('.sr-only,.contact-trap'));
+    const covered=new Set();let observer,frame;
+    const update=()=>launcher.classList.toggle('launcher-yield',covered.size>0);
+    const watch=()=>{
+      observer?.disconnect();covered.clear();launcher.classList.remove('launcher-yield');
+      const box=launcher.getBoundingClientRect();if(!box.width)return;
+      const pad=6,width=document.documentElement.clientWidth,height=window.innerHeight;
+      const margin=[-(box.top-pad),-(width-box.right-pad),-(height-box.bottom-pad),-(box.left-pad)].map(value=>Math.min(0,Math.round(value))+'px').join(' ');
+      // Only small controls count. A whole card or a full-width row stays tappable around the launcher.
+      const small=box=>box.width<=280&&box.height<=72;
+      observer=new IntersectionObserver(entries=>{for(const entry of entries)entry.isIntersecting&&small(entry.boundingClientRect)?covered.add(entry.target):covered.delete(entry.target);update();},{rootMargin:margin});
+      targets.forEach(target=>observer.observe(target));
+    };
+    // Re-measure only when the launcher can move: viewport size, language (label width, RTL side).
+    const later=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(watch);};
+    window.addEventListener('resize',later);window.addEventListener('portfolio:language',later);
+    watch();
+  }
 })();

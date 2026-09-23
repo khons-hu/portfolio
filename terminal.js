@@ -26,8 +26,11 @@ const terminalCopy = {
     commands: { about: 'kdo je za přezdívkou', projects: 'vybrané projekty a experimenty', now: 'co teď zkoumám', contact: 'kde mě najdeš', status: 'živé veřejné projekty', lore: 'proč khonsu', theme: 'přepne světlý / tmavý motiv', open: 'poznámky k projektu', ask: 'otevře Zeptej se khonsu', email: 'napiš Patrickovi', clear: 'vymaže výstup a historii', close: 'zpět na stránku' } }
 };
 // Commands stay in English so examples and completion work in every locale.
-for (const [lang, pack] of Object.entries(typeof EXTRA_LOCALE_PACKS === 'undefined' ? {} : EXTRA_LOCALE_PACKS)) terminalCopy[lang] = pack.terminal;
-function terminalStrings() { return terminalCopy[globalThis.PortfolioI18n?.language] || terminalCopy.en; }
+// Added languages arrive as separate packs, possibly after this file runs.
+function terminalStrings() {
+  const lang = globalThis.PortfolioI18n?.language;
+  return terminalCopy[lang] || (typeof EXTRA_LOCALE_PACKS === 'undefined' ? null : EXTRA_LOCALE_PACKS[lang]?.terminal) || terminalCopy.en;
+}
 function helpRows() {
   const described = terminalStrings().commands;
   return helpCommands.map(command => [command, command === 'work' ? 'Customer Support Partner L2' : described[command.split(' ')[0]]]);

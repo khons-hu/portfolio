@@ -7,3 +7,5 @@ The interface supports English, Slovak, Hungarian, Polish, German, Spanish and C
 The guide and contact form use their existing catalogs, including Spanish. Changing the site language also changes the guide. A separate guide-language choice is remembered until the visitor changes the site language again. Typed questions, contact drafts, links, handles, project names and terminal command keywords are not translated. Existing conversation and terminal history keep the language they were written in.
 
 Public role names and technology names stay as authored. Upstream or user-authored content is never passed through a model. Localized project notes preserve the same availability and notification limits.
+
+Ten further languages (pt, fr, zh, hi, ar, bn, ru, ur, id, ja) ship as `locales/<code>.js` and load only when chosen. Their guide keywords stay in the always-loaded `locales/guide-keywords.js`.

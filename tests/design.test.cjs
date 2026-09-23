@@ -36,7 +36,8 @@ function terminal(language='en'){
 
 test('help lists every command with a description in all supported languages',()=>{
  const s=terminal();
- const languages=vm.runInContext('Object.keys(terminalCopy)',s.context);
+ // Built-in copy lives in terminal.js; added languages come from their packs.
+ const languages=[...new Set([...vm.runInContext('Object.keys(terminalCopy)',s.context),...Object.keys(LANGUAGE_NAMES)])];
  assert.deepEqual([...languages].sort(),Object.keys(LANGUAGE_NAMES).sort());
  for(const language of languages){
   s.i18n.language=language;s.node('#terminal-output').replaceChildren();
@@ -174,10 +175,13 @@ test('reading direction is set before first paint and matches the language regis
  const listed=JSON.parse(source.match(/const supported=(\[[^\]]+\])/)[1].replace(/'/g,'"'));
  assert.deepEqual(listed,Object.keys(LANGUAGE_NAMES),'theme.js language list drifted from language-data.js');
  const early=source.slice(0,source.indexOf('// Apply the saved theme'));
- const run=(saved,languages)=>{const root={};vm.runInNewContext(early,{document:{documentElement:root},localStorage:{getItem:()=>saved},navigator:{languages}});return root.lang+'/'+root.dir;};
+ const run=(saved,languages)=>{const classes=new Set(),head=[];const root={classList:{add:c=>classes.add(c)},hasAttribute:()=>false};vm.runInNewContext(early,{URL,document:{documentElement:root,head:{append:el=>head.push(el)},createElement:()=>({dataset:{}}),currentScript:{src:'https://example.com/theme.js?v=test'}},localStorage:{getItem:()=>saved},navigator:{languages}});run.last={classes,head};return root.lang+'/'+root.dir;};
  assert.equal(run('ar',['en-US']),'ar/rtl');
  assert.equal(run(null,['ur-PK','en']),'ur/rtl');
  assert.equal(run(null,['zh-TW','de-DE']),'de/ltr','Traditional Chinese is not relabelled');
  assert.equal(run('xx',['ja-JP']),'ja/ltr');
  assert.equal(run(null,['fr-CA']),'fr/ltr');
+ assert(run.last.classes.has('js'),'the js class marks JavaScript-only controls as usable');
+ assert.equal(run.last.head[0].src,'/locales/fr.js?v=test','an added language starts loading in <head> with the page version');
+ run(null,['sk-SK']);assert.equal(run.last.head.length,0,'built-in languages need no extra request');
 });

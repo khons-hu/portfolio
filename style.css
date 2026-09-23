@@ -325,6 +325,10 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 /* Launcher */
 #guide-launcher{position:fixed;inset-inline-end:22px;bottom:22px;z-index:5;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 15px;border:1px solid var(--line-strong);border-radius:999px;background:var(--raised);color:var(--ink);font:500 13px var(--sans);box-shadow:var(--shadow-soft);transition:border-color .2s ease}
 #guide-launcher:hover{border-color:var(--accent)}
+/* Steps aside while a control sits underneath (guide.js). Keyboard focus always brings it back. */
+#guide-launcher{transition:border-color .2s ease,opacity .2s ease,translate .2s ease}
+#guide-launcher.launcher-yield{opacity:0;translate:0 12px;pointer-events:none}
+#guide-launcher.launcher-yield:focus-visible{opacity:1;translate:none;pointer-events:auto}
 .launcher-mark{font-size:19px;line-height:1;color:var(--accent)}
 
 /* ---------- Motion: finite, optional, never looping ---------- */
@@ -477,3 +481,13 @@ input[type=email],#project-share-address{direction:ltr;text-align:start}
 [dir=rtl] .details-label::after,[dir=rtl] .terminal-project::after{content:"←";content:"←"/""}
 [dir=rtl] .project-details:hover .details-label::after{transform:translateX(-3px)}
 @media(max-width:600px){#project-count{margin-inline-start:0}}
+
+/* 404: the hero, quieter. */
+.not-found{min-height:clamp(540px,86svh,760px)}
+.not-found h1{font-size:clamp(46px,6.4vw,84px);line-height:1.05;max-width:14ch;text-wrap:balance}
+.not-found .hero-copy{max-width:34em}
+.not-found-page .site-header{grid-template-columns:1fr}
+
+/* Without JavaScript, hide controls that cannot work; content, links and email stay available. */
+html:not(.js) :is(.details-label,.terminal-toggle,.text-button,#guide-launcher,#theme-toggle,#motion-toggle,.lang-picker){display:none}
+html:not(.js) .project-details{cursor:default}

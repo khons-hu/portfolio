@@ -7,6 +7,17 @@
  const nav=typeof navigator!=='undefined'?navigator:{};
  const lang=pick(saved)||(nav.languages||[nav.language]).map(pick).find(Boolean)||'en';
  const root=document.documentElement;root.lang=lang;root.dir=['ar','ur'].includes(lang)?'rtl':'ltr';
+ // JavaScript is running: controls that need it may show (see html:not(.js) in style.css).
+ root.classList.add('js');
+ // Start fetching an added language's pack now, in parallel with the page. language-data.js reuses this request.
+ // Standalone pages (404) carry their own short copy and skip the pack.
+ if(['pt','fr','zh','hi','ar','bn','ru','ur','id','ja'].includes(lang)&&document.head&&!root.hasAttribute('data-standalone')){
+  const script=document.createElement('script');
+  const version=document.currentScript?new URL(document.currentScript.src).search:'';
+  script.src='/locales/'+lang+'.js'+version;script.async=true;script.dataset.locale=lang;
+  script.onerror=()=>{script.dataset.failed='1';};
+  document.head.append(script);
+ }
 })();
 // Apply the saved theme before styles load. User clicks are queued, never discarded.
 (function(){
