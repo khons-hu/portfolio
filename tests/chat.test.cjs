@@ -55,7 +55,7 @@ test('the guide speaks about Patrick in the third person and only from public fa
 test('site, project and contact facts match what the page shows',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),terminal=fs.readFileSync(path.join(__dirname,'../terminal.js'),'utf8');
- const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<8000,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
+ const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<8400,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
  const strip=s=>s.replace(/<[^>]+>/g,'');
  const cards=[...html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)].map(([a])=>({title:strip(a.match(/<h3>([\s\S]*?)<\/h3>/)[1]),text:strip(a.match(/<\/h3><p>([\s\S]*?)<\/p>/)[1])}));
  assert.equal(cards.length,PROJECTS.length);
@@ -97,4 +97,16 @@ test('page facts come from the page itself',()=>{
  for(const phrase of ['background in backend and full-stack development','bounded agent workflows with OpenAI coding agents and Jev','event collection','reproducible case','quiet AI update inbox','reinforcement learning','September 2026'])assert(html.includes(phrase)||html.toUpperCase().includes(phrase.toUpperCase()),phrase);
  for(const line of PAGE)assert(system.includes(line));
  assert(PAGE.every(line=>!/\b(I|my|me)\b/.test(line)),'page facts are in the third person');
+});
+
+test('each project fact names the card’s outside link, so availability is never generalized',()=>{
+ const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
+ const {PROJECTS,system}=require('../api/chat.js');
+ const phrase={'Open app ↗':'live app','View source ↗':'GitHub source','Play on itch.io ↗':'playable on itch.io','View on itch.io ↗':'itch.io page','Open playlist ↗':'Spotify playlist'};
+ for(const [card] of html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)){
+  const title=card.match(/<h3>([^<]+)<\/h3>/)[1],label=card.match(/class="project-live"[^>]*>([^<]+)<\/a>/)[1];
+  const entry=PROJECTS.find(p=>p[0]===title);assert.match(entry[2],new RegExp(`; ${phrase[label]}$`),`${title}: ${entry[2]}`);
+ }
+ assert.match(system,/"What are you working on\?" gets "Patrick is working on…", never "I'm working on…"/);
+ assert.match(system,/do not generalize a fact about one project to others/);
 });
