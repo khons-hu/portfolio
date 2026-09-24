@@ -79,6 +79,7 @@
     "Review storefront behaviour, product feeds, mapping, synchronization, and event collection for smaller shops and larger clients.": "Periksa perilaku toko, feed produk, pemetaan, sinkronisasi, dan pengumpulan peristiwa untuk klien kecil maupun besar.",
     "Fix, verify, hand over": "Perbaiki, periksa, teruskan",
     "Make a focused integration fix and verify it. Where engineering is needed, provide a reproducible case and clear technical evidence.": "Buat perbaikan integrasi yang terarah dan periksa hasilnya. Jika perlu bantuan engineering, siapkan kasus yang dapat diulang dan bukti teknis yang jelas.",
+    "The work also includes implementation and refactoring, backend analysis, and performance optimisation of collectors and event handling. Analytics fixes cover GTM, dataLayer, duplicate purchases and attribution, including legacy Persoo integrations.": "Pekerjaan juga mencakup implementasi, refactoring, analisis backend, serta optimasi kinerja kolektor dan pemrosesan event. Perbaikan analitik meliputi GTM, dataLayer, pembelian duplikat dan atribusi, termasuk integrasi Persoo lama.",
     "ON MY DESK": "DI MEJA SAYA",
     "Still": "Masih terus",
     "exploring.": "menjelajah.",
@@ -278,7 +279,7 @@
     "privacy": "Saya hanya tahu informasi publik dalam portofolio ini. Data pribadi tidak tersedia.",
     "greeting": "Halo! Saya panduan portofolio lokal, bukan Patrick dan bukan model AI. Apa yang ingin Anda ketahui?",
     "answers": {
-      "work": "Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia menyelidiki perilaku peramban, API, feed produk, dan analitik, mengaudit integrasi, memeriksa perbaikan, dan menyiapkan serah terima ke tim engineering. Luigi’s Box membuat pencarian dan penemuan produk untuk e-commerce.",
+      "work": "Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia menyelidiki perilaku peramban, API, feed produk, dan analitik, mengaudit integrasi, memeriksa perbaikan, dan menyiapkan serah terima ke tim engineering. Luigi’s Box membuat pencarian dan penemuan produk untuk e-commerce. Pekerjaan juga mencakup implementasi, refactoring, analisis backend, serta optimasi kinerja kolektor dan pemrosesan event. Perbaikan analitik meliputi GTM, dataLayer, pembelian duplikat dan atribusi, termasuk integrasi Persoo lama.",
       "spotify": "Skrip Python lokal membuat daftar putar pribadi dari favorit dan lagu terbaru, tanpa panggilan AI berulang. Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio. Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac Patrick. Kodenya tidak diterbitkan.",
       "dots": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
       "bot": "Bot musik Discord lama berbasis JavaScript. Repositori historis; kompatibilitas saat ini dengan Discord dan layanan musik belum diverifikasi.",

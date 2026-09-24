@@ -79,6 +79,7 @@
     "Review storefront behaviour, product feeds, mapping, synchronization, and event collection for smaller shops and larger clients.": "أراجع سلوك المتجر وخلاصات المنتجات والربط والمزامنة وجمع الأحداث لدى المتاجر الصغيرة والعملاء الكبار.",
     "Fix, verify, hand over": "أصلح، أتحقق، ثم أسلّم",
     "Make a focused integration fix and verify it. Where engineering is needed, provide a reproducible case and clear technical evidence.": "أجري إصلاحًا محددًا للتكامل وأتحقق منه. وإن احتاج الأمر إلى الهندسة، أقدّم حالة قابلة للتكرار وأدلة تقنية واضحة.",
+    "The work also includes implementation and refactoring, backend analysis, and performance optimisation of collectors and event handling. Analytics fixes cover GTM, dataLayer, duplicate purchases and attribution, including legacy Persoo integrations.": "يشمل العمل أيضًا التنفيذ وإعادة هيكلة الشيفرة وتحليل الواجهة الخلفية وتحسين أداء أدوات جمع البيانات ومعالجة الأحداث. تشمل إصلاحات التحليلات GTM وdataLayer وأحداث الشراء المكررة والإسناد، بما في ذلك تكاملات Persoo القديمة.",
     "ON MY DESK": "على مكتبي",
     "Still": "ما زلت",
     "exploring.": "أستكشف.",
@@ -278,7 +279,7 @@
     "privacy": "لا أعرف سوى معلومات المعرض العامة. لا تتوفر بيانات خاصة هنا.",
     "greeting": "مرحبًا! أنا دليل محلي للمعرض، ولست Patrick أو نموذج AI. عمّ تريد أن تسأل؟",
     "answers": {
-      "work": "يعمل Patrick بوظيفة Customer Support Partner L2 في Luigi’s Box. يفحص سلوك المتصفح وواجهات API وخلاصات المنتجات والتحليلات، ويراجع التكاملات ويتحقق من الإصلاحات ويعدّ تسليمات للهندسة. تبني Luigi’s Box أدوات البحث واكتشاف المنتجات للتجارة الإلكترونية.",
+      "work": "يعمل Patrick بوظيفة Customer Support Partner L2 في Luigi’s Box. يفحص سلوك المتصفح وواجهات API وخلاصات المنتجات والتحليلات، ويراجع التكاملات ويتحقق من الإصلاحات ويعدّ تسليمات للهندسة. تبني Luigi’s Box أدوات البحث واكتشاف المنتجات للتجارة الإلكترونية. يشمل العمل أيضًا التنفيذ وإعادة هيكلة الشيفرة وتحليل الواجهة الخلفية وتحسين أداء أدوات جمع البيانات ومعالجة الأحداث. تشمل إصلاحات التحليلات GTM وdataLayer وأحداث الشراء المكررة والإسناد، بما في ذلك تكاملات Persoo القديمة.",
       "spotify": "ينشئ نص Python محلي قائمة موسيقية خاصة من المفضلة والاستماع الأخير دون استدعاءات AI متكررة. عند الطلب يبحث حسب المزاج أو النشاط أو الفنان ويفضل الفنانين المألوفين. مطابقة المزاج تقريبية وليست تحليلًا للصوت. تُحفظ القائمة بخصوصية ويُفحص محتواها بعد الكتابة. أداة شخصية تعمل على جهاز Mac الخاص بـ Patrick، والشيفرة غير منشورة.",
       "dots": "بُنيت أصلًا بـ React وSpring Boot عام 2023. تستخدم نسخة المتصفح شاشات React وصور النقاط الأصلية، مع منطق لعبة محلي. خمسة مستويات ومتجر تعزيزات ولعب ضيف. دون تسجيل دخول أو لوحة ترتيب مشتركة. العب عبر المتصفح أو تصفح المصدر الأصلي.",
       "bot": "بوت موسيقى سابق على Discord بلغة JavaScript. المستودع تاريخي، ولم يُتحقق من توافقه مع خدمات الموسيقى وDiscord الحالية.",

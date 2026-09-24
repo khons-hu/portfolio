@@ -79,6 +79,7 @@
     "Review storefront behaviour, product feeds, mapping, synchronization, and event collection for smaller shops and larger clients.": "Analisar o comportamento da loja, feeds, mapeamento, sincronização e recolha de eventos em clientes pequenos e grandes.",
     "Fix, verify, hand over": "Corrigir, verificar e encaminhar",
     "Make a focused integration fix and verify it. Where engineering is needed, provide a reproducible case and clear technical evidence.": "Fazer uma correção específica na integração e verificá-la. Quando é necessária engenharia, entregar um caso reproduzível e provas técnicas claras.",
+    "The work also includes implementation and refactoring, backend analysis, and performance optimisation of collectors and event handling. Analytics fixes cover GTM, dataLayer, duplicate purchases and attribution, including legacy Persoo integrations.": "O trabalho inclui também implementação, refatorização, análise do backend e otimização do desempenho dos coletores e do processamento de eventos. As correções de analítica abrangem GTM, dataLayer, compras duplicadas e atribuição, incluindo integrações antigas da Persoo.",
     "ON MY DESK": "NA MINHA MESA",
     "Still": "Continuo a",
     "exploring.": "explorar.",
@@ -278,7 +279,7 @@
     "privacy": "Conheço apenas informação pública do portfólio. Não forneço dados privados.",
     "greeting": "Olá! Sou um guia local do portfólio, não sou o Patrick nem um modelo de IA. O que gostarias de saber?",
     "answers": {
-      "work": "Patrick trabalha como Customer Support Partner L2 na Luigi’s Box. Investiga o comportamento no navegador, APIs, feeds de produtos e análises, audita integrações, verifica correções e prepara passagens para engenharia. A Luigi’s Box desenvolve pesquisa e descoberta de produtos para comércio eletrónico.",
+      "work": "Patrick trabalha como Customer Support Partner L2 na Luigi’s Box. Investiga o comportamento no navegador, APIs, feeds de produtos e análises, audita integrações, verifica correções e prepara passagens para engenharia. A Luigi’s Box desenvolve pesquisa e descoberta de produtos para comércio eletrónico. O trabalho inclui também implementação, refatorização, análise do backend e otimização do desempenho dos coletores e do processamento de eventos. As correções de analítica abrangem GTM, dataLayer, compras duplicadas e atribuição, incluindo integrações antigas da Persoo.",
       "spotify": "Um script Python local cria uma seleção privada a partir dos favoritos e das músicas recentes, sem chamadas recorrentes a IA. A pedido, procura por estado de espírito, atividade ou artista e privilegia artistas conhecidos. A correspondência de humor é aproximada, não é análise de áudio. A playlist é guardada como privada e verificada. É uma ferramenta pessoal no Mac do Patrick. O código não é público.",
       "dots": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original.",
       "bot": "Um antigo bot de música para Discord em JavaScript. Repositório histórico; a compatibilidade atual com Discord e serviços de música não foi verificada.",

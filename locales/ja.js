@@ -79,6 +79,7 @@
     "Review storefront behaviour, product feeds, mapping, synchronization, and event collection for smaller shops and larger clients.": "店舗画面、商品フィード、マッピング、同期、イベント収集を、小規模から大規模の顧客まで確認します。",
     "Fix, verify, hand over": "修正・検証・引き継ぎ",
     "Make a focused integration fix and verify it. Where engineering is needed, provide a reproducible case and clear technical evidence.": "対象を絞って連携を修正し、結果を検証します。エンジニアリングが必要なら、再現手順と明確な技術的証拠を渡します。",
+    "The work also includes implementation and refactoring, backend analysis, and performance optimisation of collectors and event handling. Analytics fixes cover GTM, dataLayer, duplicate purchases and attribution, including legacy Persoo integrations.": "実装やリファクタリング、バックエンドの分析、データ収集処理とイベント処理のパフォーマンス最適化も担当しています。分析データの修正では、GTM、dataLayer、購入イベントの重複、アトリビューションを扱い、旧Persooの連携にも対応しています。",
     "ON MY DESK": "最近の取り組み",
     "Still": "まだまだ",
     "exploring.": "探求中。",
@@ -278,7 +279,7 @@
     "privacy": "このポートフォリオの公開情報だけを知っています。個人情報は提供できません。",
     "greeting": "こんにちは！私はローカルのポートフォリオガイドです。Patrick本人でもAIモデルでもありません。何を知りたいですか？",
     "answers": {
-      "work": "PatrickはLuigi’s BoxのCustomer Support Partner L2です。ブラウザーの動作、API、商品フィード、分析を調査し、連携を監査し、修正を検証してエンジニアリングへの引き継ぎを準備します。Luigi’s BoxはEC向けの商品検索と発見を提供します。",
+      "work": "PatrickはLuigi’s BoxのCustomer Support Partner L2です。ブラウザーの動作、API、商品フィード、分析を調査し、連携を監査し、修正を検証してエンジニアリングへの引き継ぎを準備します。Luigi’s BoxはEC向けの商品検索と発見を提供します。 実装やリファクタリング、バックエンドの分析、データ収集処理とイベント処理のパフォーマンス最適化も担当しています。分析データの修正では、GTM、dataLayer、購入イベントの重複、アトリビューションを扱い、旧Persooの連携にも対応しています。",
       "spotify": "ローカルのPythonスクリプトが、お気に入りと最近聴いた曲から非公開の選曲を作ります。定期的なAI呼び出しはありません。 希望に応じて気分、活動、アーティストで探し、なじみのあるアーティストを優先します。気分の一致は概算で、音声解析ではありません。 プレイリストを非公開で保存し、保存後に内容を確認します。PatrickのMacで動く個人用ツールです。ソースは非公開です。",
       "dots": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
       "bot": "以前作ったJavaScript製のDiscord音楽ボット。古いリポジトリのため、現在のDiscordや音楽サービスとの互換性は未確認です。",
