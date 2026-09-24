@@ -55,7 +55,7 @@ test('the guide speaks about Patrick in the third person and only from public fa
 test('site, project and contact facts match what the page shows',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),terminal=fs.readFileSync(path.join(__dirname,'../terminal.js'),'utf8');
- const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<7200,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
+ const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<8000,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
  const strip=s=>s.replace(/<[^>]+>/g,'');
  const cards=[...html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)].map(([a])=>({title:strip(a.match(/<h3>([\s\S]*?)<\/h3>/)[1]),text:strip(a.match(/<\/h3><p>([\s\S]*?)<\/p>/)[1])}));
  assert.equal(cards.length,PROJECTS.length);
@@ -89,4 +89,12 @@ test('a short provider rate-limit wait is passed on once as Retry-After; long or
  try{await handler({method:'POST',headers:{origin:'https://khons-hu.vercel.app','content-type':'application/json','x-forwarded-for':'203.0.113.9'},body:valid},res);}
  finally{global.fetch=original;delete process.env.GROQ_API_KEY;}
  assert.equal(res.statusCode,429);assert.equal(res.headers['Retry-After'],'2');
+});
+
+test('page facts come from the page itself',()=>{
+ const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
+ const {PAGE,system}=require('../api/chat.js');
+ for(const phrase of ['background in backend and full-stack development','bounded agent workflows with OpenAI coding agents and Jev','event collection','reproducible case','quiet AI update inbox','reinforcement learning','September 2026'])assert(html.includes(phrase)||html.toUpperCase().includes(phrase.toUpperCase()),phrase);
+ for(const line of PAGE)assert(system.includes(line));
+ assert(PAGE.every(line=>!/\b(I|my|me)\b/.test(line)),'page facts are in the third person');
 });
