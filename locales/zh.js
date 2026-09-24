@@ -213,7 +213,7 @@
     ],
     "portfolio": [
       "可搜索的项目、可分享的项目说明、终端导航，以及支持多种语言的小向导。可用时由 AI 模型通过 Groq 回答，否则显示预设答案。",
-      "浅色与深色主题、减少动效，标签页隐藏时暂停动画。GitHub 将更新部署到 Vercel；源码仓库为私有。"
+      "浅色与深色主题、减少动效，标签页隐藏时暂停动画。公开的 GitHub 仓库会部署到 Vercel。"
     ],
     "rotation": [
       "本地 Python 脚本根据喜欢和最近听过的音乐创建私人轮播歌单，无需定期调用 AI。",
@@ -261,7 +261,7 @@
       "查看章节 ↗",
       "工作",
       "项目",
-      "关于我",
+      "关于 Patrick",
       "本地向导 · 无 API",
       "关闭向导"
     ],
@@ -277,7 +277,7 @@
       "openai": "他关注 Tibo 在 OpenAI 的工作节奏和分享工作进展的方式。这只是个人兴趣，并非工作关系。",
       "study": "Patrick 拥有 TUKE 计算机科学硕士学位。论文结合了 PPO 强化学习智能体与面向多人游戏的 LLM 地图生成。",
       "projects": "编程练习可以看 Khonsolve，AI 更新可以看 Khonrelay，智能体实验可以看 Khonproof。项目区有说明和链接，也收录了早期作品与游戏原型。",
-      "contact": "可以在邮件标签页给 Patrick 写信。FormSubmit 只发送表单内容，不发送这段对话。也可以在 GitHub、X 和 Discord 找到他。",
+      "contact": "可以在邮件标签页给 Patrick 写信。FormSubmit 只发送表单内容，不发送这段对话。也可以在 GitHub、LinkedIn、X 和 Discord 找到他。",
       "about": "Patrick Obrtal，网名 khonsu。大约 2022 年受 Moon Knight 启发使用这个名字。他从 C++ 和 Counter-Strike 入门，在 TUKE 学习计算机科学，现在是 Luigi’s Box 的 Customer Support Partner L2，也尝试编程智能体。",
       "ai": "他关注 AGI、递归自我改进和新模型，并在自己的工作中尝试编程智能体。他的 PPO 论文也涉及学习系统。",
       "games": "Counter-Strike 是他编程经历的一部分。现在他在开发自己的工具和游戏原型。",

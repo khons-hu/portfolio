@@ -123,7 +123,7 @@ function run(raw) {
     projects: [t('Pick a project to read its notes.'), [], catalog],
     work: ['Customer Support Partner L2 at Luigi’s Box.\nBrowser debugging, APIs, feeds, audits, and analytics.\nReproduce → trace → fix → verify.', [['More about my work ↗', '#about']]],
     now: [[...document.querySelectorAll('.now-grid article p')].map(p => p.textContent).join('\n\n'), [['On my desk ↗', '#now']]],
-    contact: ['GitHub: khons-hu\nX: @ptr1337_\nDiscord: khons.hu\n\n' + t('Use email to write me, or ask to open the guide.'), [['Open contact links ↗', '#contact']]],
+    contact: ['GitHub: khons-hu\nLinkedIn: patrick-obrtal\nX: @ptr1337_\nDiscord: khons.hu\n\n' + t('Use email to write me, or ask to open the guide.'), [['Open contact links ↗', '#contact']]],
     status: [terminalStrings().status, catalog.filter(item => projects[item.id].live).map(item => [item.title + ' ↗', projects[item.id].url])],
     lore: [terminalStrings().lore]
   };

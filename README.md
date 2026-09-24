@@ -2,7 +2,7 @@
 
 Published on Vercel Hobby: https://khons-hu.vercel.app/
 
-Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. GitHub source remains private. GitHub autodeploy is connected to khons-hu/portfolio. Pushes to main create Production deployments and update khons-hu.vercel.app. Verified with commit 26466a4 on 2026-09-20. The initial khonsu-ochre.vercel.app address redirects to the clean address.
+Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. The GitHub repository is public: https://github.com/khons-hu/portfolio. GitHub autodeploy is connected to khons-hu/portfolio. Pushes to main create Production deployments and update khons-hu.vercel.app. Verified with commit 26466a4 on 2026-09-20. The initial khonsu-ochre.vercel.app address redirects to the clean address.
 
 Static HTML, CSS, and JavaScript, without a frontend framework or build step. No analytics or background model calls. Project artwork is illustrative. Some project dialogs also include screenshots. The contact form sends only the visitor’s email and message through FormSubmit when submitted.
 
@@ -12,7 +12,7 @@ Run `python3 -m http.server 4173 --bind 127.0.0.1` from this directory, then vis
 
 ## Vercel
 
-The private repository khons-hu/portfolio is connected to the existing Vercel project. Static files deploy without a build step. Vercel provides the `vercel.app` address. No paid services are needed for this static personal site within Hobby limits.
+The public repository khons-hu/portfolio is connected to the existing Vercel project. Static files deploy without a build step. Vercel provides the `vercel.app` address. No paid services are needed for this static personal site within Hobby limits.
 
 ## Interaction
 
@@ -70,6 +70,8 @@ Light/dark toggle in the header. Initially follows the system theme, then rememb
 
 ## Contact email
 
+Contact links: email, GitHub, LinkedIn (https://www.linkedin.com/in/patrick-obrtal/), X and a copyable Discord handle. The terminal `contact` command and the guide's contact answer (all 17 languages) name the same channels, and `tests/profile-links.test.cjs` keeps them aligned.
+
 The contact section has a multilingual contact form addressed only to ptr.obrtal@gmail.com. The same form is available in the Email panel from the terminal or Ask khonsu. Their drafts are separate and remain only for the current page session. It sends the reply email and message through FormSubmit. It never includes guide questions or chat history. No API key or email credentials are bundled.
 
 The recipient is activated and FormSubmit accepted the publication test on 20 September 2026. Sending is enabled. The mailto fallback remains available. A successful provider response means submission accepted, not proven inbox delivery; inbox receipt has not been independently checked.
@@ -81,7 +83,7 @@ Run `node --test tests/*.test.cjs` for contact validation, payload isolation, ac
 
 The page, project notes, terminal help and local guide support English, Slovak, Hungarian, Polish, German, Spanish, Czech, Portuguese, French, Simplified Chinese, Hindi, Arabic, Bengali, Russian, Urdu, Indonesian and Japanese. The native picker keeps the header compact. Saved choices take priority, followed by supported browser preferences, then English. Portuguese regional tags share one Portuguese catalog. Traditional Chinese is not relabelled as Simplified Chinese.
 
-Arabic and Urdu use right-to-left layouts, set before first paint by `theme.js` so the page never flips after loading. The hero photo is mirrored and on-page arrows point left. Handles, email addresses, technology stacks and terminal commands keep their original direction; sentence punctuation and `{count}` placeholders stay outside those isolated runs. All copy ships as local JavaScript. No translation API, tracking or model download is used. The guide still matches prepared topics, so translated answers do not make it an unrestricted chatbot. The new translations are model-assisted and have not had native-speaker review.
+Arabic and Urdu use right-to-left layouts, set before first paint by `theme.js` so the page never flips after loading. The hero photo is mirrored and on-page arrows point left. Handles, email addresses, technology stacks and terminal commands keep their original direction; sentence punctuation and `{count}` placeholders stay outside those isolated runs. All copy ships as local JavaScript. No translation API, tracking or model download is used. Without AI, the guide matches prepared topics; with AI enabled it answers from the public facts in `api/chat.js` (see Optional AI guide). The new translations are model-assisted and have not had native-speaker review.
 
 `language-data.js` holds the common registry and loads packs on demand. English, Slovak, Hungarian, Polish, German, Spanish and Czech are built in (`site-locales.js`, `guide-locales.js`). The other ten live in `locales/<code>.js` and load only when chosen: `theme.js` starts the request in `<head>` for a saved or browser language, and switching waits for the pack before changing any text, so the page never mixes languages. If a pack cannot load, the page stays in the current language. `locales/guide-keywords.js` is always loaded so the guide matches a question in any script. Run `node --test tests/*.test.cjs` when changing a catalog or the language list.
 
@@ -93,6 +95,6 @@ Language expansion validation: 45 Node tests, all ten added locales checked at 3
 
 Without the key, the existing local guide works unchanged. With the key, the panel discloses Groq processing in all 17 languages. It sends the current question and at most two prior exchanges, holds chat history in tab memory, and renders plain text only. Clear cancels an outstanding reply and discards the browser history. Neither endpoint nor client logs or stores chat contents. Groq's own data policy applies: https://console.groq.com/docs/your-data
 
-The server supplies public guide facts, rejects custom roles and oversized histories, limits output, times out requests, and returns a labelled prepared answer on failures. The warm-instance throttle is best effort, not a distributed abuse or spending cap. Provider Free-plan limits remain essential. There are no tools, account access, email sending or browser access in the model. Prompt instructions reduce unsupported claims but cannot guarantee factual answers.
+The server supplies public facts only: the guide topics (except the unverified discovery routine), every project card on the page, a description of this site and its features, and the public contact links. `tests/chat.test.cjs` keeps the project list, terminal commands and contact links in step with the page. The prompt makes the guide speak about Patrick in the third person, never as him, treats "you" questions as questions about Patrick, and tells it to say when the portfolio does not mention something instead of guessing tools, dates or clients. Temperature is 0.2. The system prompt is about 7,800 characters (roughly 2,000 tokens), which matters for the Free plan's daily token limit. The server also rejects custom roles and oversized histories, limits output, times out requests, and returns a labelled prepared answer on failures. The warm-instance throttle is best effort, not a distributed abuse or spending cap. Provider Free-plan limits remain essential. There are no tools, account access, email sending or browser access in the model. Prompt instructions reduce unsupported claims but cannot guarantee factual answers.
 
 Verify after setup: ask a follow-up, try Slovak and another language, clear during a pending request, and check that a missing/invalid key falls back honestly. Run `node --test tests/*.test.cjs` for regression checks. Live on 2026-09-23: verified English answers, a contextual follow-up, a Slovak answer, and clearing the conversation. Groq billing showed the $0 Free plan. Missing-key, provider failures, limits and malformed requests are covered by automated tests.

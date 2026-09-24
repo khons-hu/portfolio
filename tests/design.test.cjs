@@ -74,7 +74,7 @@ test('project notes label the main outside link by what it is',()=>{
  const expect={signal:['live','Open app ↗',/quiet-signal/],receipts:['live','Play on itch.io ↗',/itch\.io/],'save-democracy':['external','View on itch.io ↗',/itch\.io/],rotation:['external','Open playlist ↗',/open\.spotify\.com/]};
  for(const [id,[kind,label,href]] of Object.entries(expect)){d.show(id);assert.equal(d.link().attributes['data-kind'],kind,id);assert.equal(d.link().textContent,label,id);assert.match(d.link().href,href,id);assert.equal(d.link().hidden,false,id);}
  d.show('calculator');assert.equal(d.link().hidden,true);assert.equal(d.source().hidden,false);
- d.show('portfolio');assert.equal(d.link().hidden,true);assert.equal(d.source().hidden,true);
+ d.show('portfolio');assert.equal(d.link().hidden,true);assert.equal(d.source().hidden,false);assert.equal(d.source().href,'https://github.com/khons-hu/portfolio');
 });
 
 test('every card separates on-page notes from a typed outside link',()=>{
@@ -88,7 +88,7 @@ test('every card separates on-page notes from a typed outside link',()=>{
    if(kind==='live')assert.doesNotMatch(href,/github\.com/);
   }
  }
- assert.equal((html.match(/class="project-live"/g)||[]).length,12);
+ assert.equal((html.match(/class="project-live"/g)||[]).length,13);
 });
 
 test('visible card labels and taglines are translated in every catalog',()=>{

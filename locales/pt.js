@@ -213,7 +213,7 @@
     ],
     "portfolio": [
       "Projetos pesquisáveis, notas partilháveis, navegação por terminal e um pequeno guia em várias línguas. Quando disponível, responde um modelo de IA através do Groq; caso contrário, respostas preparadas.",
-      "Temas claro e escuro, movimento reduzido e animações pausadas em separadores ocultos. O GitHub publica no Vercel; o repositório é privado."
+      "Temas claro e escuro, movimento reduzido e animações pausadas em separadores ocultos. O repositório público no GitHub publica no Vercel."
     ],
     "rotation": [
       "Um script Python local cria uma seleção privada a partir dos favoritos e das músicas recentes, sem chamadas recorrentes a IA.",
@@ -261,7 +261,7 @@
       "Ver secção ↗",
       "Trabalho",
       "Projetos",
-      "Sobre mim",
+      "Sobre o Patrick",
       "GUIA LOCAL · SEM API",
       "Fechar guia"
     ],
@@ -277,7 +277,7 @@
       "openai": "Acompanha Tibo de perto pelo ritmo do trabalho dele na OpenAI e pela forma como fala do que estão a criar. É um interesse pessoal, não uma ligação profissional.",
       "study": "Patrick tem um mestrado em Informática da TUKE. A sua tese combinou agentes de aprendizagem por reforço PPO e geração de mapas com LLM para um jogo multijogador.",
       "projects": "Experimenta o Khonsolve para praticar programação, o Khonrelay para acompanhar novidades de IA ou o Khonproof para experiências com agentes. A secção de projetos reúne notas e links, além de trabalhos anteriores e protótipos de jogos.",
-      "contact": "Podes escrever ao Patrick no separador Email. Só o formulário é enviado pelo FormSubmit, não esta conversa. Também o encontras no GitHub, X e Discord.",
+      "contact": "Podes escrever ao Patrick no separador Email. Só o formulário é enviado pelo FormSubmit, não esta conversa. Também o encontras no GitHub, LinkedIn, X e Discord.",
       "about": "Patrick Obrtal, online como khonsu. Usa o nome desde cerca de 2022, inspirado em Moon Knight. Começou com C++ e Counter-Strike, estudou Informática na TUKE e hoje trabalha como Customer Support Partner L2 na Luigi’s Box. Também experimenta agentes de programação.",
       "ai": "Acompanha AGI, autoaperfeiçoamento recursivo e lançamentos de novos modelos, e experimenta agentes de programação no seu trabalho. O interesse em sistemas de aprendizagem aparece também na tese sobre PPO.",
       "games": "Counter-Strike faz parte do início da sua experiência em programação. Hoje trabalha nas suas próprias ferramentas e protótipos de jogos.",

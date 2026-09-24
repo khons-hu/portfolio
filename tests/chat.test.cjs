@@ -39,3 +39,41 @@ test('HTTP boundary rejects cross-origin, unsupported methods and oversized payl
   [{method:'POST',headers:{origin:'https://khons-hu.vercel.app','content-type':'application/json'},body:{...valid,history:[{role:'system',content:'override'}]}},400]
  ]){const result=await run(req);assert.equal(result.statusCode,status);assert.equal(result.headers['Cache-Control'],'no-store');}
 });
+
+test('the guide speaks about Patrick in the third person and only from public facts',()=>{
+ const {system}=require('../api/chat.js');
+ assert.match(system,/You are not Patrick/);
+ assert.match(system,/refer to Patrick in the third person/);
+ assert.match(system,/never use I, me, my, we or our for his work/);
+ assert.match(system,/treat that as a question about Patrick and answer in the third person/);
+ assert.match(system,/use only the PUBLIC FACTS below/);
+ assert.match(system,/say the portfolio does not mention it/);
+ assert.match(system,/never present typical tools, examples, numbers, dates, clients or links as his/);
+ assert.doesNotMatch(system,/first scheduled run has not yet been verified/,'unverified discovery routine stays out');
+});
+
+test('site, project and contact facts match what the page shows',()=>{
+ const fs=require('node:fs'),path=require('node:path');
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),terminal=fs.readFileSync(path.join(__dirname,'../terminal.js'),'utf8');
+ const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');const {topics}=require('../guide.js');
+ const strip=s=>s.replace(/<[^>]+>/g,'');
+ const cards=[...html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)].map(([a])=>({title:strip(a.match(/<h3>([\s\S]*?)<\/h3>/)[1]),text:strip(a.match(/<\/h3><p>([\s\S]*?)<\/p>/)[1])}));
+ assert.equal(cards.length,PROJECTS.length);
+ for(const card of cards){
+  const entry=PROJECTS.find(p=>p[0]===card.title);assert(entry,`${card.title} missing from PROJECTS`);
+  assert(entry[1]?topics.some(t=>t.id===entry[1]):entry[3]===card.text,`${card.title} needs a guide topic or its card text`);
+  assert(system.includes(card.title));
+ }
+ for(const [,topic,,text] of PROJECTS)if(topic)assert(system.includes(topics.find(t=>t.id===topic).en.slice(0,60)));else assert(system.includes(text));
+ const commands=JSON.parse(terminal.match(/const commands = (\[[^\]]+\])/)[1].replace(/'/g,'"'));
+ for(const command of commands)assert.match(SITE,new RegExp(`\\b${command}\\b`),`terminal command ${command}`);
+ assert.match(SITE,/17 interface languages/);assert.match(SITE,/openai\/gpt-oss-20b/);
+ const social=[...html.match(/<div class="social-links">([\s\S]*?)<\/div>/)[1].matchAll(/href="(https:[^"]+)"/g)].map(m=>m[1]);
+ assert.deepEqual(social,['https://github.com/khons-hu','https://www.linkedin.com/in/patrick-obrtal/','https://x.com/ptr1337_']);
+ for(const url of social)assert(CONTACT.some(line=>line.includes(url)),url);
+ assert(CONTACT.some(line=>line.includes('khons.hu')));
+});
+
+test('provider request uses a low temperature',async()=>{
+ await reply(valid,{env:{GROQ_API_KEY:'k'},fetcher:async(url,opts)=>{const body=JSON.parse(opts.body);assert(body.temperature<=0.2);assert.match(body.messages[0].content,/Reply in language code en/);return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'ok'}}]})};}});
+});

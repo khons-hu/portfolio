@@ -213,7 +213,7 @@
     ],
     "portfolio": [
       "Projets consultables, notes partageables, navigation par terminal et petit guide en plusieurs langues. Quand il est disponible, un modèle d’IA répond via Groq ; sinon, des réponses préparées prennent le relais.",
-      "Thèmes clair et sombre, mouvement réduit et animations suspendues dans les onglets cachés. Déploiement de GitHub vers Vercel ; dépôt source privé."
+      "Thèmes clair et sombre, mouvement réduit et animations suspendues dans les onglets cachés. Le dépôt public sur GitHub est déployé sur Vercel."
     ],
     "rotation": [
       "Un script Python local crée une sélection privée à partir des favoris et des écoutes récentes, sans appels IA récurrents.",
@@ -261,7 +261,7 @@
       "Voir la section ↗",
       "Travail",
       "Projets",
-      "À propos de moi",
+      "À propos de Patrick",
       "GUIDE LOCAL · SANS API",
       "Fermer le guide"
     ],
@@ -277,7 +277,7 @@
       "openai": "Il suit Tibo de près pour le rythme de son travail chez OpenAI et sa façon de parler de ce qu’ils créent. C’est un intérêt personnel, pas une affiliation.",
       "study": "Patrick a un master en informatique de la TUKE. Son mémoire associait des agents d’apprentissage par renforcement PPO et la génération de cartes par LLM pour un jeu multijoueur.",
       "projects": "Essaie Khonsolve pour pratiquer la programmation, Khonrelay pour suivre l’actualité de l’IA ou Khonproof pour les expériences avec des agents. La section projets rassemble leurs notes et liens, ainsi que des travaux plus anciens et des prototypes de jeux.",
-      "contact": "Tu peux écrire à Patrick dans l’onglet E-mail. FormSubmit envoie uniquement le formulaire, pas cette conversation. Tu peux aussi le trouver sur GitHub, X et Discord.",
+      "contact": "Tu peux écrire à Patrick dans l’onglet E-mail. FormSubmit envoie uniquement le formulaire, pas cette conversation. Tu peux aussi le trouver sur GitHub, LinkedIn, X et Discord.",
       "about": "Patrick Obrtal, khonsu en ligne. Il utilise ce nom depuis 2022 environ, inspiré de Moon Knight. Il a commencé par C++ et Counter-Strike, étudié l’informatique à la TUKE et travaille aujourd’hui comme Customer Support Partner L2 chez Luigi’s Box. Il expérimente aussi les agents de code.",
       "ai": "Il suit l’AGI, l’auto-amélioration récursive et les nouveaux modèles, et essaie les agents de code dans ses projets. Son intérêt pour les systèmes d’apprentissage se retrouve dans son mémoire sur PPO.",
       "games": "Counter-Strike fait partie de ses débuts en programmation. Aujourd’hui, il travaille sur ses propres outils et prototypes de jeux.",

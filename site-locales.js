@@ -815,7 +815,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Searchable projects, shareable project notes, terminal navigation and a small guide in multiple languages. It answers with an AI model through Groq when available and falls back to prepared answers.",
-      "Light/dark themes, reduced motion and animations paused in hidden tabs. GitHub deploys to Vercel; the source repository is private."
+      "Light/dark themes, reduced motion and animations paused in hidden tabs. The public GitHub repository deploys to Vercel."
     ],
     "rotation": [
       "A local Python script builds a private rotation from favourites and recent listening, without recurring AI calls.",
@@ -868,7 +868,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Vyhľadávanie projektov, odkazy na ich poznámky, navigácia cez terminál a malý sprievodca vo viacerých jazykoch. Keď je dostupný, odpovedá AI model cez Groq, inak pripravené odpovede.",
-      "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Nasadenie z GitHubu na Vercel, zdrojový repozitár je súkromný."
+      "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Verejný repozitár na GitHube sa nasadzuje na Vercel."
     ],
     "rotation": [
       "Lokálny Python skript skladá súkromnú rotáciu z obľúbených a nedávno počúvaných skladieb, bez pravidelných AI volaní.",
@@ -921,7 +921,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Kereshető projektek, megosztható projektjegyzetek, terminálos navigáció és egy kis többnyelvű útmutató. Ha elérhető, egy AI-modell válaszol a Groq szolgáltatáson keresztül, egyébként előre megírt válaszok.",
-      "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. GitHubról Vercelre települ, a forrásrepo privát."
+      "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. A nyilvános GitHub-repóból Vercelre települ."
     ],
     "rotation": [
       "Egy helyi Python-szkript privát válogatást készít a kedvencekből és a nemrég hallgatott zenékből, rendszeres AI-hívások nélkül.",
@@ -974,7 +974,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Wyszukiwanie projektów, linki do notatek, nawigacja terminalem i mały przewodnik w wielu językach. Gdy to możliwe, odpowiada model AI przez Groq, a w razie potrzeby przygotowane odpowiedzi.",
-      "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Wdrożenie z GitHuba na Vercel, repozytorium prywatne."
+      "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Publiczne repozytorium na GitHubie wdraża się na Vercel."
     ],
     "rotation": [
       "Lokalny skrypt w Pythonie tworzy prywatną rotację z ulubionych i ostatnio słuchanych utworów, bez cyklicznych wywołań AI.",
@@ -1027,7 +1027,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Durchsuchbare Projekte, teilbare Projektnotizen, Terminal-Navigation und ein kleiner Guide in mehreren Sprachen. Wenn verfügbar, antwortet ein KI-Modell über Groq, sonst vorbereitete Antworten.",
-      "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. GitHub deployt auf Vercel; das Quellrepo ist privat."
+      "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. Das öffentliche GitHub-Repository deployt auf Vercel."
     ],
     "rotation": [
       "Ein lokales Python-Skript erstellt eine private Rotation aus Favoriten und zuletzt gehörten Titeln, ohne regelmäßige KI-Aufrufe.",
@@ -1080,7 +1080,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Búsqueda de proyectos, notas que puedes compartir, navegación por terminal y una pequeña guía en varios idiomas. Cuando está disponible responde un modelo de IA a través de Groq; si no, respuestas preparadas.",
-      "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. Despliegue desde GitHub a Vercel; repositorio privado."
+      "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. El repositorio público de GitHub se despliega en Vercel."
     ],
     "rotation": [
       "Un script local de Python crea una rotación privada con favoritos y canciones recientes, sin llamadas recurrentes a IA.",
@@ -1133,7 +1133,7 @@ const PROJECT_NOTES = {
     ],
     "portfolio": [
       "Vyhledávání projektů, odkazy na jejich poznámky, navigace přes terminál a malý průvodce ve více jazycích. Když je dostupný, odpovídá AI model přes Groq, jinak připravené odpovědi.",
-      "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Nasazení z GitHubu na Vercel, zdrojový repozitář je soukromý."
+      "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Veřejný repozitář na GitHubu se nasazuje na Vercel."
     ],
     "rotation": [
       "Lokální Python skript sestavuje soukromou rotaci z oblíbených a nedávno poslouchaných skladeb, bez pravidelných AI volání.",

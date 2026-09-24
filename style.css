@@ -182,6 +182,9 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .social-links a,.social-links button{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;border-bottom:1px solid var(--line);font-size:16px;text-align:start;transition:color .2s ease,border-color .2s ease}
 .social-links a:hover,.social-links button:hover{color:var(--accent);border-bottom-color:var(--line-strong)}
 .social-links span{font:13px var(--mono);color:var(--muted)}
+/* The outside-link arrow matches the text it follows; only the Discord handle stays monospace. */
+.social-links a>span[aria-hidden=true]{font:15px/1 var(--sans);transition:color .2s ease}
+.social-links a:hover>span[aria-hidden=true]{color:var(--accent)}
 .copy-status{min-height:24px;margin:14px 0 0;font-size:14px;color:var(--muted)}
 
 /* Forms: the page form and the Email panel share one quiet style. */
@@ -232,7 +235,8 @@ dialog[open]{animation:dialog-in .22s ease-out}
 .panel-switch[open] .panel-body,.panel-switch[open] .panel-composer{animation:panel-swap .2s ease-out both}
 @keyframes panel-swap{from{opacity:0}to{opacity:1}}
 .close-button{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:var(--muted);font-size:16px;line-height:1}
-.close-button:hover{color:var(--ink);background:var(--surface-2)}
+/* Only real pointers get the filled hover: after a tap on the header, a panel's close button would open looking pressed. */
+@media(hover:hover){.close-button:hover{color:var(--ink);background:var(--surface-2)}}
 .close-button:focus-visible{outline-offset:0;border-radius:50%}
 .dialog-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:-8px 0 16px;margin-inline-end:-10px}
 .dialog-top .eyebrow{margin:0}

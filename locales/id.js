@@ -213,7 +213,7 @@
     ],
     "portfolio": [
       "Proyek yang dapat dicari, catatan yang dapat dibagikan, navigasi terminal, dan panduan kecil dalam berbagai bahasa. Jika tersedia, model AI menjawab melalui Groq; jika tidak, jawaban yang telah disiapkan ditampilkan.",
-      "Tema terang/gelap, gerakan dikurangi, dan animasi berhenti saat tab tersembunyi. GitHub menerbitkan ke Vercel; repositori sumber bersifat privat."
+      "Tema terang/gelap, gerakan dikurangi, dan animasi berhenti saat tab tersembunyi. Repositori publik di GitHub diterbitkan ke Vercel."
     ],
     "rotation": [
       "Skrip Python lokal membuat daftar putar pribadi dari favorit dan lagu terbaru, tanpa panggilan AI berulang.",
@@ -261,7 +261,7 @@
       "Lihat bagian ↗",
       "Pekerjaan",
       "Proyek",
-      "Tentang saya",
+      "Tentang Patrick",
       "PANDUAN LOKAL · TANPA API",
       "Tutup panduan"
     ],
@@ -277,7 +277,7 @@
       "openai": "Ia mengikuti Tibo karena cepatnya ia bekerja di OpenAI dan caranya membahas apa yang sedang mereka buat. Ini minat pribadi, bukan hubungan kerja.",
       "study": "Patrick memiliki gelar magister Ilmu Komputer dari TUKE. Tesisnya menggabungkan agen pembelajaran penguatan PPO dan pembuatan peta berbasis LLM untuk game multipemain.",
       "projects": "Coba Khonsolve untuk latihan pemrograman, Khonrelay untuk berita AI, atau Khonproof untuk eksperimen agen. Bagian proyek memuat catatan dan tautan, termasuk karya lama dan prototipe game.",
-      "contact": "Anda bisa menulis kepada Patrick melalui tab Email. FormSubmit hanya mengirim formulir, bukan percakapan ini. Patrick juga ada di GitHub, X, dan Discord.",
+      "contact": "Anda bisa menulis kepada Patrick melalui tab Email. FormSubmit hanya mengirim formulir, bukan percakapan ini. Patrick juga ada di GitHub, LinkedIn, X, dan Discord.",
       "about": "Patrick Obrtal, dikenal sebagai khonsu di internet. Ia memakai nama itu sejak sekitar 2022, terinspirasi Moon Knight. Ia mulai dari C++ dan Counter-Strike, belajar Ilmu Komputer di TUKE, dan kini bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia juga mencoba agen pemrograman.",
       "ai": "Ia mengikuti AGI, peningkatan diri rekursif, dan rilis model baru, serta mencoba agen pemrograman dalam pekerjaannya. Ketertarikannya pada sistem pembelajaran juga tampak dalam tesis PPO.",
       "games": "Counter-Strike adalah bagian dari awal perjalanannya dalam pemrograman. Sekarang ia membuat alat dan prototipe game sendiri.",
