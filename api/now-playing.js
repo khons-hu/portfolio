@@ -2,8 +2,9 @@
    Runs as a Vercel Node function. Credentials come from environment variables and never
    reach the browser: SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET and SPOTIFY_REFRESH_TOKEN
    (a refresh token authorised with the single scope user-read-currently-playing).
-   No history, artwork, device or progress details are returned. The CDN caches every answer
-   briefly, so visitors share one Spotify request per ~30 seconds. */
+   Only the track title, artists, link, duration and playback position are returned: no history,
+   artwork, device, playlist or context. The CDN caches every answer briefly, so visitors share one
+   Spotify request per ~30 seconds; the page estimates the position between checks. */
 'use strict';
 
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
@@ -34,6 +35,14 @@ async function accessToken(env, fetcher, now) {
   return cachedToken.value;
 }
 
+// Duration and position as whole milliseconds, or null when Spotify sends nothing usable.
+// A null, missing, string, negative or non-finite value never becomes 0; a position past the end is clamped.
+function position(duration, progress) {
+  const durationMs = typeof duration === 'number' && Number.isFinite(duration) && duration > 0 && duration <= 6 * 3600000 ? Math.round(duration) : null;
+  const progressMs = durationMs !== null && typeof progress === 'number' && Number.isFinite(progress) && progress >= 0 ? Math.min(Math.round(progress), durationMs) : null;
+  return { durationMs, progressMs };
+}
+
 // Keep only what the page shows. Anything that is not a normal public Spotify track stays hidden.
 function publicTrack(data) {
   const item = data && data.item;
@@ -43,9 +52,9 @@ function publicTrack(data) {
   const title = String(item.name || '').trim().slice(0, 200);
   const artists = (item.artists || []).map(artist => String(artist && artist.name || '').trim()).filter(Boolean).slice(0, 4).map(name => name.slice(0, 120));
   if (!title || !artists.length) return null;
-  const duration = Number(item.duration_ms), progress = Number(data.progress_ms);
-  const remainingMs = Number.isFinite(duration) && Number.isFinite(progress) && duration > progress ? Math.round(duration - progress) : null;
-  return { title, artists, url: url.split('?')[0], remainingMs };
+  const { durationMs, progressMs } = position(item.duration_ms, data.progress_ms);
+  const remainingMs = durationMs !== null && progressMs !== null && durationMs > progressMs ? durationMs - progressMs : null;
+  return { title, artists, url: url.split('?')[0], remainingMs, progressMs, durationMs };
 }
 
 async function currentlyPlaying(env, fetcher, now) {
@@ -93,4 +102,5 @@ async function handler(req, res) {
 module.exports = handler;
 module.exports.nowPlaying = nowPlaying;
 module.exports.publicTrack = publicTrack;
+module.exports.position = position;
 module.exports._reset = () => { cachedToken = null; };

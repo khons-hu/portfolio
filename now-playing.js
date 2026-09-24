@@ -1,51 +1,131 @@
 /* "Listening now": the track Patrick is playing on Spotify, from /api/now-playing.
    Shown only while it is confirmed as playing and fresh; otherwise the line is hidden.
-   Polls once a minute while the tab is visible, never while hidden. No audio, no history. */
+   The position is estimated on this page from the last answer: the CDN's Age header and half the
+   round trip are added on the monotonic clock, so the visitor's own clock is never trusted. It ticks
+   once a second only while the tab is visible, stops at the end of the track, and is dropped when the
+   last confirmation gets old. Polls every 30 s while playing (the CDN answers most of those), never
+   while hidden. Spotify's player loads only after a visitor asks for it, and it stays on the track
+   that visitor chose: polls never restart or switch it. No audio, history or tracking of our own. */
 (function (root) {
-  const MAX_AGE_MS = 150000;   // never show data older than this as "now"
-  const GRACE_MS = 5000;       // allowance after the track's expected end
-  const POLL = { playing: 60000, idle: 60000, unavailable: 180000 };
+  const MAX_AGE_MS = 150000;          // never show data older than this as "now"
+  const PROGRESS_MAX_AGE_MS = 90000;  // stop estimating the position this long after the last answer
+  const GRACE_MS = 5000;              // allowance after the track's expected end
+  const POLL = { playing: 30000, idle: 60000, unavailable: 180000 };
+  const TRACK_URL = /^https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]{1,64})$/;
+
+  const finite = value => typeof value === 'number' && Number.isFinite(value);
+  const trackId = url => (typeof url === 'string' && TRACK_URL.exec(url) || [])[1] || null;
+  // The official embed address, built only from a validated track ID.
+  const embedUrl = url => { const id = trackId(url); return id ? `https://open.spotify.com/embed/track/${id}` : null; };
 
   // Decide what to show from a response and its age. Returns null when nothing should show.
   function view(data, ageMs) {
     if (!data || data.state !== 'playing' || !(ageMs >= 0) || ageMs > MAX_AGE_MS) return null;
-    if (typeof data.remainingMs === 'number' && ageMs > data.remainingMs + GRACE_MS) return null;
-    if (typeof data.url !== 'string' || !/^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]+$/.test(data.url)) return null;
+    if (finite(data.remainingMs) && ageMs >= data.remainingMs + GRACE_MS) return null;
+    if (!trackId(data.url)) return null;
     const title = typeof data.title === 'string' ? data.title.trim() : '';
     const artists = Array.isArray(data.artists) ? data.artists.filter(name => typeof name === 'string' && name.trim()) : [];
     return title && artists.length ? { title, artists, url: data.url } : null;
   }
+  // Where the track should be now, from an answer that is ageMs old. null when it cannot be estimated
+  // honestly: no usable position or duration, or a last confirmation too old to extrapolate from.
+  function progress(data, ageMs) {
+    if (!data || data.state !== 'playing' || !finite(ageMs) || ageMs < 0 || ageMs > PROGRESS_MAX_AGE_MS) return null;
+    const total = data.durationMs, start = data.progressMs;
+    if (!finite(total) || total <= 0 || !finite(start) || start < 0 || start > total) return null;
+    const elapsed = Math.min(total, start + ageMs);
+    return { elapsed, total, ended: elapsed >= total };
+  }
+  // How old an answer already was when it arrived: the CDN's Age (whole seconds) plus half the round trip.
+  function arrivalAge(ageHeader, roundTripMs) {
+    const age = ageHeader === null || ageHeader === undefined || ageHeader === '' ? NaN : Number(ageHeader);
+    return (Number.isFinite(age) && age > 0 ? age * 1000 : 0) + (finite(roundTripMs) && roundTripMs > 0 ? roundTripMs / 2 : 0);
+  }
+  const formatTime = ms => {
+    const seconds = Math.max(0, Math.floor(ms / 1000)), hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor(seconds / 60) % 60, rest = String(seconds % 60).padStart(2, '0');
+    return hours ? `${hours}:${String(minutes).padStart(2, '0')}:${rest}` : `${minutes}:${rest}`;
+  };
   // Milliseconds until the shown track stops counting as "now".
-  const validFor = (data, ageMs) => Math.min(MAX_AGE_MS, typeof data?.remainingMs === 'number' ? data.remainingMs + GRACE_MS : MAX_AGE_MS) - ageMs;
+  const validFor = (data, ageMs) => Math.min(MAX_AGE_MS, finite(data?.remainingMs) ? data.remainingMs + GRACE_MS : MAX_AGE_MS) - ageMs;
 
-  if (typeof module !== 'undefined' && module.exports) { module.exports = { view, validFor, MAX_AGE_MS, GRACE_MS, POLL }; return; }
+  if (typeof module !== 'undefined' && module.exports) { module.exports = { view, progress, arrivalAge, formatTime, trackId, embedUrl, validFor, MAX_AGE_MS, PROGRESS_MAX_AGE_MS, GRACE_MS, POLL }; return; }
   const doc = root.document, box = doc.getElementById('now-listening');
   if (!box || typeof root.fetch !== 'function') return;
-  const link = box.querySelector('a'), title = box.querySelector('.listening-title'), artist = box.querySelector('.listening-artist');
+  const part = selector => box.querySelector(selector);
+  const link = part('.listening-link'), title = part('.listening-title'), artist = part('.listening-artist');
+  const row = part('.listening-progress'), bar = part('.listening-bar'), fill = part('.listening-fill');
+  const elapsedText = part('.listening-elapsed'), totalText = part('.listening-total'), listen = part('.listening-listen');
+  const player = doc.getElementById('listening-player');
+  const frameHost = player?.querySelector('.listening-frame');
+  const playerOpen = player?.querySelector('.listening-player-open'), closeButton = player?.querySelector('.listening-close');
+  const t = text => root.PortfolioI18n?.t(text) || text;
   const clock = () => root.performance.now();
-  let last = null, receivedAt = 0, lastFetch = -Infinity, pollTimer = 0, endTimer = 0, inflight = null, stopped = false;
+  // receivedAt: the monotonic moment the last answer's position was true (arrival minus its age).
+  let last = null, receivedAt = 0, lastFetch = -Infinity, inflight = null, stopped = false;
+  let pollTimer = 0, endTimer = 0, tickTimer = 0, current = null, endCheckedFor = null, embedded = null;
+
+  function stopTimers() { root.clearTimeout(pollTimer); root.clearTimeout(endTimer); root.clearTimeout(tickTimer); pollTimer = endTimer = tickTimer = 0; }
 
   function render() {
-    root.clearTimeout(endTimer);
+    root.clearTimeout(endTimer); endTimer = 0;
     const age = clock() - receivedAt, shown = view(last, age);
-    if (!shown) { box.hidden = true; return; }
+    current = shown;
+    if (!shown) { box.hidden = true; root.clearTimeout(tickTimer); tickTimer = 0; syncListen(); return; }
     if (link.href !== shown.url) link.href = shown.url;
     title.textContent = shown.title;
     artist.textContent = shown.artists.join(', ');
     box.hidden = false;
-    // Hide exactly when the track should have ended, then ask once for the next one.
-    endTimer = root.setTimeout(() => { render(); if (!doc.hidden && clock() - lastFetch > 20000) refresh().then(schedule); }, Math.max(1000, validFor(last, age)));
+    syncListen();
+    tick();
+    if (doc.hidden) return; // nothing runs in a background tab
+    // At the track's expected end, check once for the next one; if nothing new arrives, hide the line
+    // after a short grace period.
+    const checkPending = finite(last.remainingMs) && last.url !== endCheckedFor;
+    endTimer = root.setTimeout(atEnd, Math.max(1000, checkPending ? last.remainingMs - age : validFor(last, age)));
+  }
+
+  function atEnd() {
+    endTimer = 0;
+    // At most one extra request per track, and not right after another one: a stale CDN copy of the
+    // finished track cannot start a loop. The regular poll takes over after that.
+    const key = last?.url || null;
+    if (key && key !== endCheckedFor && !doc.hidden && !stopped && clock() - lastFetch >= 2000) {
+      endCheckedFor = key;
+      refresh().then(schedule);
+      return;
+    }
+    render();
+  }
+
+  // Updates only the time, the bar and its accessible value, once a second while visible.
+  function tick() {
+    root.clearTimeout(tickTimer); tickTimer = 0;
+    const p = current ? progress(last, clock() - receivedAt) : null;
+    if (row) row.hidden = !p;
+    if (!p || !bar) return;
+    const elapsed = formatTime(p.elapsed), total = formatTime(p.total);
+    fill.style.setProperty('--listening-progress', String(Math.min(1, p.elapsed / p.total)));
+    if (elapsedText.textContent !== elapsed) elapsedText.textContent = elapsed;
+    if (totalText.textContent !== total) totalText.textContent = total;
+    bar.setAttribute('aria-valuemax', String(Math.round(p.total / 1000)));
+    bar.setAttribute('aria-valuenow', String(Math.floor(p.elapsed / 1000)));
+    bar.setAttribute('aria-valuetext', t('about {elapsed} of {total}').replace('{elapsed}', elapsed).replace('{total}', total));
+    if (p.ended || doc.hidden) return; // clamped at the end; the end check decides what comes next
+    tickTimer = root.setTimeout(tick, 1000 - (p.elapsed % 1000) + 20);
   }
 
   function refresh() {
     if (inflight) return inflight;
-    lastFetch = clock();
+    const started = lastFetch = clock();
     inflight = root.fetch('/api/now-playing', { headers: { Accept: 'application/json' } })
-      .then(response => response.ok ? response.json().then(data => ({ data, age: Number(response.headers.get('age')) || 0 })) : null)
+      .then(response => {
+        const arrived = clock();
+        return response.ok ? response.json().then(data => ({ data, arrived, age: arrivalAge(response.headers.get('age'), arrived - started) })) : null;
+      })
       .then(result => {
-        if (!result || typeof result.data !== 'object') return;
-        // The CDN's Age header says how old the answer is, without trusting the visitor's clock.
-        last = result.data; receivedAt = clock() - Math.max(0, result.age) * 1000;
+        if (!result || !result.data || typeof result.data !== 'object') return;
+        last = result.data; receivedAt = result.arrived - result.age;
         if (last.state === 'unconfigured') stopped = true; // nothing to show until Patrick sets it up
       })
       .catch(() => {}) // offline: whatever is still fresh stays, then disappears on schedule
@@ -54,15 +134,59 @@
   }
 
   function schedule() {
-    root.clearTimeout(pollTimer);
+    root.clearTimeout(pollTimer); pollTimer = 0;
     if (stopped || doc.hidden) return;
     pollTimer = root.setTimeout(() => refresh().then(schedule), POLL[last?.state] || POLL.idle);
   }
 
+  // Visitor playback: Spotify's official embed, requested from open.spotify.com only on this click.
+  // It is kept apart from Patrick's live line: polls never touch it, and a new track replaces it only
+  // when the visitor asks ("Switch to this track"). Removing the frame ends the visitor's playback.
+  function syncListen() {
+    if (!listen) return;
+    const id = current ? trackId(current.url) : null;
+    listen.hidden = !id || !player || (embedded !== null && embedded.id === id);
+    listen.textContent = t(embedded ? 'Switch to this track' : 'Listen here');
+  }
+
+  function openPlayer() {
+    const id = current ? trackId(current.url) : null, src = current ? embedUrl(current.url) : null;
+    if (!id || !src || !player || !frameHost) return;
+    const names = `${current.title} · ${current.artists.join(', ')}`;
+    const frame = doc.createElement('iframe');
+    frame.src = src;
+    frame.title = `${t('Spotify player')}: ${names}`;
+    frame.width = '100%'; frame.height = '152';
+    // As in Spotify's embed code, minus autoplay: nothing plays until the visitor presses play inside it.
+    frame.setAttribute('allow', 'clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+    frame.setAttribute('allowfullscreen', '');
+    frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    frameHost.replaceChildren(frame);
+    embedded = { id, url: current.url, names };
+    playerOpen.href = current.url;
+    player.hidden = false;
+    syncListen();
+    player.focus(); // the button may have just disappeared; keep keyboard focus in the new player
+  }
+
+  function closePlayer() {
+    if (!player) return;
+    frameHost.replaceChildren(); // unloads the embed, so any preview or track stops
+    embedded = null;
+    player.hidden = true;
+    syncListen();
+    const next = !box.hidden && listen && !listen.hidden ? listen : !box.hidden ? link : doc.querySelector('.listening-note a');
+    next?.focus();
+  }
+
+  listen?.addEventListener('click', openPlayer);
+  closeButton?.addEventListener('click', closePlayer);
+  root.addEventListener?.('portfolio:language', () => { syncListen(); if (current) tick(); });
+
   doc.addEventListener('visibilitychange', () => {
-    if (doc.hidden) { root.clearTimeout(pollTimer); return; }
-    render(); // drop anything that went stale while the tab was hidden
-    if (!stopped && clock() - lastFetch > 30000) refresh().then(schedule); else schedule();
+    if (doc.hidden) { stopTimers(); return; } // no timers and no requests while hidden
+    render(); // drop anything that went stale while the tab was hidden, then resume ticking
+    if (!stopped && clock() - lastFetch > POLL.playing) refresh().then(schedule); else schedule();
   });
   if (!doc.hidden) refresh().then(schedule);
 })(globalThis);
