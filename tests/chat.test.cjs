@@ -14,7 +14,7 @@ test('unconfigured never calls provider',async()=>{
 test('sends fixed model and bounded context, returns only answer',async()=>{
  const result=await reply(valid,{env:{GROQ_API_KEY:'test-key'},fetcher:async(url,opts)=>{
   const body=JSON.parse(opts.body);assert.equal(url,'https://api.groq.com/openai/v1/chat/completions');
-  assert.equal(body.model,'openai/gpt-oss-20b');assert.equal(body.messages[0].role,'system');assert.match(body.messages[0].content,/Customer Support Partner L2/);assert(!body.messages[0].content.includes('test-key'));assert.equal(body.max_completion_tokens,1024);
+  assert.equal(body.model,'openai/gpt-oss-20b');assert.equal(body.messages[0].role,'system');assert.match(body.messages[0].content,/Customer Support Partner L2/);assert(!body.messages[0].content.includes('test-key'));assert.equal(body.max_completion_tokens,800);
   return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'A short answer',reasoning:'hidden'}}]})};
  }});assert.deepEqual(result,{status:200,body:{text:'A short answer'}});
 });
@@ -42,20 +42,20 @@ test('HTTP boundary rejects cross-origin, unsupported methods and oversized payl
 
 test('the guide speaks about Patrick in the third person and only from public facts',()=>{
  const {system}=require('../api/chat.js');
- assert.match(system,/You are not Patrick/);
+ assert.match(system,/portfolio, not Patrick\./);
  assert.match(system,/refer to Patrick in the third person/);
- assert.match(system,/never use I, me, my, we or our for his work/);
- assert.match(system,/treat that as a question about Patrick and answer in the third person/);
- assert.match(system,/use only the PUBLIC FACTS below/);
+ assert.match(system,/never use I, me, my, we or our for his work/i);
+ assert.match(system,/Treat questions addressed to "you" about work, projects or life as questions about Patrick/);
+ assert.match(system,/Use only the FACTS below/);
  assert.match(system,/say the portfolio does not mention it/);
- assert.match(system,/never present typical tools, examples, numbers, dates, clients or links as his/);
+ assert.match(system,/Never guess or present typical tools, examples, numbers, dates, clients or links as his/);
  assert.doesNotMatch(system,/first scheduled run has not yet been verified/,'unverified discovery routine stays out');
 });
 
 test('site, project and contact facts match what the page shows',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),terminal=fs.readFileSync(path.join(__dirname,'../terminal.js'),'utf8');
- const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');const {topics}=require('../guide.js');
+ const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<7200,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
  const strip=s=>s.replace(/<[^>]+>/g,'');
  const cards=[...html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)].map(([a])=>({title:strip(a.match(/<h3>([\s\S]*?)<\/h3>/)[1]),text:strip(a.match(/<\/h3><p>([\s\S]*?)<\/p>/)[1])}));
  assert.equal(cards.length,PROJECTS.length);
@@ -67,7 +67,7 @@ test('site, project and contact facts match what the page shows',()=>{
  for(const [,topic,,text] of PROJECTS)if(topic)assert(system.includes(topics.find(t=>t.id===topic).en.slice(0,60)));else assert(system.includes(text));
  const commands=JSON.parse(terminal.match(/const commands = (\[[^\]]+\])/)[1].replace(/'/g,'"'));
  for(const command of commands)assert.match(SITE,new RegExp(`\\b${command}\\b`),`terminal command ${command}`);
- assert.match(SITE,/17 interface languages/);assert.match(SITE,/openai\/gpt-oss-20b/);
+ assert.match(SITE,/17 languages/);assert.match(SITE,/openai\/gpt-oss-20b/);
  const social=[...html.match(/<div class="social-links">([\s\S]*?)<\/div>/)[1].matchAll(/href="(https:[^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(social,['https://github.com/khons-hu','https://www.linkedin.com/in/patrick-obrtal/','https://x.com/ptr1337_']);
  for(const url of social)assert(CONTACT.some(line=>line.includes(url)),url);
@@ -76,4 +76,17 @@ test('site, project and contact facts match what the page shows',()=>{
 
 test('provider request uses a low temperature',async()=>{
  await reply(valid,{env:{GROQ_API_KEY:'k'},fetcher:async(url,opts)=>{const body=JSON.parse(opts.body);assert(body.temperature<=0.2);assert.match(body.messages[0].content,/Reply in language code en/);return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'ok'}}]})};}});
+});
+
+test('a short provider rate-limit wait is passed on once as Retry-After; long or missing waits are not',async()=>{
+ const run=async headers=>reply(valid,{env:{GROQ_API_KEY:'k'},fetcher:async()=>({ok:false,status:429,headers:{get:name=>headers[name.toLowerCase()]??null}})});
+ assert.deepEqual(await run({'retry-after':'3.2'}),{status:429,body:{error:'unavailable'},retryAfter:4});
+ assert.deepEqual(await run({'retry-after':'60'}),{status:429,body:{error:'unavailable'}});
+ assert.deepEqual(await run({}),{status:429,body:{error:'unavailable'}});
+ const handler=require('../api/chat.js');
+ const res={headers:{},setHeader(k,v){this.headers[k]=v;},end(v){this.value=JSON.parse(v);}};
+ const original=global.fetch;global.fetch=async()=>({ok:false,status:429,headers:{get:()=> '2'}});process.env.GROQ_API_KEY='k';
+ try{await handler({method:'POST',headers:{origin:'https://khons-hu.vercel.app','content-type':'application/json','x-forwarded-for':'203.0.113.9'},body:valid},res);}
+ finally{global.fetch=original;delete process.env.GROQ_API_KEY;}
+ assert.equal(res.statusCode,429);assert.equal(res.headers['Retry-After'],'2');
 });
