@@ -55,7 +55,7 @@
   const doc = root.document, box = doc.getElementById('now-listening');
   if (!box || typeof root.fetch !== 'function') return;
   const part = selector => box.querySelector(selector);
-  const label = part('.listening-label'), status = part('.listening-status');
+  const line = part('.listening-line'), label = part('.listening-label'), status = part('.listening-status');
   const link = part('.listening-link'), title = part('.listening-title'), artist = part('.listening-artist');
   const row = part('.listening-progress'), bar = part('.listening-bar'), fill = part('.listening-fill');
   const elapsedText = part('.listening-elapsed'), totalText = part('.listening-total'), listen = part('.listening-listen');
@@ -67,7 +67,7 @@
   const clock = () => root.performance.now();
   // receivedAt: the monotonic moment the last answer's position was true (arrival minus its age).
   let last = null, receivedAt = 0, lastFetch = -Infinity, inflight = null, stopped = false, answered = false;
-  let pollTimer = 0, endTimer = 0, tickTimer = 0, current = null, endCheckedFor = null, embedded = null;
+  let pollTimer = 0, endTimer = 0, tickTimer = 0, current = null, endCheckedFor = null, embedded = null, shownState = null;
 
   // Rewrite text only when it changes: repeated polls leave the DOM (and assistive technology) alone.
   const setText = (node, text) => { if (node && node.textContent !== text) node.textContent = text; };
@@ -86,6 +86,14 @@
     const age = clock() - receivedAt, shown = view(last, age);
     current = shown;
     const state = summary(shown);
+    // Between songs ("Updating…") the first row keeps the height it had while playing, so a title that
+    // wraps on a phone does not collapse and grow back, and the status appears where the bar was.
+    // Any other state releases it.
+    if (line?.style) {
+      if (state !== 'updating') line.style.minHeight = '';
+      else if (shownState === 'playing' && line.getBoundingClientRect) line.style.minHeight = `${line.getBoundingClientRect().height}px`;
+    }
+    shownState = state;
     box.hidden = false;
     box.setAttribute('data-playing', String(!!shown));
     box.setAttribute('data-state', state);

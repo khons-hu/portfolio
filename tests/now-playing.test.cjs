@@ -126,8 +126,8 @@ function browser({hidden=false,responses=[],setup,abortable=false}={}){
  const el=(tag='span')=>{const node={tag,hidden:false,textContent:'',href:'',title:'',src:'',children:[],attrs:{},listeners:{},style:{props:{},setProperty(k,v){this.props[k]=v;}},
   setAttribute(k,v){this.attrs[k]=String(v);},getAttribute(k){return this.attrs[k]??null;},replaceChildren(...c){this.children=c;},
   addEventListener(k,f){this.listeners[k]=f;},click(){this.listeners.click?.();},focus(){doc.activeElement=node;}};return node;};
- const parts={};for(const s of ['.listening-label','.listening-status','.listening-link','.listening-title','.listening-artist','.listening-progress','.listening-bar','.listening-fill','.listening-elapsed','.listening-total','.listening-listen'])parts[s]=el();
- parts['.listening-progress'].hidden=true;parts['.listening-listen'].hidden=true;setup?.(parts);
+ const parts={};for(const s of ['.listening-line','.listening-label','.listening-status','.listening-link','.listening-title','.listening-artist','.listening-progress','.listening-bar','.listening-fill','.listening-elapsed','.listening-total','.listening-listen'])parts[s]=el();
+ parts['.listening-progress'].hidden=true;parts['.listening-listen'].hidden=true;parts['.listening-line'].getBoundingClientRect=()=>({height:49});setup?.(parts);
  const box=Object.assign(el('div'),{hidden:true,querySelector:s=>parts[s]});
  const playerParts={};for(const s of ['.listening-frame','.listening-player-open','.listening-close'])playerParts[s]=el();
  const player=Object.assign(el('div'),{hidden:true,querySelector:s=>playerParts[s]});
@@ -243,4 +243,16 @@ test('summary markup keeps a stable second row, a quiet status and an accessible
  assert.match(css,/\.now-listening\[data-state=loading\] \.listening-status\{visibility:hidden\}/);
  assert.match(css,/\.listening-listen\[aria-expanded="true"\]::before/);
  assert.match(css,/@media\(max-width:359px\)\{[^}]*\.listening-listen\{[^}]*width:40px/);
+});
+test('between songs the first row holds its playing height; the next track or idle releases it',async()=>{
+ const nearEnd={...track,progressMs:198000,remainingMs:2000};
+ const b=browser({responses:[nearEnd,{body:nearEnd,age:10},other]});await b.flush();
+ assert.equal(b.box.attrs['data-state'],'playing');assert.equal(b.parts['.listening-line'].style.minHeight,'');
+ await b.advance(2100);assert.equal(b.box.attrs['data-state'],'updating');assert.equal(b.parts['.listening-line'].style.minHeight,'49px');
+ await b.advance(10500);assert.equal(b.box.attrs['data-state'],'playing');assert.equal(b.parts['.listening-title'].textContent,'Morning Walk');assert.equal(b.parts['.listening-line'].style.minHeight,'');
+ const idle=browser({responses:[nearEnd,{body:nearEnd,age:10},{state:'idle'}]});await idle.flush();
+ await idle.advance(2100);assert.equal(idle.parts['.listening-line'].style.minHeight,'49px');
+ await idle.advance(10500);assert.equal(idle.box.attrs['data-state'],'idle');assert.equal(idle.parts['.listening-line'].style.minHeight,'');
+ const expired=browser({responses:[{body:nearEnd,age:10}]});await expired.flush();
+ assert.equal(expired.box.attrs['data-state'],'updating');assert.equal(expired.parts['.listening-line'].style.minHeight,'','nothing to hold when the page opens between songs');
 });
