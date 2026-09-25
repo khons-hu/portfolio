@@ -43,14 +43,16 @@ function position(duration, progress) {
   return { durationMs, progressMs };
 }
 
-// Keep only what the page shows. Anything that is not a normal public Spotify track stays hidden.
+// Keep only what the page shows. Anything that is not a public Spotify track or podcast episode stays hidden.
 function publicTrack(data) {
   const item = data && data.item;
-  if (!data || data.is_playing !== true || data.currently_playing_type !== 'track' || !item || item.type !== 'track' || item.is_local) return null;
+  if (!data || data.is_playing !== true || !['track', 'episode'].includes(data.currently_playing_type) || !item || item.type !== data.currently_playing_type || item.is_local) return null;
+  const isEpisode = item.type === 'episode';
   const url = item.external_urls && item.external_urls.spotify;
-  if (typeof url !== 'string' || !/^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]+(\?.*)?$/.test(url)) return null;
+  if (typeof url !== 'string' || !/^https:\/\/open\.spotify\.com\/(track|episode)\/[A-Za-z0-9]+(\?.*)?$/.test(url)) return null;
+  if (!url.includes('/' + item.type + '/')) return null;
   const title = String(item.name || '').trim().slice(0, 200);
-  const artists = (item.artists || []).map(artist => String(artist && artist.name || '').trim()).filter(Boolean).slice(0, 4).map(name => name.slice(0, 120));
+  const artists = (isEpisode ? [item.show] : (item.artists || [])).map(artist => String(artist && artist.name || '').trim()).filter(Boolean).slice(0, 4).map(name => name.slice(0, 120));
   if (!title || !artists.length) return null;
   const { durationMs, progressMs } = position(item.duration_ms, data.progress_ms);
   const remainingMs = durationMs !== null && progressMs !== null && durationMs > progressMs ? durationMs - progressMs : null;
@@ -60,7 +62,7 @@ function publicTrack(data) {
 async function currentlyPlaying(env, fetcher, now) {
   for (let attempt = 0; attempt < 2; attempt++) {
     const token = await accessToken(env, fetcher, now);
-    const response = await fetcher(`${NOW_URL}?additional_types=track`, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(TIMEOUT_MS) });
+    const response = await fetcher(`${NOW_URL}?additional_types=track,episode`, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(TIMEOUT_MS) });
     if (response.status === 204) return { state: 'idle' }; // nothing playing, or a private session
     if (response.status === 401 && attempt === 0) { cachedToken = null; continue; }
     if (response.status === 429) return { state: 'unavailable', retryAfter: Math.min(300, Math.max(30, Number(response.headers.get('retry-after')) || 60)) };

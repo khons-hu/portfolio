@@ -35,7 +35,7 @@ test('a playing track is reduced to public title, artists and link',async()=>{
  assert.equal(out.maxAge,5);
  const tokenCall=out.calls[0];assert.match(tokenCall.options.headers.Authorization,/^Basic /);assert.match(tokenCall.options.body,/grant_type=refresh_token/);
 });
-test('paused, empty, private-session, podcast, ad and local tracks all stay hidden',async()=>{
+test('paused, empty, private-session, malformed episode, ad and local tracks all stay hidden',async()=>{
  for(const response of [json(204,null),json(200,{...playing,is_playing:false}),json(200,{...playing,currently_playing_type:'episode',item:{...playing.item,type:'episode'}}),json(200,{...playing,currently_playing_type:'ad',item:null}),json(200,{...playing,item:{...playing.item,is_local:true,external_urls:{}}}),json(200,{...playing,item:{...playing.item,external_urls:{spotify:'https://evil.example/track/1'}}})]){
   const out=await run([response]);assert.equal(out.body.state,'idle',JSON.stringify(out.body));assert(!('title' in out.body));
  }
@@ -114,7 +114,7 @@ test('the page estimates the position honestly from the last answer',()=>{
 
 test('only a validated Spotify track address reaches the embed',()=>{
  assert.equal(client.embedUrl('https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC'),'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC');
- for(const bad of ['javascript:alert(1)','https://open.spotify.com.evil.com/track/abc','https://open.spotify.com/track/abc?si=1','https://open.spotify.com/track/abc/../x','https://open.spotify.com/track/ab%2Fc','http://open.spotify.com/track/abc','https://open.spotify.com/episode/abc','https://open.spotify.com/track/'+'a'.repeat(65),' https://open.spotify.com/track/abc',null,42]){
+ for(const bad of ['javascript:alert(1)','https://open.spotify.com.evil.com/track/abc','https://open.spotify.com/track/abc?si=1','https://open.spotify.com/track/abc/../x','https://open.spotify.com/track/ab%2Fc','http://open.spotify.com/track/abc','https://open.spotify.com/track/'+'a'.repeat(65),' https://open.spotify.com/track/abc',null,42]){
   assert.equal(client.embedUrl(bad),null,String(bad));assert.equal(client.view({state:'playing',title:'T',artists:['A'],url:bad},0),null,String(bad));
  }
 });
@@ -255,4 +255,17 @@ test('between songs the first row holds its playing height; the next track or id
  await idle.advance(10500);assert.equal(idle.box.attrs['data-state'],'idle');assert.equal(idle.parts['.listening-line'].style.minHeight,'');
  const expired=browser({responses:[{body:nearEnd,age:10}]});await expired.flush();
  assert.equal(expired.box.attrs['data-state'],'updating');assert.equal(expired.parts['.listening-line'].style.minHeight,'','nothing to hold when the page opens between songs');
+});
+
+test('podcast playback reaches the UI with show name, position and episode embed',async()=>{
+ const episode={...playing,currently_playing_type:'episode',item:{type:'episode',name:'Episode title',duration_ms:3600000,show:{name:'Show title'},external_urls:{spotify:'https://open.spotify.com/episode/abc123?si=tracking'}}};
+ const out=await run([json(200,episode)]);
+ assert.equal(out.body.state,'playing');
+ assert.deepEqual(out.body.artists,['Show title']);
+ assert.equal(out.body.title,'Episode title');
+ assert.equal(out.body.progressMs,60000);
+ assert(out.calls.some(c=>c.url.includes('additional_types=track,episode')));
+ assert(client.view(out.body,0));
+ assert.equal(client.embedUrl(out.body.url),'https://open.spotify.com/embed/episode/abc123');
+ assert.equal((await run([json(200,{...episode,is_playing:false})])).body.state,'idle');
 });

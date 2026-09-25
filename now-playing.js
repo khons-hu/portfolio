@@ -13,12 +13,12 @@
   const POLL = { playing: 10000, idle: 15000, unavailable: 180000 };
   const REQUEST_TIMEOUT_MS = 8000;     // a request that never settles must not stop polling for the visit
   const STATUS = { loading: 'Updating…', updating: 'Updating…', idle: 'Offline', unavailable: 'Currently unavailable' };
-  const TRACK_URL = /^https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]{1,64})$/;
+  const TRACK_URL = /^https:\/\/open\.spotify\.com\/(?:track|episode)\/([A-Za-z0-9]{1,64})$/;
 
   const finite = value => typeof value === 'number' && Number.isFinite(value);
   const trackId = url => (typeof url === 'string' && TRACK_URL.exec(url) || [])[1] || null;
   // The official embed address, built only from a validated track ID.
-  const embedUrl = url => { const id = trackId(url); return id ? `https://open.spotify.com/embed/track/${id}` : null; };
+  const embedUrl = url => { const id = trackId(url); return id ? `https://open.spotify.com/embed/${url.includes('/episode/') ? 'episode' : 'track'}/${id}` : null; };
 
   // Decide what to show from a response and its age. Returns null when nothing should show.
   function view(data, ageMs) {
