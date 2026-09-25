@@ -11,6 +11,8 @@
   const PROGRESS_MAX_AGE_MS = 90000;  // stop estimating the position this long after the last answer
   const GRACE_MS = 5000;              // allowance after the track's expected end
   const POLL = { playing: 10000, idle: 15000, unavailable: 180000 };
+  const REQUEST_TIMEOUT_MS = 8000;     // a request that never settles must not stop polling for the visit
+  const STATUS = { loading: 'Updating…', updating: 'Updating…', idle: 'Offline', unavailable: 'Currently unavailable' };
   const TRACK_URL = /^https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]{1,64})$/;
 
   const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -57,14 +59,25 @@
   const link = part('.listening-link'), title = part('.listening-title'), artist = part('.listening-artist');
   const row = part('.listening-progress'), bar = part('.listening-bar'), fill = part('.listening-fill');
   const elapsedText = part('.listening-elapsed'), totalText = part('.listening-total'), listen = part('.listening-listen');
+  const listenText = listen?.querySelector?.('.listening-listen-text') || listen;
   const player = doc.getElementById('listening-player');
   const frameHost = player?.querySelector('.listening-frame');
   const playerOpen = player?.querySelector('.listening-player-open'), closeButton = player?.querySelector('.listening-close');
   const t = text => root.PortfolioI18n?.t(text) || text;
   const clock = () => root.performance.now();
   // receivedAt: the monotonic moment the last answer's position was true (arrival minus its age).
-  let last = null, receivedAt = 0, lastFetch = -Infinity, inflight = null, stopped = false;
+  let last = null, receivedAt = 0, lastFetch = -Infinity, inflight = null, stopped = false, answered = false;
   let pollTimer = 0, endTimer = 0, tickTimer = 0, current = null, endCheckedFor = null, embedded = null;
+
+  // Rewrite text only when it changes: repeated polls leave the DOM (and assistive technology) alone.
+  const setText = (node, text) => { if (node && node.textContent !== text) node.textContent = text; };
+  // loading until the first answer settles; updating while a track that was playing is no longer confirmed.
+  function summary(shown) {
+    if (shown) return 'playing';
+    if (!answered) return 'loading';
+    if (last?.state === 'idle') return 'idle';
+    return last?.state === 'playing' && view(last, 0) ? 'updating' : 'unavailable';
+  }
 
   function stopTimers() { root.clearTimeout(pollTimer); root.clearTimeout(endTimer); root.clearTimeout(tickTimer); pollTimer = endTimer = tickTimer = 0; }
 
@@ -72,13 +85,15 @@
     root.clearTimeout(endTimer); endTimer = 0;
     const age = clock() - receivedAt, shown = view(last, age);
     current = shown;
+    const state = summary(shown);
     box.hidden = false;
     box.setAttribute('data-playing', String(!!shown));
+    box.setAttribute('data-state', state);
     link.hidden = !shown;
-    if (label) label.textContent = shown ? t('Listening now') : 'Spotify';
+    setText(label, shown ? t('Listening now') : 'Spotify');
     if (status) {
       status.hidden = !!shown;
-      status.textContent = t(last?.state === 'idle' ? 'Offline' : last?.state === 'playing' ? 'Updating…' : 'Currently unavailable');
+      if (!shown) setText(status, t(STATUS[state]));
     }
     if (!shown) { row.hidden = true; root.clearTimeout(tickTimer); tickTimer = 0; syncListen(); return; }
     if (link.href !== shown.url) link.href = shown.url;
@@ -127,7 +142,9 @@
   function refresh() {
     if (inflight) return inflight;
     const started = lastFetch = clock();
-    inflight = root.fetch('/api/now-playing', { headers: { Accept: 'application/json' } })
+    const controller = typeof root.AbortController === 'function' ? new root.AbortController() : null;
+    const abortTimer = controller ? root.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS) : 0;
+    inflight = root.fetch('/api/now-playing', { headers: { Accept: 'application/json' }, signal: controller?.signal })
       .then(response => {
         const arrived = clock();
         return response.ok ? response.json().then(data => ({ data, arrived, age: arrivalAge(response.headers.get('age'), arrived - started) })) : null;
@@ -137,15 +154,18 @@
         last = result.data; receivedAt = result.arrived - result.age;
         if (last.state === 'unconfigured') stopped = true; // keep the unavailable summary until configured
       })
-      .catch(() => { last = { state: 'unavailable' }; }) // offline: whatever is still fresh stays, then shows an unavailable status
-      .finally(() => { inflight = null; render(); });
+      // Network error or timeout: a track that is still fresh stays until it expires; otherwise the
+      // summary says unavailable and the next check comes at the idle pace, not the long back-off.
+      .catch(() => { if (!view(last, clock() - receivedAt)) last = { state: 'unavailable', offline: true }; })
+      .finally(() => { root.clearTimeout(abortTimer); inflight = null; answered = true; render(); });
     return inflight;
   }
 
   function schedule() {
     root.clearTimeout(pollTimer); pollTimer = 0;
     if (stopped || doc.hidden) return;
-    pollTimer = root.setTimeout(() => refresh().then(schedule), Math.max(POLL[last?.state] || POLL.idle, (last?.retryAfter || 0) * 1000));
+    const wait = last?.offline ? POLL.idle : POLL[last?.state] || POLL.idle;
+    pollTimer = root.setTimeout(() => refresh().then(schedule), Math.max(wait, (last?.retryAfter || 0) * 1000));
   }
 
   // Visitor playback: Spotify's official embed, requested from open.spotify.com only on this click.
@@ -156,7 +176,7 @@
     const id = current ? trackId(current.url) : null;
     listen.hidden = !player || (!id && !embedded);
     listen.setAttribute('aria-expanded', String(!!player && !player.hidden));
-    listen.textContent = t(embedded && !player.hidden ? 'Close player' : 'Listen here');
+    setText(listenText, t(embedded && !player.hidden ? 'Close player' : 'Listen here'));
   }
 
   function openPlayer() {
@@ -178,7 +198,7 @@
     playerOpen.href = chosen.url;
     player.hidden = false;
     syncListen();
-    player.focus(); // the button may have just disappeared; keep keyboard focus in the new player
+    player.focus(); // keyboard focus follows the new player, which opens just below the toggle
   }
 
   function closePlayer() {

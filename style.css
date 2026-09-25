@@ -524,9 +524,9 @@ html:not(.js) .project-details{cursor:default}
 .listening-line{margin:0}
 /* Position: a thin read-only bar between elapsed and total time, like a phone's mini player. It steps
    once a second with no transition, stops at the end, and is not a seek control. */
-.listening-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;max-width:440px;margin-top:4px}
-/* The bar keeps at least ~200px; on narrow phones the button moves to its own line instead. */
-.listening-progress{flex:1 1 200px;min-width:0;display:flex;align-items:center;gap:10px}
+.listening-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;max-width:440px;margin-top:6px}
+/* Position and button share one row down to 320px; only an unusually long label wraps the button. */
+.listening-progress{flex:1 1 150px;min-width:0;display:flex;align-items:center;gap:10px}
 .listening-progress[hidden]{display:none}
 .listening-time{flex-shrink:0;min-width:3.4em;font:11px/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
 .listening-total{text-align:end}
@@ -538,7 +538,7 @@ html:not(.js) .project-details{cursor:default}
 .listening-listen::before{content:"";width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid var(--accent)}
 @media(hover:hover){.listening-listen:hover{border-color:var(--accent);color:var(--accent)}}
 /* Visitor player: Spotify's embed, loaded only after a click, kept separate from the live line. */
-.listening-player{max-width:440px;margin-top:14px;outline:none}
+.listening-player{max-width:440px;margin:16px 0 20px;outline:none}
 .listening-player:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:14px}
 .listening-player-label{margin:0 0 8px;font:500 11px/1.5 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .listening-frame{height:152px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
@@ -553,8 +553,22 @@ html:not(.js) .project-details{cursor:default}
 .js-motion .listening-player:not([hidden]){animation:entry-in .22s cubic-bezier(.2,.7,.2,1) both}
 :where(:lang(ar),:lang(ur),:lang(hi),:lang(bn)) .listening-player-label{letter-spacing:normal}
 
-/* Keep the Spotify summary in place through idle and track changes. */
-.now-listening{min-height:74px}
-.listening-status{color:var(--muted);font-size:.875rem}
-.listening-line{min-height:24px}
+/* Stable geometry: the second row (position and button, or the status while nothing is confirmed
+   playing) keeps one control's height in every state, so idle, "Updating…" between songs and a new
+   track do not move the notes below. Without JavaScript the status simply sits under the label. */
+.listening-status{flex:1 1 auto;min-width:0;font-size:14px;line-height:1.75;color:var(--muted)}
+html.js .listening-controls{min-height:30px}
+/* Until the first answer arrives there is nothing true to say: keep the space, show no status. */
+html.js .now-listening:not([data-state]) .listening-status,.now-listening[data-state=loading] .listening-status{visibility:hidden}
 .now-listening:not([data-playing="true"]) .listening-label::before{background:var(--muted);box-shadow:none;opacity:.55}
+/* While the player is open the toggle shows a stop square: closing removes the embed and its audio. */
+.listening-listen[aria-expanded="true"]::before{width:7px;height:7px;border:0;border-radius:1px;background:var(--accent)}
+@media(pointer:coarse){html.js .listening-controls{min-height:40px}}
+/* Narrow phones: a round icon button keeps position and button on one row with a readable bar.
+   Its label stays in the accessibility tree. */
+@media(max-width:359px){
+  .listening-listen{justify-content:center;width:40px;min-height:40px;padding:0;gap:0}
+  .listening-listen-text{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .listening-listen:not([aria-expanded="true"])::before{margin-left:2px}
+  html.js .listening-controls{min-height:40px}
+}

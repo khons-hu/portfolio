@@ -120,14 +120,14 @@ test('only a validated Spotify track address reaches the embed',()=>{
 });
 
 // A small DOM double: enough for now-playing.js to render, tick, poll and load its player.
-function browser({hidden=false,responses=[]}={}){
+function browser({hidden=false,responses=[],setup,abortable=false}={}){
  const timers=[];let clockMs=0;const fetches=[];const listeners={};const created=[];
  const doc={hidden,activeElement:null};
  const el=(tag='span')=>{const node={tag,hidden:false,textContent:'',href:'',title:'',src:'',children:[],attrs:{},listeners:{},style:{props:{},setProperty(k,v){this.props[k]=v;}},
   setAttribute(k,v){this.attrs[k]=String(v);},getAttribute(k){return this.attrs[k]??null;},replaceChildren(...c){this.children=c;},
   addEventListener(k,f){this.listeners[k]=f;},click(){this.listeners.click?.();},focus(){doc.activeElement=node;}};return node;};
  const parts={};for(const s of ['.listening-label','.listening-status','.listening-link','.listening-title','.listening-artist','.listening-progress','.listening-bar','.listening-fill','.listening-elapsed','.listening-total','.listening-listen'])parts[s]=el();
- parts['.listening-progress'].hidden=true;parts['.listening-listen'].hidden=true;
+ parts['.listening-progress'].hidden=true;parts['.listening-listen'].hidden=true;setup?.(parts);
  const box=Object.assign(el('div'),{hidden:true,querySelector:s=>parts[s]});
  const playerParts={};for(const s of ['.listening-frame','.listening-player-open','.listening-close'])playerParts[s]=el();
  const player=Object.assign(el('div'),{hidden:true,querySelector:s=>playerParts[s]});
@@ -136,7 +136,9 @@ function browser({hidden=false,responses=[]}={}){
   createElement:tag=>{const node=el(tag);created.push(node);return node;},addEventListener:(k,f)=>listeners[k]=f});
  const root={document:doc,performance:{now:()=>clockMs},
   setTimeout:(fn,ms)=>{timers.push({fn,at:clockMs+ms});return timers.length;},clearTimeout:id=>{if(timers[id-1])timers[id-1].cancelled=true;},
-  fetch:async url=>{fetches.push({url,at:clockMs});const r=responses.shift()||{state:'idle'};if(r==='offline')throw new Error('offline');return {ok:true,headers:{get:k=>k==='age'?String(r.age||0):null},json:async()=>r.body||r};}};
+  fetch:async(url,options={})=>{fetches.push({url,at:clockMs});const r=responses.shift()||{state:'idle'};if(r==='offline')throw new Error('offline');
+   if(r==='hang')return new Promise((_,reject)=>options.signal?.addEventListener('abort',()=>reject(new Error('aborted'))));return {ok:true,headers:{get:k=>k==='age'?String(r.age||0):null},json:async()=>r.body||r};}};
+ if(abortable)root.AbortController=AbortController;
  root.globalThis=root;
  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../now-playing.js'),'utf8').replace(/\}\)\(globalThis\);\s*$/,'})(root);'),{root,module:undefined});
  const flush=async()=>{for(let i=0;i<4;i++)await new Promise(r=>setImmediate(r));};
@@ -202,4 +204,43 @@ test('player and progress copy exists in every language, and only Spotify may be
  assert.match(csp,/frame-src https:\/\/open\.spotify\.com(;|$)/);assert.match(csp,/frame-ancestors 'none'/);assert.match(csp,/script-src 'self';/);
  assert.doesNotMatch(html,/<iframe/i,'no frame in the page until a visitor asks for one');
  assert.doesNotMatch(fs.readFileSync(path.join(__dirname,'../now-playing.js'),'utf8'),/autoplay;/);
+});
+test('summary is quiet: hidden status until the first answer, no rewrites on repeated polls',async()=>{
+ let writes=0;
+ const setup=parts=>{let text='';Object.defineProperty(parts['.listening-status'],'textContent',{get:()=>text,set:v=>{writes++;text=v;}});};
+ const b=browser({responses:[{state:'idle'},{state:'idle'},{state:'idle'},{state:'idle'}],setup});
+ assert.equal(b.box.attrs['data-state'],'loading');
+ await b.flush();assert.equal(b.box.attrs['data-state'],'idle');assert.equal(b.parts['.listening-status'].textContent,'Offline');
+ const after=writes;await b.advance(45500);assert.equal(b.fetches.length,4);assert.equal(writes,after,'unchanged status is not rewritten');
+});
+test('an expired track says updating; data that can never show says unavailable',async()=>{
+ const expired=browser({responses:[{body:{...track,remainingMs:1000},age:10}]});await expired.flush();
+ assert.equal(expired.box.attrs['data-state'],'updating');assert.equal(expired.parts['.listening-status'].textContent,'Updating…');
+ const unsafe=browser({responses:[{...track,url:'https://evil.example/a'}]});await unsafe.flush();
+ assert.equal(unsafe.box.attrs['data-state'],'unavailable');assert.equal(unsafe.parts['.listening-status'].textContent,'Currently unavailable');
+});
+test('a failed check keeps a fresh track and retries without the long back-off',async()=>{
+ const b=browser({responses:[track,'offline',other]});await b.flush();
+ await b.advance(10500);assert.equal(b.fetches.length,2);assert.equal(b.parts['.listening-link'].hidden,false);assert.equal(b.parts['.listening-title'].textContent,'Night Drive');
+ await b.advance(10500);assert.equal(b.parts['.listening-title'].textContent,'Morning Walk');
+ const idle=browser({responses:[{state:'idle'},'offline',{state:'idle'}]});await idle.flush();
+ await idle.advance(15500);assert.equal(idle.parts['.listening-status'].textContent,'Currently unavailable');
+ await idle.advance(15500);assert.equal(idle.fetches.length,3);assert.equal(idle.parts['.listening-status'].textContent,'Offline');
+});
+test('a request that never settles times out and polling continues',async()=>{
+ const b=browser({responses:['hang',{state:'idle'}],abortable:true});await b.flush();
+ assert.equal(b.box.attrs['data-state'],'loading');
+ await b.advance(8100);assert.equal(b.box.attrs['data-state'],'unavailable');
+ await b.advance(15500);assert.equal(b.fetches.length,2);assert.equal(b.parts['.listening-status'].textContent,'Offline');
+});
+test('summary markup keeps a stable second row, a quiet status and an accessible narrow button',()=>{
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),css=fs.readFileSync(path.join(__dirname,'../style.css'),'utf8');
+ const box=html.slice(html.indexOf('<div id="now-listening"'),html.indexOf('<div id="listening-player"'));
+ assert.match(box,/<div class="listening-controls"><span class="listening-status">Currently unavailable<\/span>/);
+ assert.doesNotMatch(box,/role="status"|aria-live/,'ambient updates are not announced');
+ assert.match(box,/<span class="listening-listen-text">Listen here<\/span>/);
+ assert.match(css,/html\.js \.listening-controls\{min-height:30px\}/);assert.doesNotMatch(css,/\.now-listening\{min-height/);
+ assert.match(css,/\.now-listening\[data-state=loading\] \.listening-status\{visibility:hidden\}/);
+ assert.match(css,/\.listening-listen\[aria-expanded="true"\]::before/);
+ assert.match(css,/@media\(max-width:359px\)\{[^}]*\.listening-listen\{[^}]*width:40px/);
 });
