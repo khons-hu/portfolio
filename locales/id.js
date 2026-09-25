@@ -5,6 +5,9 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "id", {
   "site": {
+    "Offline": "Offline",
+    "Updating\u2026": "Memperbarui…",
+    "Currently unavailable": "Saat ini tidak tersedia",
     "Listening now": "Sedang diputar",
     "on Spotify": "di Spotify",
     "Listen here": "Dengarkan di sini",

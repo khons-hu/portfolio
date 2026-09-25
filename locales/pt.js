@@ -5,6 +5,9 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "pt", {
   "site": {
+    "Offline": "Offline",
+    "Updating\u2026": "A atualizar…",
+    "Currently unavailable": "Indisponível de momento",
     "Listening now": "A ouvir agora",
     "on Spotify": "no Spotify",
     "Listen here": "Ouvir aqui",

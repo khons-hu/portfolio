@@ -1346,3 +1346,10 @@ for (const [language, pack] of Object.entries(extraSitePacks)) {
   SITE_LOCALES[language] = pack.site;
   PROJECT_NOTES[language] = pack.notes;
 }
+
+Object.assign(SITE_LOCALES.sk, {"Offline": "Offline", "Updating…": "Aktualizujem…", "Currently unavailable": "Momentálne nedostupné"});
+Object.assign(SITE_LOCALES.hu, {"Offline": "Offline", "Updating…": "Frissítés…", "Currently unavailable": "Jelenleg nem érhető el"});
+Object.assign(SITE_LOCALES.pl, {"Offline": "Offline", "Updating…": "Aktualizowanie…", "Currently unavailable": "Obecnie niedostępne"});
+Object.assign(SITE_LOCALES.cs, {"Offline": "Offline", "Updating…": "Aktualizuji…", "Currently unavailable": "Momentálně nedostupné"});
+Object.assign(SITE_LOCALES.de, {"Offline": "Offline", "Updating…": "Wird aktualisiert…", "Currently unavailable": "Derzeit nicht verfügbar"});
+Object.assign(SITE_LOCALES.es, {"Offline": "Sin conexión", "Updating…": "Actualizando…", "Currently unavailable": "No disponible ahora"});

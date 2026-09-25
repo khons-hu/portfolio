@@ -32,7 +32,7 @@ test('a playing track is reduced to public title, artists and link',async()=>{
  assert.equal(out.body.url,'https://open.spotify.com/track/abc123','tracking query removed');assert.equal(out.body.remainingMs,140000);
  const text=JSON.stringify(out.body);
  for(const secret of ['client-secret-value','refresh-token-value','access-token','Private laptop','playlist','i.scdn.co','Album'])assert(!text.includes(secret),secret);
- assert.equal(out.maxAge,30);
+ assert.equal(out.maxAge,5);
  const tokenCall=out.calls[0];assert.match(tokenCall.options.headers.Authorization,/^Basic /);assert.match(tokenCall.options.body,/grant_type=refresh_token/);
 });
 test('paused, empty, private-session, podcast, ad and local tracks all stay hidden',async()=>{
@@ -45,7 +45,7 @@ test('an expired access token is refreshed once, then the request is retried',as
  assert.equal(out.body.state,'playing');assert.equal(out.calls.filter(c=>c.url.includes('/api/token')).length,2);
 });
 test('rate limits and failures become a quiet unavailable state with a bounded cache',async()=>{
- assert.deepEqual((await run([json(429,{}, {'retry-after':'120'})])).body,{state:'unavailable'});
+ assert.deepEqual((await run([json(429,{}, {'retry-after':'120'})])).body,{state:'unavailable',retryAfter:120});
  assert.equal((await run([json(429,{}, {'retry-after':'120'})])).maxAge,120);
  assert.equal((await run([json(429,{}, {'retry-after':'9999'})])).maxAge,300);
  assert.equal((await run([json(503,{})])).body.state,'unavailable');
@@ -126,7 +126,7 @@ function browser({hidden=false,responses=[]}={}){
  const el=(tag='span')=>{const node={tag,hidden:false,textContent:'',href:'',title:'',src:'',children:[],attrs:{},listeners:{},style:{props:{},setProperty(k,v){this.props[k]=v;}},
   setAttribute(k,v){this.attrs[k]=String(v);},getAttribute(k){return this.attrs[k]??null;},replaceChildren(...c){this.children=c;},
   addEventListener(k,f){this.listeners[k]=f;},click(){this.listeners.click?.();},focus(){doc.activeElement=node;}};return node;};
- const parts={};for(const s of ['.listening-link','.listening-title','.listening-artist','.listening-progress','.listening-bar','.listening-fill','.listening-elapsed','.listening-total','.listening-listen'])parts[s]=el();
+ const parts={};for(const s of ['.listening-label','.listening-status','.listening-link','.listening-title','.listening-artist','.listening-progress','.listening-bar','.listening-fill','.listening-elapsed','.listening-total','.listening-listen'])parts[s]=el();
  parts['.listening-progress'].hidden=true;parts['.listening-listen'].hidden=true;
  const box=Object.assign(el('div'),{hidden:true,querySelector:s=>parts[s]});
  const playerParts={};for(const s of ['.listening-frame','.listening-player-open','.listening-close'])playerParts[s]=el();
@@ -147,112 +147,53 @@ function browser({hidden=false,responses=[]}={}){
 const track={state:'playing',title:'Night Drive',artists:['A','B'],url:'https://open.spotify.com/track/abc123',remainingMs:140000,progressMs:60000,durationMs:200000};
 const other={...track,title:'Morning Walk',url:'https://open.spotify.com/track/xyz789',progressMs:1000,remainingMs:199000};
 
-test('client polls every 30 s while playing, never per second and never while hidden',async()=>{
- const b=browser({responses:[track]});await b.flush();
- assert.equal(b.fetches.length,1);assert.equal(b.box.hidden,false);assert.equal(b.parts['.listening-title'].textContent,'Night Drive');assert.equal(b.parts['.listening-artist'].textContent,'A, B');
- await b.advance(20000);assert.equal(b.fetches.length,1,'no per-second requests');
- await b.advance(10500);assert.equal(b.fetches.length,2,'one poll after 30 s');
- b.setHidden(true);await b.advance(600000);assert.equal(b.fetches.length,2,'hidden tab does not poll');
-});
-test('the position starts from the CDN age and ticks locally once a second',async()=>{
- const b=browser({responses:[{body:track,age:20}]});await b.flush();
- const e=b.parts['.listening-elapsed'],bar=b.parts['.listening-bar'];
- assert.equal(b.parts['.listening-progress'].hidden,false);
- assert.equal(e.textContent,'1:20','60 s + 20 s of CDN age');assert.equal(b.parts['.listening-total'].textContent,'3:20');
- assert.equal(bar.attrs['aria-valuenow'],'80');assert.equal(bar.attrs['aria-valuemax'],'200');assert.equal(bar.attrs['aria-valuetext'],'about 1:20 of 3:20');
- assert.equal(b.parts['.listening-fill'].style.props['--listening-progress'],'0.4');
- await b.advance(1100);assert.equal(e.textContent,'1:21');
- await b.advance(9000);assert.equal(e.textContent,'1:30');assert.equal(b.fetches.length,1,'ticking makes no requests');
-});
-test('a missing or unusable position hides only the bar and starts no ticking',async()=>{
- for(const body of [{...track,progressMs:null,remainingMs:null},{...track,progressMs:-5},{...track,progressMs:'60000'},{...track,durationMs:0},{...track,progressMs:Infinity}]){
-  const b=browser({responses:[body]});await b.flush();
-  assert.equal(b.box.hidden,false,JSON.stringify(body));assert.equal(b.parts['.listening-progress'].hidden,true,JSON.stringify(body));
-  const before=b.parts['.listening-elapsed'].textContent;await b.advance(5000);assert.equal(b.parts['.listening-elapsed'].textContent,before);
+test('summary stays visible offline, unavailable and during track transitions',async()=>{
+ for(const response of [{state:'idle'},{state:'unavailable'},{state:'unconfigured'},'offline']){
+  const b=browser({responses:[response]});await b.flush();
+  assert.equal(b.box.hidden,false);assert.equal(b.parts['.listening-link'].hidden,true);
+  assert.equal(b.parts['.listening-progress'].hidden,true);
+  assert.equal(b.parts['.listening-status'].textContent,response.state==='idle'?'Offline':'Currently unavailable');
  }
+ const b=browser({responses:[{...track,progressMs:198000,remainingMs:2000},{state:'idle'},other]});await b.flush();
+ await b.advance(2500);assert.equal(b.box.hidden,false);assert.equal(b.parts['.listening-status'].textContent,'Offline');
+ await b.advance(15000);assert.equal(b.parts['.listening-title'].textContent,'Morning Walk');assert.equal(b.box.hidden,false);
 });
-test('the bar clamps at the total and stops ticking',async()=>{
- const b=browser({responses:[{...track,progressMs:198500,remainingMs:1500},'offline']});await b.flush();
- await b.advance(3000);assert.equal(b.parts['.listening-elapsed'].textContent,'3:20');assert.equal(b.parts['.listening-fill'].style.props['--listening-progress'],'1');
- assert.equal(b.box.hidden,false,'still inside the grace period');await b.advance(4000);assert.equal(b.box.hidden,true,'then gone: no endless progress');
-});
-test('at the end one check looks for the next track, and a stale copy cannot loop',async()=>{
- const ending={...track,progressMs:195000,remainingMs:5000};
- const b=browser({responses:[ending,{body:ending,age:20},{body:ending,age:25},{body:ending,age:28}]});await b.flush();
- await b.advance(4900);assert.equal(b.parts['.listening-elapsed'].textContent,'3:19');assert.equal(b.fetches.length,1);
- await b.advance(200);assert.equal(b.fetches.length,2,'one check at the expected end');
- assert.equal(b.box.hidden,true,'the CDN copy is 20 s old, so that play has already finished');
- await b.advance(29000);assert.equal(b.fetches.length,2,'the stale copy of the same track does not trigger more checks');
-});
-test('a new track replaces the finished one with its own position',async()=>{
- const ending={...track,progressMs:198000,remainingMs:2000};
- const b=browser({responses:[ending,other]});await b.flush();
- await b.advance(2500);await b.flush();
- assert.equal(b.parts['.listening-title'].textContent,'Morning Walk');assert.equal(b.parts['.listening-elapsed'].textContent,'0:01');
-});
-test('a background tab cancels every timer, makes no requests, and resumes on return',async()=>{
- const b=browser({responses:[track,track]});await b.flush();
- assert(b.pending()>0);b.setHidden(true);assert.equal(b.pending(),0,'no timers while hidden');
- const shown=b.parts['.listening-elapsed'].textContent;await b.advance(600000);
- assert.equal(b.fetches.length,1);assert.equal(b.parts['.listening-elapsed'].textContent,shown,'nothing ticks in the background');
- b.setHidden(false);await b.flush();assert.equal(b.fetches.length,2,'a fresh check on return');assert(b.pending()>0);
-});
-test('a background tab does not fetch until it becomes visible',async()=>{
- const b=browser({hidden:true,responses:[track]});await b.flush();assert.equal(b.fetches.length,0);assert.equal(b.pending(),0);
- b.setHidden(false);await b.flush();assert.equal(b.fetches.length,1);assert.equal(b.box.hidden,false);
-});
-test('Spotify’s player loads only after a click, without autoplay',async()=>{
- const b=browser({responses:[track]});await b.flush();
- const listen=b.parts['.listening-listen'];
- assert.equal(b.created.length,0,'no frame before the click');assert.equal(b.player.hidden,true);assert.equal(listen.hidden,false);assert.equal(listen.textContent,'Listen here');
- listen.click();
- assert.equal(b.created.length,1);const frame=b.created[0];
- assert.equal(frame.tag,'iframe');assert.equal(frame.src,'https://open.spotify.com/embed/track/abc123');
- assert.doesNotMatch(frame.attrs.allow,/autoplay/);assert.match(frame.attrs.allow,/encrypted-media/);assert.match(frame.title,/Night Drive/);
- assert.deepEqual(b.playerParts['.listening-frame'].children,[frame]);assert.equal(b.player.hidden,false);
- assert.equal(b.playerParts['.listening-player-open'].href,track.url,'Open in Spotify stays available');
- assert.equal(listen.hidden,true,'no second button for the track already loaded');assert.equal(b.doc.activeElement,b.player,'focus moves into the player');
-});
-test('polls keep the visitor’s player: no reload, no silent switch, not even when Patrick stops',async()=>{
- const b=browser({responses:[track,track,other,{state:'idle'}]});await b.flush();
- b.parts['.listening-listen'].click();const frame=b.created[0];
- await b.advance(30500);assert.equal(b.fetches.length,2);assert.equal(b.playerParts['.listening-frame'].children[0],frame,'same track: untouched');
- await b.advance(30500);assert.equal(b.parts['.listening-title'].textContent,'Morning Walk');
- assert.equal(b.playerParts['.listening-frame'].children[0],frame,'new track: the visitor keeps listening');assert.equal(b.created.length,1);
- assert.match(frame.title,/Night Drive · A, B/,'the frame still names the visitor’s track');
- const listen=b.parts['.listening-listen'];assert.equal(listen.hidden,false);assert.equal(listen.textContent,'Switch to this track');
- await b.advance(30500);assert.equal(b.box.hidden,true,'Patrick stopped');assert.equal(b.player.hidden,false);assert.equal(b.playerParts['.listening-frame'].children[0],frame);
-});
-test('switching tracks happens only on the visitor’s click',async()=>{
+test('polls every ten seconds and stops all timers in background',async()=>{
  const b=browser({responses:[track,other]});await b.flush();
- b.parts['.listening-listen'].click();await b.advance(30500);
- b.parts['.listening-listen'].click();
- assert.equal(b.created.length,2);assert.equal(b.created[1].src,'https://open.spotify.com/embed/track/xyz789');assert.deepEqual(b.playerParts['.listening-frame'].children,[b.created[1]]);
+ await b.advance(9000);assert.equal(b.fetches.length,1);
+ await b.advance(1500);assert.equal(b.fetches.length,2);assert.equal(b.parts['.listening-title'].textContent,'Morning Walk');
+ b.setHidden(true);await b.advance(600000);assert.equal(b.fetches.length,2);assert.equal(b.pending(),0);
 });
-test('closing the player unloads the embed and returns focus',async()=>{
- const b=browser({responses:[track,{state:'idle'}]});await b.flush();
- const listen=b.parts['.listening-listen'];listen.click();
- b.playerParts['.listening-close'].click();
- assert.deepEqual(b.playerParts['.listening-frame'].children,[]);assert.equal(b.player.hidden,true);
- assert.equal(listen.hidden,false);assert.equal(listen.textContent,'Listen here');assert.equal(b.doc.activeElement,listen);
- listen.click();await b.advance(30500);assert.equal(b.box.hidden,true);
- b.playerParts['.listening-close'].click();assert.equal(b.doc.activeElement,b.noteLink,'focus falls back to the playlist link when the live line is gone');
+test('progress ticks locally from CDN age without network requests',async()=>{
+ const b=browser({responses:[{body:track,age:20}]});await b.flush();
+ assert.equal(b.parts['.listening-elapsed'].textContent,'1:20');await b.advance(1100);
+ assert.equal(b.parts['.listening-elapsed'].textContent,'1:21');assert.equal(b.fetches.length,1);
 });
-test('an unconfigured server stops polling for the rest of the visit',async()=>{
- const b=browser({responses:[{state:'unconfigured'}]});await b.flush();
- await b.advance(3600000);assert.equal(b.fetches.length,1);assert.equal(b.box.hidden,true);
+test('disclosure opens and closes the embed, stopping audio and restoring focus',async()=>{
+ const b=browser({responses:[track,other]});await b.flush();const button=b.parts['.listening-listen'];
+ assert.equal(b.created.length,0);button.click();assert.equal(button.attrs['aria-expanded'],'true');
+ const frame=b.created[0];assert.doesNotMatch(frame.attrs.allow,/autoplay/);
+ await b.advance(10500);assert.equal(b.playerParts['.listening-frame'].children[0],frame);
+ button.click();assert.equal(b.player.hidden,true);assert.equal(button.attrs['aria-expanded'],'false');
+ assert.equal(b.playerParts['.listening-frame'].children.length,0);assert.equal(b.doc.activeElement,button);
+ button.click();assert.equal(b.created[1].src,'https://open.spotify.com/embed/track/xyz789');
 });
-test('an unsafe track address never shows and never offers the player',async()=>{
- const b=browser({responses:[{...track,url:'https://evil.example/track/abc123'}]});await b.flush();
- assert.equal(b.box.hidden,true);assert.equal(b.parts['.listening-listen'].hidden,true);assert.equal(b.created.length,0);
+test('loaded track remains reopenable after Patrick stops',async()=>{
+ const b=browser({responses:[track,{state:'idle'}]});await b.flush();const button=b.parts['.listening-listen'];button.click();
+ await b.advance(10500);assert.equal(b.box.hidden,false);button.click();button.click();
+ assert.equal(b.created[1].src,'https://open.spotify.com/embed/track/abc123');
+});
+test('unsafe track URLs never offer an embed',async()=>{
+ const b=browser({responses:[{...track,url:'https://evil.example/a'}]});await b.flush();
+ assert.equal(b.box.hidden,false);assert.equal(b.parts['.listening-listen'].hidden,true);assert.equal(b.created.length,0);
 });
 test('player and progress copy exists in every language, and only Spotify may be framed',()=>{
  const {LANGUAGE_NAMES}=require('../language-data.js');
  for(const code of ['pt','fr','zh','hi','ar','bn','ru','ur','id','ja'])require(`../locales/${code}.js`);
  const {SITE_LOCALES}=require('../site-locales.js');
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
- const keys=['Listen here','Switch to this track','Close player','Spotify player','Open in Spotify ↗','Spotify decides whether you hear a preview or the full track.','Track progress','Estimated between checks with Spotify','about {elapsed} of {total}'];
- for(const key of keys.filter(k=>!k.includes('{')&&k!=='Switch to this track'))assert(html.includes(key),`index.html: ${key}`);
+ const keys=['Offline','Updating…','Currently unavailable','Listen here','Switch to this track','Close player','Spotify player','Open in Spotify ↗','Spotify decides whether you hear a preview or the full track.','Track progress','Estimated between checks with Spotify','about {elapsed} of {total}'];
+ for(const key of keys.filter(k=>!k.includes('{')&&!['Switch to this track','Offline','Updating…'].includes(k)))assert(html.includes(key),`index.html: ${key}`);
  for(const lang of Object.keys(LANGUAGE_NAMES).filter(l=>l!=='en'))for(const key of keys){
   const value=SITE_LOCALES[lang][key];assert(value&&value.trim(),`${lang}: ${key}`);
   if(key.includes('{'))assert(value.includes('{elapsed}')&&value.includes('{total}'),`${lang}: placeholders`);

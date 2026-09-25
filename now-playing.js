@@ -1,16 +1,16 @@
 /* "Listening now": the track Patrick is playing on Spotify, from /api/now-playing.
-   Shown only while it is confirmed as playing and fresh; otherwise the line is hidden.
+   Always visible; only fresh playback is labelled as listening now.
    The position is estimated on this page from the last answer: the CDN's Age header and half the
    round trip are added on the monotonic clock, so the visitor's own clock is never trusted. It ticks
    once a second only while the tab is visible, stops at the end of the track, and is dropped when the
-   last confirmation gets old. Polls every 30 s while playing (the CDN answers most of those), never
+   last confirmation gets old. Polls every 10 s while playing (the CDN answers most of those), never
    while hidden. Spotify's player loads only after a visitor asks for it, and it stays on the track
    that visitor chose: polls never restart or switch it. No audio, history or tracking of our own. */
 (function (root) {
   const MAX_AGE_MS = 150000;          // never show data older than this as "now"
   const PROGRESS_MAX_AGE_MS = 90000;  // stop estimating the position this long after the last answer
   const GRACE_MS = 5000;              // allowance after the track's expected end
-  const POLL = { playing: 30000, idle: 60000, unavailable: 180000 };
+  const POLL = { playing: 10000, idle: 15000, unavailable: 180000 };
   const TRACK_URL = /^https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]{1,64})$/;
 
   const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -53,6 +53,7 @@
   const doc = root.document, box = doc.getElementById('now-listening');
   if (!box || typeof root.fetch !== 'function') return;
   const part = selector => box.querySelector(selector);
+  const label = part('.listening-label'), status = part('.listening-status');
   const link = part('.listening-link'), title = part('.listening-title'), artist = part('.listening-artist');
   const row = part('.listening-progress'), bar = part('.listening-bar'), fill = part('.listening-fill');
   const elapsedText = part('.listening-elapsed'), totalText = part('.listening-total'), listen = part('.listening-listen');
@@ -71,7 +72,15 @@
     root.clearTimeout(endTimer); endTimer = 0;
     const age = clock() - receivedAt, shown = view(last, age);
     current = shown;
-    if (!shown) { box.hidden = true; root.clearTimeout(tickTimer); tickTimer = 0; syncListen(); return; }
+    box.hidden = false;
+    box.setAttribute('data-playing', String(!!shown));
+    link.hidden = !shown;
+    if (label) label.textContent = shown ? t('Listening now') : 'Spotify';
+    if (status) {
+      status.hidden = !!shown;
+      status.textContent = t(last?.state === 'idle' ? 'Offline' : last?.state === 'playing' ? 'Updating…' : 'Currently unavailable');
+    }
+    if (!shown) { row.hidden = true; root.clearTimeout(tickTimer); tickTimer = 0; syncListen(); return; }
     if (link.href !== shown.url) link.href = shown.url;
     title.textContent = shown.title;
     artist.textContent = shown.artists.join(', ');
@@ -79,7 +88,7 @@
     syncListen();
     tick();
     if (doc.hidden) return; // nothing runs in a background tab
-    // At the track's expected end, check once for the next one; if nothing new arrives, hide the line
+    // At the track's expected end, check once for the next one; if nothing new arrives, show the updating state
     // after a short grace period.
     const checkPending = finite(last.remainingMs) && last.url !== endCheckedFor;
     endTimer = root.setTimeout(atEnd, Math.max(1000, checkPending ? last.remainingMs - age : validFor(last, age)));
@@ -126,9 +135,9 @@
       .then(result => {
         if (!result || !result.data || typeof result.data !== 'object') return;
         last = result.data; receivedAt = result.arrived - result.age;
-        if (last.state === 'unconfigured') stopped = true; // nothing to show until Patrick sets it up
+        if (last.state === 'unconfigured') stopped = true; // keep the unavailable summary until configured
       })
-      .catch(() => {}) // offline: whatever is still fresh stays, then disappears on schedule
+      .catch(() => { last = { state: 'unavailable' }; }) // offline: whatever is still fresh stays, then shows an unavailable status
       .finally(() => { inflight = null; render(); });
     return inflight;
   }
@@ -136,7 +145,7 @@
   function schedule() {
     root.clearTimeout(pollTimer); pollTimer = 0;
     if (stopped || doc.hidden) return;
-    pollTimer = root.setTimeout(() => refresh().then(schedule), POLL[last?.state] || POLL.idle);
+    pollTimer = root.setTimeout(() => refresh().then(schedule), Math.max(POLL[last?.state] || POLL.idle, (last?.retryAfter || 0) * 1000));
   }
 
   // Visitor playback: Spotify's official embed, requested from open.spotify.com only on this click.
@@ -145,14 +154,17 @@
   function syncListen() {
     if (!listen) return;
     const id = current ? trackId(current.url) : null;
-    listen.hidden = !id || !player || (embedded !== null && embedded.id === id);
-    listen.textContent = t(embedded ? 'Switch to this track' : 'Listen here');
+    listen.hidden = !player || (!id && !embedded);
+    listen.setAttribute('aria-expanded', String(!!player && !player.hidden));
+    listen.textContent = t(embedded && !player.hidden ? 'Close player' : 'Listen here');
   }
 
   function openPlayer() {
-    const id = current ? trackId(current.url) : null, src = current ? embedUrl(current.url) : null;
+    if (player && !player.hidden) { closePlayer(); return; }
+    const chosen = current || embedded?.track;
+    const id = chosen ? trackId(chosen.url) : null, src = chosen ? embedUrl(chosen.url) : null;
     if (!id || !src || !player || !frameHost) return;
-    const names = `${current.title} · ${current.artists.join(', ')}`;
+    const names = `${chosen.title} · ${chosen.artists.join(', ')}`;
     const frame = doc.createElement('iframe');
     frame.src = src;
     frame.title = `${t('Spotify player')}: ${names}`;
@@ -162,8 +174,8 @@
     frame.setAttribute('allowfullscreen', '');
     frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     frameHost.replaceChildren(frame);
-    embedded = { id, url: current.url, names };
-    playerOpen.href = current.url;
+    embedded = { id, url: chosen.url, names, track: chosen };
+    playerOpen.href = chosen.url;
     player.hidden = false;
     syncListen();
     player.focus(); // the button may have just disappeared; keep keyboard focus in the new player
@@ -172,7 +184,6 @@
   function closePlayer() {
     if (!player) return;
     frameHost.replaceChildren(); // unloads the embed, so any preview or track stops
-    embedded = null;
     player.hidden = true;
     syncListen();
     const next = !box.hidden && listen && !listen.hidden ? listen : !box.hidden ? link : doc.querySelector('.listening-note a');
@@ -181,12 +192,13 @@
 
   listen?.addEventListener('click', openPlayer);
   closeButton?.addEventListener('click', closePlayer);
-  root.addEventListener?.('portfolio:language', () => { syncListen(); if (current) tick(); });
+  root.addEventListener?.('portfolio:language', () => { render(); });
 
   doc.addEventListener('visibilitychange', () => {
     if (doc.hidden) { stopTimers(); return; } // no timers and no requests while hidden
     render(); // drop anything that went stale while the tab was hidden, then resume ticking
     if (!stopped && clock() - lastFetch > POLL.playing) refresh().then(schedule); else schedule();
   });
+  render();
   if (!doc.hidden) refresh().then(schedule);
 })(globalThis);

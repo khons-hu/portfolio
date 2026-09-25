@@ -5,6 +5,9 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "bn", {
   "site": {
+    "Offline": "অফলাইন",
+    "Updating\u2026": "আপডেট হচ্ছে…",
+    "Currently unavailable": "বর্তমানে অনুপলব্ধ",
     "Listening now": "এখন শুনছি",
     "on Spotify": "Spotify-এ",
     "Listen here": "এখানে শুনুন",

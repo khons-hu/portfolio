@@ -3,8 +3,8 @@
    reach the browser: SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET and SPOTIFY_REFRESH_TOKEN
    (a refresh token authorised with the single scope user-read-currently-playing).
    Only the track title, artists, link, duration and playback position are returned: no history,
-   artwork, device, playlist or context. The CDN caches every answer briefly, so visitors share one
-   Spotify request per ~30 seconds; the page estimates the position between checks. */
+   artwork, device, playlist or context. The CDN caches active and idle answers for five seconds, so visitors share one
+   Spotify request per cache interval; the page estimates the position between checks. */
 'use strict';
 
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
@@ -76,9 +76,9 @@ async function nowPlaying({ env = process.env, fetcher = fetch, now = Date.now }
   try {
     const result = await currentlyPlaying(env, fetcher, now);
     const fetchedAt = now();
-    if (result.state === 'playing') return { body: { state: 'playing', fetchedAt, ...result.track }, maxAge: 30 };
-    if (result.state === 'idle') return { body: { state: 'idle', fetchedAt }, maxAge: 60 };
-    return { body: { state: 'unavailable' }, maxAge: result.retryAfter || 60 };
+    if (result.state === 'playing') return { body: { state: 'playing', fetchedAt, ...result.track }, maxAge: 5 };
+    if (result.state === 'idle') return { body: { state: 'idle', fetchedAt }, maxAge: 5 };
+    return { body: { state: 'unavailable', retryAfter: result.retryAfter || 60 }, maxAge: result.retryAfter || 60 };
   } catch (error) {
     // Log the category only. Tokens, secrets and Spotify response bodies are never logged.
     console.warn('now-playing:', error.message, error.status || '');
@@ -94,7 +94,7 @@ async function handler(req, res) {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   // Shared CDN cache keeps Spotify calls rare; browsers always revalidate so nobody sees an old "now".
-  res.setHeader('Cache-Control', `public, max-age=0, s-maxage=${maxAge}, stale-while-revalidate=${Math.min(30, maxAge)}`);
+  res.setHeader('Cache-Control', `public, max-age=0, s-maxage=${maxAge}, stale-while-revalidate=0`);
   res.setHeader('X-Robots-Tag', 'noindex');
   res.end(req.method === 'HEAD' ? undefined : JSON.stringify(body));
 }

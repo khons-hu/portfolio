@@ -5,6 +5,9 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "ru", {
   "site": {
+    "Offline": "Не в сети",
+    "Updating\u2026": "Обновление…",
+    "Currently unavailable": "Сейчас недоступно",
     "Listening now": "Сейчас слушаю",
     "on Spotify": "в Spotify",
     "Listen here": "Слушать здесь",

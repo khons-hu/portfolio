@@ -552,3 +552,9 @@ html:not(.js) .project-details{cursor:default}
 @media(pointer:coarse){.listening-listen{min-height:40px;padding:0 14px 0 12px}.listening-close{min-height:40px}}
 .js-motion .listening-player:not([hidden]){animation:entry-in .22s cubic-bezier(.2,.7,.2,1) both}
 :where(:lang(ar),:lang(ur),:lang(hi),:lang(bn)) .listening-player-label{letter-spacing:normal}
+
+/* Keep the Spotify summary in place through idle and track changes. */
+.now-listening{min-height:74px}
+.listening-status{color:var(--muted);font-size:.875rem}
+.listening-line{min-height:24px}
+.now-listening:not([data-playing="true"]) .listening-label::before{background:var(--muted);box-shadow:none;opacity:.55}

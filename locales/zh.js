@@ -5,6 +5,9 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "zh", {
   "site": {
+    "Offline": "离线",
+    "Updating\u2026": "更新中…",
+    "Currently unavailable": "暂时不可用",
     "Listening now": "正在听",
     "on Spotify": "在 Spotify 上",
     "Listen here": "在这里听",

@@ -5,6 +5,9 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "ja", {
   "site": {
+    "Offline": "オフライン",
+    "Updating\u2026": "更新中…",
+    "Currently unavailable": "現在利用できません",
     "Listening now": "再生中",
     "on Spotify": "Spotifyで",
     "Listen here": "ここで聴く",
