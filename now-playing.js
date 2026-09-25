@@ -105,8 +105,8 @@
     }
     if (!shown) { row.hidden = true; root.clearTimeout(tickTimer); tickTimer = 0; syncListen(); return; }
     if (link.href !== shown.url) link.href = shown.url;
-    title.textContent = shown.title;
-    artist.textContent = shown.artists.join(', ');
+    setText(title, shown.title);
+    setText(artist, shown.artists.join(', '));
     box.hidden = false;
     syncListen();
     tick();

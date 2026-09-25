@@ -91,12 +91,15 @@
   // the intro and suggestions while typing so the conversation keeps the room.
   function fitGuideViewport(){
     const viewport=window.visualViewport;
-    if(!viewport)return;
+    if(!viewport||!dialog.open)return;
     dialog.classList.toggle('guide-typing',document.activeElement===input&&viewport.height<window.innerHeight*.8);
     if(dialog.open&&dialog.contains(document.activeElement))requestAnimationFrame(()=>document.activeElement.scrollIntoView({block:'nearest'}));
   }
-  window.visualViewport?.addEventListener('resize',fitGuideViewport);
-  window.visualViewport?.addEventListener('scroll',fitGuideViewport);
+  let guideViewportFrame=0;
+  window.visualViewport?.addEventListener('resize',()=>{
+    if(!dialog.open||guideViewportFrame)return;
+    guideViewportFrame=requestAnimationFrame(()=>{guideViewportFrame=0;fitGuideViewport();});
+  },{passive:true});
   fitGuideViewport();
   function translateUI(){
     const base=ui(lang.value).slice();if(aiAvailable){const c=aiCopy();base[0]=c[0];base[1]=c[1];base[11]=c[2];}

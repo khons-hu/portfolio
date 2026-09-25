@@ -140,14 +140,14 @@ test('tab switches keep the frame still and hand-offs close the previous panel a
 
 test('filter chips morph only when motion is allowed, and typing never waits for a transition',()=>{
  const source=read('app.js');
- const run=(motion,supported)=>{
+ const run=(motion,supported,coarse=false)=>{
   const cards=[['tools','Alpha'],['games','Beta']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
   const buttons=['all','games'].map(projectFilter=>({dataset:{projectFilter},attributes:{},setAttribute(k,v){this.attributes[k]=v;},addEventListener(k,fn){this[k]=fn;}}));
   const nodes=new Map();const node=key=>{if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,dataset:{},addEventListener(k,fn){this[k]=fn;},focus(){}});return nodes.get(key);};
   const calls=[];
   const document={hidden:false,querySelectorAll:s=>s==='[data-project-group]'?cards:buttons,querySelector:node,documentElement:{classList:{contains:k=>k==='js-motion'&&motion}}};
   if(supported)document.startViewTransition=update=>{calls.push('morph');update();};
-  vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),{document,window:{addEventListener(){}},t:x=>x});
+  vm.runInNewContext(source.slice(source.indexOf('const projectCards ='),source.indexOf('const projects = {')),{document,window:{addEventListener(){}},matchMedia:()=>({matches:coarse}),t:x=>x});
   buttons[1].click();
   node('#project-search').value='zz';node('#project-search').input();
   return {calls,hidden:cards.map(card=>card.hidden),filtered:Object.hasOwn(node('#project-grid').dataset,'filtered')};
@@ -156,6 +156,8 @@ test('filter chips morph only when motion is allowed, and typing never waits for
  assert.deepEqual(smooth.calls,['morph'],'one morph for the chip, none for typing');
  assert.deepEqual(smooth.hidden,[true,true]);assert.equal(smooth.filtered,true);
  assert.deepEqual(run(false,true).calls,[],'motion off updates directly');
+ assert.deepEqual(run(true,true,true).calls,[],'touch devices skip snapshot transitions');
+ assert.deepEqual(run(true,true,true).hidden,[true,true],'touch filtering still works');
  assert.deepEqual(run(true,false).hidden,[true,true],'unsupported browsers still filter');
 });
 

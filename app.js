@@ -60,7 +60,7 @@ function filterProjects() {
 }
 // Chip and reset changes morph the shelf when motion is allowed. Typing stays instant so the field never lags.
 function morph(update) {
-  if (typeof document.startViewTransition === 'function' && document.documentElement.classList.contains('js-motion') && !document.hidden) document.startViewTransition(update);
+  if (typeof document.startViewTransition === 'function' && !matchMedia('(pointer: coarse)').matches && document.documentElement.classList.contains('js-motion') && !document.hidden) document.startViewTransition(update);
   else update();
 }
 for (const button of projectFilters) button.addEventListener('click', () => { projectFilter = button.dataset.projectFilter; morph(filterProjects); });

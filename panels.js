@@ -14,6 +14,7 @@
     target.classList.toggle('panel-switch', switching);
     document.querySelectorAll('dialog[open]').forEach(dialog => { if (dialog !== target) dialog.close(); });
     if (!target.open) target.showModal();
+    fitPanels();
     clearTimeout(switchTimer);
     if (switching) switchTimer = setTimeout(() => target.classList.remove('panel-switch'), 260);
     // Without a requested field, keep keyboard focus on the matching tab instead of the first one.
@@ -33,16 +34,22 @@
   translatePanels();
 
   // Keep the composer reachable when a mobile keyboard reduces the visible viewport.
+  let viewportFrame = 0;
   function fitPanels() {
     const viewport = window.visualViewport;
     if (!viewport) return;
+    const height = `${viewport.height}px`, top = `${viewport.offsetTop}px`;
     for (const id of ids) {
       const panel = document.getElementById(id);
-      panel.style.setProperty('--panel-height', `${viewport.height}px`);
-      panel.style.setProperty('--panel-top', `${viewport.offsetTop}px`);
+      if (!panel.open) continue;
+      if (panel.style.getPropertyValue('--panel-height') !== height) panel.style.setProperty('--panel-height', height);
+      if (panel.style.getPropertyValue('--panel-top') !== top) panel.style.setProperty('--panel-top', top);
     }
   }
-  window.visualViewport?.addEventListener('resize', fitPanels);
-  window.visualViewport?.addEventListener('scroll', fitPanels);
-  fitPanels();
+  function scheduleFit() {
+    if (viewportFrame || !ids.some(id => document.getElementById(id).open)) return;
+    viewportFrame = requestAnimationFrame(() => { viewportFrame = 0; fitPanels(); });
+  }
+  window.visualViewport?.addEventListener('resize', scheduleFit, {passive:true});
+  window.visualViewport?.addEventListener('scroll', scheduleFit, {passive:true});
 })();
