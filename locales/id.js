@@ -229,7 +229,7 @@
       "Tema terang/gelap, gerakan dikurangi, dan animasi berhenti saat tab tersembunyi. Repositori publik di GitHub diterbitkan ke Vercel."
     ],
     "rotation": [
-      "Skrip Python lokal membuat daftar putar pribadi dari favorit dan lagu terbaru, tanpa panggilan AI berulang.",
+      "Rotasi privat Python diperbarui setiap hari pukul 18.00 saat Mac tersedia. Seminggu sekali, Jev memakai judul lagu dan nama artis untuk memilih arah musik dan beberapa temuan baru. Pembaruan harian menggunakan kembali pilihan itu.",
       "Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio.",
       "Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac saya. Kodenya tidak diterbitkan."
     ],
@@ -283,7 +283,7 @@
     "greeting": "Halo! Saya panduan portofolio lokal, bukan Patrick dan bukan model AI. Apa yang ingin Anda ketahui?",
     "answers": {
       "work": "Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia menyelidiki perilaku peramban, API, feed produk, dan analitik, mengaudit integrasi, memeriksa perbaikan, dan menyiapkan serah terima ke tim engineering. Luigi’s Box membuat pencarian dan penemuan produk untuk e-commerce. Pekerjaan juga mencakup implementasi, refactoring, analisis backend, serta optimasi kinerja kolektor dan pemrosesan event. Perbaikan analitik meliputi GTM, dataLayer, pembelian duplikat dan atribusi, termasuk integrasi Persoo lama.",
-      "spotify": "Skrip Python lokal membuat daftar putar pribadi dari favorit dan lagu terbaru, tanpa panggilan AI berulang. Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio. Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac Patrick. Kodenya tidak diterbitkan.",
+      "spotify": "Rotasi privat Python diperbarui setiap hari pukul 18.00 saat Mac tersedia. Seminggu sekali, Jev memakai judul lagu dan nama artis untuk memilih arah musik dan beberapa temuan baru. Pembaruan harian menggunakan kembali pilihan itu. Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio. Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac Patrick. Kodenya tidak diterbitkan.",
       "dots": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
       "bot": "Bot musik Discord lama berbasis JavaScript. Repositori historis; kompatibilitas saat ini dengan Discord dan layanan musik belum diverifikasi.",
       "cpp": "C++ dan Counter-Strike membawa Patrick ke dunia pemrograman. Salah satu contoh kodenya adalah proyek tim universitas tentang komunikasi antarproses.",

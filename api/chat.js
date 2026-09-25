@@ -15,7 +15,7 @@ const PROJECTS=[
  ['Khonodds','','current project, JavaScript, public data; live app','A read-only Polymarket research desk. Wallets, positions, watchlists and room for your own notes.'],
  ['Khonstash','steam','current project, JavaScript, Steam Market; GitHub source'],
  ['This little corner of the web','','current project, HTML, CSS, JavaScript; this portfolio; GitHub source','A personal site with a terminal, a multilingual guide and a quieter approach to motion.'],
- ['Spotify rotation','spotify','personal experiment, Python, Spotify API; Spotify playlist'],
+ ['Spotify rotation','spotify','private daily rotation on Mac, weekly cached Jev selection; linked public night list is separate; Spotify playlist'],
  ['Dots','dots','earlier project, React, Spring Boot; live app'],
  ['Receipts After Dark','','current game prototype, Godot 4, web; playable on itch.io','A tiny moonlit market game. Move, inspect what matters, then make the call.'],
  ['SAVE DEMOCRACY','','game jam team project, Unreal Engine, Windows; itch.io page','A team-made horror exploration prototype about finding a missing journalist and getting them to safety.'],

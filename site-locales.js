@@ -824,7 +824,7 @@ const PROJECT_NOTES = {
       "Light/dark themes, reduced motion and animations paused in hidden tabs. The public GitHub repository deploys to Vercel."
     ],
     "rotation": [
-      "A local Python script builds a private rotation from favourites and recent listening, without recurring AI calls.",
+      "A private Python rotation refreshes daily at 18:00 when my Mac is available. Once a week, Jev uses track and artist names to choose a direction and a few discoveries. Daily updates reuse that choice.",
       "On request, it also searches by mood, activity or artist and favours familiar artists in the results. Mood matching is approximate, not audio analysis.",
       "The playlist is saved privately and checked after writing. This is a personal tool running on my Mac. The source is not published."
     ],
@@ -877,7 +877,7 @@ const PROJECT_NOTES = {
       "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Verejný repozitár na GitHube sa nasadzuje na Vercel."
     ],
     "rotation": [
-      "Lokálny Python skript skladá súkromnú rotáciu z obľúbených a nedávno počúvaných skladieb, bez pravidelných AI volaní.",
+      "Súkromná Python rotácia sa obnovuje denne o 18:00, keď je Mac dostupný. Raz týždenne Jev podľa názvov skladieb a interpretov vyberie smer a pár noviniek. Denné aktualizácie tento výber používajú znova.",
       "Na požiadanie vyhľadá hudbu podľa nálady, aktivity alebo interpreta a vo výsledkoch uprednostní známych interpretov. Nálada je približná, nejde o analýzu zvuku.",
       "Playlist uloží súkromne a overí jeho obsah. Je to osobný nástroj na mojom Macu. Zdrojový kód nie je zverejnený."
     ],
@@ -930,7 +930,7 @@ const PROJECT_NOTES = {
       "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. A nyilvános GitHub-repóból Vercelre települ."
     ],
     "rotation": [
-      "Egy helyi Python-szkript privát válogatást készít a kedvencekből és a nemrég hallgatott zenékből, rendszeres AI-hívások nélkül.",
+      "A privát Python-válogatás naponta 18:00-kor frissül, ha a Mac elérhető. A Jev hetente egyszer a számok és előadók neve alapján választ irányt és néhány újdonságot. A napi frissítések ezt a választást használják.",
       "Kérésre hangulat, tevékenység vagy előadó alapján is keres, és az ismert előadókat előnyben részesíti a találatok között. A hangulat szerinti szűrés közelítő, nem hangelemzés.",
       "A lejátszási listát privátként menti, majd ellenőrzi. Saját eszköz, a Macemen fut. A forráskód nem nyilvános."
     ],
@@ -983,7 +983,7 @@ const PROJECT_NOTES = {
       "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Publiczne repozytorium na GitHubie wdraża się na Vercel."
     ],
     "rotation": [
-      "Lokalny skrypt w Pythonie tworzy prywatną rotację z ulubionych i ostatnio słuchanych utworów, bez cyklicznych wywołań AI.",
+      "Prywatna rotacja w Pythonie odświeża się codziennie o 18:00, gdy Mac jest dostępny. Raz w tygodniu Jev na podstawie nazw utworów i wykonawców wybiera kierunek i kilka nowości. Codzienne aktualizacje korzystają z tego wyboru.",
       "Na życzenie wyszukuje też muzykę według nastroju, aktywności lub wykonawcy i preferuje znanych wykonawców w wynikach. Dopasowanie nastroju jest przybliżone, bez analizy dźwięku.",
       "Zapisuje playlistę jako prywatną i sprawdza jej zawartość. To osobiste narzędzie działające na moim Macu. Kod nie jest publiczny."
     ],
@@ -1036,7 +1036,7 @@ const PROJECT_NOTES = {
       "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. Das öffentliche GitHub-Repository deployt auf Vercel."
     ],
     "rotation": [
-      "Ein lokales Python-Skript erstellt eine private Rotation aus Favoriten und zuletzt gehörten Titeln, ohne regelmäßige KI-Aufrufe.",
+      "Die private Python-Rotation wird täglich um 18 Uhr aktualisiert, wenn der Mac verfügbar ist. Einmal pro Woche wählt Jev anhand von Song- und Künstlernamen eine Richtung und einige Neuentdeckungen. Die täglichen Updates nutzen diese Auswahl weiter.",
       "Auf Anfrage sucht es auch nach Stimmung, Aktivität oder Künstler und bevorzugt vertraute Künstler in den Ergebnissen. Die Stimmung wird nur grob zugeordnet, nicht per Audioanalyse.",
       "Die Playlist wird privat gespeichert und anschließend geprüft. Ein persönliches Tool auf meinem Mac. Der Quellcode ist nicht öffentlich."
     ],
@@ -1089,7 +1089,7 @@ const PROJECT_NOTES = {
       "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. El repositorio público de GitHub se despliega en Vercel."
     ],
     "rotation": [
-      "Un script local de Python crea una rotación privada con favoritos y canciones recientes, sin llamadas recurrentes a IA.",
+      "La rotación privada en Python se actualiza a diario a las 18:00 cuando el Mac está disponible. Una vez por semana, Jev usa los nombres de canciones y artistas para elegir una dirección y algunos descubrimientos. Las actualizaciones diarias reutilizan esa elección.",
       "A petición, también busca por ánimo, actividad o artista y prioriza artistas conocidos entre los resultados. El ajuste al ánimo es aproximado, sin análisis de audio.",
       "Guarda la playlist como privada y comprueba su contenido. Es una herramienta personal que funciona en mi Mac. El código no es público."
     ],
@@ -1142,7 +1142,7 @@ const PROJECT_NOTES = {
       "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Veřejný repozitář na GitHubu se nasazuje na Vercel."
     ],
     "rotation": [
-      "Lokální Python skript sestavuje soukromou rotaci z oblíbených a nedávno poslouchaných skladeb, bez pravidelných AI volání.",
+      "Soukromá rotace v Pythonu se obnovuje denně v 18:00, když je Mac dostupný. Jednou týdně Jev podle názvů skladeb a interpretů vybere směr a několik novinek. Denní aktualizace tento výběr používají znovu.",
       "Na požádání vyhledá hudbu podle nálady, aktivity nebo interpreta a ve výsledcích upřednostní známé interprety. Nálada je přibližná, nejde o analýzu zvuku.",
       "Playlist uloží soukromě a ověří jeho obsah. Je to osobní nástroj na mém Macu. Zdrojový kód není zveřejněný."
     ],

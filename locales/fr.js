@@ -229,7 +229,7 @@
       "Thèmes clair et sombre, mouvement réduit et animations suspendues dans les onglets cachés. Le dépôt public sur GitHub est déployé sur Vercel."
     ],
     "rotation": [
-      "Un script Python local crée une sélection privée à partir des favoris et des écoutes récentes, sans appels IA récurrents.",
+      "La sélection privée en Python se met à jour chaque jour à 18 h lorsque le Mac est disponible. Une fois par semaine, Jev utilise les noms des morceaux et des artistes pour choisir une direction et quelques découvertes. Les mises à jour quotidiennes réutilisent ce choix.",
       "Sur demande, il cherche aussi par humeur, activité ou artiste et favorise les artistes familiers. La correspondance d’humeur reste approximative, sans analyse audio.",
       "La playlist est enregistrée en privé puis vérifiée. C’est un outil personnel sur mon Mac. Le code n’est pas publié."
     ],
@@ -283,7 +283,7 @@
     "greeting": "Bonjour ! Je suis un guide local du portfolio, ni Patrick ni un modèle IA. Que veux-tu savoir ?",
     "answers": {
       "work": "Patrick travaille comme Customer Support Partner L2 chez Luigi’s Box. Il analyse le comportement du navigateur, les API, les flux de produits et l’analytique, audite les intégrations, vérifie les corrections et prépare les transmissions aux ingénieurs. Luigi’s Box développe la recherche et la découverte de produits pour le commerce en ligne. Le travail comprend aussi l’implémentation, la refactorisation, l’analyse du backend et l’optimisation des collecteurs et du traitement des événements. Les corrections analytiques concernent GTM, dataLayer, les achats en double et l’attribution, y compris les anciennes intégrations Persoo.",
-      "spotify": "Un script Python local crée une sélection privée à partir des favoris et des écoutes récentes, sans appels IA récurrents. Sur demande, il cherche aussi par humeur, activité ou artiste et favorise les artistes familiers. La correspondance d’humeur reste approximative, sans analyse audio. La playlist est enregistrée en privé puis vérifiée. C’est un outil personnel sur le Mac de Patrick. Le code n’est pas publié.",
+      "spotify": "La sélection privée en Python se met à jour chaque jour à 18 h lorsque le Mac est disponible. Une fois par semaine, Jev utilise les noms des morceaux et des artistes pour choisir une direction et quelques découvertes. Les mises à jour quotidiennes réutilisent ce choix. Sur demande, il cherche aussi par humeur, activité ou artiste et favorise les artistes familiers. La correspondance d’humeur reste approximative, sans analyse audio. La playlist est enregistrée en privé puis vérifiée. C’est un outil personnel sur le Mac de Patrick. Le code n’est pas publié.",
       "dots": "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine.",
       "bot": "Un ancien bot musical Discord en JavaScript. Dépôt historique ; compatibilité actuelle avec Discord et les services de musique non vérifiée.",
       "cpp": "C++ et Counter-Strike ont amené Patrick à la programmation. Son projet universitaire en équipe sur la communication entre processus est un exemple de code.",
