@@ -69,7 +69,7 @@
     "I have a master's in Computer Science from TUKE and a background in backend and full-stack development. Lately, I spend a lot of time trying new models, coding tools, and agent workflows.": "TUKEでコンピューターサイエンスの修士号を取得し、バックエンドとフルスタック開発の経験があります。最近は新しいモデル、開発ツール、エージェントのワークフローをよく試しています。",
     "AI experiments": "AIの実験",
     "CURRENTLY AT": "現在の勤務先",
-    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "Customer Support Partner L2として、ブラウザー、API、商品データ、分析を横断して詳しい調査が必要な問題に取り組んでいます。 AWS と Sentry も使い、サービスの問題調査、エラーの確認、修正の検証を行っています。",
+    "I investigate and fix e-commerce integrations across frontend behaviour, APIs, product feeds, data mapping and analytics. I work with Google Tag Manager, AWS and Sentry, verify fixes in real user journeys and prepare reproducible cases for engineering.": "フロントエンドの動作、API、商品フィード、データマッピング、分析にわたるEC連携の問題を調査し、修正しています。Google Tag Manager、AWS、Sentryを使い、実際のユーザー操作の流れで修正を検証し、開発チーム向けに再現可能なケースをまとめています。",
     "Luigi's Box builds search and product discovery for e-commerce, including recommendations and conversational shopping tools.": "Luigi’s BoxはEC向けの商品検索・発見、レコメンド、対話型ショッピングツールを開発しています。",
     "Trace the problem": "原因を追う",
     "Reproduce the issue in the actual user journey. Follow requests, configuration, and data until the behaviour makes sense.": "実際の利用経路で問題を再現し、リクエスト、設定、データを追って動作を理解します。",

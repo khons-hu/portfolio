@@ -69,7 +69,7 @@
     "I have a master's in Computer Science from TUKE and a background in backend and full-stack development. Lately, I spend a lot of time trying new models, coding tools, and agent workflows.": "我拥有 TUKE 计算机科学硕士学位，有后端和全栈开发背景。最近常尝试新模型、编程工具和智能体工作流。",
     "AI experiments": "AI 实验",
     "CURRENTLY AT": "目前任职于",
-    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "我是 Customer Support Partner L2，负责深入排查浏览器、API、商品数据和分析方面的问题。 我也使用 AWS 和 Sentry 排查服务问题、查看错误并验证修复。",
+    "I investigate and fix e-commerce integrations across frontend behaviour, APIs, product feeds, data mapping and analytics. I work with Google Tag Manager, AWS and Sentry, verify fixes in real user journeys and prepare reproducible cases for engineering.": "我排查并修复电商集成问题，涵盖前端行为、API、商品数据源、数据映射和分析。我使用 Google Tag Manager、AWS 和 Sentry，在真实用户流程中验证修复，并为工程团队准备可复现的案例。",
     "Luigi's Box builds search and product discovery for e-commerce, including recommendations and conversational shopping tools.": "Luigi's Box 为电商提供搜索和商品发现功能，包括推荐和对话式购物工具。",
     "Trace the problem": "追查问题",
     "Reproduce the issue in the actual user journey. Follow requests, configuration, and data until the behaviour makes sense.": "在真实用户流程中复现问题，沿着请求、配置和数据追踪，直到行为能够解释清楚。",
