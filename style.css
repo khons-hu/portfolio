@@ -239,8 +239,8 @@ dialog[open]{animation:dialog-in .22s ease-out}
 }
 /* Hand-offs between dialogs (tab switch, terminal to notes) never fade two layers at once. */
 .dialog-instant,.dialog-instant::backdrop,.panel-switch,.panel-switch::backdrop{transition:none!important;animation:none!important}
-.panel-switch[open] .panel-body,.panel-switch[open] .panel-composer{animation:panel-swap .2s ease-out both}
-@keyframes panel-swap{from{opacity:0}to{opacity:1}}
+.panel-switch[open] .panel-body,.panel-switch[open] .panel-composer{animation:panel-swap .22s var(--ease) both}
+@keyframes panel-swap{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 .close-button{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:var(--muted);font-size:16px;line-height:1}
 /* Only real pointers get the filled hover: after a tap on the header, a panel's close button would open looking pressed. */
 @media(hover:hover){.close-button:hover{color:var(--ink);background:var(--surface-2)}}
@@ -375,6 +375,10 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 /* Terminal and guide output arrive softly. */
 .js-motion .terminal-entry,.js-motion .guide-message{animation:entry-in .22s cubic-bezier(.2,.7,.2,1) both}
 @keyframes entry-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* Opened disclosures settle in once, alongside the height change where supported. */
+.js-motion :is(.practice details,.case-study)[open]>:not(summary),.js-motion .skill-card details[open]>pre{animation:entry-in .28s var(--ease) .04s both}
+/* One small press for buttons and pills, only while motion is allowed. Instant, so nothing lingers. */
+.js-motion :is(.project-live,.dialog-link,.project-filters button,.replay-controls button:not(:disabled),.field-links button,#project-reset,#project-copy-link,.contact-actions button:not(:disabled),.listening-listen,.composer-field>button:not([aria-disabled=true]),.terminal-shortcuts button,#terminal-suggestions button,.guide-suggestions button:not([aria-disabled=true]),#motion-toggle,.terminal-toggle,.listening-close):active{scale:.97}
 /* The waiting line appears only if a reply takes longer than a moment, so quick answers never flash it. */
 .js-motion .guide-message.pending{animation:entry-in .2s cubic-bezier(.2,.7,.2,1) .3s both}
 /* The About accordion opens by height where the browser can interpolate it. */
@@ -406,16 +410,31 @@ html[data-theme=light] #theme-toggle::after{background:#315f7c}
 #theme-toggle[aria-busy=true]{border-color:var(--accent)}
 .theme-changing #theme-toggle::before{animation:theme-halo 480ms cubic-bezier(.2,.7,.2,1) both}
 .theme-changing #theme-toggle::after{animation:theme-arc 440ms cubic-bezier(.2,.7,.2,1) both}
-/* Colours fade only on the page ground and the surfaces that carry their own colour; inherited text follows
-   body. No filter, shadow, opacity or pseudo-element transitions, so the hero photo switches at once.
-   Touch screens switch instantly and keep only the small arc at the control. */
-@media(pointer:fine){
-  html.theme-changing:not(.motion-off):not(.page-hidden) :is(body,dialog,.about-section,.project-card,.replay,.skill-card,.skill-card pre,.page-contact,.now-grid article,.panel-composer,.composer-field,#guide-launcher,.lang-picker,#theme-toggle,.terminal-toggle,#motion-toggle,.project-filters button,.project-live,#project-search,.guide-contact :is(input,textarea),.contact-actions button,em,.eyebrow,.hero-copy,.section-heading>p,.section-note,.project-info p,.project-meta,.case-body :is(dt,dd),.lab-intro>p,.library-heading>p,.skill-card>p,.shipped-list :is(p,time),.now-grid p,.about-intro>p,.work-detail>p,.practice details p,.source-language,.now-listening,footer>span,.site-header nav){transition:background-color 420ms var(--ease),color 420ms var(--ease),border-color 420ms var(--ease)!important}
-}
+/* Fallback without View Transitions (theme.js adds .theme-fade): colours fade only on the page ground and the
+   surfaces that carry their own colour; inherited text follows body. No filter, shadow, opacity or pseudo-element
+   transitions, so the hero photo switches at once. Touch screens get it only when Motion is explicitly On. */
+html.theme-fade:not(.motion-off):not(.page-hidden) :is(body,dialog,.about-section,.project-card,.replay,.skill-card,.skill-card pre,.page-contact,.now-grid article,.panel-composer,.composer-field,#guide-launcher,.lang-picker,#theme-toggle,.terminal-toggle,#motion-toggle,.project-filters button,.project-live,#project-search,.guide-contact :is(input,textarea),.contact-actions button,em,.eyebrow,.hero-copy,.section-heading>p,.section-note,.project-info p,.project-meta,.case-body :is(dt,dd),.lab-intro>p,.library-heading>p,.skill-card>p,.shipped-list :is(p,time),.now-grid p,.about-intro>p,.work-detail>p,.practice details p,.source-language,.now-listening,footer>span,.site-header nav){transition:background-color 420ms var(--ease),color 420ms var(--ease),border-color 420ms var(--ease)!important}
 @keyframes theme-halo{0%{opacity:0;transform:scale(.72)}28%{opacity:.72;transform:scale(.96)}100%{opacity:0;transform:scale(1.35)}}
 @keyframes theme-arc{0%{opacity:0;transform:rotate(8deg) translateY(-3px) scale(.68)}24%{opacity:.88;transform:rotate(8deg) translateY(0) scale(1)}48%{opacity:.24;transform:rotate(8deg) translateY(1px) scale(.94)}100%{opacity:0;transform:rotate(8deg) translateY(3px) scale(.82)}}
 .motion-off #theme-toggle::before,.motion-off #theme-toggle::after,.page-hidden #theme-toggle::before,.page-hidden #theme-toggle::after{display:none;animation:none!important}
 @media(prefers-reduced-motion:reduce){html:not(.motion-force-on) #theme-toggle::before,html:not(.motion-force-on) #theme-toggle::after{display:none;animation:none!important}}
+/* Lunar sweep (View Transitions, theme.js): the new theme forms as a small disc at the toggle, then rises across
+   the viewport. One root snapshot, clipped; the old view holds still beneath it and nothing blends, so there is
+   no bright flash. Project cards drop their own snapshot names so the page moves as one surface and the filter
+   morph never competes with it. */
+html.theme-sweep .project-card{view-transition-name:none!important}
+html.theme-sweep::view-transition-old(root),html.theme-sweep::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html.theme-sweep::view-transition-new(root){animation:lunar-rise .8s both}
+/* The page stays usable during the sweep, so a second click reaches the toggle and is queued. */
+html.theme-sweep::view-transition{pointer-events:none}
+@keyframes lunar-rise{
+  0%{clip-path:circle(0px at var(--theme-x,100%) var(--theme-y,0px));animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+  20%{clip-path:circle(24px at var(--theme-x,100%) var(--theme-y,0px));animation-timing-function:cubic-bezier(.6,0,.2,1)}
+  100%{clip-path:circle(var(--theme-r,150vmax) at var(--theme-x,100%) var(--theme-y,0px))}
+}
+/* Separate rules: browsers without View Transitions drop only these. theme.js also skips a running sweep. */
+html.motion-off::view-transition-group(*),html.motion-off::view-transition-old(*),html.motion-off::view-transition-new(*),html.page-hidden::view-transition-group(*),html.page-hidden::view-transition-old(*),html.page-hidden::view-transition-new(*){animation:none!important}
+@media(prefers-reduced-motion:reduce){html:not(.motion-force-on)::view-transition-group(*),html:not(.motion-force-on)::view-transition-old(*),html:not(.motion-force-on)::view-transition-new(*){animation:none!important}}
 
 /* ---------- Responsive ---------- */
 @media(min-width:1550px){.hero-landscape{object-position:center 56%}}
@@ -630,8 +649,6 @@ html.js .now-listening:not([data-state]) .listening-status,.now-listening[data-s
 #replay-evidence ol{margin:0;padding-inline-start:2.2em}
 #replay-evidence ul{list-style:none;padding:0;margin:0}
 #replay-evidence li+li{margin-top:4px}
-/* Each step's evidence settles once; the stage keeps its height. */
-.js-motion #replay-evidence ul{animation:entry-in .22s var(--ease) both}
 .replay-controls{display:flex;justify-content:space-between;gap:8px;padding:16px 24px;border-top:1px solid var(--line)}
 .replay-controls[hidden],.field-links button[hidden]{display:none}
 .replay-controls button,.field-links button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 15px;border:1px solid var(--line-strong);border-radius:999px;background:transparent;color:var(--ink);font:500 13px var(--sans);cursor:pointer;white-space:nowrap;transition:border-color .18s ease,opacity .18s ease}

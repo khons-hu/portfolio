@@ -17,7 +17,22 @@
     const previous=document.querySelector('#replay-prev'), next=document.querySelector('#replay-next'), reset=document.querySelector('#replay-reset');
     if (!previous || !next || !reset) return;
     let index=0;
+    // A finite, directional settle for the new step. Web Animations are not reached by the CSS motion switches,
+    // so they are kept here and cancelled on the next step, when motion is turned off and when the tab is hidden.
+    let running=[];
+    const motionAllowed=()=>!document.hidden&&Boolean(document.documentElement?.classList?.contains('js-motion'));
+    function stop() { running.forEach(animation=>animation.cancel?.());running=[]; }
+    function settle(direction) {
+      stop();
+      if (!direction || !motionAllowed()) return;
+      running=['#replay-title','#replay-copy','#replay-evidence'].map((selector,order)=>
+        document.querySelector(selector)?.animate?.([{opacity:0,transform:`translateX(${direction*8}px)`},{opacity:1,transform:'none'}],{duration:240,delay:order*30,easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'})
+      ).filter(Boolean);
+    }
+    document.defaultView?.addEventListener?.('portfolio:motion',()=>{if(!motionAllowed())stop();});
+    document.addEventListener?.('visibilitychange',()=>{if(document.hidden)stop();});
     function render(value) {
+      const direction=Math.sign(clamp(value)-index);
       index=clamp(value);const step=steps[index];
       document.querySelector('#replay-count').textContent=`${String(index+1).padStart(2,'0')} / 05 · ${step.label}`;
       document.querySelector('#replay-title').textContent=step.title;
@@ -26,6 +41,7 @@
       for (const text of step.evidence) { const item=document.createElement('li');item.textContent=text;list.append(item); }
       document.querySelector('#replay-evidence').replaceChildren(list);
       previous.disabled=index===0;next.disabled=index===steps.length-1;
+      settle(direction);
     }
     previous.addEventListener('click',()=>render(index-1));next.addEventListener('click',()=>render(index+1));reset.addEventListener('click',()=>render(0));
     document.querySelector('.replay-controls').hidden=false;
