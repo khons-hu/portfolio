@@ -17,6 +17,8 @@ function updateMotion() {
   motionButton.title = t('Motion cycles through system, on, and off. “On” keeps the small interface transitions even when your system requests reduced motion.');
   motionButton.setAttribute('aria-pressed', String(!disabled));
   motionButton.disabled = false;
+  // Effects already running (the theme sweep) listen for this and stop at once when motion is no longer allowed.
+  if (typeof window !== 'undefined' && typeof CustomEvent === 'function') window.dispatchEvent(new CustomEvent('portfolio:motion', { detail: { disabled, forced } }));
 }
 updateMotion();
 reducedMotion.addEventListener('change', updateMotion);
