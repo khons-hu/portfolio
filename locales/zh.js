@@ -74,7 +74,7 @@
     "C++ roots": "C++ 起点",
     "AI experiments": "AI 实验",
     "CURRENTLY AT": "目前任职于",
-    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics.": "我是 Customer Support Partner L2，负责深入排查浏览器、API、商品数据和分析方面的问题。",
+    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "我是 Customer Support Partner L2，负责深入排查浏览器、API、商品数据和分析方面的问题。 我也使用 AWS 和 Sentry 排查服务问题、查看错误并验证修复。",
     "Luigi's Box builds search and product discovery for e-commerce, including recommendations and conversational shopping tools.": "Luigi's Box 为电商提供搜索和商品发现功能，包括推荐和对话式购物工具。",
     "Trace the problem": "追查问题",
     "Reproduce the issue in the actual user journey. Follow requests, configuration, and data until the behaviour makes sense.": "在真实用户流程中复现问题，沿着请求、配置和数据追踪，直到行为能够解释清楚。",
@@ -282,7 +282,7 @@
     "privacy": "我只知道公开的作品集内容，这里没有私人资料。",
     "greeting": "你好！我是本地作品集向导，不是 Patrick，也不是 AI 模型。你想了解什么？",
     "answers": {
-      "work": "Patrick 在 Luigi’s Box 担任 Customer Support Partner L2。他调查浏览器行为、API、商品数据源和分析，审查集成、验证修复，并准备工程交接。Luigi’s Box 为电商提供搜索和商品发现功能。 工作还包括功能实现、代码重构、后端分析，以及数据采集器和事件处理的性能优化。分析数据修复涉及 GTM、dataLayer、重复购买事件和归因，也包括旧版 Persoo 集成。",
+      "work": "Patrick 在 Luigi’s Box 担任 Customer Support Partner L2。他调查浏览器行为、API、商品数据源和分析，审查集成、验证修复，并准备工程交接。Luigi’s Box 为电商提供搜索和商品发现功能。 工作还包括功能实现、代码重构、后端分析，以及数据采集器和事件处理的性能优化。分析数据修复涉及 GTM、dataLayer、重复购买事件和归因，也包括旧版 Persoo 集成。 他也使用 AWS 和 Sentry 排查服务问题、查看错误并验证修复。",
       "spotify": "私人 Python 歌单在 Mac 可用时每天 18:00 更新。Jev 每周根据歌曲名和艺人名选择音乐方向和少量新发现，日常更新复用这一选择。 按需根据心情、活动或歌手搜索，并优先返回熟悉的歌手。心情匹配只是近似结果，不是音频分析。 歌单私密保存，并在写入后检查。这是运行在Patrick 的 Mac 上的个人工具。源码未公开。",
       "dots": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。",
       "bot": "早期的 JavaScript Discord 音乐机器人。仓库是历史项目，当前 Discord 和音乐服务兼容性未经验证。",

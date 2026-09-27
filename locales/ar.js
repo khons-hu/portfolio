@@ -74,7 +74,7 @@
     "C++ roots": "البداية مع C++",
     "AI experiments": "تجارب الذكاء الاصطناعي",
     "CURRENTLY AT": "أعمل حاليًا في",
-    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics.": "أعمل بوظيفة Customer Support Partner L2. أبحث في المشاكل التي تتطلب فحصًا أعمق للمتصفح وواجهات API وبيانات المنتجات والتحليلات.",
+    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "أعمل بوظيفة Customer Support Partner L2. أبحث في المشاكل التي تتطلب فحصًا أعمق للمتصفح وواجهات API وبيانات المنتجات والتحليلات. أستخدم أيضًا AWS وSentry للتحقيق في مشكلات الخدمات ومراجعة الأخطاء والتحقق من الإصلاحات.",
     "Luigi's Box builds search and product discovery for e-commerce, including recommendations and conversational shopping tools.": "تبني Luigi's Box أدوات بحث واكتشاف المنتجات للتجارة الإلكترونية، منها التوصيات وأدوات التسوق الحواري.",
     "Trace the problem": "تتبّع المشكلة",
     "Reproduce the issue in the actual user journey. Follow requests, configuration, and data until the behaviour makes sense.": "أعيد إنتاج المشكلة ضمن رحلة المستخدم الفعلية، وأتتبّع الطلبات والإعدادات والبيانات حتى يتضح السبب.",
@@ -282,7 +282,7 @@
     "privacy": "لا أعرف سوى معلومات المعرض العامة. لا تتوفر بيانات خاصة هنا.",
     "greeting": "مرحبًا! أنا دليل محلي للمعرض، ولست Patrick أو نموذج AI. عمّ تريد أن تسأل؟",
     "answers": {
-      "work": "يعمل Patrick بوظيفة Customer Support Partner L2 في Luigi’s Box. يفحص سلوك المتصفح وواجهات API وخلاصات المنتجات والتحليلات، ويراجع التكاملات ويتحقق من الإصلاحات ويعدّ تسليمات للهندسة. تبني Luigi’s Box أدوات البحث واكتشاف المنتجات للتجارة الإلكترونية. يشمل العمل أيضًا التنفيذ وإعادة هيكلة الشيفرة وتحليل الواجهة الخلفية وتحسين أداء أدوات جمع البيانات ومعالجة الأحداث. تشمل إصلاحات التحليلات GTM وdataLayer وأحداث الشراء المكررة والإسناد، بما في ذلك تكاملات Persoo القديمة.",
+      "work": "يعمل Patrick بوظيفة Customer Support Partner L2 في Luigi’s Box. يفحص سلوك المتصفح وواجهات API وخلاصات المنتجات والتحليلات، ويراجع التكاملات ويتحقق من الإصلاحات ويعدّ تسليمات للهندسة. تبني Luigi’s Box أدوات البحث واكتشاف المنتجات للتجارة الإلكترونية. يشمل العمل أيضًا التنفيذ وإعادة هيكلة الشيفرة وتحليل الواجهة الخلفية وتحسين أداء أدوات جمع البيانات ومعالجة الأحداث. تشمل إصلاحات التحليلات GTM وdataLayer وأحداث الشراء المكررة والإسناد، بما في ذلك تكاملات Persoo القديمة. يستخدم أيضًا AWS وSentry للتحقيق في مشكلات الخدمات ومراجعة الأخطاء والتحقق من الإصلاحات.",
       "spotify": "تتحدث قائمة Python الخاصة يوميًا الساعة 18:00 عندما يكون جهاز Mac متاحًا. يستخدم Jev أسماء الأغاني والفنانين مرة أسبوعيًا لاختيار اتجاه موسيقي وبعض الاكتشافات. تعيد التحديثات اليومية استخدام هذا الاختيار. عند الطلب يبحث حسب المزاج أو النشاط أو الفنان ويفضل الفنانين المألوفين. مطابقة المزاج تقريبية وليست تحليلًا للصوت. تُحفظ القائمة بخصوصية ويُفحص محتواها بعد الكتابة. أداة شخصية تعمل على جهاز Mac الخاص بـ Patrick، والشيفرة غير منشورة.",
       "dots": "بُنيت أصلًا بـ React وSpring Boot عام 2023. تستخدم نسخة المتصفح شاشات React وصور النقاط الأصلية، مع منطق لعبة محلي. خمسة مستويات ومتجر تعزيزات ولعب ضيف. دون تسجيل دخول أو لوحة ترتيب مشتركة. العب عبر المتصفح أو تصفح المصدر الأصلي.",
       "bot": "بوت موسيقى سابق على Discord بلغة JavaScript. المستودع تاريخي، ولم يُتحقق من توافقه مع خدمات الموسيقى وDiscord الحالية.",

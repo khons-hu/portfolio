@@ -74,7 +74,7 @@
     "C++ roots": "C++が原点",
     "AI experiments": "AIの実験",
     "CURRENTLY AT": "現在の勤務先",
-    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics.": "Customer Support Partner L2として、ブラウザー、API、商品データ、分析を横断して詳しい調査が必要な問題に取り組んでいます。",
+    "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "Customer Support Partner L2として、ブラウザー、API、商品データ、分析を横断して詳しい調査が必要な問題に取り組んでいます。 AWS と Sentry も使い、サービスの問題調査、エラーの確認、修正の検証を行っています。",
     "Luigi's Box builds search and product discovery for e-commerce, including recommendations and conversational shopping tools.": "Luigi’s BoxはEC向けの商品検索・発見、レコメンド、対話型ショッピングツールを開発しています。",
     "Trace the problem": "原因を追う",
     "Reproduce the issue in the actual user journey. Follow requests, configuration, and data until the behaviour makes sense.": "実際の利用経路で問題を再現し、リクエスト、設定、データを追って動作を理解します。",
@@ -282,7 +282,7 @@
     "privacy": "このポートフォリオの公開情報だけを知っています。個人情報は提供できません。",
     "greeting": "こんにちは！私はローカルのポートフォリオガイドです。Patrick本人でもAIモデルでもありません。何を知りたいですか？",
     "answers": {
-      "work": "PatrickはLuigi’s BoxのCustomer Support Partner L2です。ブラウザーの動作、API、商品フィード、分析を調査し、連携を監査し、修正を検証してエンジニアリングへの引き継ぎを準備します。Luigi’s BoxはEC向けの商品検索と発見を提供します。 実装やリファクタリング、バックエンドの分析、データ収集処理とイベント処理のパフォーマンス最適化も担当しています。分析データの修正では、GTM、dataLayer、購入イベントの重複、アトリビューションを扱い、旧Persooの連携にも対応しています。",
+      "work": "PatrickはLuigi’s BoxのCustomer Support Partner L2です。ブラウザーの動作、API、商品フィード、分析を調査し、連携を監査し、修正を検証してエンジニアリングへの引き継ぎを準備します。Luigi’s BoxはEC向けの商品検索と発見を提供します。 実装やリファクタリング、バックエンドの分析、データ収集処理とイベント処理のパフォーマンス最適化も担当しています。分析データの修正では、GTM、dataLayer、購入イベントの重複、アトリビューションを扱い、旧Persooの連携にも対応しています。 AWS と Sentry も使い、サービスの問題調査、エラーの確認、修正の検証を行っています。",
       "spotify": "非公開のPythonプレイリストは、Macが利用可能な日に18時に更新されます。Jevが週に一度、曲名とアーティスト名から方向性と少しの新しい曲を選び、毎日の更新でその選択を再利用します。 希望に応じて気分、活動、アーティストで探し、なじみのあるアーティストを優先します。気分の一致は概算で、音声解析ではありません。 プレイリストを非公開で保存し、保存後に内容を確認します。PatrickのMacで動く個人用ツールです。ソースは非公開です。",
       "dots": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
       "bot": "以前作ったJavaScript製のDiscord音楽ボット。古いリポジトリのため、現在のDiscordや音楽サービスとの互換性は未確認です。",
