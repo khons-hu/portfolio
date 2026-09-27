@@ -24,6 +24,14 @@ Ordinary navigation works throughout. Compact project cards (three, two or one p
 
 Cards open keyboard-accessible notes. The notes put their outside links (demo, playlist or itch.io page, public source, Android preview) above the longer text. “Copy project link” gives a direct address such as https://khons-hu.vercel.app/#project/khonrelay. It opens those notes on arrival. If clipboard access is unavailable, the address remains selectable. Shared links exclude query parameters.
 
+## Field notes and reusable skills
+
+The opening section contains three evidence-linked case studies, a five-step recorded Khonproof decision and three original public skill templates. The replay is a published text-choice failure, not live browser execution. It makes no model requests. The unchanged public report fixture in `tests/fixtures/khonproof-benchmark.json` is pinned to khonproof commit `a82360c7f37915cd4edac1d138a228f7ec8410d7`, SHA-256 `fe9b53ff86d8e726d19823c258517f5a0598fcf966c24a1cfb2db3df1e8a8e0e`.
+
+Skills under `skills/*/SKILL.md` are readable without JavaScript and downloadable. Copy controls appear when JavaScript is available. If clipboard access fails, the original source opens for manual copying. The three release notes are manually curated and link to public evidence. No background activity feed or live agent execution is added.
+
+The core interface and AI-focused profile copy support 17 languages. Technical field notes, skill source and release notes are marked as English originals with their own language and reading direction. Core translated navigation remains independent.
+
 ## Motion and resource use
 
 When motion is allowed: dialogs and tool panels fade in and out with their backdrop (discrete transitions where supported, a simple entrance elsewhere), switching Terminal / Ask khonsu / Email keeps the frame still and only fades the content, filter chips morph the project grid with View Transitions where supported (typing in search stays instant), the About accordion grows by height, terminal and guide output fades in, and cards lift 2 px on hover. The page behind an open dialog no longer scrolls. Motion Off, the system reduced-motion setting (unless Motion is On) and hidden tabs switch everything instantly.

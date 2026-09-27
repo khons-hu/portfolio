@@ -1,12 +1,11 @@
-/* Indonesian copy for the page, project notes, terminal, guide and contact form.
-   Loaded only when this language is chosen. Guide keywords live in guide-keywords.js. */
+/* Authored id copy. Loaded only when selected. */
 (function (root, language, pack) {
-  (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
-  if (typeof module !== 'undefined' && module.exports) module.exports = pack;
+ (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
+ if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "id", {
   "site": {
     "Offline": "Offline",
-    "Updating\u2026": "Memperbarui…",
+    "Updating…": "Memperbarui…",
     "Currently unavailable": "Saat ini tidak tersedia",
     "Listening now": "Sedang diputar",
     "on Spotify": "di Spotify",
@@ -26,12 +25,10 @@
     "Terminal": "Terminal",
     "DEVELOPER": "PENGEMBANG",
     "Or": "Atau",
-    "I started coding through C++ and Counter-Strike.": "Saya mulai belajar pemrograman lewat C++ dan Counter-Strike.",
     "Now I work as a Customer Support Partner L2 at Luigi’s Box": "Sekarang saya bekerja sebagai Customer Support Partner L2 di Luigi’s Box",
     "and try out agents and coding tools in my own projects.": "dan mencoba agen serta alat pemrograman dalam proyek saya sendiri.",
     "Explore my work": "Jelajahi karya saya",
     "Or take the terminal": "Atau gunakan terminal",
-    "C++ roots. Still trying new things.": "Berawal dari C++. Terus mencoba hal baru.",
     "SCROLL TO EXPLORE": "GULIR UNTUK MENJELAJAHI",
     "SELECTED WORK": "KARYA PILIHAN",
     "Projects &": "Proyek dan",
@@ -68,10 +65,8 @@
     "Browse GitHub ↗": "Lihat GitHub ↗",
     "ABOUT ME": "TENTANG SAYA",
     "Online, khonsu.": "Di internet, khonsu.",
-    "I got into programming through C++ and Counter-Strike, well before ChatGPT.": "Saya mengenal pemrograman lewat C++ dan Counter-Strike, jauh sebelum ChatGPT.",
     "I started using the name khonsu around 2022, inspired by Moon Knight.": "Saya mulai memakai nama khonsu sekitar 2022, terinspirasi Moon Knight.",
     "I have a master's in Computer Science from TUKE and a background in backend and full-stack development. Lately, I spend a lot of time trying new models, coding tools, and agent workflows.": "Saya memiliki gelar magister Ilmu Komputer dari TUKE dan pengalaman backend serta pengembangan full-stack. Belakangan saya banyak mencoba model baru, alat pemrograman, dan alur kerja agen.",
-    "C++ roots": "Berawal dari C++",
     "AI experiments": "Eksperimen AI",
     "CURRENTLY AT": "SAAT INI DI",
     "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "Saya bekerja sebagai Customer Support Partner L2. Saya menyelidiki masalah yang perlu ditelusuri lebih jauh di peramban, API, data produk, dan analitik. Saya juga menggunakan AWS dan Sentry untuk menyelidiki masalah layanan, meninjau error, dan memverifikasi perbaikan.",
@@ -197,7 +192,11 @@
     "PUBLIC DATA, PRIVATE NOTES": "DATA PUBLIK, CATATAN PRIBADI",
     "2023 BROWSER EDITION": "EDISI PERAMBAN 2023",
     "CURRENT GAME PROTOTYPE": "PROTOTIPE GAME SAAT INI",
-    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Game kecil di pasar bermandikan cahaya bulan. Bergeraklah, periksa hal penting, lalu putuskan."
+    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Game kecil di pasar bermandikan cahaya bulan. Bergeraklah, periksa hal penting, lalu putuskan.",
+    "I build with AI agents, reusable skills and practical checks.": "Saya membangun dengan agen AI, keterampilan yang dapat digunakan ulang, dan pemeriksaan praktis.",
+    "Small tools. Clear limits. Real evidence.": "Alat kecil. Batas jelas. Bukti nyata.",
+    "My focus is AI harnessing: clear instructions, bounded tools, useful workflows and honest evaluation.": "Fokus saya adalah kerangka agen AI: instruksi jelas, alat dengan batas, alur kerja berguna, dan evaluasi yang jujur.",
+    "AI harnessing": "Kerangka agen AI"
   },
   "notes": {
     "steam": [
@@ -217,12 +216,12 @@
     ],
     "thinkroom": [
       "Lima belas latihan asli: pemrograman, debugging, logika, prompt, dan keterampilan agen. Rencanakan, coba, buka petunjuk bertahap, lalu evaluasi.",
-      "Pemeriksaan JavaScript, TypeScript, dan Python berjalan lokal dengan batas waktu. C/C++ memiliki compiler lokal eksperimental. Go mendukung draf, unduhan, dan playground eksternal. Tugas tertulis menggunakan evaluasi mandiri.",
+      "Pemeriksaan JavaScript, TypeScript, dan Python berjalan lokal dengan batas waktu.",
       "Gratis, kode publik. Tanpa akun atau panggilan AI berbayar."
     ],
     "discovery": [
       "Rekomendasi X mingguan dan hingga tiga akun GitHub yang relevan. Agen AI meninjau kandidat. Jalannya jadwal pertama belum diverifikasi.",
-      "Topik: C++, alat pengembang, agen pemrograman, riset AI, dan CS2. Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan."
+      "Topik: alat pengembang, agen pemrograman, riset AI, dan Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan."
     ],
     "portfolio": [
       "Proyek yang dapat dicari, catatan yang dapat dibagikan, navigasi terminal, dan panduan kecil dalam berbagai bahasa. Jika tersedia, model AI menjawab melalui Groq; jika tidak, jawaban yang telah disiapkan ditampilkan.",
@@ -241,7 +240,7 @@
       "Bot musik Discord lama berbasis JavaScript. Repositori historis; kompatibilitas saat ini dengan Discord dan layanan musik belum diverifikasi."
     ],
     "ipc": [
-      "Proyek tim universitas tentang komunikasi dan koordinasi antarproses. Contoh pengalaman C++ saya."
+      "Proyek tim universitas tentang komunikasi dan koordinasi antarproses."
     ],
     "calculator": [
       "Dibuat bersama tim di TUKE dengan Arduino Uno, keypad, dan LCD. Menghitung ekspresi aritmetika dengan tanda kurung serta menyimpan riwayat.",
@@ -278,7 +277,7 @@
       "PANDUAN LOKAL · TANPA API",
       "Tutup panduan"
     ],
-    "fallback": "Saya tidak dapat mencocokkan pertanyaan itu dengan pasti. Coba tanyakan pekerjaan, proyek, C++, Spotify, atau kontak.",
+    "fallback": "Saya tidak dapat mencocokkan pertanyaan itu dengan pasti. Coba tanyakan pekerjaan, proyek, AI, Spotify, atau kontak.",
     "privacy": "Saya hanya tahu informasi publik dalam portofolio ini. Data pribadi tidak tersedia.",
     "greeting": "Halo! Saya panduan portofolio lokal, bukan Patrick dan bukan model AI. Apa yang ingin Anda ketahui?",
     "answers": {
@@ -286,18 +285,18 @@
       "spotify": "Rotasi privat Python diperbarui setiap hari pukul 18.00 saat Mac tersedia. Seminggu sekali, Jev memakai judul lagu dan nama artis untuk memilih arah musik dan beberapa temuan baru. Pembaruan harian menggunakan kembali pilihan itu. Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio. Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac Patrick. Kodenya tidak diterbitkan.",
       "dots": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
       "bot": "Bot musik Discord lama berbasis JavaScript. Repositori historis; kompatibilitas saat ini dengan Discord dan layanan musik belum diverifikasi.",
-      "cpp": "C++ dan Counter-Strike membawa Patrick ke dunia pemrograman. Salah satu contoh kodenya adalah proyek tim universitas tentang komunikasi antarproses.",
+      "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",
       "openai": "Ia mengikuti Tibo karena cepatnya ia bekerja di OpenAI dan caranya membahas apa yang sedang mereka buat. Ini minat pribadi, bukan hubungan kerja.",
       "study": "Patrick memiliki gelar magister Ilmu Komputer dari TUKE. Tesisnya menggabungkan agen pembelajaran penguatan PPO dan pembuatan peta berbasis LLM untuk game multipemain.",
-      "projects": "Coba Khonsolve untuk latihan pemrograman, Khonrelay untuk berita AI, atau Khonproof untuk eksperimen agen. Bagian proyek memuat catatan dan tautan, termasuk karya lama dan prototipe game.",
+      "projects": "Khonproof · Khonrelay · Khonsolve. Lima belas latihan asli: pemrograman, debugging, logika, prompt, dan keterampilan agen. Rencanakan, coba, buka petunjuk bertahap, lalu evaluasi. Pemeriksaan JavaScript, TypeScript, dan Python berjalan lokal dengan batas waktu. Go mendukung draf, unduhan, dan playground eksternal. Tugas tertulis menggunakan evaluasi mandiri. Gratis, kode publik. Tanpa akun atau panggilan AI berbayar.",
       "contact": "Anda bisa menulis kepada Patrick melalui tab Email. FormSubmit hanya mengirim formulir, bukan percakapan ini. Patrick juga ada di GitHub, LinkedIn, X, dan Discord.",
-      "about": "Patrick Obrtal, dikenal sebagai khonsu di internet. Ia memakai nama itu sejak sekitar 2022, terinspirasi Moon Knight. Ia mulai dari C++ dan Counter-Strike, belajar Ilmu Komputer di TUKE, dan kini bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia juga mencoba agen pemrograman.",
+      "about": "Patrick Obrtal · khonsu. Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Patrick memiliki gelar magister Ilmu Komputer dari TUKE. Tesisnya menggabungkan agen pembelajaran penguatan PPO dan pembuatan peta berbasis LLM untuk game multipemain.",
       "ai": "Ia mengikuti AGI, peningkatan diri rekursif, dan rilis model baru, serta mencoba agen pemrograman dalam pekerjaannya. Ketertarikannya pada sistem pembelajaran juga tampak dalam tesis PPO.",
-      "games": "Counter-Strike adalah bagian dari awal perjalanannya dalam pemrograman. Sekarang ia membuat alat dan prototipe game sendiri.",
+      "games": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
       "calculator": "Dibuat bersama tim di TUKE dengan Arduino Uno, keypad, dan LCD. Menghitung ekspresi aritmetika dengan tanda kurung serta menyimpan riwayat.",
       "site": "Portofolio ini memakai HTML, CSS, dan JavaScript, dengan navigasi terminal, tema terang dan gelap, serta panduan dalam berbagai bahasa. Jika tersedia, model AI menjawab melalui Groq; jika tidak, jawaban yang telah disiapkan ditampilkan. Pembaruan diterbitkan dari GitHub ke Vercel.",
-      "discovery": "Rekomendasi X mingguan dan hingga tiga akun GitHub yang relevan. Agen AI meninjau kandidat. Jalannya jadwal pertama belum diverifikasi. Topik: C++, alat pengembang, agen pemrograman, riset AI, dan CS2. Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan.",
-      "thinkroom": "Lima belas latihan asli: pemrograman, debugging, logika, prompt, dan keterampilan agen. Rencanakan, coba, buka petunjuk bertahap, lalu evaluasi. Pemeriksaan JavaScript, TypeScript, dan Python berjalan lokal dengan batas waktu. C/C++ memiliki compiler lokal eksperimental. Go mendukung draf, unduhan, dan playground eksternal. Tugas tertulis menggunakan evaluasi mandiri. Gratis, kode publik. Tanpa akun atau panggilan AI berbayar.",
+      "discovery": "Rekomendasi X mingguan dan hingga tiga akun GitHub yang relevan. Agen AI meninjau kandidat. Jalannya jadwal pertama belum diverifikasi. Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan.",
+      "thinkroom": "Lima belas latihan asli: pemrograman, debugging, logika, prompt, dan keterampilan agen. Rencanakan, coba, buka petunjuk bertahap, lalu evaluasi. Pemeriksaan JavaScript, TypeScript, dan Python berjalan lokal dengan batas waktu. Go mendukung draf, unduhan, dan playground eksternal. Tugas tertulis menggunakan evaluasi mandiri. Gratis, kode publik. Tanpa akun atau panggilan AI berbayar.",
       "signal": "Berita resmi OpenAI dan DeepMind, rilis alat pemrograman, status layanan, serta ekspor RSS dan OPML. Simpan tautan, tandai sudah dibaca, dan pilih sumber. Label kepentingan menjelaskan aturannya. Akun X Tibo hanya ditautkan, tidak dipantau otomatis. Urutan baca opsional Jev memakai skor yang sudah dihitung; tidak menyembunyikan kiriman atau mengubah peringatan. Ringkasan harian opsional berjalan di server. Daftarkan setiap perangkat secara terpisah. Web Push diuji di Brave pada macOS. Pengiriman ke ponsel belum diuji. Filter papan peringkat, posisi dompet, aktivitas, daftar pantauan, dan catatan lokal. Peringkat tidak membuktikan hasil yang bisa diulang. Peringatan perdagangan memerlukan halaman terbuka. Buku catatan perusahaan AI menautkan berita resmi dan pencarian SEC, tanpa meramalkan tanggal IPO. Tanpa sambungan dompet atau perdagangan. Data publik Polymarket melalui API yang dibatasi.",
       "steam": "Harga jual dalam EUR, biaya pembelian, dan perkiraan hasil Steam Wallet. Tanpa login atau perdagangan. Hingga 12 item, pemberitahuan harga target, catatan lokal, dan pengamatan. Ekspor cadangan untuk pindah peramban. Pemeriksaan dilakukan manual melalui endpoint Steam yang tidak terdokumentasi. Tidak ada peringatan latar belakang. Kode publik; deployment menunggu pengaturan akses GitHub.",
       "proof": "20 tugas peramban dan impor laporan terukur. Hasil Jev dan metode dasar kata kunci yang dipublikasikan mencakup kegagalan. Pengujian model berjalan lokal dengan kunci API Anda sendiri. Sampel kecil, bukan peringkat model secara umum."

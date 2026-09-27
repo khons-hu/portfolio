@@ -1,12 +1,11 @@
-/* Portuguese copy for the page, project notes, terminal, guide and contact form.
-   Loaded only when this language is chosen. Guide keywords live in guide-keywords.js. */
+/* Authored pt copy. Loaded only when selected. */
 (function (root, language, pack) {
-  (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
-  if (typeof module !== 'undefined' && module.exports) module.exports = pack;
+ (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
+ if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "pt", {
   "site": {
     "Offline": "Offline",
-    "Updating\u2026": "A atualizar…",
+    "Updating…": "A atualizar…",
     "Currently unavailable": "Indisponível de momento",
     "Listening now": "A ouvir agora",
     "on Spotify": "no Spotify",
@@ -26,12 +25,10 @@
     "Terminal": "Terminal",
     "DEVELOPER": "DESENVOLVEDOR",
     "Or": "Ou",
-    "I started coding through C++ and Counter-Strike.": "Comecei a programar com C++ e Counter-Strike.",
     "Now I work as a Customer Support Partner L2 at Luigi’s Box": "Hoje trabalho como Customer Support Partner L2 na Luigi’s Box",
     "and try out agents and coding tools in my own projects.": "e experimento agentes e ferramentas de programação nos meus projetos.",
     "Explore my work": "Conhecer os meus projetos",
     "Or take the terminal": "Ou usar o terminal",
-    "C++ roots. Still trying new things.": "Raízes em C++. Sempre a experimentar.",
     "SCROLL TO EXPLORE": "DESLIZA PARA EXPLORAR",
     "SELECTED WORK": "PROJETOS SELECIONADOS",
     "Projects &": "Projetos e",
@@ -68,10 +65,8 @@
     "Browse GitHub ↗": "Ver GitHub ↗",
     "ABOUT ME": "SOBRE MIM",
     "Online, khonsu.": "Na internet, khonsu.",
-    "I got into programming through C++ and Counter-Strike, well before ChatGPT.": "Comecei a programar com C++ e Counter-Strike, muito antes do ChatGPT.",
     "I started using the name khonsu around 2022, inspired by Moon Knight.": "Comecei a usar o nome khonsu por volta de 2022, inspirado em Moon Knight.",
     "I have a master's in Computer Science from TUKE and a background in backend and full-stack development. Lately, I spend a lot of time trying new models, coding tools, and agent workflows.": "Tenho um mestrado em Informática pela TUKE e experiência em backend e desenvolvimento full-stack. Ultimamente experimento novos modelos, ferramentas de programação e fluxos com agentes.",
-    "C++ roots": "Raízes em C++",
     "AI experiments": "Experiências com IA",
     "CURRENTLY AT": "ATUALMENTE EM",
     "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "Sou Customer Support Partner L2. Investigo problemas que exigem uma análise mais profunda do navegador, APIs, dados de produtos e análise de dados. Também uso AWS e Sentry para investigar problemas nos serviços, analisar erros e verificar correções.",
@@ -197,7 +192,11 @@
     "PUBLIC DATA, PRIVATE NOTES": "DADOS PÚBLICOS, NOTAS PRIVADAS",
     "2023 BROWSER EDITION": "EDIÇÃO PARA NAVEGADOR DE 2023",
     "CURRENT GAME PROTOTYPE": "PROTÓTIPO DE JOGO ATUAL",
-    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Um pequeno jogo num mercado à luz da lua. Move-te, examina o que importa e decide."
+    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "Um pequeno jogo num mercado à luz da lua. Move-te, examina o que importa e decide.",
+    "I build with AI agents, reusable skills and practical checks.": "Crio com agentes de IA, competências reutilizáveis e verificações práticas.",
+    "Small tools. Clear limits. Real evidence.": "Pequenas ferramentas. Limites claros. Evidências reais.",
+    "My focus is AI harnessing: clear instructions, bounded tools, useful workflows and honest evaluation.": "O meu foco é estruturar agentes de IA: instruções claras, ferramentas delimitadas, fluxos úteis e avaliação honesta.",
+    "AI harnessing": "Estruturas para agentes de IA"
   },
   "notes": {
     "steam": [
@@ -217,12 +216,12 @@
     ],
     "thinkroom": [
       "Quinze exercícios originais: programação, depuração, lógica, prompts e competências de agentes. Planeia, tenta, revela dicas aos poucos e reflete.",
-      "Testes JavaScript, TypeScript e Python executam localmente com limite de tempo. C/C++ têm um compilador local experimental. Go permite rascunhos, transferências e um playground externo. Exercícios escritos usam autoavaliação.",
+      "Testes JavaScript, TypeScript e Python executam localmente com limite de tempo.",
       "Gratuito, código público. Sem conta nem chamadas pagas a IA."
     ],
     "discovery": [
       "Recomendações semanais para X e até três perfis relevantes do GitHub. Um agente de IA analisa candidatos. A primeira execução agendada ainda não foi verificada.",
-      "Temas: C++, ferramentas de desenvolvimento, agentes de programação, investigação em IA e CS2. Execuções limitadas, verificação de duplicados e justificação de cada escolha."
+      "Temas: ferramentas de desenvolvimento, agentes de programação, investigação em IA e Execuções limitadas, verificação de duplicados e justificação de cada escolha."
     ],
     "portfolio": [
       "Projetos pesquisáveis, notas partilháveis, navegação por terminal e um pequeno guia em várias línguas. Quando disponível, responde um modelo de IA através do Groq; caso contrário, respostas preparadas.",
@@ -241,7 +240,7 @@
       "Um antigo bot de música para Discord em JavaScript. Repositório histórico; a compatibilidade atual com Discord e serviços de música não foi verificada."
     ],
     "ipc": [
-      "Trabalho universitário em equipa sobre comunicação e coordenação entre processos. Um exemplo da minha experiência em C++."
+      "Trabalho universitário em equipa sobre comunicação e coordenação entre processos."
     ],
     "calculator": [
       "Criado em equipa na TUKE com Arduino Uno, teclado e LCD. Calcula expressões aritméticas com parênteses e guarda o histórico.",
@@ -278,7 +277,7 @@
       "GUIA LOCAL · SEM API",
       "Fechar guia"
     ],
-    "fallback": "Não consigo associar essa pergunta com segurança. Pergunta sobre trabalho, projetos, C++, Spotify ou contactos.",
+    "fallback": "Não consigo associar essa pergunta com segurança. Pergunta sobre trabalho, projetos, AI, Spotify ou contactos.",
     "privacy": "Conheço apenas informação pública do portfólio. Não forneço dados privados.",
     "greeting": "Olá! Sou um guia local do portfólio, não sou o Patrick nem um modelo de IA. O que gostarias de saber?",
     "answers": {
@@ -286,18 +285,18 @@
       "spotify": "A seleção privada em Python atualiza-se diariamente às 18:00 quando o Mac está disponível. Uma vez por semana, o Jev usa nomes de músicas e artistas para escolher uma direção e algumas descobertas. As atualizações diárias reutilizam essa escolha. A pedido, procura por estado de espírito, atividade ou artista e privilegia artistas conhecidos. A correspondência de humor é aproximada, não é análise de áudio. A playlist é guardada como privada e verificada. É uma ferramenta pessoal no Mac do Patrick. O código não é público.",
       "dots": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original.",
       "bot": "Um antigo bot de música para Discord em JavaScript. Repositório histórico; a compatibilidade atual com Discord e serviços de música não foi verificada.",
-      "cpp": "C++ e Counter-Strike levaram Patrick à programação. Um exemplo de código é o seu projeto universitário em equipa sobre comunicação entre processos.",
+      "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",
       "openai": "Acompanha Tibo de perto pelo ritmo do trabalho dele na OpenAI e pela forma como fala do que estão a criar. É um interesse pessoal, não uma ligação profissional.",
       "study": "Patrick tem um mestrado em Informática da TUKE. A sua tese combinou agentes de aprendizagem por reforço PPO e geração de mapas com LLM para um jogo multijogador.",
-      "projects": "Experimenta o Khonsolve para praticar programação, o Khonrelay para acompanhar novidades de IA ou o Khonproof para experiências com agentes. A secção de projetos reúne notas e links, além de trabalhos anteriores e protótipos de jogos.",
+      "projects": "Khonproof · Khonrelay · Khonsolve. Quinze exercícios originais: programação, depuração, lógica, prompts e competências de agentes. Planeia, tenta, revela dicas aos poucos e reflete. Testes JavaScript, TypeScript e Python executam localmente com limite de tempo. Go permite rascunhos, transferências e um playground externo. Exercícios escritos usam autoavaliação. Gratuito, código público. Sem conta nem chamadas pagas a IA.",
       "contact": "Podes escrever ao Patrick no separador Email. Só o formulário é enviado pelo FormSubmit, não esta conversa. Também o encontras no GitHub, LinkedIn, X e Discord.",
-      "about": "Patrick Obrtal, online como khonsu. Usa o nome desde cerca de 2022, inspirado em Moon Knight. Começou com C++ e Counter-Strike, estudou Informática na TUKE e hoje trabalha como Customer Support Partner L2 na Luigi’s Box. Também experimenta agentes de programação.",
+      "about": "Patrick Obrtal · khonsu. Patrick trabalha como Customer Support Partner L2 na Luigi’s Box. Patrick tem um mestrado em Informática da TUKE. A sua tese combinou agentes de aprendizagem por reforço PPO e geração de mapas com LLM para um jogo multijogador.",
       "ai": "Acompanha AGI, autoaperfeiçoamento recursivo e lançamentos de novos modelos, e experimenta agentes de programação no seu trabalho. O interesse em sistemas de aprendizagem aparece também na tese sobre PPO.",
-      "games": "Counter-Strike faz parte do início da sua experiência em programação. Hoje trabalha nas suas próprias ferramentas e protótipos de jogos.",
+      "games": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original.",
       "calculator": "Criado em equipa na TUKE com Arduino Uno, teclado e LCD. Calcula expressões aritméticas com parênteses e guarda o histórico.",
       "site": "Este portfólio usa HTML, CSS e JavaScript, com navegação por terminal, temas claro e escuro e um guia em várias línguas. Quando disponível, responde um modelo de IA através do Groq; caso contrário, respostas preparadas. As atualizações vão do GitHub para o Vercel.",
-      "discovery": "Recomendações semanais para X e até três perfis relevantes do GitHub. Um agente de IA analisa candidatos. A primeira execução agendada ainda não foi verificada. Temas: C++, ferramentas de desenvolvimento, agentes de programação, investigação em IA e CS2. Execuções limitadas, verificação de duplicados e justificação de cada escolha.",
-      "thinkroom": "Quinze exercícios originais: programação, depuração, lógica, prompts e competências de agentes. Planeia, tenta, revela dicas aos poucos e reflete. Testes JavaScript, TypeScript e Python executam localmente com limite de tempo. C/C++ têm um compilador local experimental. Go permite rascunhos, transferências e um playground externo. Exercícios escritos usam autoavaliação. Gratuito, código público. Sem conta nem chamadas pagas a IA.",
+      "discovery": "Recomendações semanais para X e até três perfis relevantes do GitHub. Um agente de IA analisa candidatos. A primeira execução agendada ainda não foi verificada. Execuções limitadas, verificação de duplicados e justificação de cada escolha.",
+      "thinkroom": "Quinze exercícios originais: programação, depuração, lógica, prompts e competências de agentes. Planeia, tenta, revela dicas aos poucos e reflete. Testes JavaScript, TypeScript e Python executam localmente com limite de tempo. Go permite rascunhos, transferências e um playground externo. Exercícios escritos usam autoavaliação. Gratuito, código público. Sem conta nem chamadas pagas a IA.",
       "signal": "Notícias oficiais da OpenAI e DeepMind, lançamentos de ferramentas de programação, estado dos serviços, exportação RSS e OPML. Guarda links, marca itens como lidos e escolhe fontes. As etiquetas de importância explicam as regras. O X de Tibo é um link, não é monitorizado automaticamente. A ordenação opcional do Jev usa pontuações pré-calculadas e não oculta publicações nem altera alertas. Um resumo diário opcional corre no servidor. Regista cada dispositivo separadamente. Web Push testado no Brave no macOS. Entrega em telemóveis não testada. Filtros da classificação, posições de carteiras, atividade, listas de acompanhamento e notas locais. A classificação não prova ganhos repetíveis. Os alertas de transações exigem a página aberta. O bloco de notas de empresas de IA liga notícias oficiais e pesquisas da SEC, sem prever datas de IPO. Sem ligação de carteira nem negociação. Dados públicos do Polymarket através de uma API limitada.",
       "steam": "Preços de venda em EUR, custos de compra e receita estimada na Steam Wallet. Sem login nem transações. Até 12 objetos, avisos de preço-alvo, notas e observações locais. Exporta uma cópia para mudar de navegador. As verificações são manuais e usam um endpoint não documentado da Steam. Sem alertas em segundo plano. Código público; publicação pendente da configuração do acesso ao GitHub.",
       "proof": "20 tarefas no navegador e importações de relatórios medidos. Os resultados publicados de Jev e da base de palavras-chave incluem falhas. Os testes de modelos correm localmente com a tua chave API. Amostra pequena, não uma classificação geral de modelos."

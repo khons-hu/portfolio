@@ -1,12 +1,11 @@
-/* Japanese copy for the page, project notes, terminal, guide and contact form.
-   Loaded only when this language is chosen. Guide keywords live in guide-keywords.js. */
+/* Authored ja copy. Loaded only when selected. */
 (function (root, language, pack) {
-  (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
-  if (typeof module !== 'undefined' && module.exports) module.exports = pack;
+ (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
+ if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "ja", {
   "site": {
     "Offline": "オフライン",
-    "Updating\u2026": "更新中…",
+    "Updating…": "更新中…",
     "Currently unavailable": "現在利用できません",
     "Listening now": "再生中",
     "on Spotify": "Spotifyで",
@@ -26,12 +25,10 @@
     "Terminal": "ターミナル",
     "DEVELOPER": "開発者",
     "Or": "または",
-    "I started coding through C++ and Counter-Strike.": "C++とCounter-Strikeをきっかけにプログラミングを始めました。",
     "Now I work as a Customer Support Partner L2 at Luigi’s Box": "現在はLuigi’s BoxでCustomer Support Partner L2として働き、",
     "and try out agents and coding tools in my own projects.": "個人のプロジェクトでエージェントや開発ツールを試しています。",
     "Explore my work": "作品を見る",
     "Or take the terminal": "ターミナルを使う",
-    "C++ roots. Still trying new things.": "原点はC++。今も新しいことに挑戦中。",
     "SCROLL TO EXPLORE": "スクロールして見る",
     "SELECTED WORK": "主な作品",
     "Projects &": "プロジェクトと",
@@ -68,10 +65,8 @@
     "Browse GitHub ↗": "GitHubを見る ↗",
     "ABOUT ME": "自己紹介",
     "Online, khonsu.": "オンラインではkhonsu。",
-    "I got into programming through C++ and Counter-Strike, well before ChatGPT.": "ChatGPTよりずっと前に、C++とCounter-Strikeからプログラミングに入りました。",
     "I started using the name khonsu around 2022, inspired by Moon Knight.": "Moon Knightに着想を得て、2022年ごろからkhonsuという名前を使っています。",
     "I have a master's in Computer Science from TUKE and a background in backend and full-stack development. Lately, I spend a lot of time trying new models, coding tools, and agent workflows.": "TUKEでコンピューターサイエンスの修士号を取得し、バックエンドとフルスタック開発の経験があります。最近は新しいモデル、開発ツール、エージェントのワークフローをよく試しています。",
-    "C++ roots": "C++が原点",
     "AI experiments": "AIの実験",
     "CURRENTLY AT": "現在の勤務先",
     "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "Customer Support Partner L2として、ブラウザー、API、商品データ、分析を横断して詳しい調査が必要な問題に取り組んでいます。 AWS と Sentry も使い、サービスの問題調査、エラーの確認、修正の検証を行っています。",
@@ -197,7 +192,11 @@
     "PUBLIC DATA, PRIVATE NOTES": "公開データと個人メモ",
     "2023 BROWSER EDITION": "2023年ブラウザー版",
     "CURRENT GAME PROTOTYPE": "現在のゲームプロトタイプ",
-    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "月明かりの市場が舞台の小さなゲーム。移動し、大切なものを調べ、判断します。"
+    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "月明かりの市場が舞台の小さなゲーム。移動し、大切なものを調べ、判断します。",
+    "I build with AI agents, reusable skills and practical checks.": "AIエージェント、再利用できるスキル、実際の検証を使ってツールを作っています。",
+    "Small tools. Clear limits. Real evidence.": "小さなツール。明確な限界。実際の証拠。",
+    "My focus is AI harnessing: clear instructions, bounded tools, useful workflows and honest evaluation.": "AIエージェントの実行基盤に注力しています。明確な指示、範囲を限定したツール、役立つワークフロー、率直な評価を大切にしています。",
+    "AI harnessing": "AIエージェントの実行基盤"
   },
   "notes": {
     "steam": [
@@ -217,12 +216,12 @@
     ],
     "thinkroom": [
       "プログラミング、デバッグ、論理、プロンプト、エージェントスキルのオリジナル問題15問。計画し、試し、ヒントを段階的に開いて振り返ります。",
-      "JavaScript、TypeScript、Pythonのチェックは制限時間付きでローカル実行します。C/C++には実験的なローカルコンパイラーがあります。Goは下書き、ダウンロード、外部プレイグラウンドに対応。記述問題は自己評価です。",
+      "JavaScript、TypeScript、Pythonのチェックは制限時間付きでローカル実行します。",
       "無料で利用でき、ソースは公開されています。アカウントや有料のAI呼び出しは不要です。"
     ],
     "discovery": [
       "Xのおすすめアカウントと最大3人の関連するGitHub開発者を毎週選びます。AIエージェントが候補を確認します。最初の定期実行はまだ検証されていません。",
-      "テーマはC++、開発ツール、コーディングエージェント、AI研究、CS2。実行回数を制限し、重複を確認し、選定理由を残します。"
+      "テーマは、開発ツール、コーディングエージェント、AI研究、実行回数を制限し、重複を確認し、選定理由を残します。"
     ],
     "portfolio": [
       "検索できるプロジェクト、共有できるメモ、ターミナル操作、複数言語の小さなガイド。利用できるときはGroq経由のAIモデルが答え、使えないときは用意した回答を表示します。",
@@ -241,7 +240,7 @@
       "以前作ったJavaScript製のDiscord音楽ボット。古いリポジトリのため、現在のDiscordや音楽サービスとの互換性は未確認です。"
     ],
     "ipc": [
-      "プロセス間の通信と連携を扱った大学のチーム制作。私のC++経験を示す一例です。"
+      "プロセス間の通信と連携を扱った大学のチーム制作。"
     ],
     "calculator": [
       "TUKEのチームでArduino Uno、キーパッド、LCDを使って制作。括弧を含む算術式を計算し、履歴を保存します。",
@@ -278,7 +277,7 @@
       "ローカルガイド · APIなし",
       "ガイドを閉じる"
     ],
-    "fallback": "質問を確実に判別できませんでした。仕事、プロジェクト、C++、Spotify、連絡先について聞いてみてください。",
+    "fallback": "質問を確実に判別できませんでした。仕事、プロジェクト、AI、Spotify、連絡先について聞いてみてください。",
     "privacy": "このポートフォリオの公開情報だけを知っています。個人情報は提供できません。",
     "greeting": "こんにちは！私はローカルのポートフォリオガイドです。Patrick本人でもAIモデルでもありません。何を知りたいですか？",
     "answers": {
@@ -286,18 +285,18 @@
       "spotify": "非公開のPythonプレイリストは、Macが利用可能な日に18時に更新されます。Jevが週に一度、曲名とアーティスト名から方向性と少しの新しい曲を選び、毎日の更新でその選択を再利用します。 希望に応じて気分、活動、アーティストで探し、なじみのあるアーティストを優先します。気分の一致は概算で、音声解析ではありません。 プレイリストを非公開で保存し、保存後に内容を確認します。PatrickのMacで動く個人用ツールです。ソースは非公開です。",
       "dots": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
       "bot": "以前作ったJavaScript製のDiscord音楽ボット。古いリポジトリのため、現在のDiscordや音楽サービスとの互換性は未確認です。",
-      "cpp": "C++とCounter-Strikeが、Patrickがプログラミングを始めるきっかけでした。コードの例として、プロセス間通信を扱う大学のチーム制作もあります。",
+      "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",
       "openai": "TiboのOpenAIでの仕事の速さと、開発中のものについての話し方に関心があり、注目しています。個人的な関心であり、仕事上の関係ではありません。",
       "study": "PatrickはTUKEでコンピューターサイエンスの修士号を取得しました。論文では、PPOの強化学習エージェントとLLMによるマップ生成をマルチプレイヤーゲームに組み合わせました。",
-      "projects": "コーディング練習ならKhonsolve、AIの更新情報ならKhonrelay、エージェントの実験ならKhonproofをどうぞ。プロジェクト欄には解説とリンクのほか、過去の作品やゲームの試作もあります。",
+      "projects": "Khonproof · Khonrelay · Khonsolve. プログラミング、デバッグ、論理、プロンプト、エージェントスキルのオリジナル問題15問。計画し、試し、ヒントを段階的に開いて振り返ります。 JavaScript、TypeScript、Pythonのチェックは制限時間付きでローカル実行します。Goは下書き、ダウンロード、外部プレイグラウンドに対応。記述問題は自己評価です。 無料で利用でき、ソースは公開されています。アカウントや有料のAI呼び出しは不要です。",
       "contact": "メールタブからPatrickに連絡できます。FormSubmitで送信されるのはフォームだけで、この会話は含まれません。GitHub、LinkedIn、X、Discordでも見つけられます。",
-      "about": "Patrick Obrtal、オンラインではkhonsu。Moon Knightに着想を得て、2022年ごろからこの名前を使っています。C++とCounter-Strikeから始め、TUKEでコンピューターサイエンスを学び、現在はLuigi’s BoxのCustomer Support Partner L2です。コーディングエージェントも試しています。",
+      "about": "Patrick Obrtal · khonsu. PatrickはLuigi’s BoxのCustomer Support Partner L2です。 PatrickはTUKEでコンピューターサイエンスの修士号を取得しました。論文では、PPOの強化学習エージェントとLLMによるマップ生成をマルチプレイヤーゲームに組み合わせました。",
       "ai": "AGI、再帰的な自己改善、新しいモデルのリリースを追い、自分の仕事でコーディングエージェントを試しています。学習システムへの関心はPPOの修士論文にも表れています。",
-      "games": "Counter-Strikeはプログラミングを始めたきっかけの一つです。最近は自分のツールやゲームのプロトタイプを作っています。",
+      "games": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
       "calculator": "TUKEのチームでArduino Uno、キーパッド、LCDを使って制作。括弧を含む算術式を計算し、履歴を保存します。",
       "site": "このポートフォリオはHTML、CSS、JavaScriptで作られています。ターミナル操作、ライト・ダークテーマ、複数言語のガイドがあります。利用できるときはGroq経由のAIモデルが答え、使えないときは用意した回答を表示します。更新はGitHubからVercelにデプロイされます。",
-      "discovery": "Xのおすすめアカウントと最大3人の関連するGitHub開発者を毎週選びます。AIエージェントが候補を確認します。最初の定期実行はまだ検証されていません。 テーマはC++、開発ツール、コーディングエージェント、AI研究、CS2。実行回数を制限し、重複を確認し、選定理由を残します。",
-      "thinkroom": "プログラミング、デバッグ、論理、プロンプト、エージェントスキルのオリジナル問題15問。計画し、試し、ヒントを段階的に開いて振り返ります。 JavaScript、TypeScript、Pythonのチェックは制限時間付きでローカル実行します。C/C++には実験的なローカルコンパイラーがあります。Goは下書き、ダウンロード、外部プレイグラウンドに対応。記述問題は自己評価です。 無料で利用でき、ソースは公開されています。アカウントや有料のAI呼び出しは不要です。",
+      "discovery": "Xのおすすめアカウントと最大3人の関連するGitHub開発者を毎週選びます。AIエージェントが候補を確認します。最初の定期実行はまだ検証されていません。実行回数を制限し、重複を確認し、選定理由を残します。",
+      "thinkroom": "プログラミング、デバッグ、論理、プロンプト、エージェントスキルのオリジナル問題15問。計画し、試し、ヒントを段階的に開いて振り返ります。 JavaScript、TypeScript、Pythonのチェックは制限時間付きでローカル実行します。Goは下書き、ダウンロード、外部プレイグラウンドに対応。記述問題は自己評価です。 無料で利用でき、ソースは公開されています。アカウントや有料のAI呼び出しは不要です。",
       "signal": "OpenAIとDeepMindの公式ニュース、開発ツールのリリース、サービス状況、RSS・OPMLのエクスポート。 リンクを保存し、既読を付け、情報源を選べます。重要度ラベルは判定ルールを示します。TiboのXはリンクのみで自動監視しません。任意のJev読書順は事前計算済みスコアを使い、投稿を隠したり通知を変更したりしません。 任意の毎日のダイジェストはサーバーで動きます。端末ごとに登録が必要です。Web PushはmacOSのBraveで検証済み。スマートフォンへの配信は未検証です。 ランキングのフィルター、ウォレットのポジション、活動、ウォッチリスト、ローカルメモ。順位は再現できる利益の証明ではありません。 取引通知にはページを開いておく必要があります。AI企業ノートには公式ニュースとSEC検索へのリンクがあり、IPO日程の予測はしません。 ウォレット接続や取引はありません。制限付きAPIでPolymarketの公開データを使います。",
       "steam": "EUR建ての表示価格、購入費用、Steam Walletの推定受取額。ログインや取引はありません。 最大12アイテム、目標価格の通知、ローカルのメモと観察記録。ブラウザーを移す際はバックアップをエクスポートできます。 確認は手動で、Steamの非公開仕様のエンドポイントを使います。バックグラウンド通知はありません。コードは公開済みですが、デプロイにはGitHubアクセス設定が必要です。",
       "proof": "ブラウザー操作20題と測定レポートの読み込み。公開したJevとキーワード基準の結果には失敗も含まれます。 モデルのテストは自分のAPIキーを使ってローカルで実行します。小さなサンプルであり、一般的なモデルランキングではありません。"

@@ -19,19 +19,19 @@ const PROJECTS=[
  ['Dots','dots','earlier project, React, Spring Boot; live app'],
  ['Receipts After Dark','','current game prototype, Godot 4, web; playable on itch.io','A tiny moonlit market game. Move, inspect what matters, then make the call.'],
  ['SAVE DEMOCRACY','','game jam team project, Unreal Engine, Windows; itch.io page','A team-made horror exploration prototype about finding a missing journalist and getting them to safety.'],
- ['Arduino calculator','calculator','university team project, C/C++, Arduino; GitHub source'],
+ ['Arduino calculator','calculator','university team project, Arduino; GitHub source'],
  ['CSLYS Discord Bot','bot','earlier project, JavaScript; GitHub source'],
- ['Between processes','','university team project, C++; GitHub source','Exploring how independent processes communicate and coordinate.']
+ ['Between processes','','university team project, systems; GitHub source','Exploring how independent processes communicate and coordinate.']
 ];
 // Left out: 'discovery' (first run unverified), 'projects' and 'contact' (covered by the card and contact
-// lines), and 'site' (replaced by SITE). Kept compact: Groq's Free plan allows 8K tokens per minute and
+// lines), 'site' (replaced by SITE), and 'games' (covered by Dots). Kept compact: Groq's Free plan allows 8K tokens per minute and
 // counts each request's prompt plus its declared max_completion_tokens against that budget.
 const label=p=>`${p[0]} (${p[2]})`;
 const FACTS=[
- ...topics.filter(t=>!['discovery','projects','contact','site'].includes(t.id)).map(t=>{const p=PROJECTS.find(p=>p[1]===t.id);return `${p?label(p):t.id}: ${t.en}`;}),
+ ...topics.filter(t=>!['discovery','projects','contact','site','games'].includes(t.id)).map(t=>{const p=PROJECTS.find(p=>p[1]===t.id);return `${p?label(p):t.id}: ${t.en}`;}),
  ...PROJECTS.filter(p=>!p[1]).map(p=>`${label(p)}: ${p[3]}`)
 ].join('\n');
-const SITE='Site: plain HTML, CSS and JavaScript, no framework or build step; the source is public on GitHub (https://github.com/khons-hu/portfolio) and deploys to Vercel. Features: searchable, filterable project cards with shareable notes; a terminal (help, about, projects, work, now, contact, status, lore, theme, ask, email, open, clear, close); this guide, which uses Groq\'s openai/gpt-oss-20b when available and prepared answers otherwise; an Email panel that sends only the form, via FormSubmit, to Patrick; 17 languages including right-to-left Arabic and Urdu; light and dark themes; a motion setting (System, On, Off); a "Listening now" line showing Patrick\'s current Spotify track only while it plays, with an estimated position bar, and a Spotify player a visitor can load by clicking "Listen here" (Spotify decides whether it plays a preview or the full track). The site keeps no chat history; questions and recent chat go to Groq.';
+const SITE="Site: plain HTML/CSS/JavaScript, GitHub source https://github.com/khons-hu/portfolio, Vercel hosting. Searchable projects and shareable notes. English case studies for Khonproof, Khonrelay and Khonsolve, a recorded failed text-choice replay (no live agent run), three public downloadable skills, and dated release notes. Terminal: help, about, projects, work, now, contact, status, lore, theme, ask, email, open, clear, close. Guide: Groq openai/gpt-oss-20b with prepared fallback. 17 languages for core UI. Light/dark themes and motion control. Spotify shows the current track with an estimated position. Optional player loads on click, with playback determined by Spotify. Email panel sends only its form through FormSubmit. No stored chat history. Questions and recent chat go to Groq.";
 // Page sections the topics above do not cover (About, Luigi's Box practice, On my desk), in the third person.
 const PAGE=['About: master\'s in Computer Science from TUKE and a background in backend and full-stack development; lately he spends a lot of time trying new models, coding tools and agent workflows.','How he works: reproduce real user journeys, audit storefront behaviour, feeds, mapping and event collection, verify fixes, and give engineering reproducible cases.','On his desk, September 2026: small, bounded agent workflows with OpenAI coding agents and Jev (triaging public updates, checking claims, keeping project details honest); refining a quiet AI update inbox, an agent evaluation lab and a practice workshop; an eye on reinforcement learning, new models and multiplayer game ideas.'];
 const CONTACT=['Email: the Email tab or Contact form (FormSubmit sends only the form, never this chat); address ptr.obrtal@gmail.com','GitHub: https://github.com/khons-hu','LinkedIn: https://www.linkedin.com/in/patrick-obrtal/','X: https://x.com/ptr1337_ (@ptr1337_)','Discord: khons.hu'];

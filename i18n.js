@@ -25,7 +25,7 @@
   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
   while(walker.nextNode()) {
     const node=walker.currentNode, parent=node.parentElement;
-    if(!parent || parent.closest('script,style,select,#guide-dialog,#terminal-output,#project-notes'))continue;
+    if(!parent || parent.closest('script,style,select,#guide-dialog,#terminal-output,#project-notes,[data-source-language]'))continue;
     const key=node.nodeValue.trim();
     if(!Object.hasOwn(SITE_LOCALES.sk,key))continue;
     const leading=node.nodeValue.match(/^\s*/)[0], trailing=node.nodeValue.match(/\s*$/)[0];

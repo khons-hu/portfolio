@@ -1,12 +1,11 @@
-/* Simplified Chinese copy for the page, project notes, terminal, guide and contact form.
-   Loaded only when this language is chosen. Guide keywords live in guide-keywords.js. */
+/* Authored zh copy. Loaded only when selected. */
 (function (root, language, pack) {
-  (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
-  if (typeof module !== 'undefined' && module.exports) module.exports = pack;
+ (root.KHONSU_LOCALE_PACKS = root.KHONSU_LOCALE_PACKS || {})[language] = pack;
+ if (typeof module !== 'undefined' && module.exports) module.exports = pack;
 })(globalThis, "zh", {
   "site": {
     "Offline": "离线",
-    "Updating\u2026": "更新中…",
+    "Updating…": "更新中…",
     "Currently unavailable": "暂时不可用",
     "Listening now": "正在听",
     "on Spotify": "在 Spotify 上",
@@ -26,12 +25,10 @@
     "Terminal": "终端",
     "DEVELOPER": "开发者",
     "Or": "或者",
-    "I started coding through C++ and Counter-Strike.": "我因 C++ 和 Counter-Strike 开始编程。",
     "Now I work as a Customer Support Partner L2 at Luigi’s Box": "现在我在 Luigi’s Box 担任 Customer Support Partner L2",
     "and try out agents and coding tools in my own projects.": "也在自己的项目中尝试智能体和编程工具。",
     "Explore my work": "查看我的作品",
     "Or take the terminal": "或使用终端",
-    "C++ roots. Still trying new things.": "从 C++ 起步，仍在尝试新事物。",
     "SCROLL TO EXPLORE": "向下滚动探索",
     "SELECTED WORK": "精选作品",
     "Projects &": "项目与",
@@ -68,10 +65,8 @@
     "Browse GitHub ↗": "浏览 GitHub ↗",
     "ABOUT ME": "关于我",
     "Online, khonsu.": "网络上叫 khonsu。",
-    "I got into programming through C++ and Counter-Strike, well before ChatGPT.": "早在 ChatGPT 出现之前，我就因 C++ 和 Counter-Strike 接触了编程。",
     "I started using the name khonsu around 2022, inspired by Moon Knight.": "大约在 2022 年，我受 Moon Knight 启发开始使用 khonsu 这个名字。",
     "I have a master's in Computer Science from TUKE and a background in backend and full-stack development. Lately, I spend a lot of time trying new models, coding tools, and agent workflows.": "我拥有 TUKE 计算机科学硕士学位，有后端和全栈开发背景。最近常尝试新模型、编程工具和智能体工作流。",
-    "C++ roots": "C++ 起点",
     "AI experiments": "AI 实验",
     "CURRENTLY AT": "目前任职于",
     "I’m a Customer Support Partner L2. That means investigating issues that need a deeper look across the browser, APIs, product data, and analytics. I also use AWS and Sentry to investigate service issues, review errors and verify fixes.": "我是 Customer Support Partner L2，负责深入排查浏览器、API、商品数据和分析方面的问题。 我也使用 AWS 和 Sentry 排查服务问题、查看错误并验证修复。",
@@ -197,7 +192,11 @@
     "PUBLIC DATA, PRIVATE NOTES": "公开数据，私人笔记",
     "2023 BROWSER EDITION": "2023 年浏览器版本",
     "CURRENT GAME PROTOTYPE": "当前游戏原型",
-    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "一款月光下的小型市集游戏。移动、检查关键线索，然后作出判断。"
+    "A tiny moonlit market game. Move, inspect what matters, then make the call.": "一款月光下的小型市集游戏。移动、检查关键线索，然后作出判断。",
+    "I build with AI agents, reusable skills and practical checks.": "我用 AI 智能体、可复用技能和实际验证来构建工具。",
+    "Small tools. Clear limits. Real evidence.": "小工具。清晰的边界。真实的证据。",
+    "My focus is AI harnessing: clear instructions, bounded tools, useful workflows and honest evaluation.": "我专注于 AI 智能体框架：清晰的指令、有界的工具、实用的工作流和如实的评估。",
+    "AI harnessing": "AI 智能体框架"
   },
   "notes": {
     "steam": [
@@ -217,12 +216,12 @@
     ],
     "thinkroom": [
       "15 道原创练习，涵盖编程、调试、逻辑、提示词和智能体技能。先规划和尝试，再逐步查看提示并反思。",
-      "JavaScript、TypeScript 和 Python 检查在本地限时运行。C/C++ 有实验性的本地编译器；Go 支持草稿、下载和外部练习环境。文字题由自己复盘。",
+      "JavaScript、TypeScript 和 Python 检查在本地限时运行。",
       "免费使用，源码公开。无需账号或付费 AI 调用。"
     ],
     "discovery": [
       "每周推荐 X 账号，并最多关注三位相关的 GitHub 开发者。AI 智能体评估候选人。首次定时运行尚未核实。",
-      "主题包括 C++、开发工具、编程智能体、AI 研究和 CS2。每次运行都有范围限制、重复检查和选择理由。"
+      "主题包括 、开发工具、编程智能体、AI 研究和每次运行都有范围限制、重复检查和选择理由。"
     ],
     "portfolio": [
       "可搜索的项目、可分享的项目说明、终端导航，以及支持多种语言的小向导。可用时由 AI 模型通过 Groq 回答，否则显示预设答案。",
@@ -241,7 +240,7 @@
       "早期的 JavaScript Discord 音乐机器人。仓库是历史项目，当前 Discord 和音乐服务兼容性未经验证。"
     ],
     "ipc": [
-      "大学团队关于进程间通信和协调的作品，也是我 C++ 背景的一份记录。"
+      "AI agents"
     ],
     "calculator": [
       "在 TUKE 与团队使用 Arduino Uno、键盘和 LCD 制作。可计算带括号的算式并保存计算历史。",
@@ -278,7 +277,7 @@
       "本地向导 · 无 API",
       "关闭向导"
     ],
-    "fallback": "我无法准确匹配这个问题。试试工作、项目、C++、Spotify 或联系方式。我只知道本网站准备好的公开信息。",
+    "fallback": "我无法准确匹配这个问题。试试工作、项目、AI、Spotify 或联系方式。我只知道本网站准备好的公开信息。",
     "privacy": "我只知道公开的作品集内容，这里没有私人资料。",
     "greeting": "你好！我是本地作品集向导，不是 Patrick，也不是 AI 模型。你想了解什么？",
     "answers": {
@@ -286,18 +285,18 @@
       "spotify": "私人 Python 歌单在 Mac 可用时每天 18:00 更新。Jev 每周根据歌曲名和艺人名选择音乐方向和少量新发现，日常更新复用这一选择。 按需根据心情、活动或歌手搜索，并优先返回熟悉的歌手。心情匹配只是近似结果，不是音频分析。 歌单私密保存，并在写入后检查。这是运行在Patrick 的 Mac 上的个人工具。源码未公开。",
       "dots": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。",
       "bot": "早期的 JavaScript Discord 音乐机器人。仓库是历史项目，当前 Discord 和音乐服务兼容性未经验证。",
-      "cpp": "C++ 和 Counter-Strike 让 Patrick 开始编程。他的大学团队项目还展示了进程间通信方面的 C++ 代码。",
+      "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",
       "openai": "他关注 Tibo 在 OpenAI 的工作节奏和分享工作进展的方式。这只是个人兴趣，并非工作关系。",
       "study": "Patrick 拥有 TUKE 计算机科学硕士学位。论文结合了 PPO 强化学习智能体与面向多人游戏的 LLM 地图生成。",
-      "projects": "编程练习可以看 Khonsolve，AI 更新可以看 Khonrelay，智能体实验可以看 Khonproof。项目区有说明和链接，也收录了早期作品与游戏原型。",
+      "projects": "Khonproof · Khonrelay · Khonsolve. 15 道原创练习，涵盖编程、调试、逻辑、提示词和智能体技能。先规划和尝试，再逐步查看提示并反思。 JavaScript、TypeScript 和 Python 检查在本地限时运行。文字题由自己复盘。 免费使用，源码公开。无需账号或付费 AI 调用。",
       "contact": "可以在邮件标签页给 Patrick 写信。FormSubmit 只发送表单内容，不发送这段对话。也可以在 GitHub、LinkedIn、X 和 Discord 找到他。",
-      "about": "Patrick Obrtal，网名 khonsu。大约 2022 年受 Moon Knight 启发使用这个名字。他从 C++ 和 Counter-Strike 入门，在 TUKE 学习计算机科学，现在是 Luigi’s Box 的 Customer Support Partner L2，也尝试编程智能体。",
+      "about": "Patrick Obrtal · khonsu. Patrick 在 Luigi’s Box 担任 Customer Support Partner L2。 Patrick 拥有 TUKE 计算机科学硕士学位。论文结合了 PPO 强化学习智能体与面向多人游戏的 LLM 地图生成。",
       "ai": "他关注 AGI、递归自我改进和新模型，并在自己的工作中尝试编程智能体。他的 PPO 论文也涉及学习系统。",
-      "games": "Counter-Strike 是他编程经历的一部分。现在他在开发自己的工具和游戏原型。",
+      "games": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。",
       "calculator": "在 TUKE 与团队使用 Arduino Uno、键盘和 LCD 制作。可计算带括号的算式并保存计算历史。",
       "site": "这个作品集使用 HTML、CSS 和 JavaScript，具有终端导航、浅色与深色主题，以及支持多种语言的向导。可用时由 AI 模型通过 Groq 回答，否则显示预设答案。更新从 GitHub 部署到 Vercel。",
-      "discovery": "每周推荐 X 账号，并最多关注三位相关的 GitHub 开发者。AI 智能体评估候选人。首次定时运行尚未核实。 主题包括 C++、开发工具、编程智能体、AI 研究和 CS2。每次运行都有范围限制、重复检查和选择理由。",
-      "thinkroom": "15 道原创练习，涵盖编程、调试、逻辑、提示词和智能体技能。先规划和尝试，再逐步查看提示并反思。 JavaScript、TypeScript 和 Python 检查在本地限时运行。C/C++ 有实验性的本地编译器；Go 支持草稿、下载和外部练习环境。文字题由自己复盘。 免费使用，源码公开。无需账号或付费 AI 调用。",
+      "discovery": "每周推荐 X 账号，并最多关注三位相关的 GitHub 开发者。AI 智能体评估候选人。首次定时运行尚未核实。每次运行都有范围限制、重复检查和选择理由。",
+      "thinkroom": "15 道原创练习，涵盖编程、调试、逻辑、提示词和智能体技能。先规划和尝试，再逐步查看提示并反思。 JavaScript、TypeScript 和 Python 检查在本地限时运行。文字题由自己复盘。 免费使用，源码公开。无需账号或付费 AI 调用。",
       "signal": "汇集 OpenAI 和 DeepMind 官方新闻、编程工具新版本、服务状态，并支持 RSS 和 OPML 导出。 保存链接、标记已读、选择来源。重要性标签说明规则。Tibo 的 X 账号仅提供链接，不自动监控。可选的 Jev 阅读排序使用预先计算的分数，不隐藏帖子或更改提醒。 可选的每日摘要在服务器运行。每台设备须单独注册。Web Push 已在 macOS 的 Brave 中测试；手机投递尚未测试。 排行榜筛选、钱包持仓、活动、观察列表和本地笔记。排名不能证明收益可持续。",
       "steam": "以欧元计算的挂牌价、购买成本和预估 Steam 钱包收入。不登录，也不交易。 最多跟踪 12 件物品，提供目标价格提醒、本地笔记和观察记录。可导出备份以便换浏览器。 价格需手动检查，使用非官方 Steam 接口。无后台提醒。源码公开；部署还在等待 GitHub 访问设置。",
       "proof": "20 项浏览器任务和测量报告导入。公开的 Jev 与关键词基线结果包含失败案例。 模型测试在本地使用你自己的 API 密钥运行。样本较小，并非通用模型排名。"
