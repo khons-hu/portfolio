@@ -5,7 +5,8 @@ const path=require('node:path');
 const read=file=>fs.readFileSync(path.join(__dirname,'..',file),'utf8');
 const {LANGUAGE_NAMES}=require('../language-data.js');
 const {PROJECT_NOTES}=require('../site-locales.js');
-const {answer,tidy}=require('../guide.js');
+const CHAT_COPY=require('../chat-copy.js');
+const {answer,tidy,rankProjectResults}=require('../guide.js');
 const languages=Object.keys(LANGUAGE_NAMES);
 
 test('model replies stay plain text: Markdown markers are removed, never rendered',()=>{
@@ -59,4 +60,43 @@ test('prepared project answers choose relevant fallback recommendations',()=>{
  assert.match(guide,/CHAT_COPY\.offline\?\.\[lang\.value\]/,'unavailable AI state is described accurately in every supported language');
  assert.match(read('style.css'),/scroll-snap-type:x mandatory/);
  assert.match(read('style.css'),/\.guide-recommendation-track\{[^}]*overflow-x:auto[^}]*scroll-snap-type:x mandatory/);
+});
+
+test('project autocomplete ranks local card facts without matching every keystroke to Groq',()=>{
+ const projects=[
+  {id:'proof',title:'Khonproof',summary:'Agent decision evaluation',meta:'JavaScript · Browser tasks'},
+  {id:'signal',title:'Khonrelay',summary:'AI news and releases',meta:'TypeScript · RSS / Atom'},
+  {id:'dots',title:'Dots',summary:'A small React game',meta:'React · Spring Boot'}
+ ];
+ assert.deepEqual(rankProjectResults(projects,'khonrelay').map(item=>item.id),['signal']);
+ assert.deepEqual(rankProjectResults(projects,'rss atom').map(item=>item.id),['signal']);
+ assert.equal(rankProjectResults(projects,'dots').at(0).id,'dots');
+ assert.deepEqual(rankProjectResults(projects,'no such project'),[]);
+ assert.deepEqual(rankProjectResults(projects,''),[]);
+ assert.equal(rankProjectResults(projects,'agent',1).length,1);
+ const html=read('index.html'),guide=read('guide.js');
+ assert.match(html,/role="combobox" aria-autocomplete="list"/);
+ assert.match(html,/role="listbox"/);
+ assert.match(guide,/projectSearch\.addEventListener\('keydown'/);
+ assert.match(guide,/aria-activedescendant/);
+});
+
+test('guided AI path and comparison copy cover every supported chatbot language',()=>{
+ const featureCopy=CHAT_COPY.assistant;
+ assert.deepEqual(Object.keys(featureCopy).sort(),languages.slice().sort());
+ for(const language of languages){
+  const copy=featureCopy[language];
+  for(const key of ['searchLabel','searchPlaceholder','searchEmpty','pathLaunch','pathTitle','pathQuestion','pathBack','compareProject','compareHint','compareExplain','compareFallback'])assert(copy[key],`${language}.${key}`);
+  assert.equal(copy.pathSubjects.length,3,`${language} subject options`);
+  assert.equal(copy.pathAngles.length,3,`${language} branch options`);
+  assert(copy.pathAngles.every(options=>options.length===2),`${language} branch choices`);
+  assert.equal(copy.compareRows.length,3,`${language} comparison rows`);
+  assert.equal(copy.pathFallback.length,3,`${language} prepared path answers`);
+ }
+ const guide=read('guide.js'),html=read('index.html'),css=read('style.css');
+ assert.match(html,/id="guide-path-open"/);
+ assert.match(guide,/Explain how RAG retrieves and reranks source chunks/);
+ assert.match(guide,/Compare only these public portfolio projects/);
+ assert.match(css,/\.guide-comparison-table/);
+ assert.match(css,/\.guide-searching \.guide-path-launch/);
 });

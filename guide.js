@@ -75,6 +75,23 @@
     if(/\b(agent|agents|ai|llm|model|research|agi|rl|reinforcement)\b/.test(question))return ['proof','signal','thinkroom'];
     return topic==='games'?['receipts','dots','save-democracy']:['proof','signal','thinkroom','market'];
   }
+  function rankProjectResults(projects,query,limit=5){
+    const terms=normalize(String(query||'')).split(' ').filter(Boolean);
+    if(!terms.length)return [];
+    return projects.map((project,index)=>{
+      const title=normalize(project.title||''),id=normalize(project.id||''),summary=normalize(project.summary||''),meta=normalize(project.meta||''),whole=terms.join(' ');
+      let score=title===whole?120:title.startsWith(whole)?80:title.includes(whole)?55:0;
+      if(id===whole)score+=70;else if(id.startsWith(whole))score+=38;else if(id.includes(whole))score+=18;
+      for(const term of terms){
+        if(title.includes(term))score+=24;
+        else if(id.includes(term))score+=17;
+        else if(meta.includes(term))score+=9;
+        else if(summary.includes(term))score+=5;
+        else return {project,index,score:0};
+      }
+      return {project,index,score};
+    }).filter(item=>item.score>0).sort((a,b)=>b.score-a.score||a.index-b.index).slice(0,Math.max(0,limit)).map(item=>item.project);
+  }
   // Replies stay plain text. Light Markdown a model may still send loses its markers instead of showing them.
   function tidy(text){
     return String(text).replace(/\r\n?/g,'\n')
@@ -88,12 +105,13 @@
       .replace(/`([^`\n]+)`/g,'$1').replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,'$1 ($2)')
       .replace(/[ \t]+$/gm,'').replace(/\n{3,}/g,'\n\n').trim();
   }
-  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui,tidy,localRecommendations};
+  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui,tidy,localRecommendations,rankProjectResults};
   if (typeof document === 'undefined') return;
   const dialog=document.querySelector('#guide-dialog'),log=document.querySelector('#guide-log'),input=document.querySelector('#guide-question'),lang=document.querySelector('#guide-language');
   const body=dialog.querySelector('.guide-body'),submit=document.querySelector('#guide-form button'),status=document.querySelector('#guide-status'),chips=[...document.querySelectorAll('[data-question]')];
+  const projectSearch=document.querySelector('#guide-project-search'),projectResults=document.querySelector('#guide-project-results'),pathButton=document.querySelector('#guide-path-open');
   const root=document.documentElement,finePointer=()=>!matchMedia('(pointer: coarse)').matches;
-  let aiAvailable=false,busy=false,conversation=[],requestId=0,controller=null,pendingRow=null,unseen=null,lastSent=0;
+  let aiAvailable=false,busy=false,conversation=[],requestId=0,controller=null,pendingRow=null,unseen=null,lastSent=0,pathCount=0;
   const aiCopy=(language=lang.value)=>CHAT_COPY[language]||CHAT_COPY.en;
   // api/chat.js accepts one request per visitor every five seconds. A quick follow-up waits out the rest of
   // that window instead of being refused. Nothing else delays or paces a reply.
@@ -102,8 +120,10 @@
   // the intro and suggestions while typing so the conversation keeps the room.
   function fitGuideViewport(){
     const viewport=window.visualViewport;
-    if(!viewport||!dialog.open)return;
-    dialog.classList.toggle('guide-typing',document.activeElement===input&&viewport.height<window.innerHeight*.8);
+    if(!dialog.open)return;
+    dialog.classList.toggle('guide-typing',document.activeElement===input&&(!viewport||viewport.height<window.innerHeight*.8));
+    dialog.classList.toggle('guide-searching',document.activeElement===projectSearch&&viewport&&viewport.height<window.innerHeight*.8);
+    if(!viewport)return;
     if(dialog.open&&dialog.contains(document.activeElement))requestAnimationFrame(()=>document.activeElement.scrollIntoView({block:'nearest'}));
   }
   let guideViewportFrame=0;
@@ -113,7 +133,7 @@
   },{passive:true});
   fitGuideViewport();
   function translateUI(){
-    const base=ui(lang.value).slice(),c=aiCopy();
+    const base=ui(lang.value).slice(),c=aiCopy(),feature=CHAT_COPY.assistant?.[lang.value]||CHAT_COPY.assistant.en;
     base[0]=c[0];
     if(aiAvailable){base[1]=c[1];base[11]=c[2];}
     else{const offline=CHAT_COPY.offline?.[lang.value]||CHAT_COPY.offline.en;base[1]=offline[0];base[11]=offline[1];}
@@ -129,6 +149,8 @@
     document.querySelector('#guide-form button').setAttribute('aria-label',t[4]);document.querySelector('#guide-clear').textContent=t[5];
     document.querySelectorAll('[data-question]').forEach((b,i)=>{if(i<3)b.textContent=t[8+i];b.dir=i===3?'ltr':'auto';});
     document.querySelector('#guide-dialog .terminal-bottom span').textContent=t[11];document.querySelector('[data-close="guide-dialog"]').setAttribute('aria-label',t[12]);
+    document.querySelector('#guide-project-search-label').textContent=feature.searchLabel;projectSearch.placeholder=feature.searchPlaceholder;projectSearch.setAttribute('aria-label',feature.searchLabel);projectResults.setAttribute('aria-label',feature.searchLabel);pathButton.textContent=feature.pathLaunch;
+    if(projectSearch.value.trim())updateProjectResults();
     try{localStorage.setItem('khonsu-guide-language',lang.value);}catch{}
   }
   // Start in the page's chosen language, including when scripts load after a change.
@@ -146,6 +168,7 @@
     // Paragraph breaks become separate paragraphs; single line breaks stay as written (pre-line).
     for(const part of who==='guide'?String(text).split(/\n{2,}/):[text])paragraph(part);
     if(who==='guide'&&Array.isArray(result?.recommendations))renderRecommendations(row,result.recommendations,language);
+    if(who==='guide'&&result?.flow)renderGuidePath(row,language);
     if(result&&(result.project||result.section)){
       // Project notes and sections stay on this page, so they use → rather than the outside-link ↗.
       const button=document.createElement('button');button.type='button';button.className='guide-action';button.textContent=ui(language)[result.project?6:7].replace('↗',localeData.languageDirection(language)==='rtl'?'←':'→');
@@ -154,6 +177,56 @@
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();
     return row;
   }
+  function renderGuidePath(row,language){
+    const feature=CHAT_COPY.assistant?.[language]||CHAT_COPY.assistant.en;
+    const paths=[
+      {id:'agent',related:['proof','thinkroom'],angles:[
+        {id:'tools',prompt:'Explain an agent tool loop in simple terms. Relate it to Patrick’s public projects using only portfolio facts. Distinguish real features from analogies; do not imply every project is an agent.'},
+        {id:'evaluation',prompt:'Explain how to evaluate an agent decision against expected results. Relate it to public portfolio facts only; state the limits of any small sample.'}
+      ]},
+      {id:'rag',related:['signal','proof'],angles:[
+        {id:'retrieval',prompt:'Explain how RAG retrieves and reranks source chunks. Relate it to public portfolio facts. Khonrelay collects official feeds but is not a RAG answer system. Do not overclaim.'},
+        {id:'grounding',prompt:'Explain how RAG grounds an answer in retrieved sources and why citations matter. Relate it only to public portfolio facts; distinguish a real feature from an analogy.'}
+      ]},
+      {id:'rl',section:'now',angles:[
+        {id:'reward',prompt:'Explain how reward feedback updates a reinforcement-learning policy. Relate it to Patrick’s public facts, and do not imply other projects use RL.'},
+        {id:'ppo',prompt:'Explain PPO in plain terms and relate it to Patrick’s TUKE thesis with PPO agents and LLM-generated maps, keeping their roles distinct.'}
+      ]}
+    ];
+    const direction=localeData.languageDirection(language);
+    // The message above already carries the title; the panel is labelled by it instead of repeating it.
+    const panel=document.createElement('section');panel.className='guide-path';panel.setAttribute('aria-label',feature.pathTitle);panel.lang=language;panel.dir=direction;
+    const question=document.createElement('p');question.className='guide-path-question';question.id=`guide-path-question-${++pathCount}`;
+    const choices=document.createElement('div');choices.className='guide-path-choices';choices.setAttribute('role','group');choices.setAttribute('aria-labelledby',question.id);
+    // Steps swap in place. Keyboard focus follows to the new step instead of falling back to the page.
+    const swap=(buttons,focusIndex)=>{
+      const hadFocus=panel.contains(document.activeElement);
+      choices.replaceChildren(...buttons);
+      if(hadFocus)buttons[focusIndex]?.focus({preventScroll:true});
+    };
+    const choice=(label,onClick,asks)=>{
+      const button=document.createElement('button');button.type='button';button.className='guide-path-choice';button.textContent=label;
+      if(asks){button.dataset.asks='';button.setAttribute('aria-disabled',String(busy));}
+      button.addEventListener('click',onClick);return button;
+    };
+    const showTopics=(focusIndex=0)=>{
+      question.textContent=feature.pathQuestion;question.classList.remove('is-subject');
+      swap(paths.map((path,index)=>choice(feature.pathSubjects[index],()=>showAngles(path,index))),focusIndex);
+    };
+    const showAngles=(path,index)=>{
+      // The chosen subject names the second step, so it reads as a narrower question rather than a repeat.
+      question.textContent=feature.pathSubjects[index];question.classList.add('is-subject');
+      const buttons=path.angles.map((angle,angleIndex)=>choice(feature.pathAngles[index][angleIndex],()=>{
+        const prompt=`${angle.prompt} Recommend at most two directly relevant portfolio projects when available.`;
+        const displayText=`${feature.pathSubjects[index]} · ${feature.pathAngles[index][angleIndex]}`;
+        const fallback={fallbackText:feature.pathFallback[index],recommendations:index===0?['proof','thinkroom']:index===1?['signal','proof']:undefined,section:path.section};
+        ask(prompt,{...fallback,displayText});
+      },true));
+      const back=document.createElement('button');back.type='button';back.className='guide-path-back';back.textContent=`${direction==='rtl'?'→':'←'} ${feature.pathBack}`;back.addEventListener('click',()=>showTopics(index));
+      swap([...buttons,back],0);
+    };
+    panel.append(question,choices);row.append(panel);showTopics();
+  }
   function renderRecommendations(row,ids,language){
     const copy=CHAT_COPY.recommendations?.[language]||CHAT_COPY.recommendations.en;
     const sources=[...document.querySelectorAll('.project-card')];
@@ -161,11 +234,11 @@
       const source=sources.find(card=>card.querySelector('.project-details')?.dataset.project===id);
       const title=source?.querySelector('.project-info h3')?.textContent?.trim();
       const summary=source?.querySelector('.project-info p')?.textContent?.trim();
-      const meta=[...(source?.querySelectorAll('.project-meta span')||[])].map(part=>part.textContent.trim()).filter(Boolean).join(' · ');
+      const metaParts=[...(source?.querySelectorAll('.project-meta span')||[])].map(part=>part.textContent.trim()).filter(Boolean),meta=metaParts.join(' · ');
       const outside=source?.querySelector('.project-live');
       const href=outside?.href;
       if(!source||!title||!summary||!meta||!href||new URL(href,location.href).protocol!=='https:')return null;
-      return {id,title,summary,meta,href,label:outside.textContent.trim(),kind:outside.dataset.kind||'external'};
+      return {id,title,summary,meta,metaParts,href,label:outside.textContent.trim(),kind:outside.dataset.kind||'external'};
     }).filter(Boolean);
     if(!projects.length)return;
     const carousel=document.createElement('section');carousel.className='guide-recommendations';carousel.setAttribute('role','region');carousel.setAttribute('aria-roledescription','carousel');carousel.setAttribute('aria-label',copy.heading);carousel.lang=language;carousel.dir=localeData.languageDirection(language);
@@ -213,22 +286,60 @@
       if(compareOpen)renderComparison();
     };
     const renderComparison=()=>{
+      const feature=CHAT_COPY.assistant?.[language]||CHAT_COPY.assistant.en,chosen=slides.filter(item=>selected.has(item.project.id)).map(item=>item.project);
       const heading=document.createElement('h5');heading.textContent=copy.compareTitle;
-      const grid=document.createElement('div');grid.className='guide-comparison-grid';grid.setAttribute('role','list');
-      for(const {project} of slides.filter(item=>selected.has(item.project.id))){
-        const card=document.createElement('article');card.className='guide-comparison-card';card.setAttribute('role','listitem');card.dir=localeData.languageDirection(language);
-        const name=document.createElement('h6');name.textContent=project.title;
-        const meta=document.createElement('p');meta.className='guide-recommendation-meta';meta.textContent=project.meta;
-        const summary=document.createElement('p');summary.className='guide-recommendation-description';summary.textContent=project.summary;
-        const actions=document.createElement('div');actions.className='guide-recommendation-actions';
-        const notes=document.createElement('button');notes.type='button';notes.textContent=copy.notes;notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
-        const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);
-        link.dataset.kind=project.kind;
-        actions.append(notes,link);card.append(name,meta,summary,actions);grid.append(card);
-      }
-      comparison.replaceChildren(heading,grid);comparison.hidden=!compareOpen;
+      const hint=document.createElement('p');hint.className='guide-comparison-hint';hint.textContent=feature.compareHint;
+      const scroll=document.createElement('div');scroll.className='guide-comparison-scroll';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label',copy.compareTitle);
+      const table=document.createElement('table');table.className='guide-comparison-table';table.dir=localeData.languageDirection(language);
+      const head=document.createElement('thead'),headRow=document.createElement('tr'),projectHead=document.createElement('th');projectHead.scope='col';projectHead.textContent=feature.compareProject;headRow.append(projectHead);
+      chosen.forEach(project=>{const th=document.createElement('th');th.scope='col';th.textContent=project.title;headRow.append(th);});head.append(headRow);
+      // Each fact is built fresh for the wide table and for the narrow stacked view, so both show the same card data.
+      const stage=project=>{
+        const [status,...tech]=project.metaParts?.length?project.metaParts:[project.meta],fragment=document.createDocumentFragment();
+        const first=document.createElement('span');first.className='guide-comparison-stage';first.textContent=status;fragment.append(first);
+        if(tech.length){const rest=document.createElement('span');rest.className='guide-comparison-tech';rest.textContent=tech.join(' · ');fragment.append(rest);}
+        return fragment;
+      };
+      const actionsFor=project=>{
+        const actions=document.createElement('div');actions.className='guide-comparison-actions';
+        const notes=document.createElement('button');notes.type='button';notes.className='guide-comparison-notes';notes.textContent=copy.notes;notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
+        const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);link.setAttribute('aria-label',`${project.title}: ${project.label}`);
+        actions.append(link,notes);return actions;
+      };
+      const rows=[
+        [feature.compareRows[0],stage],
+        [feature.compareRows[1],project=>document.createTextNode(project.summary)],
+        [feature.compareRows[2],actionsFor]
+      ];
+      const body=document.createElement('tbody');
+      rows.forEach(([label,value])=>{
+        const tr=document.createElement('tr'),rowHead=document.createElement('th');rowHead.scope='row';rowHead.textContent=label;tr.append(rowHead);
+        // Card text keeps its own direction (an English summary inside an Arabic panel ends with its period, not before it).
+        chosen.forEach(project=>{const td=document.createElement('td');if(value!==actionsFor)td.dir='auto';td.append(value(project));tr.append(td);});body.append(tr);
+      });
+      table.append(head,body);scroll.append(table);
+      // Narrow panels: one block per fact, with every chosen project listed under it (CSS picks the view by container width).
+      const stack=document.createElement('div');stack.className='guide-comparison-stack';stack.dir=localeData.languageDirection(language);
+      rows.forEach(([label,value])=>{
+        const group=document.createElement('section');group.className='guide-comparison-group';
+        const name=document.createElement('h6');name.textContent=label;
+        const list=document.createElement('dl');
+        chosen.forEach(project=>{
+          const pair=document.createElement('div'),term=document.createElement('dt'),detail=document.createElement('dd');
+          term.textContent=project.title;if(value!==actionsFor)detail.dir='auto';detail.append(value(project));pair.append(term,detail);list.append(pair);
+        });
+        group.append(name,list);stack.append(group);
+      });
+      const explain=document.createElement('button');explain.type='button';explain.className='guide-comparison-explain';explain.dataset.asks='';explain.setAttribute('aria-disabled',String(busy));explain.textContent=feature.compareExplain;
+      explain.addEventListener('click',()=>{
+        const titles=chosen.map(project=>project.title),names=titles.join(', ');
+        const prompt=`Compare only these public portfolio projects: ${names}. Explain what each does, their meaningful difference, and what a visitor can try. Use site facts only; do not infer features.`;
+        ask(prompt,{displayText:`${feature.compareExplain}: ${titles.join(' · ')}`,fallbackText:feature.compareFallback,recommendations:chosen.map(project=>project.id)});
+      });
+      comparison.replaceChildren(heading,hint,scroll,stack,explain);comparison.hidden=!compareOpen;
     };
-    compare.addEventListener('click',()=>{compareOpen=!compareOpen;compare.setAttribute('aria-expanded',String(compareOpen));renderComparison();});
+    // Opening the comparison brings it into view; it otherwise appears below the fold, under the cards.
+    compare.addEventListener('click',()=>{compareOpen=!compareOpen;compare.setAttribute('aria-expanded',String(compareOpen));renderComparison();if(compareOpen)requestAnimationFrame(()=>reveal(comparison));});
     updateComparison();
     let activeIndex=0,frame=0;
     const setActive=index=>{
@@ -246,7 +357,7 @@
     previous.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
     track.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();move(-1);}else if(event.key==='ArrowRight'){event.preventDefault();move(1);}});
     track.addEventListener('scroll',()=>{
-      if(frame)return;frame=requestAnimationFrame(()=>{frame=0;const left=track.getBoundingClientRect().left;let best=0,distance=Infinity;slides.forEach((slide,index)=>{const current=Math.abs(slide.getBoundingClientRect().left-left);if(current<distance){best=index;distance=current;}});setActive(best);});
+      if(frame)return;frame=requestAnimationFrame(()=>{frame=0;const left=track.getBoundingClientRect().left;let best=0,distance=Infinity;slides.forEach(({slide},index)=>{const current=Math.abs(slide.getBoundingClientRect().left-left);if(current<distance){best=index;distance=current;}});setActive(best);});
     },{passive:true});
     if(projects.length<2){previous.hidden=true;next.hidden=true;position.hidden=true;}
     setActive(0);
@@ -263,7 +374,10 @@
   new MutationObserver(()=>{if(dialog.open&&unseen){const row=unseen;unseen=null;requestAnimationFrame(()=>reveal(row));}}).observe(dialog,{attributes:true,attributeFilter:['open']});
   // While a reply is on its way the field stays editable; sending and suggestions wait (aria-disabled keeps focus in place).
   function setBusy(value,language=lang.value){
-    busy=value;submit.setAttribute('aria-disabled',String(value));chips.forEach(chip=>chip.setAttribute('aria-disabled',String(value)));
+    busy=value;submit.setAttribute('aria-disabled',String(value));pathButton.setAttribute('aria-disabled',String(value));chips.forEach(chip=>chip.setAttribute('aria-disabled',String(value)));
+    // Buttons inside earlier replies that would send a question rest too.
+    log.querySelectorAll('[data-asks]').forEach(button=>button.setAttribute('aria-disabled',String(value)));
+    projectResults.querySelectorAll('.guide-project-option').forEach(option=>option.setAttribute('aria-disabled',String(value)));
     log.setAttribute('aria-busy',String(value));status.textContent=value?aiCopy(language)[3]:'';
   }
   function showPending(language){
@@ -295,24 +409,31 @@
       return {text:data.text,recommendations};
     }finally{clearTimeout(timer);signal.removeEventListener('abort',stop);}
   }
-  async function ask(text){
+  async function ask(text,options={}){
     if(busy||!text.trim())return;
     const message=text.trim().slice(0,300),language=lang.value,id=++requestId;
-    append(message,'visitor');input.value='';
-    if(!aiAvailable){const result=answer(message,language);reveal(append(result.text,'guide',result,language));return;}
+    append(options.displayText||message,'visitor');input.value='';
+    const prepared=()=>{
+      const result=options.fallbackText?{text:options.fallbackText}:{...answer(message,language)};
+      if(Array.isArray(options.recommendations))result.recommendations=options.recommendations;
+      if(options.section)result.section=options.section;
+      return result;
+    };
+    if(!aiAvailable){const result=prepared();reveal(append(result.text,'guide',result,language));return;}
     setBusy(true,language);showPending(language);
     const current=controller=new AbortController();
     try{
       const reply=await request({message,language,history:conversation.slice(-4)},current.signal);
       if(id!==requestId)return;
       const shown=tidy(reply.text)||reply.text.trim();
-      settle();reveal(append(shown,'guide',reply.recommendations.length?{recommendations:reply.recommendations,section:'projects'}:null,language));
+      const result={};if(reply.recommendations.length)result.recommendations=reply.recommendations;else if(Array.isArray(options.recommendations))result.recommendations=options.recommendations;if(options.section)result.section=options.section;
+      settle();reveal(append(shown,'guide',Object.keys(result).length?result:null,language));
       conversation.push({role:'user',content:message},{role:'assistant',content:shown.slice(0,2000)});conversation=conversation.slice(-4);
     }catch(error){
       if(id!==requestId)return;
       // A rejected request cannot be retried with the same history; other failures keep the context for the next question.
       if(error?.status===400)conversation=[];
-      const result=answer(message,language);settle();reveal(append(result.text,'guide',result,language,aiCopy(language)[4]));
+      const result=prepared();settle();reveal(append(result.text,'guide',result,language,aiCopy(language)[4]));
     }finally{if(id===requestId){controller=null;setBusy(false);}}
   }
   // Probe once. Without configuration the existing local guide remains fully usable.
@@ -322,9 +443,61 @@
   // Pressing send keeps focus (and a phone keyboard) in the field.
   submit.addEventListener('mousedown',e=>{if(document.activeElement===input)e.preventDefault();});
   chips.forEach(button=>button.addEventListener('click',()=>ask(button.dataset.question)));
+  pathButton.addEventListener('click',()=>{
+    if(busy)return;
+    const feature=CHAT_COPY.assistant?.[lang.value]||CHAT_COPY.assistant.en,fromKeyboard=document.activeElement===pathButton&&pathButton.matches(':focus-visible');
+    const row=append(feature.pathTitle,'guide',{flow:true},lang.value);reveal(row);
+    // A keyboard user continues in the new tour; pointer and touch users keep their place.
+    if(fromKeyboard)row.querySelector('.guide-path-choice')?.focus({preventScroll:true});
+  });
+  let rankedProjects=[],activeProject=-1;
+  // A scrolling list would otherwise become a Tab stop of its own in Chromium; the field keeps focus instead.
+  projectResults.tabIndex=-1;
+  const closeProjectResults=()=>{projectResults.hidden=true;projectSearch.setAttribute('aria-expanded','false');projectSearch.removeAttribute('aria-activedescendant');rankedProjects=[];activeProject=-1;};
+  const updateProjectResults=()=>{
+    const feature=CHAT_COPY.assistant?.[lang.value]||CHAT_COPY.assistant.en,query=projectSearch.value.trim();projectResults.replaceChildren();
+    if(!query){closeProjectResults();return;}
+    const records=[...document.querySelectorAll('.project-card')].map(card=>({card,id:card.querySelector('.project-details')?.dataset.project||'',title:card.querySelector('.project-info h3')?.textContent?.trim()||'',summary:card.querySelector('.project-info>p')?.textContent?.trim()||'',meta:[...card.querySelectorAll('.project-meta span')].map(item=>item.textContent.trim()).filter(Boolean).join(' · ')})).filter(item=>item.id&&item.title);
+    rankedProjects=rankProjectResults(records,query,5);activeProject=-1;
+    if(!rankedProjects.length){const empty=document.createElement('div');empty.className='guide-project-empty';empty.setAttribute('role','option');empty.setAttribute('aria-disabled','true');empty.textContent=feature.searchEmpty;projectResults.append(empty);}
+    else rankedProjects.forEach((project,index)=>{
+      // Options are reached with the arrow keys, not Tab, and a press keeps focus in the field (combobox pattern).
+      const option=document.createElement('button');option.type='button';option.tabIndex=-1;option.className='guide-project-option';option.id=`guide-project-option-${index}`;option.setAttribute('role','option');option.setAttribute('aria-selected','false');
+      const name=document.createElement('span');name.textContent=project.title;const detail=document.createElement('small');detail.textContent=project.meta;option.append(name,detail);
+      option.addEventListener('mousedown',event=>event.preventDefault());
+      // While a reply is pending the choice rests (like the chips), so the typed query is not cleared for nothing.
+      option.setAttribute('aria-disabled',String(busy));
+      option.addEventListener('click',()=>{
+        if(busy)return;
+        closeProjectResults();projectSearch.value='';fitGuideViewport();input.focus();
+        ask(`Explain the public portfolio project ${project.title}. Say what it does and what a visitor can try. Use only portfolio facts.`,{displayText:project.title,fallbackText:project.summary,recommendations:[project.id]});
+      });projectResults.append(option);
+    });
+    projectResults.hidden=false;projectSearch.setAttribute('aria-expanded','true');
+  };
+  const setActiveProject=index=>{
+    if(!rankedProjects.length)return;
+    activeProject=(index+rankedProjects.length)%rankedProjects.length;
+    [...projectResults.querySelectorAll('[role="option"]')].forEach((option,i)=>option.setAttribute('aria-selected',String(i===activeProject)));
+    projectSearch.setAttribute('aria-activedescendant',`guide-project-option-${activeProject}`);
+    projectResults.querySelector(`#guide-project-option-${activeProject}`)?.scrollIntoView({block:'nearest'});
+  };
+  projectSearch.addEventListener('input',updateProjectResults);
+  projectSearch.addEventListener('focus',()=>{if(projectSearch.value.trim())updateProjectResults();});
+  projectSearch.addEventListener('keydown',event=>{
+    // After Escape the typed text stays; ArrowDown reopens the list without another keystroke.
+    if(event.key==='ArrowDown'&&projectResults.hidden&&projectSearch.value.trim()){event.preventDefault();updateProjectResults();setActiveProject(0);}
+    else if(event.key==='ArrowDown'&&rankedProjects.length){event.preventDefault();setActiveProject(activeProject+1);}
+    else if(event.key==='ArrowUp'&&rankedProjects.length){event.preventDefault();setActiveProject(activeProject<=0?rankedProjects.length-1:activeProject-1);}
+    else if(event.key==='Enter'&&rankedProjects.length){event.preventDefault();projectResults.querySelector(`#guide-project-option-${activeProject<0?0:activeProject}`)?.click();}
+    else if(event.key==='Escape'&&!projectResults.hidden){event.preventDefault();closeProjectResults();}
+  });
+  document.addEventListener('pointerdown',event=>{if(!event.target.closest('.guide-project-search'))closeProjectResults();});
+  // Tabbing away closes the list, so it never floats over the chips or the question field.
+  projectSearch.closest('.guide-project-search').addEventListener('focusout',event=>{if(!event.currentTarget.contains(event.relatedTarget))closeProjectResults();});
   document.querySelector('#guide-clear').addEventListener('click',()=>{
     requestId++;controller?.abort();controller=null;conversation=[];pendingRow=null;unseen=null;setBusy(false);
-    log.replaceChildren();input.value='';body.scrollTo({top:0,behavior:'instant'});if(finePointer())input.focus();
+    log.replaceChildren();input.value='';projectSearch.value='';closeProjectResults();dialog.classList.remove('guide-typing','guide-searching');body.scrollTo({top:0,behavior:'instant'});if(finePointer())input.focus();
   });
   // The floating launcher steps aside while a link, button or field sits underneath it, then returns.
   // No scroll handler: an IntersectionObserver whose root box is the launcher's own footprint reports overlaps.
