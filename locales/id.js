@@ -139,7 +139,7 @@
     "More about my work ↗": "Lebih jauh tentang pekerjaan saya ↗",
     "On my desk ↗": "Di meja saya ↗",
     "Open contact links ↗": "Buka tautan kontak ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Daftar putar pribadi dan musik sesuai suasana hati atas permintaan. Dibuat secara lokal dengan Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Rotasi Spotify privat dengan temuan baru yang diurutkan AI saat pembaruan manual dan playlist suasana hati sesuai permintaan.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulator dengan keypad, LCD, dan game kecil menjinakkan bom. Proyek tim kampus.",
     "Details": "Detail",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Laboratorium kecil untuk keputusan agen, tugas peramban, perbandingan keterampilan, pemeriksaan deployment, dan klaim.",
@@ -228,9 +228,9 @@
       "Tema terang/gelap, gerakan dikurangi, dan animasi berhenti saat tab tersembunyi. Repositori publik di GitHub diterbitkan ke Vercel."
     ],
     "rotation": [
-      "Rotasi privat Python diperbarui setiap hari pukul 18.00 saat Mac tersedia. Seminggu sekali, Jev memakai judul lagu dan nama artis untuk memilih arah musik dan beberapa temuan baru. Pembaruan harian menggunakan kembali pilihan itu.",
-      "Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio.",
-      "Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac saya. Kodenya tidak diterbitkan."
+      "Saat pembaruan AI manual, Jev hanya memakai nama lagu dan artis untuk memilih arah serta mengurutkan hingga 18 hasil pencarian Spotify. Audio tidak dianalisis.",
+      "Urutan disimpan selama tujuh hari. Playlist suasana hati dibuat terpisah sesuai permintaan, menggunakan pencarian Spotify dan preferensi artis lokal.",
+      "Playlist yang dikelola bersifat privat dan diperiksa setiap kali diperbarui. Alat ini berjalan lokal di Mac saya; kodenya tidak dipublikasikan."
     ],
     "dots": [
       "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal.",
@@ -282,7 +282,7 @@
     "greeting": "Halo! Saya panduan portofolio lokal, bukan Patrick dan bukan model AI. Apa yang ingin Anda ketahui?",
     "answers": {
       "work": "Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia menyelidiki perilaku peramban, API, feed produk, dan analitik, mengaudit integrasi, memeriksa perbaikan, dan menyiapkan serah terima ke tim engineering. Luigi’s Box membuat pencarian dan penemuan produk untuk e-commerce. Pekerjaan juga mencakup implementasi, refactoring, analisis backend, serta optimasi kinerja kolektor dan pemrosesan event. Perbaikan analitik meliputi GTM, dataLayer, pembelian duplikat dan atribusi, termasuk integrasi Persoo lama. Ia juga menggunakan AWS dan Sentry untuk menyelidiki masalah layanan, meninjau error, dan memverifikasi perbaikan.",
-      "spotify": "Rotasi privat Python diperbarui setiap hari pukul 18.00 saat Mac tersedia. Seminggu sekali, Jev memakai judul lagu dan nama artis untuk memilih arah musik dan beberapa temuan baru. Pembaruan harian menggunakan kembali pilihan itu. Atas permintaan, skrip mencari berdasarkan suasana hati, aktivitas, atau artis dan mengutamakan artis yang sudah dikenal. Pencocokan suasana hati hanya perkiraan, bukan analisis audio. Playlist disimpan privat dan diperiksa setelah dibuat. Ini alat pribadi di Mac Patrick. Kodenya tidak diterbitkan.",
+      "spotify": "Saat pembaruan AI manual, Jev hanya memakai nama lagu dan artis untuk memilih arah serta mengurutkan hingga 18 hasil pencarian Spotify. Audio tidak dianalisis. Urutan disimpan selama tujuh hari. Playlist suasana hati dibuat terpisah sesuai permintaan, menggunakan pencarian Spotify dan preferensi artis lokal. Playlist yang dikelola bersifat privat dan diperiksa setiap kali diperbarui. Alat ini berjalan lokal di Mac saya; kodenya tidak dipublikasikan.",
       "dots": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
       "bot": "Bot musik Discord lama berbasis JavaScript. Repositori historis; kompatibilitas saat ini dengan Discord dan layanan musik belum diverifikasi.",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",

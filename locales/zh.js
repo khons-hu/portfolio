@@ -139,7 +139,7 @@
     "More about my work ↗": "进一步了解我的工作 ↗",
     "On my desk ↗": "正在做的事 ↗",
     "Open contact links ↗": "打开联系链接 ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "按需生成个人轮播歌单和心情歌单。用 Python 在本地构建。",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "私人 Spotify 轮播歌单，手动刷新时由 AI 排序新发现，并可按需生成心情歌单。",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "一个带键盘和 LCD 的计算器，还有小游戏：拆除炸弹。大学团队作品。",
     "Details": "详情",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "一个研究智能体决策、浏览器任务、技能比较、部署检查和事实核查的小型实验室。",
@@ -228,9 +228,9 @@
       "浅色与深色主题、减少动效，标签页隐藏时暂停动画。公开的 GitHub 仓库会部署到 Vercel。"
     ],
     "rotation": [
-      "私人 Python 歌单在 Mac 可用时每天 18:00 更新。Jev 每周根据歌曲名和艺人名选择音乐方向和少量新发现，日常更新复用这一选择。",
-      "按需根据心情、活动或歌手搜索，并优先返回熟悉的歌手。心情匹配只是近似结果，不是音频分析。",
-      "歌单私密保存，并在写入后检查。这是运行在我的 Mac 上的个人工具。源码未公开。"
+      "手动启动 AI 刷新时，Jev 只使用歌曲名和艺人名来选择方向，并为最多 18 个 Spotify 搜索结果排序。它不会分析音频。",
+      "排序结果会缓存七天。心情歌单是独立的按需功能，使用 Spotify 搜索和本地艺人偏好。",
+      "管理的歌单为私人歌单，每次刷新后都会检查。工具在我的 Mac 本地运行，源代码未公开。"
     ],
     "dots": [
       "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。",
@@ -282,7 +282,7 @@
     "greeting": "你好！我是本地作品集向导，不是 Patrick，也不是 AI 模型。你想了解什么？",
     "answers": {
       "work": "Patrick 在 Luigi’s Box 担任 Customer Support Partner L2。他调查浏览器行为、API、商品数据源和分析，审查集成、验证修复，并准备工程交接。Luigi’s Box 为电商提供搜索和商品发现功能。 工作还包括功能实现、代码重构、后端分析，以及数据采集器和事件处理的性能优化。分析数据修复涉及 GTM、dataLayer、重复购买事件和归因，也包括旧版 Persoo 集成。 他也使用 AWS 和 Sentry 排查服务问题、查看错误并验证修复。",
-      "spotify": "私人 Python 歌单在 Mac 可用时每天 18:00 更新。Jev 每周根据歌曲名和艺人名选择音乐方向和少量新发现，日常更新复用这一选择。 按需根据心情、活动或歌手搜索，并优先返回熟悉的歌手。心情匹配只是近似结果，不是音频分析。 歌单私密保存，并在写入后检查。这是运行在Patrick 的 Mac 上的个人工具。源码未公开。",
+      "spotify": "手动启动 AI 刷新时，Jev 只使用歌曲名和艺人名来选择方向，并为最多 18 个 Spotify 搜索结果排序。它不会分析音频。 排序结果会缓存七天。心情歌单是独立的按需功能，使用 Spotify 搜索和本地艺人偏好。 管理的歌单为私人歌单，每次刷新后都会检查。工具在我的 Mac 本地运行，源代码未公开。",
       "dots": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。",
       "bot": "早期的 JavaScript Discord 音乐机器人。仓库是历史项目，当前 Discord 和音乐服务兼容性未经验证。",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",

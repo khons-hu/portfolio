@@ -139,7 +139,7 @@
     "More about my work ↗": "Mais sobre o meu trabalho ↗",
     "On my desk ↗": "Na minha mesa ↗",
     "Open contact links ↗": "Abrir contactos ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Uma seleção pessoal e playlists por estado de espírito, a pedido. Criada localmente com Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Uma rotação privada no Spotify com descobertas ordenadas por IA numa atualização manual e playlists por estado de espírito a pedido.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Uma calculadora com teclado, LCD e um pequeno jogo de desativar bombas. Projeto universitário em equipa.",
     "Details": "Detalhes",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Um pequeno laboratório para decisões de agentes, tarefas de navegador, comparações de competências, verificações de publicação e afirmações.",
@@ -228,9 +228,9 @@
       "Temas claro e escuro, movimento reduzido e animações pausadas em separadores ocultos. O repositório público no GitHub publica no Vercel."
     ],
     "rotation": [
-      "A seleção privada em Python atualiza-se diariamente às 18:00 quando o Mac está disponível. Uma vez por semana, o Jev usa nomes de músicas e artistas para escolher uma direção e algumas descobertas. As atualizações diárias reutilizam essa escolha.",
-      "A pedido, procura por estado de espírito, atividade ou artista e privilegia artistas conhecidos. A correspondência de humor é aproximada, não é análise de áudio.",
-      "A playlist é guardada como privada e verificada. É uma ferramenta pessoal no meu Mac. O código não é público."
+      "Numa atualização manual com IA, o Jev usa apenas nomes de músicas e artistas para escolher uma direção e ordenar até 18 resultados da pesquisa do Spotify. Não analisa áudio.",
+      "A ordenação fica guardada durante sete dias. As playlists por estado de espírito são separadas e feitas a pedido, usando a pesquisa do Spotify e preferências locais de artistas.",
+      "A playlist gerida é privada e verificada após cada atualização. A ferramenta corre localmente no meu Mac; o código não é público."
     ],
     "dots": [
       "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local.",
@@ -282,7 +282,7 @@
     "greeting": "Olá! Sou um guia local do portfólio, não sou o Patrick nem um modelo de IA. O que gostarias de saber?",
     "answers": {
       "work": "Patrick trabalha como Customer Support Partner L2 na Luigi’s Box. Investiga o comportamento no navegador, APIs, feeds de produtos e análises, audita integrações, verifica correções e prepara passagens para engenharia. A Luigi’s Box desenvolve pesquisa e descoberta de produtos para comércio eletrónico. O trabalho inclui também implementação, refatorização, análise do backend e otimização do desempenho dos coletores e do processamento de eventos. As correções de analítica abrangem GTM, dataLayer, compras duplicadas e atribuição, incluindo integrações antigas da Persoo. Também usa AWS e Sentry para investigar problemas nos serviços, analisar erros e verificar correções.",
-      "spotify": "A seleção privada em Python atualiza-se diariamente às 18:00 quando o Mac está disponível. Uma vez por semana, o Jev usa nomes de músicas e artistas para escolher uma direção e algumas descobertas. As atualizações diárias reutilizam essa escolha. A pedido, procura por estado de espírito, atividade ou artista e privilegia artistas conhecidos. A correspondência de humor é aproximada, não é análise de áudio. A playlist é guardada como privada e verificada. É uma ferramenta pessoal no Mac do Patrick. O código não é público.",
+      "spotify": "Numa atualização manual com IA, o Jev usa apenas nomes de músicas e artistas para escolher uma direção e ordenar até 18 resultados da pesquisa do Spotify. Não analisa áudio. A ordenação fica guardada durante sete dias. As playlists por estado de espírito são separadas e feitas a pedido, usando a pesquisa do Spotify e preferências locais de artistas. A playlist gerida é privada e verificada após cada atualização. A ferramenta corre localmente no meu Mac; o código não é público.",
       "dots": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original.",
       "bot": "Um antigo bot de música para Discord em JavaScript. Repositório histórico; a compatibilidade atual com Discord e serviços de música não foi verificada.",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",

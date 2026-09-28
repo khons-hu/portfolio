@@ -122,7 +122,7 @@ const SITE_LOCALES = {
     "More about my work ↗": "Viac o mojej práci ↗",
     "On my desk ↗": "Čomu sa venujem ↗",
     "Open contact links ↗": "Otvoriť kontakty ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobná rotácia a playlisty podľa nálady na požiadanie. Lokálne cez Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Súkromná Spotify rotácia s AI výberom nových skladieb pri manuálnom obnovení a playlistami podľa nálady na požiadanie.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicou, LCD a malou hrou na zneškodnenie bomby. Univerzitný tímový projekt.",
     "Details": "Podrobnosti",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Malé laboratórium na rozhodovanie agentov, browser úlohy, porovnávanie skills, kontroly nasadenia a tvrdení.",
@@ -317,7 +317,7 @@ const SITE_LOCALES = {
     "More about my work ↗": "Bővebben a munkámról ↗",
     "On my desk ↗": "Amivel foglalkozom ↗",
     "Open contact links ↗": "Kapcsolatok megnyitása ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Személyes válogatás és hangulathoz illő lejátszási listák kérésre. Helyben, Pythonnal.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Privát Spotify-válogatás, kézzel indítható AI-alapú felfedezésekkel és kérésre készülő hangulati lejátszási listákkal.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Számológép billentyűzettel, LCD-vel és egy kis bombahatástalanító játékkal. Egyetemi csapatmunka.",
     "Details": "Részletek",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Kis labor az ágensek döntéseihez, böngészőfeladatokhoz, utasítások összehasonlításához, telepítések és állítások ellenőrzéséhez.",
@@ -512,7 +512,7 @@ const SITE_LOCALES = {
     "More about my work ↗": "Więcej o mojej pracy ↗",
     "On my desk ↗": "Nad czym pracuję ↗",
     "Open contact links ↗": "Otwórz kontakty ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobista rotacja i playlisty według nastroju na życzenie. Lokalnie, w Pythonie.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Prywatna rotacja Spotify z odkryciami wybieranymi przez AI przy ręcznym odświeżeniu i playlistami nastrojowymi na życzenie.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulator z klawiaturą, LCD i małą grą w rozbrajanie bomby. Projekt zespołowy ze studiów.",
     "Details": "Szczegóły",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Małe laboratorium decyzji agentów, zadań przeglądarkowych, porównań instrukcji, wdrożeń i twierdzeń.",
@@ -707,7 +707,7 @@ const SITE_LOCALES = {
     "More about my work ↗": "Mehr über meine Arbeit ↗",
     "On my desk ↗": "Auf meinem Schreibtisch ↗",
     "Open contact links ↗": "Kontaktlinks öffnen ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Persönliche Rotation und Playlists nach Stimmung auf Anfrage. Lokal mit Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Eine private Spotify-Rotation mit KI-sortierten Entdeckungen bei manueller Aktualisierung und Playlists nach Stimmung auf Anfrage.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Ein Taschenrechner mit Tastenfeld, LCD und einem kleinen Bombenentschärfungsspiel. Ein Uni-Teamprojekt.",
     "Details": "Details",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Ein kleines Labor für Agentenentscheidungen, Browseraufgaben, Anweisungsvergleiche, Deployments und Behauptungen.",
@@ -902,7 +902,7 @@ const SITE_LOCALES = {
     "More about my work ↗": "Más sobre mi trabajo ↗",
     "On my desk ↗": "En mi mesa ↗",
     "Open contact links ↗": "Abrir contactos ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Una rotación personal y playlists según el ánimo, a petición. En local, con Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Una rotación privada de Spotify con descubrimientos ordenados por IA al actualizar manualmente y listas por estado de ánimo a petición.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Una calculadora con teclado, LCD y un pequeño juego de desactivar bombas. Un proyecto universitario en equipo.",
     "Details": "Detalles",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Un pequeño laboratorio de decisiones de agentes, tareas de navegador, instrucciones, despliegues y afirmaciones.",
@@ -1097,7 +1097,7 @@ const SITE_LOCALES = {
     "More about my work ↗": "Více o mé práci ↗",
     "On my desk ↗": "Čemu se věnuji ↗",
     "Open contact links ↗": "Otevřít kontakty ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Osobní rotace a playlisty podle nálady na požádání. Lokálně přes Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Soukromá Spotify rotace s AI výběrem nových skladeb při ruční aktualizaci a playlisty podle nálady na vyžádání.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Kalkulačka s klávesnicí, LCD a malou hrou na zneškodnění bomby. Univerzitní týmový projekt.",
     "Details": "Podrobnosti",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Malá laboratoř pro rozhodování agentů, úlohy v prohlížeči, porovnání instrukcí, nasazení a tvrzení.",
@@ -1202,9 +1202,9 @@ const PROJECT_NOTES = {
       "Light/dark themes, reduced motion and animations paused in hidden tabs. The public GitHub repository deploys to Vercel."
     ],
     "rotation": [
-      "A private Python rotation refreshes daily at 18:00 when my Mac is available. Once a week, Jev uses track and artist names to choose a direction and a few discoveries. Daily updates reuse that choice.",
-      "On request, it also searches by mood, activity or artist and favours familiar artists in the results. Mood matching is approximate, not audio analysis.",
-      "The playlist is saved privately and checked after writing. This is a personal tool running on my Mac. The source is not published."
+      "On a manual AI refresh, Jev uses only track and artist names to choose a direction and rank up to 18 Spotify search results. It does not analyse audio.",
+      "The ranking is cached for seven days. Mood playlists are separate and on demand, using Spotify search and familiar-artist preferences.",
+      "The managed playlist is private and checked after each refresh. The tool runs locally on my Mac; its source is not public."
     ],
     "dots": [
       "Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.",
@@ -1265,9 +1265,9 @@ const PROJECT_NOTES = {
       "Svetlá a tmavá téma, obmedzený pohyb a pozastavené animácie v skrytých kartách. Verejný repozitár na GitHube sa nasadzuje na Vercel."
     ],
     "rotation": [
-      "Súkromná Python rotácia sa obnovuje denne o 18:00, keď je Mac dostupný. Raz týždenne Jev podľa názvov skladieb a interpretov vyberie smer a pár noviniek. Denné aktualizácie tento výber používajú znova.",
-      "Na požiadanie vyhľadá hudbu podľa nálady, aktivity alebo interpreta a vo výsledkoch uprednostní známych interpretov. Nálada je približná, nejde o analýzu zvuku.",
-      "Playlist uloží súkromne a overí jeho obsah. Je to osobný nástroj na mojom Macu. Zdrojový kód nie je zverejnený."
+      "Pri manuálnom AI obnovení používa Jev iba názvy skladieb a interpretov na výber smeru a zoradenie najviac 18 výsledkov Spotify. Zvuk neanalyzuje.",
+      "Poradie sa ukladá na sedem dní. Playlisty podľa nálady sú samostatné a na požiadanie; využívajú vyhľadávanie Spotify a lokálne preferencie interpretov.",
+      "Spravovaný playlist je súkromný a po obnovení sa kontroluje. Nástroj beží lokálne na mojom Macu; zdrojový kód nie je verejný."
     ],
     "dots": [
       "Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.",
@@ -1328,9 +1328,9 @@ const PROJECT_NOTES = {
       "Világos/sötét téma, csökkentett mozgás és szünetelő animációk rejtett lapokon. A nyilvános GitHub-repóból Vercelre települ."
     ],
     "rotation": [
-      "A privát Python-válogatás naponta 18:00-kor frissül, ha a Mac elérhető. A Jev hetente egyszer a számok és előadók neve alapján választ irányt és néhány újdonságot. A napi frissítések ezt a választást használják.",
-      "Kérésre hangulat, tevékenység vagy előadó alapján is keres, és az ismert előadókat előnyben részesíti a találatok között. A hangulat szerinti szűrés közelítő, nem hangelemzés.",
-      "A lejátszási listát privátként menti, majd ellenőrzi. Saját eszköz, a Macemen fut. A forráskód nem nyilvános."
+      "Kézi AI-frissítéskor Jev kizárólag a számok és előadók neve alapján választ irányt, és rangsorol legfeljebb 18 Spotify-keresési találatot. Hangot nem elemez.",
+      "A rangsorolás hét napig gyorsítótárban marad. A hangulati listák külön, kérésre készülnek Spotify-kereséssel és az ismert előadók előnyben részesítésével.",
+      "A kezelt lejátszási lista privát, és frissítés után ellenőrzöm. Az eszköz a Macemen fut; a forráskód nem nyilvános."
     ],
     "dots": [
       "Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.",
@@ -1391,9 +1391,9 @@ const PROJECT_NOTES = {
       "Jasny/ciemny motyw, ograniczony ruch i wstrzymanie animacji w ukrytych kartach. Publiczne repozytorium na GitHubie wdraża się na Vercel."
     ],
     "rotation": [
-      "Prywatna rotacja w Pythonie odświeża się codziennie o 18:00, gdy Mac jest dostępny. Raz w tygodniu Jev na podstawie nazw utworów i wykonawców wybiera kierunek i kilka nowości. Codzienne aktualizacje korzystają z tego wyboru.",
-      "Na życzenie wyszukuje też muzykę według nastroju, aktywności lub wykonawcy i preferuje znanych wykonawców w wynikach. Dopasowanie nastroju jest przybliżone, bez analizy dźwięku.",
-      "Zapisuje playlistę jako prywatną i sprawdza jej zawartość. To osobiste narzędzie działające na moim Macu. Kod nie jest publiczny."
+      "Przy ręcznym odświeżeniu AI Jev używa wyłącznie nazw utworów i wykonawców, by wybrać kierunek i ocenić do 18 wyników wyszukiwania Spotify. Nie analizuje dźwięku.",
+      "Ranking jest zapisywany na siedem dni. Playlisty nastrojowe są osobne i tworzone na życzenie na podstawie wyszukiwania Spotify oraz preferencji wykonawców.",
+      "Zarządzana playlista jest prywatna i sprawdzana po każdym odświeżeniu. Narzędzie działa lokalnie na moim Macu; kod nie jest publiczny."
     ],
     "dots": [
       "Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.",
@@ -1454,9 +1454,9 @@ const PROJECT_NOTES = {
       "Helles/dunkles Design, reduzierte Bewegung und pausierte Animationen in versteckten Tabs. Das öffentliche GitHub-Repository deployt auf Vercel."
     ],
     "rotation": [
-      "Die private Python-Rotation wird täglich um 18 Uhr aktualisiert, wenn der Mac verfügbar ist. Einmal pro Woche wählt Jev anhand von Song- und Künstlernamen eine Richtung und einige Neuentdeckungen. Die täglichen Updates nutzen diese Auswahl weiter.",
-      "Auf Anfrage sucht es auch nach Stimmung, Aktivität oder Künstler und bevorzugt vertraute Künstler in den Ergebnissen. Die Stimmung wird nur grob zugeordnet, nicht per Audioanalyse.",
-      "Die Playlist wird privat gespeichert und anschließend geprüft. Ein persönliches Tool auf meinem Mac. Der Quellcode ist nicht öffentlich."
+      "Bei einer manuellen KI-Aktualisierung nutzt Jev nur Titel und Künstlernamen, um eine Richtung zu wählen und bis zu 18 Spotify-Suchergebnisse zu sortieren. Audio wird nicht analysiert.",
+      "Die Sortierung bleibt sieben Tage gespeichert. Playlists nach Stimmung sind getrennt und auf Anfrage; sie nutzen die Spotify-Suche und lokale Künstlerpräferenzen.",
+      "Die verwaltete Playlist ist privat und wird nach jeder Aktualisierung geprüft. Das Tool läuft lokal auf meinem Mac; der Quellcode ist nicht öffentlich."
     ],
     "dots": [
       "2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.",
@@ -1517,9 +1517,9 @@ const PROJECT_NOTES = {
       "Temas claro/oscuro, movimiento reducido y animaciones pausadas en pestañas ocultas. El repositorio público de GitHub se despliega en Vercel."
     ],
     "rotation": [
-      "La rotación privada en Python se actualiza a diario a las 18:00 cuando el Mac está disponible. Una vez por semana, Jev usa los nombres de canciones y artistas para elegir una dirección y algunos descubrimientos. Las actualizaciones diarias reutilizan esa elección.",
-      "A petición, también busca por ánimo, actividad o artista y prioriza artistas conocidos entre los resultados. El ajuste al ánimo es aproximado, sin análisis de audio.",
-      "Guarda la playlist como privada y comprueba su contenido. Es una herramienta personal que funciona en mi Mac. El código no es público."
+      "En una actualización manual con IA, Jev usa solo nombres de canciones y artistas para elegir una dirección y ordenar hasta 18 resultados de Spotify. No analiza audio.",
+      "El orden se guarda durante siete días. Las listas por estado de ánimo son independientes y se crean a petición con la búsqueda de Spotify y preferencias locales de artistas.",
+      "La lista gestionada es privada y se verifica tras cada actualización. La herramienta funciona en mi Mac; el código no es público."
     ],
     "dots": [
       "Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.",
@@ -1580,9 +1580,9 @@ const PROJECT_NOTES = {
       "Světlá a tmavá téma, omezený pohyb a pozastavené animace ve skrytých kartách. Veřejný repozitář na GitHubu se nasazuje na Vercel."
     ],
     "rotation": [
-      "Soukromá rotace v Pythonu se obnovuje denně v 18:00, když je Mac dostupný. Jednou týdně Jev podle názvů skladeb a interpretů vybere směr a několik novinek. Denní aktualizace tento výběr používají znovu.",
-      "Na požádání vyhledá hudbu podle nálady, aktivity nebo interpreta a ve výsledcích upřednostní známé interprety. Nálada je přibližná, nejde o analýzu zvuku.",
-      "Playlist uloží soukromě a ověří jeho obsah. Je to osobní nástroj na mém Macu. Zdrojový kód není zveřejněný."
+      "Při ruční AI aktualizaci používá Jev pouze názvy skladeb a interpretů k výběru směru a seřazení až 18 výsledků Spotify. Zvuk neanalyzuje.",
+      "Pořadí se ukládá na sedm dní. Playlisty podle nálady jsou samostatné a na vyžádání; využívají vyhledávání Spotify a místní preference interpretů.",
+      "Spravovaný playlist je soukromý a po každé aktualizaci se kontroluje. Nástroj běží lokálně na mém Macu; zdrojový kód není veřejný."
     ],
     "dots": [
       "Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.",

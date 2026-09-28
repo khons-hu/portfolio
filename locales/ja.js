@@ -139,7 +139,7 @@
     "More about my work ↗": "仕事について詳しく ↗",
     "On my desk ↗": "最近の取り組み ↗",
     "Open contact links ↗": "連絡先を開く ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "個人用のローテーションと、希望に合わせた気分別プレイリスト。Pythonでローカルに作成。",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "非公開のSpotifyローテーション。手動更新時にAIが新しい候補を並べ替え、気分別プレイリストも依頼に応じて作成。",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "キーパッドとLCDを使った電卓。小さな爆弾解除ゲームも収録した大学のチーム制作。",
     "Details": "詳細",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "エージェントの判断、ブラウザー操作、スキルの比較、デプロイの確認、主張の検証を扱う小さな実験室。",
@@ -228,9 +228,9 @@
       "ライト・ダークテーマ、動きの軽減、非表示タブでのアニメーション停止に対応。公開GitHubリポジトリからVercelへデプロイします。"
     ],
     "rotation": [
-      "非公開のPythonプレイリストは、Macが利用可能な日に18時に更新されます。Jevが週に一度、曲名とアーティスト名から方向性と少しの新しい曲を選び、毎日の更新でその選択を再利用します。",
-      "希望に応じて気分、活動、アーティストで探し、なじみのあるアーティストを優先します。気分の一致は概算で、音声解析ではありません。",
-      "プレイリストを非公開で保存し、保存後に内容を確認します。私のMacで動く個人用ツールです。ソースは非公開です。"
+      "手動でAI更新すると、Jevは曲名とアーティスト名だけを使って方向性を選び、Spotifyの検索結果を最大18件まで順位付けします。音声は分析しません。",
+      "順位は7日間キャッシュされます。気分別プレイリストは別機能で、Spotify検索とローカルのアーティスト設定を使って依頼時に作成します。",
+      "管理対象のプレイリストは非公開で、更新後に確認されます。ツールはMac上で動作し、ソースコードは公開していません。"
     ],
     "dots": [
       "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。",
@@ -282,7 +282,7 @@
     "greeting": "こんにちは！私はローカルのポートフォリオガイドです。Patrick本人でもAIモデルでもありません。何を知りたいですか？",
     "answers": {
       "work": "PatrickはLuigi’s BoxのCustomer Support Partner L2です。ブラウザーの動作、API、商品フィード、分析を調査し、連携を監査し、修正を検証してエンジニアリングへの引き継ぎを準備します。Luigi’s BoxはEC向けの商品検索と発見を提供します。 実装やリファクタリング、バックエンドの分析、データ収集処理とイベント処理のパフォーマンス最適化も担当しています。分析データの修正では、GTM、dataLayer、購入イベントの重複、アトリビューションを扱い、旧Persooの連携にも対応しています。 AWS と Sentry も使い、サービスの問題調査、エラーの確認、修正の検証を行っています。",
-      "spotify": "非公開のPythonプレイリストは、Macが利用可能な日に18時に更新されます。Jevが週に一度、曲名とアーティスト名から方向性と少しの新しい曲を選び、毎日の更新でその選択を再利用します。 希望に応じて気分、活動、アーティストで探し、なじみのあるアーティストを優先します。気分の一致は概算で、音声解析ではありません。 プレイリストを非公開で保存し、保存後に内容を確認します。PatrickのMacで動く個人用ツールです。ソースは非公開です。",
+      "spotify": "手動でAI更新すると、Jevは曲名とアーティスト名だけを使って方向性を選び、Spotifyの検索結果を最大18件まで順位付けします。音声は分析しません。 順位は7日間キャッシュされます。気分別プレイリストは別機能で、Spotify検索とローカルのアーティスト設定を使って依頼時に作成します。 管理対象のプレイリストは非公開で、更新後に確認されます。ツールはMac上で動作し、ソースコードは公開していません。",
       "dots": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
       "bot": "以前作ったJavaScript製のDiscord音楽ボット。古いリポジトリのため、現在のDiscordや音楽サービスとの互換性は未確認です。",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",

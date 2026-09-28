@@ -139,7 +139,7 @@
     "More about my work ↗": "En savoir plus sur mon travail ↗",
     "On my desk ↗": "Sur mon bureau ↗",
     "Open contact links ↗": "Ouvrir les liens de contact ↗",
-    "A personal rotation and mood playlists on request. Built locally with Python.": "Une sélection musicale personnelle et des playlists selon l’humeur, sur demande. Créées localement avec Python.",
+    "A private Spotify rotation with opt-in AI-ranked discoveries and mood playlists on request.": "Une sélection Spotify privée avec des découvertes classées par IA lors d’une actualisation manuelle et des playlists d’humeur à la demande.",
     "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.": "Une calculatrice avec clavier, écran LCD et un petit jeu de désamorçage de bombe. Projet universitaire en équipe.",
     "Details": "Détails",
     "A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.": "Un petit laboratoire pour les décisions d’agents, les tâches de navigateur, les comparaisons de compétences, les vérifications de déploiement et les affirmations.",
@@ -228,9 +228,9 @@
       "Thèmes clair et sombre, mouvement réduit et animations suspendues dans les onglets cachés. Le dépôt public sur GitHub est déployé sur Vercel."
     ],
     "rotation": [
-      "La sélection privée en Python se met à jour chaque jour à 18 h lorsque le Mac est disponible. Une fois par semaine, Jev utilise les noms des morceaux et des artistes pour choisir une direction et quelques découvertes. Les mises à jour quotidiennes réutilisent ce choix.",
-      "Sur demande, il cherche aussi par humeur, activité ou artiste et favorise les artistes familiers. La correspondance d’humeur reste approximative, sans analyse audio.",
-      "La playlist est enregistrée en privé puis vérifiée. C’est un outil personnel sur mon Mac. Le code n’est pas publié."
+      "Lors d’une actualisation manuelle avec IA, Jev utilise uniquement les noms des titres et artistes pour choisir une direction et classer jusqu’à 18 résultats Spotify. Il n’analyse pas l’audio.",
+      "Le classement est conservé sept jours. Les playlists d’humeur sont séparées et créées à la demande à partir de la recherche Spotify et de préférences locales d’artistes.",
+      "La playlist gérée est privée et vérifiée après chaque actualisation. L’outil tourne sur mon Mac ; son code n’est pas public."
     ],
     "dots": [
       "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale.",
@@ -282,7 +282,7 @@
     "greeting": "Bonjour ! Je suis un guide local du portfolio, ni Patrick ni un modèle IA. Que veux-tu savoir ?",
     "answers": {
       "work": "Patrick travaille comme Customer Support Partner L2 chez Luigi’s Box. Il analyse le comportement du navigateur, les API, les flux de produits et l’analytique, audite les intégrations, vérifie les corrections et prépare les transmissions aux ingénieurs. Luigi’s Box développe la recherche et la découverte de produits pour le commerce en ligne. Le travail comprend aussi l’implémentation, la refactorisation, l’analyse du backend et l’optimisation des collecteurs et du traitement des événements. Les corrections analytiques concernent GTM, dataLayer, les achats en double et l’attribution, y compris les anciennes intégrations Persoo. Il utilise aussi AWS et Sentry pour examiner les problèmes des services, analyser les erreurs et vérifier les correctifs.",
-      "spotify": "La sélection privée en Python se met à jour chaque jour à 18 h lorsque le Mac est disponible. Une fois par semaine, Jev utilise les noms des morceaux et des artistes pour choisir une direction et quelques découvertes. Les mises à jour quotidiennes réutilisent ce choix. Sur demande, il cherche aussi par humeur, activité ou artiste et favorise les artistes familiers. La correspondance d’humeur reste approximative, sans analyse audio. La playlist est enregistrée en privé puis vérifiée. C’est un outil personnel sur le Mac de Patrick. Le code n’est pas publié.",
+      "spotify": "Lors d’une actualisation manuelle avec IA, Jev utilise uniquement les noms des titres et artistes pour choisir une direction et classer jusqu’à 18 résultats Spotify. Il n’analyse pas l’audio. Le classement est conservé sept jours. Les playlists d’humeur sont séparées et créées à la demande à partir de la recherche Spotify et de préférences locales d’artistes. La playlist gérée est privée et vérifiée après chaque actualisation. L’outil tourne sur mon Mac ; son code n’est pas public.",
       "dots": "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine.",
       "bot": "Un ancien bot musical Discord en JavaScript. Dépôt historique ; compatibilité actuelle avec Discord et les services de musique non vérifiée.",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Khonproof, Khonrelay, Khonsolve.",
