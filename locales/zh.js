@@ -330,7 +330,7 @@
       "lore": "为什么叫 khonsu",
       "theme": "切换浅色 / 深色主题",
       "open": "项目说明",
-      "ask": "打开“问问 khonsu”",
+      "ask": "打开“问问 khonsu”，并可预填问题",
       "email": "给 Patrick 写信",
       "clear": "清除输出和历史",
       "close": "返回页面"

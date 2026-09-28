@@ -45,7 +45,7 @@ test('help lists every command with a description in all supported languages',()
   const list=walk(s.node('#terminal-output')).find(el=>el.className==='terminal-help');
   const terms=list.children.filter(el=>el.tag==='dt').map(el=>el.textContent);
   const details=list.children.filter(el=>el.tag==='dd').map(el=>el.textContent);
-  assert.deepEqual(terms,['about','projects','work','now','contact','status','lore','theme','open <project>','ask','email','clear','close'],language);
+  assert.deepEqual(terms,['about','projects','work','now','contact','status','lore','theme','open <project>','ask <question>','email','clear','close'],language);
   assert(details.every(text=>typeof text==='string'&&text.trim()&&!text.includes('undefined')),language);
  }
 });

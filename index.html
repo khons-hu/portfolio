@@ -18,23 +18,23 @@
 <meta property="og:image:alt" content="khonsu. Patrick. Or khonsu. A moonlit mountain range.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<script src="/theme.js?v=agent-project-recommendations-20260928"></script>
-<link rel="stylesheet" href="/style.css?v=agent-project-recommendations-20260928">
-<script src="/language-data.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/locales/guide-keywords.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/site-locales.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/i18n.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/field-notes.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/app.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/panels.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/terminal.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/project-links.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/guide-locales.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/chat-copy.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/guide.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/contact-core.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/contact.js?v=agent-project-recommendations-20260928" defer></script>
-<script src="/now-playing.js?v=agent-project-recommendations-20260928" defer></script>
+<script src="/theme.js?v=portfolio-chat-refinements-20260928b"></script>
+<link rel="stylesheet" href="/style.css?v=portfolio-chat-refinements-20260928b">
+<script src="/language-data.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/locales/guide-keywords.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/site-locales.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/i18n.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/field-notes.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/app.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/panels.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/terminal.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/project-links.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/guide-locales.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/chat-copy.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/guide.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/contact-core.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/contact.js?v=portfolio-chat-refinements-20260928b" defer></script>
+<script src="/now-playing.js?v=portfolio-chat-refinements-20260928b" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -60,9 +60,10 @@
 <details class="case-study"><summary><span class="case-number">02</span><span><strong>Khonrelay</strong><span>An inbox you can finish.</span></span><span class="case-expand" aria-hidden="true">+</span></summary><div class="case-body"><dl><div><dt>Problem</dt><dd>News, releases and service status compete for attention. An endless feed makes deciding what matters harder.</dd></div><div><dt>Decision</dt><dd>Read official RSS and Atom sources. Keep importance labels and notification rules deterministic, with explanations.</dd></div><div><dt>Agent role</dt><dd>Optional Jev scores change the reading order using a precomputed public snapshot. Visitors trigger no model calls.</dd></div><div><dt>Evidence</dt><dd>The public implementation includes source filters, read state, saved links, RSS and OPML export. Relevance ordering leaves notification rules unchanged.</dd></div><div><dt>Limits</dt><dd>Relevance scores are suggestions. Saved links are not verified facts. Push delivery depends on device setup and is not promised in real time.</dd></div></dl><div class="field-links"><a href="https://quiet-signal-khonsu.vercel.app/" target="_blank" rel="noopener noreferrer">Open Khonrelay ↗</a> <a href="https://github.com/khons-hu/khonrelay/blob/3679152ffde787cd7ceeda1c1abc458249075f0b/README.md" target="_blank" rel="noopener noreferrer">Read the design notes ↗</a></div></div></details>
 <details class="case-study"><summary><span class="case-number">03</span><span><strong>Khonsolve</strong><span>Keep the learner doing the thinking.</span></span><span class="case-expand" aria-hidden="true">+</span></summary><div class="case-body"><dl><div><dt>Problem</dt><dd>A practice tool is less useful when it gives the solution before you have formed an approach.</dd></div><div><dt>Decision</dt><dd>Start with an approach, reveal hints gradually and keep drafts locally. Separate executable sample checks from written self-review.</dd></div><div><dt>Agent role</dt><dd>Coding agents assisted development. The learner-facing workshop needs no paid AI calls or account.</dd></div><div><dt>Evidence</dt><dd>The public source contains 15 original exercises across coding, debugging, logic, prompts and agent skills. Supported code checks run in disposable browser workers.</dd></div><div><dt>Limits</dt><dd>Visible sample cases do not prove general correctness or complexity. Written exercises use self-review. This is a practice workshop, not a secure grading service.</dd></div></dl><div class="field-links"><a href="https://thinkroom-khonsu.vercel.app/" target="_blank" rel="noopener noreferrer">Open Khonsolve ↗</a> <a href="https://github.com/khons-hu/khonsolve/blob/4c5ba9b7388f873475d868a6869685eadaffb3d3/README.md" target="_blank" rel="noopener noreferrer">Read the design notes ↗</a></div></div></details></div>
 <div class="agent-lab" id="lab">
-<div class="lab-intro"><p class="eyebrow">INSIDE THE HARNESS</p><h3>A decision worth<br>looking at twice.</h3><p>Step through one published Khonproof result. The model picked the wrong label. The useful part is being able to see it.</p><p class="source-language">Recorded text-choice evaluation. No live browser action, rerun or model call.</p><a href="https://github.com/khons-hu/khonproof/blob/a82360c7f37915cd4edac1d138a228f7ec8410d7/public/reports/benchmark.json" target="_blank" rel="noopener noreferrer">Original report ↗</a></div>
+<div class="lab-intro"><p class="eyebrow">INSIDE THE HARNESS</p><h3>A decision worth<br>looking at twice.</h3><p>Step through three decisions from one published Khonproof report. Two matched the expected label. One did not.</p><p class="source-language">Recorded text-choice evaluations. No live browser action, rerun or model call.</p><a href="https://github.com/khons-hu/khonproof/blob/a82360c7f37915cd4edac1d138a228f7ec8410d7/public/reports/benchmark.json" target="_blank" rel="noopener noreferrer">Original report ↗</a></div>
 <div class="replay" aria-label="Recorded agent decision replay">
-<div class="replay-heading"><span>TASK 18 / JEV 1.13.0</span><span>20 SEP 2026</span></div>
+<div class="replay-heading"><span id="replay-task">TASK 18 / JEV 1.13.0</span><span id="replay-date">20 SEP 2026</span></div>
+<div class="replay-picker" hidden><label for="replay-scenario" class="sr-only">Choose a recorded example</label><select id="replay-scenario"><option value="18">Task 18 · Hungarian label · failed</option><option value="05">Task 05 · Project details · passed</option><option value="16">Task 16 · Original source · passed</option></select><span>Recorded examples · one report, 20 text-choice tasks</span></div>
 <div id="replay-stage" aria-live="polite" aria-atomic="true"><p class="eyebrow" id="replay-count">01 / 05 · Goal</p><h4 id="replay-title">Find the Hungarian option for opening details.</h4><p id="replay-copy">The fixture supplies three button labels. No screenshot or live browser state is part of this recorded run.</p><div id="replay-evidence"><ol start="0"><li lang="hu">Megnyitás</li><li lang="hu">Részletek</li><li lang="hu">Bezárás</li></ol></div></div>
 <div class="replay-controls" hidden><button type="button" id="replay-prev" disabled>← Previous</button><button type="button" id="replay-reset">Restart</button><button type="button" id="replay-next">Next →</button></div>
 <noscript><p>The recorded choice was 0 (Megnyitás). Expected: 1 (Részletek). Result: failed. No corrected rerun is recorded.</p></noscript>

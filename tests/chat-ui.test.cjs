@@ -50,6 +50,7 @@ test('follow-ups respect the server spacing instead of triggering a refusal',()=
 
 test('prepared project answers choose relevant fallback recommendations',()=>{
  assert.deepEqual(answer('Recommend a coding project','en').recommendations,['thinkroom','proof','calculator']);
+ assert.deepEqual(answer('Recommend agent projects','en').recommendations,['proof','signal','thinkroom']);
  assert.deepEqual(answer('Show me game projects','en').recommendations,['receipts','dots','save-democracy']);
  assert.deepEqual(answer('Show me projects','en').recommendations,['proof','signal','thinkroom','market']);
  const guide=read('guide.js');

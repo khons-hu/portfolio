@@ -329,7 +329,7 @@
       "lore": "pourquoi khonsu",
       "theme": "passer du clair au sombre",
       "open": "notes du projet",
-      "ask": "ouvrir Demander à khonsu",
+      "ask": "ouvrir Demander à khonsu avec une question facultative",
       "email": "écrire à Patrick",
       "clear": "effacer la sortie et l’historique",
       "close": "retour à la page"

@@ -6,24 +6,24 @@ const commands = ['help', 'about', 'projects', 'work', 'now', 'contact', 'status
 const projectAliases = {proof:'proof',khonproof:'proof',khonsolve:'thinkroom',thinkroom:'thinkroom',khonrelay:'signal',signal:'signal',khonodds:'market',market:'market',khonstash:'steam',steam:'steam',dots:'dots',receipts:'receipts','receipts-after-dark':'receipts','save-democracy':'save-democracy',save:'save-democracy',portfolio:'portfolio',spotify:'rotation',rotation:'rotation',calculator:'calculator',arduino:'calculator',bot:'bot',ipc:'ipc'};
 const publicProjectIds = [...document.querySelectorAll('[data-project]')].map(card => card.dataset.project);
 const projectCommand = id => 'open ' + (Object.keys(projectAliases).find(key => key.startsWith('khon') && projectAliases[key] === id) || id);
-const completionCommands = [...commands.filter(command => command !== 'open'), ...publicProjectIds.map(projectCommand)];
+const completionCommands = [...commands.filter(command => command !== 'open' && command !== 'ask'), 'ask projects', 'ask agents', 'ask games', ...publicProjectIds.map(projectCommand)];
 // Help lists every command in the same order; command words themselves are never translated.
-const helpCommands = ['about', 'projects', 'work', 'now', 'contact', 'status', 'lore', 'theme', 'open <project>', 'ask', 'email', 'clear', 'close'];
+const helpCommands = ['about', 'projects', 'work', 'now', 'contact', 'status', 'lore', 'theme', 'open <project>', 'ask <question>', 'email', 'clear', 'close'];
 const terminalCopy = {
   en: { welcome: "A few shortcuts around here.", hint: "Projects, a bit about me, or a message. Start below or type help.", status: 'Public builds, kept deliberately small.', lore: 'khonsu came from a Moon Knight reference around 2022.\nIt stuck, so I kept it.', theme: 'Theme switched.', open: 'Choose a project after open. Try: open khonrelay.',
-    commands: { about: 'the person behind the handle', projects: 'selected builds and experiments', now: 'what I’m exploring', contact: 'where to find me', status: 'live public builds', lore: 'why khonsu', theme: 'switch light / dark', open: 'project notes', ask: 'open Ask khonsu', email: 'write to Patrick', clear: 'clear output and history', close: 'back to the page' } },
+    commands: { about: 'the person behind the handle', projects: 'selected builds and experiments', now: 'what I’m exploring', contact: 'where to find me', status: 'live public builds', lore: 'why khonsu', theme: 'switch light / dark', open: 'project notes', ask: 'open Ask khonsu with an optional question', email: 'write to Patrick', clear: 'clear output and history', close: 'back to the page' } },
   sk: { welcome: "Pár skratiek po tomto webe.", hint: "Projekty, niečo o mne alebo správa. Vyber si nižšie alebo napíš help.", status: 'Verejné projekty, zámerne malé.', lore: 'khonsu vzniklo z odkazu na Moon Knight okolo roku 2022.\nOstalo to, tak som si to nechal.', theme: 'Téma prepnutá.', open: 'Za open vyber projekt. Skús: open khonrelay.',
-    commands: { about: 'kto je za prezývkou', projects: 'vybrané projekty a experimenty', now: 'čo práve skúmam', contact: 'kde ma nájdeš', status: 'živé verejné projekty', lore: 'prečo khonsu', theme: 'prepne svetlú / tmavú tému', open: 'poznámky k projektu', ask: 'otvorí Opýtaj sa khonsu', email: 'napíš Patrickovi', clear: 'vymaže výstup a históriu', close: 'späť na stránku' } },
+    commands: { about: 'kto je za prezývkou', projects: 'vybrané projekty a experimenty', now: 'čo práve skúmam', contact: 'kde ma nájdeš', status: 'živé verejné projekty', lore: 'prečo khonsu', theme: 'prepne svetlú / tmavú tému', open: 'poznámky k projektu', ask: 'otvorí Opýtaj sa khonsu s voliteľnou otázkou', email: 'napíš Patrickovi', clear: 'vymaže výstup a históriu', close: 'späť na stránku' } },
   hu: { welcome: "Néhány rövid út az oldalon.", hint: "Projektek, pár szó rólam vagy egy üzenet. Válassz alább, vagy írd be: help.", status: 'Nyilvános projektek, szándékosan kicsik.', lore: 'a khonsu név egy 2022 körüli Moon Knight utalásból jött.\nMegmaradt, ezért megtartottam.', theme: 'Téma váltva.', open: 'Az open után válassz projektet. Példa: open khonrelay.',
-    commands: { about: 'ki áll a név mögött', projects: 'válogatott projektek és kísérletek', now: 'amivel most foglalkozom', contact: 'hol találsz meg', status: 'élő nyilvános projektek', lore: 'miért khonsu', theme: 'világos / sötét téma', open: 'projektjegyzetek', ask: 'megnyitja a Kérdezd khonsut', email: 'írj Patricknak', clear: 'kimenet és előzmények törlése', close: 'vissza az oldalra' } },
+    commands: { about: 'ki áll a név mögött', projects: 'válogatott projektek és kísérletek', now: 'amivel most foglalkozom', contact: 'hol találsz meg', status: 'élő nyilvános projektek', lore: 'miért khonsu', theme: 'világos / sötét téma', open: 'projektjegyzetek', ask: 'megnyitja a Kérdezd khonsut, opcionális kérdéssel', email: 'írj Patricknak', clear: 'kimenet és előzmények törlése', close: 'vissza az oldalra' } },
   pl: { welcome: "Kilka skrótów po tej stronie.", hint: "Projekty, trochę o mnie albo wiadomość. Wybierz niżej lub wpisz help.", status: 'Publiczne projekty, celowo niewielkie.', lore: 'khonsu pochodzi od odniesienia do Moon Knight około 2022 roku.\nZostało ze mną, więc je zachowałem.', theme: 'Motyw przełączony.', open: 'Po open wybierz projekt. Spróbuj: open khonrelay.',
-    commands: { about: 'kto stoi za nickiem', projects: 'wybrane projekty i eksperymenty', now: 'co teraz sprawdzam', contact: 'gdzie mnie znaleźć', status: 'publiczne projekty na żywo', lore: 'skąd khonsu', theme: 'jasny / ciemny motyw', open: 'notatki o projekcie', ask: 'otwiera Zapytaj khonsu', email: 'napisz do Patricka', clear: 'czyści wynik i historię', close: 'powrót do strony' } },
+    commands: { about: 'kto stoi za nickiem', projects: 'wybrane projekty i eksperymenty', now: 'co teraz sprawdzam', contact: 'gdzie mnie znaleźć', status: 'publiczne projekty na żywo', lore: 'skąd khonsu', theme: 'jasny / ciemny motyw', open: 'notatki o projekcie', ask: 'otwiera Zapytaj khonsu z opcjonalnym pytaniem', email: 'napisz do Patricka', clear: 'czyści wynik i historię', close: 'powrót do strony' } },
   de: { welcome: "Ein paar Abkürzungen durch die Seite.", hint: "Projekte, etwas über mich oder eine Nachricht. Wähle unten oder tippe help.", status: 'Öffentliche Projekte, bewusst klein gehalten.', lore: 'khonsu stammt von einer Moon-Knight-Referenz um 2022.\nDer Name blieb, also habe ich ihn behalten.', theme: 'Theme gewechselt.', open: 'Wähle ein Projekt nach open. Versuch: open khonrelay.',
-    commands: { about: 'wer hinter dem Namen steckt', projects: 'ausgewählte Projekte und Experimente', now: 'was ich gerade ausprobiere', contact: 'wo du mich findest', status: 'öffentliche Live-Projekte', lore: 'warum khonsu', theme: 'helles / dunkles Theme', open: 'Projektnotizen', ask: 'öffnet Frag khonsu', email: 'Patrick schreiben', clear: 'Ausgabe und Verlauf leeren', close: 'zurück zur Seite' } },
+    commands: { about: 'wer hinter dem Namen steckt', projects: 'ausgewählte Projekte und Experimente', now: 'was ich gerade ausprobiere', contact: 'wo du mich findest', status: 'öffentliche Live-Projekte', lore: 'warum khonsu', theme: 'helles / dunkles Theme', open: 'Projektnotizen', ask: 'öffnet Frag khonsu mit einer optionalen Frage', email: 'Patrick schreiben', clear: 'Ausgabe und Verlauf leeren', close: 'zurück zur Seite' } },
   es: { welcome: "Algunos atajos por aquí.", hint: "Proyectos, un poco sobre mí o un mensaje. Elige abajo o escribe help.", status: 'Proyectos públicos, deliberadamente pequeños.', lore: 'khonsu viene de una referencia a Moon Knight alrededor de 2022.\nSe quedó, así que lo mantuve.', theme: 'Tema cambiado.', open: 'Elige un proyecto después de open. Prueba: open khonrelay.',
-    commands: { about: 'quién está detrás del nombre', projects: 'proyectos y experimentos seleccionados', now: 'lo que estoy explorando', contact: 'dónde encontrarme', status: 'proyectos públicos en vivo', lore: 'por qué khonsu', theme: 'tema claro / oscuro', open: 'notas del proyecto', ask: 'abre Pregunta a khonsu', email: 'escribir a Patrick', clear: 'borra la salida y el historial', close: 'volver a la página' } },
+    commands: { about: 'quién está detrás del nombre', projects: 'proyectos y experimentos seleccionados', now: 'lo que estoy explorando', contact: 'dónde encontrarme', status: 'proyectos públicos en vivo', lore: 'por qué khonsu', theme: 'tema claro / oscuro', open: 'notas del proyecto', ask: 'abre Pregunta a khonsu con una pregunta opcional', email: 'escribir a Patrick', clear: 'borra la salida y el historial', close: 'volver a la página' } },
   cs: { welcome: "Pár zkratek po tomto webu.", hint: "Projekty, něco o mně nebo zpráva. Vyber si níže nebo napiš help.", status: 'Veřejné projekty, záměrně malé.', lore: 'khonsu vzniklo z odkazu na Moon Knight kolem roku 2022.\nZůstalo to, tak jsem si to nechal.', theme: 'Motiv přepnut.', open: 'Za open vyber projekt. Zkus: open khonrelay.',
-    commands: { about: 'kdo je za přezdívkou', projects: 'vybrané projekty a experimenty', now: 'co teď zkoumám', contact: 'kde mě najdeš', status: 'živé veřejné projekty', lore: 'proč khonsu', theme: 'přepne světlý / tmavý motiv', open: 'poznámky k projektu', ask: 'otevře Zeptej se khonsu', email: 'napiš Patrickovi', clear: 'vymaže výstup a historii', close: 'zpět na stránku' } }
+    commands: { about: 'kdo je za přezdívkou', projects: 'vybrané projekty a experimenty', now: 'co teď zkoumám', contact: 'kde mě najdeš', status: 'živé veřejné projekty', lore: 'proč khonsu', theme: 'přepne světlý / tmavý motiv', open: 'poznámky k projektu', ask: 'otevře Zeptej se khonsu s volitelnou otázkou', email: 'napiš Patrickovi', clear: 'vymaže výstup a historii', close: 'zpět na stránku' } }
 };
 // Commands stay in English so examples and completion work in every locale.
 // Added languages arrive as separate packs, possibly after this file runs.
@@ -108,7 +108,9 @@ function run(raw) {
   const command = raw.trim().toLowerCase();
   if (!command) return;
   const [verb, ...arguments_] = command.split(/\s+/);
-  const argument = arguments_.join(' ');
+  const [, ...rawArguments] = raw.trim().split(/\s+/);
+  const argument = rawArguments.join(' ');
+  const normalizedArgument = argument.toLowerCase();
   history.push(raw.trim()); if (history.length > 60) history.shift();
   historyPosition = history.length; draft = ''; input.value = '';
   renderSuggestions();
@@ -133,11 +135,17 @@ function run(raw) {
     responses.work[0] = sectionText('.work-detail > p:not(.eyebrow)');
   }
   if (verb === 'open') {
-    const id = (Object.hasOwn(projectAliases, argument) ? projectAliases[argument] : null) || (catalog.some(item => item.id === argument) ? argument : null);
+    const id = (Object.hasOwn(projectAliases, normalizedArgument) ? projectAliases[normalizedArgument] : null) || (catalog.some(item => item.id === normalizedArgument) ? normalizedArgument : null);
     if (!id) write(raw.trim(), terminalStrings().open);
     else { terminal.close(); showProject(id); }
   }
-  else if (command === 'ask') window.PortfolioPanels.open('guide-dialog');
+  else if (verb === 'ask') {
+    const suggestions={projects:'Recommend projects for me',agents:'Recommend agent projects',games:'Recommend game projects'};
+    const question=suggestions[normalizedArgument]||argument;
+    const guideInput=document.querySelector('#guide-question');
+    if(guideInput)guideInput.value=question;
+    window.PortfolioPanels.open('guide-dialog',guideInput?'#guide-question':null);
+  }
   else if (command === 'email') window.PortfolioPanels.open('email-dialog', 'input[type="email"]');
   else if (command === 'theme') { document.querySelector('#theme-toggle').click(); write(command, terminalStrings().theme); }
   else if (command === 'clear') { output.replaceChildren(); history.length = 0; historyPosition = 0; draft = ''; }

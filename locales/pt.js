@@ -329,7 +329,7 @@
       "lore": "porquê khonsu",
       "theme": "alternar claro / escuro",
       "open": "notas do projeto",
-      "ask": "abrir Perguntar ao khonsu",
+      "ask": "abrir Perguntar ao khonsu com uma pergunta opcional",
       "email": "escrever ao Patrick",
       "clear": "limpar resultados e histórico",
       "close": "voltar à página"

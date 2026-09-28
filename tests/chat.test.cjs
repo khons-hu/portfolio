@@ -40,10 +40,11 @@ test('rate limit, malformed, truncated and failed responses fall back without pr
  }
  const result=await reply(valid,{env:{GROQ_API_KEY:'secret'},fetcher:async()=>{throw Error('secret');}});assert.deepEqual(result.body,{error:'unavailable'});
 });
-test('AI disclosure exists for all seventeen portfolio languages',()=>{
+test('AI and project recommendation controls are translated for all seventeen portfolio languages',()=>{
  assert.equal(Object.keys(copy).length,17);for(const row of Object.values(copy)){assert.equal(row.length,5);assert(row.every(s=>s.length>0));assert.match(row[1],/Groq/);}
  assert.equal(Object.keys(copy.offline).length,17);for(const [language,row] of Object.entries(copy.offline)){assert.equal(row.length,2,language);assert(row.every(s=>s.length>0),language);assert.match(row[0],/Groq|Groq|گروک|Грок|格罗克|グロク|ग्रोक|جروک|গ্রক/iu,language);}
- assert.equal(Object.keys(copy.recommendations).length,17);for(const row of Object.values(copy.recommendations))for(const value of Object.values(row))assert(value.length>0);
+ assert.equal(Object.keys(copy.recommendations).length,17);for(const [language,row] of Object.entries(copy.recommendations)){for(const value of Object.values(row))assert(value.length>0,language);for(const key of ['whyTitle','whyText','compareLabel','compareAria','addToCompare','removeFromCompare','compareTitle','selectedCount'])assert(row[key],`${language}.${key}`);assert(row.compareLabel.includes('{count}'),language);}
+ const {EXTRA_LOCALE_PACKS}=require('../language-data.js');for(const [language,pack] of Object.entries(EXTRA_LOCALE_PACKS))assert.match(pack.terminal.commands.ask,/question|pregunta|pergunta|frage|вопрос|質問|问题|سوال|اختياري|वैकल्पिक|ಪ್ರಶ್ನ|প্রশ্ন|pertanyaan/iu,language);
 });
 
 test('HTTP boundary rejects cross-origin, unsupported methods and oversized payloads',async()=>{

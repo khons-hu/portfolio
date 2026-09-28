@@ -347,6 +347,7 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 .guide-recommendation-title{min-width:0;margin:0;color:var(--muted);font:500 11px/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase}
 .guide-recommendation-controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .guide-recommendation-controls button{display:grid;place-items:center;width:38px;height:38px;padding:0;border:1px solid var(--line-strong);border-radius:50%;background:var(--surface);color:var(--ink);font:22px/1 var(--sans)}
+.guide-recommendation-controls .guide-recommendation-compare{display:inline-flex;width:auto;min-width:92px;height:38px;align-items:center;justify-content:center;padding:0 10px;border-radius:999px;font:500 12px/1.2 var(--sans);white-space:nowrap}
 .guide-recommendation-controls button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
 .guide-recommendation-controls button:disabled{opacity:.38;cursor:default}
 .guide-recommendation-position{min-width:42px;color:var(--muted);font:12px/1.4 var(--mono);text-align:center;direction:ltr;unicode-bidi:isolate}
@@ -360,6 +361,19 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 .guide-recommendation-actions :is(button,a):focus-visible,.guide-recommendation-controls button:focus-visible,.guide-recommendation-track:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .guide-recommendation-track:focus-visible{border-radius:8px}
 .guide-recommendation-actions a:hover,.guide-recommendation-actions button:hover{color:var(--ink)}
+.guide-recommendation-actions .guide-recommendation-compare-toggle[aria-pressed=true]{color:var(--accent);text-decoration-thickness:2px}
+.guide-recommendation-actions button:disabled{opacity:.42;cursor:default}
+.guide-recommendation-why{margin:0 0 9px;color:var(--muted);font:12px/1.5 var(--sans)}
+.guide-recommendation-why summary{width:max-content;max-width:100%;cursor:pointer;color:var(--accent);text-underline-offset:3px}
+.guide-recommendation-why p{margin:6px 0 0}
+.guide-recommendation-why summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.guide-comparison{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.guide-comparison[hidden]{display:none}
+.guide-comparison>h5{margin:0 0 9px;color:var(--muted);font:500 11px/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.guide-comparison-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:8px}
+.guide-comparison-card{min-width:0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.guide-comparison-card h6{margin:0 0 6px;color:var(--ink);font:500 15px/1.35 var(--sans)}
+.guide-comparison-card .guide-recommendation-description{margin-bottom:10px}
 
 /* Email */
 #email-panel-content .page-contact{padding:0;background:none;border:0;border-radius:0}
@@ -431,7 +445,7 @@ html[data-theme=light] #theme-toggle::after{background:#315f7c}
 /* Fallback without View Transitions (theme.js adds .theme-fade): colours fade only on the page ground and the
    surfaces that carry their own colour; inherited text follows body. No filter, shadow, opacity or pseudo-element
    transitions, so the hero photo switches at once. Touch screens get it only when Motion is explicitly On. */
-html.theme-fade:not(.motion-off):not(.page-hidden) :is(body,dialog,.about-section,.project-card,.replay,.skill-card,.skill-card pre,.page-contact,.now-grid article,.panel-composer,.composer-field,#guide-launcher,.lang-picker,#theme-toggle,.terminal-toggle,#motion-toggle,.project-filters button,.project-live,#project-search,.guide-contact :is(input,textarea),.contact-actions button,em,.eyebrow,.hero-copy,.section-heading>p,.section-note,.project-info p,.project-meta,.case-body :is(dt,dd),.lab-intro>p,.library-heading>p,.skill-card>p,.shipped-list :is(p,time),.now-grid p,.about-intro>p,.work-detail>p,.practice details p,.source-language,.now-listening,footer>span,.site-header nav){transition:background-color 420ms var(--ease),color 420ms var(--ease),border-color 420ms var(--ease)!important}
+html.theme-fade:not(.motion-off):not(.page-hidden) :is(body,dialog,.about-section,.project-card,.replay,.replay-picker select,.skill-card,.skill-card pre,.page-contact,.now-grid article,.panel-composer,.composer-field,#guide-launcher,.lang-picker,#theme-toggle,.terminal-toggle,#motion-toggle,.project-filters button,.project-live,#project-search,.guide-contact :is(input,textarea),.contact-actions button,.guide-recommendations,.guide-recommendation-card,.guide-recommendation-controls button,.guide-comparison-card,em,.eyebrow,.hero-copy,.section-heading>p,.section-note,.project-info p,.project-meta,.case-body :is(dt,dd),.lab-intro>p,.library-heading>p,.skill-card>p,.shipped-list :is(p,time),.now-grid p,.about-intro>p,.work-detail>p,.practice details p,.source-language,.now-listening,footer>span,.site-header nav){transition:background-color 420ms var(--ease),color 420ms var(--ease),border-color 420ms var(--ease)!important}
 @keyframes theme-halo{0%{opacity:0;transform:scale(.72)}28%{opacity:.72;transform:scale(.96)}100%{opacity:0;transform:scale(1.35)}}
 @keyframes theme-arc{0%{opacity:0;transform:rotate(8deg) translateY(-3px) scale(.68)}24%{opacity:.88;transform:rotate(8deg) translateY(0) scale(1)}48%{opacity:.24;transform:rotate(8deg) translateY(1px) scale(.94)}100%{opacity:0;transform:rotate(8deg) translateY(3px) scale(.82)}}
 .motion-off #theme-toggle::before,.motion-off #theme-toggle::after,.page-hidden #theme-toggle::before,.page-hidden #theme-toggle::after{display:none;animation:none!important}
@@ -505,8 +519,11 @@ html.motion-off::view-transition-group(*),html.motion-off::view-transition-old(*
   .panel-composer{padding:10px 12px 8px}
   #terminal-suggestions,.guide-suggestions{margin-inline:-12px;padding-inline:12px}
   .guide-recommendations{margin-inline:-2px;padding:10px}
+  .guide-recommendation-head{align-items:flex-start;flex-direction:column}
+  .guide-recommendation-controls{width:100%;justify-content:flex-start}
   .guide-recommendation-card{flex-basis:88%;min-height:172px;padding:12px}
   .guide-recommendation-controls button{width:40px;height:40px}
+  .guide-recommendation-controls .guide-recommendation-compare{width:auto;min-width:92px;height:40px}
   .panel-lead{font-size:22px}
   .terminal-help{gap:4px 14px}
   #guide-launcher{inset-inline-end:14px;bottom:14px;width:52px;height:52px;min-height:0;padding:0;justify-content:center;gap:0}
@@ -662,6 +679,10 @@ html.js .now-listening:not([data-state]) .listening-status,.now-listening[data-s
 .lab-intro .source-language{margin-bottom:12px}
 .replay{min-width:0;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .replay-heading{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;padding:16px 24px;border-bottom:1px solid var(--line);color:var(--muted);font:11px/1.6 var(--mono);letter-spacing:.04em}
+.replay-picker{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:12px 24px;border-bottom:1px solid var(--line);color:var(--muted);font:11px/1.5 var(--mono)}
+.replay-picker[hidden]{display:none}
+.replay-picker select{max-width:100%;min-height:38px;padding:0 32px 0 12px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface-2);color:var(--ink);font:500 12px/1.4 var(--sans)}
+.replay-picker select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #replay-stage{padding:28px 30px;min-height:370px}
 #replay-stage>.eyebrow{margin-bottom:14px}
 #replay-title{margin:0 0 12px;font:500 22px/1.35 var(--sans);letter-spacing:-.01em;text-wrap:balance}
@@ -711,6 +732,8 @@ html.js .now-listening:not([data-state]) .listening-status,.now-listening[data-s
   .case-body dl div{grid-template-columns:1fr;gap:4px}
   #replay-stage{padding:24px 20px;min-height:405px}
   .replay-heading{padding:14px 20px}
+  .replay-picker{padding:12px 16px;align-items:flex-start;flex-direction:column}
+  .replay-picker select{width:100%}
   .replay-controls{padding:14px 12px;gap:6px}
   .replay-controls button{padding:0 12px}
   .skill-card{padding:20px 18px}

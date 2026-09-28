@@ -329,7 +329,7 @@
       "lore": "asal nama khonsu",
       "theme": "alih terang / gelap",
       "open": "catatan proyek",
-      "ask": "buka Tanya khonsu",
+      "ask": "buka Tanya khonsu dengan pertanyaan opsional",
       "email": "tulis email ke Patrick",
       "clear": "hapus keluaran dan riwayat",
       "close": "kembali ke halaman"

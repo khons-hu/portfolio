@@ -1,23 +1,28 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const {steps,clamp,copySkill,mount}=require('../field-notes.js');
+const {scenarios,clamp,copySkill,mount}=require('../field-notes.js');
 const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
 function harness(clipboard){
  const nodes=new Map();
- function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',hidden:true,disabled:false,dataset:{},children:[],events:{},addEventListener(k,f){this.events[k]=f;},append(x){this.children.push(x);},replaceChildren(...xs){this.children=xs;},focus(){this.focused=true;},closest(){return node('details');}});return nodes.get(id);}
+ function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',hidden:true,disabled:false,value:id==='#replay-scenario'?'18':'',dataset:{},children:[],events:{},addEventListener(k,f){this.events[k]=f;},append(x){this.children.push(x);},replaceChildren(...xs){this.children=xs;},focus(){this.focused=true;},closest(){return node('details');}});return nodes.get(id);}
  const button=node('copy');button.dataset.copySkill='skill-source';node('skill-source').textContent='original skill\n';
  const doc={querySelector:node,getElementById:node,querySelectorAll:()=>[button],createElement:()=>({children:[],append(x){this.children.push(x);}})};
  mount(doc,clipboard);return {node,click:id=>node(id).events.click()};
 }
-test('replay navigates its boundaries, resets, and never changes the recorded result',()=>{
+test('recorded examples switch, reset and navigate without changing their published outcomes',()=>{
  const {node,click}=harness();assert(node('#replay-prev').disabled);assert.equal(node('.replay-controls').hidden,false);
  click('#replay-prev');assert.match(node('#replay-count').textContent,/01 \/ 05/);
  for(let i=0;i<4;i++)click('#replay-next');assert(node('#replay-next').disabled);assert.match(node('#replay-copy').textContent,/not a corrected run/);
  click('#replay-next');assert.match(node('#replay-count').textContent,/05 \/ 05/);
  click('#replay-prev');assert.equal(node('#replay-title').textContent,'Completed request. Failed check.');
  click('#replay-reset');assert(node('#replay-prev').disabled);assert(!node('#replay-next').disabled);
- assert.equal(clamp(-1),0);assert.equal(clamp(99),steps.length-1);
+ node('#replay-scenario').value='05';node('#replay-scenario').events.change();
+ assert.equal(node('#replay-task').textContent,'TASK 05 / JEV 1.13.0');assert.equal(node('#replay-date').textContent,'20 SEP 2026');
+ assert.equal(node('#replay-title').textContent,'Open project details, not the live app.');assert.match(node('#replay-copy').textContent,/not a browser interaction/);
+ node('#replay-scenario').value='16';node('#replay-scenario').events.change();
+ assert.equal(node('#replay-task').textContent,'TASK 16 / JEV 1.13.0');assert.match(node('#replay-evidence').children[0].children[0].textContent,/Original release notes/);
+ assert.equal(clamp(-1),0);assert.equal(clamp(99,scenarios['16'].steps.length),scenarios['16'].steps.length-1);
 });
 test('copy success is reported only after writing, and failure exposes the original source',async()=>{
  let copied;const ok=harness({writeText:async text=>copied=text});await ok.click('copy');assert.equal(copied,'original skill\n');assert.match(ok.node('#skill-copy-status').textContent,/Skill copied/);assert(!ok.node('copy').disabled);
@@ -30,9 +35,15 @@ test('replay is grounded in the unchanged published report, including failure an
  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),'fe9b53ff86d8e726d19823c258517f5a0598fcf966c24a1cfb2db3df1e8a8e0e');
  const report=JSON.parse(bytes),run=report.runs.find(r=>r.taskId==='18'&&r.method==='Jev 1.13.0');
  assert.equal(run.passed,false);assert.equal(run.choice,'0');assert.equal(run.expected,'1');
- assert(steps[2].evidence.includes(`Elapsed: ${run.elapsedMs} ms`));
- assert(steps[2].evidence.includes(`Input: ${run.inputTokens} tokens · Output: ${run.outputTokens} tokens`));
- assert.match(report.scope,/No browser execution/);assert.match(steps[4].copy,/proposed follow-up/);
+ assert(scenarios['18'].steps[2].evidence.includes(`Elapsed: ${run.elapsedMs} ms`));
+ assert(scenarios['18'].steps[2].evidence.includes(`Input: ${run.inputTokens} tokens · Output: ${run.outputTokens} tokens`));
+ for(const id of ['05','16']){
+  const jev=report.runs.find(r=>r.taskId===id&&r.method==='Jev 1.13.0'),baseline=report.runs.find(r=>r.taskId===id&&r.method==='Keyword baseline');
+  assert.equal(jev.passed,true,id);assert.equal(baseline.passed,false,id);
+  assert(scenarios[id].steps[2].evidence.some(line=>line.includes(`Elapsed: ${jev.elapsedMs} ms`)),id);
+  assert(scenarios[id].steps[3].evidence.includes(`Jev passed: ${jev.passed} · Baseline passed: ${baseline.passed}`),id);
+ }
+ assert.match(report.scope,/No browser execution/);assert.match(scenarios['18'].steps[4].copy,/proposed follow-up/);
 });
 test('all three downloadable skills exactly match the readable source and stay usable without JavaScript',()=>{
  for(const slug of ['choose-an-action','check-a-claim','verify-a-change']){

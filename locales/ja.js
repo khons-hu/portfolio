@@ -329,7 +329,7 @@
       "lore": "khonsuの由来",
       "theme": "ライト / ダークを切り替える",
       "open": "プロジェクトのメモ",
-      "ask": "khonsuへの質問を開く",
+      "ask": "任意の質問を入力して khonsu に聞く",
       "email": "Patrickにメールを書く",
       "clear": "出力と履歴を消す",
       "close": "ページに戻る"

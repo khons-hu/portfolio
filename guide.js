@@ -165,7 +165,7 @@
       const outside=source?.querySelector('.project-live');
       const href=outside?.href;
       if(!source||!title||!summary||!meta||!href||new URL(href,location.href).protocol!=='https:')return null;
-      return {id,title,summary,meta,href,label:outside.textContent.trim()};
+      return {id,title,summary,meta,href,label:outside.textContent.trim(),kind:outside.dataset.kind||'external'};
     }).filter(Boolean);
     if(!projects.length)return;
     const carousel=document.createElement('section');carousel.className='guide-recommendations';carousel.setAttribute('role','region');carousel.setAttribute('aria-roledescription','carousel');carousel.setAttribute('aria-label',copy.heading);carousel.lang=language;carousel.dir=localeData.languageDirection(language);
@@ -175,8 +175,15 @@
     const position=document.createElement('span');position.className='guide-recommendation-position';position.setAttribute('aria-live','polite');position.setAttribute('aria-atomic','true');
     const previous=document.createElement('button');previous.type='button';previous.className='guide-recommendation-previous';previous.textContent='‹';previous.setAttribute('aria-label',copy.previous);
     const next=document.createElement('button');next.type='button';next.className='guide-recommendation-next';next.textContent='›';next.setAttribute('aria-label',copy.next);
-    controls.append(previous,position,next);heading.append(title,controls);
+    const compare=document.createElement('button');compare.type='button';compare.className='guide-recommendation-compare';compare.textContent=copy.compareLabel.replace('{count}','0');compare.setAttribute('aria-label',copy.compareAria.replace('{count}','0'));compare.disabled=true;compare.setAttribute('aria-expanded','false');
+    controls.append(previous,position,next,compare);heading.append(title,controls);
+    const why=document.createElement('details');why.className='guide-recommendation-why';
+    const whyTitle=document.createElement('summary');whyTitle.textContent=copy.whyTitle;
+    const whyText=document.createElement('p');whyText.textContent=copy.whyText;
+    why.append(whyTitle,whyText);
     const track=document.createElement('div');track.className='guide-recommendation-track';track.tabIndex=0;track.setAttribute('role','group');track.setAttribute('aria-label',copy.heading);
+    const comparison=document.createElement('section');comparison.className='guide-comparison';comparison.hidden=true;comparison.setAttribute('role','region');comparison.setAttribute('aria-label',copy.compareTitle);
+    const selected=new Set();let compareOpen=false;
     const slides=projects.map((project,index)=>{
       const slide=document.createElement('article');slide.className='guide-recommendation-card';slide.setAttribute('role','group');slide.setAttribute('aria-roledescription','slide');
       slide.setAttribute('aria-label',copy.position.replace('{current}',String(index+1)).replace('{total}',String(projects.length)));slide.dir=localeData.languageDirection(language);
@@ -184,12 +191,45 @@
       const name=document.createElement('h5');name.textContent=project.title;
       const description=document.createElement('p');description.className='guide-recommendation-description';description.textContent=project.summary;
       const actions=document.createElement('div');actions.className='guide-recommendation-actions';
+      const toggle=document.createElement('button');toggle.type='button';toggle.className='guide-recommendation-compare-toggle';toggle.textContent=copy.addToCompare;toggle.setAttribute('aria-pressed','false');
       const notes=document.createElement('button');notes.type='button';notes.className='guide-recommendation-notes';notes.textContent=copy.notes;
       notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
       const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);
-      actions.append(notes,link);slide.append(meta,name,description,actions);return slide;
+      toggle.addEventListener('click',()=>{
+        if(selected.has(project.id))selected.delete(project.id);
+        else if(selected.size<3)selected.add(project.id);
+        updateComparison();
+      });
+      actions.append(toggle,notes,link);slide.append(meta,name,description,actions);return {slide,project,toggle};
     });
-    track.append(...slides);carousel.append(heading,track);row.append(carousel);
+    track.append(...slides.map(item=>item.slide));carousel.append(heading,why,track,comparison);row.append(carousel);
+    const updateComparison=()=>{
+      compare.textContent=copy.compareLabel.replace('{count}',String(selected.size));
+      compare.setAttribute('aria-label',copy.compareAria.replace('{count}',String(selected.size)));
+      compare.disabled=selected.size<2;
+      slides.forEach(({project,toggle})=>{
+        const active=selected.has(project.id);toggle.textContent=active?copy.removeFromCompare:copy.addToCompare;toggle.setAttribute('aria-pressed',String(active));toggle.disabled=!active&&selected.size>=3;
+      });
+      if(compareOpen)renderComparison();
+    };
+    const renderComparison=()=>{
+      const heading=document.createElement('h5');heading.textContent=copy.compareTitle;
+      const grid=document.createElement('div');grid.className='guide-comparison-grid';grid.setAttribute('role','list');
+      for(const {project} of slides.filter(item=>selected.has(item.project.id))){
+        const card=document.createElement('article');card.className='guide-comparison-card';card.setAttribute('role','listitem');card.dir=localeData.languageDirection(language);
+        const name=document.createElement('h6');name.textContent=project.title;
+        const meta=document.createElement('p');meta.className='guide-recommendation-meta';meta.textContent=project.meta;
+        const summary=document.createElement('p');summary.className='guide-recommendation-description';summary.textContent=project.summary;
+        const actions=document.createElement('div');actions.className='guide-recommendation-actions';
+        const notes=document.createElement('button');notes.type='button';notes.textContent=copy.notes;notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
+        const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);
+        link.dataset.kind=project.kind;
+        actions.append(notes,link);card.append(name,meta,summary,actions);grid.append(card);
+      }
+      comparison.replaceChildren(heading,grid);comparison.hidden=!compareOpen;
+    };
+    compare.addEventListener('click',()=>{compareOpen=!compareOpen;compare.setAttribute('aria-expanded',String(compareOpen));renderComparison();});
+    updateComparison();
     let activeIndex=0,frame=0;
     const setActive=index=>{
       activeIndex=Math.max(0,Math.min(slides.length-1,index));
@@ -199,7 +239,7 @@
     const move=delta=>{
       const index=Math.max(0,Math.min(slides.length-1,activeIndex+delta));
       if(index===activeIndex)return;
-      const trackBox=track.getBoundingClientRect(),slideBox=slides[index].getBoundingClientRect();
+      const trackBox=track.getBoundingClientRect(),slideBox=slides[index].slide.getBoundingClientRect();
       track.scrollTo({left:track.scrollLeft+slideBox.left-trackBox.left,behavior:root.classList.contains('js-motion')&&!document.hidden?'smooth':'instant'});
       setActive(index);
     };

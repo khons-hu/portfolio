@@ -46,8 +46,12 @@ test('history restores an unfinished command and clear empties output and histor
  s.key('ArrowDown');assert.equal(s.node('#command').value,'unfinished');s.run('clear');
  assert.equal(s.node('#terminal-output').children.length,0);assert.equal(vm.runInContext('history.length',s.context),0);
 });
-test('ask and email only switch panels and unknown input remains inert',()=>{
- const s=setup();s.run('ask');s.run('email');assert.deepEqual(s.panels,[['guide-dialog'],['email-dialog','input[type="email"]']]);
+test('ask prefills the guide for project or agent questions and email stays separate',()=>{
+ const s=setup();s.run('ask projects');assert.equal(s.node('#guide-question').value,'Recommend projects for me');
+ s.run('ask agents');assert.equal(s.node('#guide-question').value,'Recommend agent projects');
+ s.run('ask How does this site work?');assert.equal(s.node('#guide-question').value,'How does this site work?');
+ s.run('ask');s.run('email');assert.deepEqual(s.panels,[['guide-dialog','#guide-question'],['guide-dialog','#guide-question'],['guide-dialog','#guide-question'],['guide-dialog','#guide-question'],['email-dialog','input[type="email"]']]);
+ const suggestions=vm.runInContext('completionCommands',s.context);assert(suggestions.includes('ask projects'));assert(suggestions.includes('ask agents'));
  for(const input of ['constructor','__proto__','open constructor','<img src=x onerror=alert(1)>'])assert.doesNotThrow(()=>s.run(input));
  assert.equal(s.opened.length,0);assert.match(s.node('#terminal-output').textContent,/<img src=x onerror=alert\(1\)>/);
 });
