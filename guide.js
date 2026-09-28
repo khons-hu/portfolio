@@ -62,7 +62,18 @@
     if (/\b(hola|buenas|hello|hi|hey|ahoj|cau|szia|udv|czesc|hej|hallo|servus)\b/.test(q) && q.split(' ').length < 4) return {text:loc?.greeting||(sk?'Ahoj! Som lokálny sprievodca portfóliom, nie Patrick ani AI model. Čo ťa zaujíma?':'Hey! I’m a local portfolio guide, not Patrick or an AI model. What would you like to explore?')};
     const scored = topics.map(topic => ({topic,score:topic.keys.reduce((score,key)=>score+(matchesKey(q,key)?key.includes(' ')?3:2:0),0)})).sort((a,b)=>b.score-a.score);
     if (!scored[0].score) return {text:loc?.fallback||(sk?'Toto neviem spoľahlivo priradiť. Skús prácu, projekty, AI agents, Spotify alebo kontakt. Poznám iba pripravené informácie z tohto webu.':'I can’t reliably match that question. Try work, projects, AI agents, Spotify, or contact. I only know the prepared information on this site.')};
-    const t=scored[0].topic;return {text:t.translations?.[language]||packGuide(language)?.answers?.[t.id]||t[language]||t.en,project:t.project,section:t.section};
+    const t=scored[0].topic;
+    const result={text:t.translations?.[language]||packGuide(language)?.answers?.[t.id]||t[language]||t.en,project:t.project,section:t.section};
+    if(t.id==='projects'||t.id==='games'||t.id==='dots')result.recommendations=localRecommendations(q,t.id==='dots'?'games':t.id);
+    return result;
+  }
+  function localRecommendations(question,topic='projects'){
+    if(/\b(game|games|gaming|play|juego|jogos|spiel|gry|hry|hra)\b/.test(question))return ['receipts','dots','save-democracy'];
+    if(/\b(spotify|music|playlist|musica|musik|muzyka|zene)\b/.test(question))return ['rotation','bot'];
+    if(/\b(finance|market|polymarket|invest|trading|stocks|peniaze|rynku|rynok)\b/.test(question))return ['market','steam'];
+    if(/\b(code|coding|debug|logic|learn|practice|python|typescript|programming|kod|programovanie|nauc)\b/.test(question))return ['thinkroom','proof','calculator'];
+    if(/\b(agent|agents|ai|llm|model|research|agi|rl|reinforcement)\b/.test(question))return ['proof','signal','thinkroom'];
+    return topic==='games'?['receipts','dots','save-democracy']:['proof','signal','thinkroom','market'];
   }
   // Replies stay plain text. Light Markdown a model may still send loses its markers instead of showing them.
   function tidy(text){
@@ -77,7 +88,7 @@
       .replace(/`([^`\n]+)`/g,'$1').replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,'$1 ($2)')
       .replace(/[ \t]+$/gm,'').replace(/\n{3,}/g,'\n\n').trim();
   }
-  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui,tidy};
+  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui,tidy,localRecommendations};
   if (typeof document === 'undefined') return;
   const dialog=document.querySelector('#guide-dialog'),log=document.querySelector('#guide-log'),input=document.querySelector('#guide-question'),lang=document.querySelector('#guide-language');
   const body=dialog.querySelector('.guide-body'),submit=document.querySelector('#guide-form button'),status=document.querySelector('#guide-status'),chips=[...document.querySelectorAll('[data-question]')];
@@ -102,7 +113,10 @@
   },{passive:true});
   fitGuideViewport();
   function translateUI(){
-    const base=ui(lang.value).slice();if(aiAvailable){const c=aiCopy();base[0]=c[0];base[1]=c[1];base[11]=c[2];}
+    const base=ui(lang.value).slice(),c=aiCopy();
+    base[0]=c[0];
+    if(aiAvailable){base[1]=c[1];base[11]=c[2];}
+    else{const offline=CHAT_COPY.offline?.[lang.value]||CHAT_COPY.offline.en;base[1]=offline[0];base[11]=offline[1];}
     const t=base.map(text=>localeData.directionalText(text,lang.value));dialog.lang=lang.value;dialog.dir=localeData.languageDirection(lang.value);
     const pageText=text=>globalThis.PortfolioI18n?.t(text,lang.value)||text;
     const tabNames={'terminal-dialog':'Terminal','guide-dialog':'Ask khonsu','email-dialog':'Email'};
@@ -131,6 +145,7 @@
     if(note)paragraph(note,'guide-note');
     // Paragraph breaks become separate paragraphs; single line breaks stay as written (pre-line).
     for(const part of who==='guide'?String(text).split(/\n{2,}/):[text])paragraph(part);
+    if(who==='guide'&&Array.isArray(result?.recommendations))renderRecommendations(row,result.recommendations,language);
     if(result&&(result.project||result.section)){
       // Project notes and sections stay on this page, so they use → rather than the outside-link ↗.
       const button=document.createElement('button');button.type='button';button.className='guide-action';button.textContent=ui(language)[result.project?6:7].replace('↗',localeData.languageDirection(language)==='rtl'?'←':'→');
@@ -138,6 +153,63 @@
     }
     log.append(row);while(log.children.length>30)log.firstElementChild.remove();
     return row;
+  }
+  function renderRecommendations(row,ids,language){
+    const copy=CHAT_COPY.recommendations?.[language]||CHAT_COPY.recommendations.en;
+    const sources=[...document.querySelectorAll('.project-card')];
+    const projects=[...new Set(ids)].slice(0,4).map(id=>{
+      const source=sources.find(card=>card.querySelector('.project-details')?.dataset.project===id);
+      const title=source?.querySelector('.project-info h3')?.textContent?.trim();
+      const summary=source?.querySelector('.project-info p')?.textContent?.trim();
+      const meta=[...(source?.querySelectorAll('.project-meta span')||[])].map(part=>part.textContent.trim()).filter(Boolean).join(' · ');
+      const outside=source?.querySelector('.project-live');
+      const href=outside?.href;
+      if(!source||!title||!summary||!meta||!href||new URL(href,location.href).protocol!=='https:')return null;
+      return {id,title,summary,meta,href,label:outside.textContent.trim()};
+    }).filter(Boolean);
+    if(!projects.length)return;
+    const carousel=document.createElement('section');carousel.className='guide-recommendations';carousel.setAttribute('role','region');carousel.setAttribute('aria-roledescription','carousel');carousel.setAttribute('aria-label',copy.heading);carousel.lang=language;carousel.dir=localeData.languageDirection(language);
+    const heading=document.createElement('div');heading.className='guide-recommendation-head';
+    const title=document.createElement('h4');title.className='guide-recommendation-title';title.textContent=copy.heading;
+    const controls=document.createElement('div');controls.className='guide-recommendation-controls';
+    const position=document.createElement('span');position.className='guide-recommendation-position';position.setAttribute('aria-live','polite');position.setAttribute('aria-atomic','true');
+    const previous=document.createElement('button');previous.type='button';previous.className='guide-recommendation-previous';previous.textContent='‹';previous.setAttribute('aria-label',copy.previous);
+    const next=document.createElement('button');next.type='button';next.className='guide-recommendation-next';next.textContent='›';next.setAttribute('aria-label',copy.next);
+    controls.append(previous,position,next);heading.append(title,controls);
+    const track=document.createElement('div');track.className='guide-recommendation-track';track.tabIndex=0;track.setAttribute('role','group');track.setAttribute('aria-label',copy.heading);
+    const slides=projects.map((project,index)=>{
+      const slide=document.createElement('article');slide.className='guide-recommendation-card';slide.setAttribute('role','group');slide.setAttribute('aria-roledescription','slide');
+      slide.setAttribute('aria-label',copy.position.replace('{current}',String(index+1)).replace('{total}',String(projects.length)));slide.dir=localeData.languageDirection(language);
+      const meta=document.createElement('p');meta.className='guide-recommendation-meta';meta.textContent=project.meta;
+      const name=document.createElement('h5');name.textContent=project.title;
+      const description=document.createElement('p');description.className='guide-recommendation-description';description.textContent=project.summary;
+      const actions=document.createElement('div');actions.className='guide-recommendation-actions';
+      const notes=document.createElement('button');notes.type='button';notes.className='guide-recommendation-notes';notes.textContent=copy.notes;
+      notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
+      const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);
+      actions.append(notes,link);slide.append(meta,name,description,actions);return slide;
+    });
+    track.append(...slides);carousel.append(heading,track);row.append(carousel);
+    let activeIndex=0,frame=0;
+    const setActive=index=>{
+      activeIndex=Math.max(0,Math.min(slides.length-1,index));
+      position.textContent=copy.position.replace('{current}',String(activeIndex+1)).replace('{total}',String(slides.length));
+      previous.disabled=activeIndex===0;next.disabled=activeIndex===slides.length-1;
+    };
+    const move=delta=>{
+      const index=Math.max(0,Math.min(slides.length-1,activeIndex+delta));
+      if(index===activeIndex)return;
+      const trackBox=track.getBoundingClientRect(),slideBox=slides[index].getBoundingClientRect();
+      track.scrollTo({left:track.scrollLeft+slideBox.left-trackBox.left,behavior:root.classList.contains('js-motion')&&!document.hidden?'smooth':'instant'});
+      setActive(index);
+    };
+    previous.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
+    track.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();move(-1);}else if(event.key==='ArrowRight'){event.preventDefault();move(1);}});
+    track.addEventListener('scroll',()=>{
+      if(frame)return;frame=requestAnimationFrame(()=>{frame=0;const left=track.getBoundingClientRect().left;let best=0,distance=Infinity;slides.forEach((slide,index)=>{const current=Math.abs(slide.getBoundingClientRect().left-left);if(current<distance){best=index;distance=current;}});setActive(best);});
+    },{passive:true});
+    if(projects.length<2){previous.hidden=true;next.hidden=true;position.hidden=true;}
+    setActive(0);
   }
   // A reply taller than the conversation opens at its first line; a shorter one scrolls just far enough to show its end.
   function reveal(row){
@@ -179,7 +251,8 @@
       if(!response.ok)throw Object.assign(new Error('unavailable'),{status:response.status});
       const data=await response.json();
       if(typeof data?.text!=='string'||!data.text.trim())throw new Error('empty');
-      return data.text;
+      const recommendations=Array.isArray(data.recommendations)?data.recommendations.filter(id=>typeof id==='string').slice(0,4):[];
+      return {text:data.text,recommendations};
     }finally{clearTimeout(timer);signal.removeEventListener('abort',stop);}
   }
   async function ask(text){
@@ -192,8 +265,8 @@
     try{
       const reply=await request({message,language,history:conversation.slice(-4)},current.signal);
       if(id!==requestId)return;
-      const shown=tidy(reply)||reply.trim();
-      settle();reveal(append(shown,'guide',null,language));
+      const shown=tidy(reply.text)||reply.text.trim();
+      settle();reveal(append(shown,'guide',reply.recommendations.length?{recommendations:reply.recommendations,section:'projects'}:null,language));
       conversation.push({role:'user',content:message},{role:'assistant',content:shown.slice(0,2000)});conversation=conversation.slice(-4);
     }catch(error){
       if(id!==requestId)return;

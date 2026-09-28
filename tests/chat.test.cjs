@@ -1,6 +1,6 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const {reply,validate}=require('../api/chat.js');
+const {reply,validate,parseRecommendationCall,recommendationTool,PROJECTS}=require('../api/chat.js');
 const copy=require('../chat-copy.js');
 const valid={message:'What does Patrick do?',language:'en',history:[]};
 test('validates bounds, language and role order without forwarding extra fields',()=>{
@@ -15,8 +15,24 @@ test('sends fixed model and bounded context, returns only answer',async()=>{
  const result=await reply(valid,{env:{GROQ_API_KEY:'test-key'},fetcher:async(url,opts)=>{
   const body=JSON.parse(opts.body);assert.equal(url,'https://api.groq.com/openai/v1/chat/completions');
   assert.equal(body.model,'openai/gpt-oss-20b');assert.equal(body.messages[0].role,'system');assert.match(body.messages[0].content,/Customer Support Partner L2/);assert(!body.messages[0].content.includes('test-key'));assert.equal(body.max_completion_tokens,800);
+  assert.equal(body.tools[0].function.name,'recommend_projects');assert.equal(body.parallel_tool_calls,false);assert.equal(body.tool_choice,'auto');
   return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'A short answer',reasoning:'hidden'}}]})};
  }});assert.deepEqual(result,{status:200,body:{text:'A short answer'}});
+});
+test('project recommendations execute one whitelisted local tool and return IDs only',async()=>{
+ const result=await reply(valid,{env:{GROQ_API_KEY:'test-key'},fetcher:async(_url,opts)=>{
+  const body=JSON.parse(opts.body),ids=body.tools[0].function.parameters.properties.project_ids.items.enum;
+  assert.deepEqual(ids,PROJECTS.map(project=>project[4]));
+  return {ok:true,json:async()=>({choices:[{finish_reason:'tool_calls',message:{content:null,tool_calls:[{type:'function',function:{name:'recommend_projects',arguments:'{"project_ids":["thinkroom","proof"]}'}}]}}]})};
+ }});
+ assert.deepEqual(result,{status:200,body:{text:copy.recommendations.en.intro,recommendations:['thinkroom','proof']}});
+ assert.equal(Object.hasOwn(result.body,'url'),false);
+});
+test('project recommendation tool rejects unknown calls and unlisted project IDs',()=>{
+ assert.equal(parseRecommendationCall({tool_calls:[{type:'function',function:{name:'send_email',arguments:'{}'}}]}),null);
+ assert.equal(parseRecommendationCall({tool_calls:[{type:'function',function:{name:'recommend_projects',arguments:'{"project_ids":["https://attacker.example"]}'}}]}),null);
+ assert.deepEqual(parseRecommendationCall({tool_calls:[{type:'function',function:{name:'recommend_projects',arguments:'{"project_ids":["proof","proof","thinkroom"]}'}}]}),['proof','thinkroom']);
+ assert.equal(recommendationTool.function.parameters.additionalProperties,false);
 });
 test('rate limit, malformed, truncated and failed responses fall back without provider details',async()=>{
  for(const response of [{ok:false,status:429},{ok:false,status:401},{ok:true,json:async()=>({})},{ok:true,json:async()=>({choices:[{finish_reason:'length',message:{content:'partial'}}]})}]){
@@ -26,6 +42,8 @@ test('rate limit, malformed, truncated and failed responses fall back without pr
 });
 test('AI disclosure exists for all seventeen portfolio languages',()=>{
  assert.equal(Object.keys(copy).length,17);for(const row of Object.values(copy)){assert.equal(row.length,5);assert(row.every(s=>s.length>0));assert.match(row[1],/Groq/);}
+ assert.equal(Object.keys(copy.offline).length,17);for(const [language,row] of Object.entries(copy.offline)){assert.equal(row.length,2,language);assert(row.every(s=>s.length>0),language);assert.match(row[0],/Groq|Groq|گروک|Грок|格罗克|グロク|ग्रोक|جروک|গ্রক/iu,language);}
+ assert.equal(Object.keys(copy.recommendations).length,17);for(const row of Object.values(copy.recommendations))for(const value of Object.values(row))assert(value.length>0);
 });
 
 test('HTTP boundary rejects cross-origin, unsupported methods and oversized payloads',async()=>{
@@ -102,6 +120,7 @@ test('page facts come from the page itself',()=>{
 test('each project fact names the card’s outside link, so availability is never generalized',()=>{
  const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
  const {PROJECTS,system}=require('../api/chat.js');
+ assert.deepEqual([...html.matchAll(/<button class="project-details" data-project="([^"]+)"/g)].map(match=>match[1]),PROJECTS.map(project=>project[4]));
  const phrase={'Open app ↗':'live app','View source ↗':'GitHub source','Play on itch.io ↗':'playable on itch.io','View on itch.io ↗':'itch.io page','Open playlist ↗':'Spotify playlist'};
  for(const [card] of html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)){
   const title=card.match(/<h3>([^<]+)<\/h3>/)[1],label=card.match(/class="project-live"[^>]*>([^<]+)<\/a>/)[1];

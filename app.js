@@ -131,6 +131,7 @@ function showProject(id) {
   }
   if (changedProject) projectDialog.scrollTop = 0;
 }
+if(typeof window!=='undefined')window.PortfolioProjects=Object.freeze({open:showProject});
 window.addEventListener('portfolio:language',()=>{const status=document.querySelector('#copy-status');if(status.dataset.message)status.textContent=t(status.dataset.message);updateMotion();updateTerminalWelcome();if(projectDialog.open && activeProject)showProject(activeProject);});
 document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => showProject(button.dataset.project)));
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => document.getElementById(button.dataset.close).close()));

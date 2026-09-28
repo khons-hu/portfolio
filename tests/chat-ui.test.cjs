@@ -47,3 +47,15 @@ test('follow-ups respect the server spacing instead of triggering a refusal',()=
  assert.match(server,/Retry-After/);
  assert.match(guide,/headers\.get\('Retry-After'\)/);
 });
+
+test('prepared project answers choose relevant fallback recommendations',()=>{
+ assert.deepEqual(answer('Recommend a coding project','en').recommendations,['thinkroom','proof','calculator']);
+ assert.deepEqual(answer('Show me game projects','en').recommendations,['receipts','dots','save-democracy']);
+ assert.deepEqual(answer('Show me projects','en').recommendations,['proof','signal','thinkroom','market']);
+ const guide=read('guide.js');
+ assert.match(guide,/aria-roledescription','carousel'/);
+ assert.match(guide,/join\(' · '\)/,'project metadata keeps a readable separator');
+ assert.match(guide,/CHAT_COPY\.offline\?\.\[lang\.value\]/,'unavailable AI state is described accurately in every supported language');
+ assert.match(read('style.css'),/scroll-snap-type:x mandatory/);
+ assert.match(read('style.css'),/\.guide-recommendation-track\{[^}]*overflow-x:auto[^}]*scroll-snap-type:x mandatory/);
+});
