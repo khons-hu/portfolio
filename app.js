@@ -147,3 +147,36 @@ document.querySelector('#copy-discord').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText('khons.hu'); status.dataset.message='Copied khons.hu. See you on Discord.'; status.textContent = t(status.dataset.message); }
   catch { status.dataset.message='Find me on Discord: khons.hu'; status.textContent = t(status.dataset.message); }
 });
+
+// Moonlit header: glass once the page scrolls beneath it, and the nav marks the section in view.
+// IntersectionObserver only; there is no scroll handler.
+(function () {
+  const header = document.querySelector('.site-header');
+  if (!header || !('IntersectionObserver' in window)) return;
+  const sentinel = document.createElement('div');
+  sentinel.className = 'header-sentinel';
+  sentinel.setAttribute('aria-hidden', 'true');
+  document.body.prepend(sentinel);
+  new IntersectionObserver(([entry]) => document.documentElement.classList.toggle('header-stuck', !entry.isIntersecting)).observe(sentinel);
+  const links = new Map([...header.querySelectorAll('nav a[href^="#"]')].map(link => [link.getAttribute('href').slice(1), link]));
+  // Each section belongs to the nav entry it sits under: the work to Work, the personal notes to About.
+  const owner = { 'field-notes': 'field-notes', projects: 'field-notes', about: 'about', shipped: 'about', now: 'about', contact: 'contact' };
+  const mark = id => links.forEach((link, key) => key === owner[id] ? link.setAttribute('aria-current', 'true') : link.removeAttribute('aria-current'));
+  // A thin band just above the middle of the viewport decides which section is in view.
+  const inView = new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) mark(entry.target.id); }, { rootMargin: '-45% 0px -54% 0px' });
+  document.querySelectorAll('main>section').forEach(section => inView.observe(section));
+})();
+
+// Project cards: a soft light follows a fine pointer across the card under it, one style write per frame.
+(function () {
+  const grid = document.querySelector('#project-grid');
+  if (!grid || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  let frame = 0, card = null, x = 0, y = 0;
+  grid.addEventListener('pointermove', event => {
+    card = event.target.closest('.project-card');
+    if (!card) return;
+    const box = card.getBoundingClientRect();
+    x = event.clientX - box.left; y = event.clientY - box.top;
+    if (!frame) frame = requestAnimationFrame(() => { frame = 0; card?.style.setProperty('--mx', `${Math.round(x)}px`); card?.style.setProperty('--my', `${Math.round(y)}px`); });
+  }, { passive: true });
+})();
