@@ -132,7 +132,8 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .art-tag{display:block;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;color:var(--muted);overflow-wrap:anywhere}
 .project-info h3{grid-area:title;align-self:center;margin:0;font-size:20px;line-height:1.25;text-wrap:balance}
 .project-info p{grid-area:desc;margin:16px 0 0;font-size:15px;line-height:1.65;color:var(--ink-soft);text-wrap:pretty}
-.project-meta{grid-area:meta;align-self:start;display:flex;flex-wrap:wrap;gap:2px 0;margin-top:14px;font:13px/1.6 var(--sans);color:var(--muted)}
+/* The tech line sits on the card's last free row, just above Notes, so it lines up across a row of cards. */
+.project-meta{grid-area:meta;align-self:end;display:flex;flex-wrap:wrap;gap:2px 0;margin-top:14px;font:13px/1.6 var(--sans);color:var(--muted)}
 .project-meta{column-gap:14px}
 .project-meta>span:first-child{font-size:11px;line-height:1.9;letter-spacing:.02em;color:var(--muted)}
 .dialog-preview-hidden{display:none!important}
@@ -158,7 +159,9 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .interest-line{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:28px;font:13px var(--sans);color:var(--muted)}
 .interest-line span::before{content:"☾ ";color:var(--accent)}
 .work-detail{padding-top:4px}
-.work-detail .eyebrow a{color:var(--accent);border-bottom:1px solid transparent}
+/* Underlined like the other inline links, so the link does not rely on colour alone (in some themes and
+   languages it is close to the eyebrow text). */
+.work-detail .eyebrow a{color:var(--accent);border-bottom:1px solid var(--line-strong)}
 .work-detail .eyebrow a:hover{border-color:var(--accent)}
 .work-detail h3{font:400 36px/1.18 var(--sans);letter-spacing:-.02em;margin-bottom:24px}
 .practice{margin-top:28px;border-bottom:1px solid var(--line)}
@@ -501,7 +504,7 @@ html[data-theme=light] #theme-toggle::after{background:#315f7c}
 /* Fallback without View Transitions (theme.js adds .theme-fade): colours fade only on the page ground and the
    surfaces that carry their own colour; inherited text follows body. No filter, shadow, opacity or pseudo-element
    transitions, so the hero photo switches at once. Touch screens get it only when Motion is explicitly On. */
-html.theme-fade:not(.motion-off):not(.page-hidden) :is(body,dialog,.about-section,.project-card,.replay,.replay-picker select,.skill-card,.skill-card pre,.page-contact,.now-grid article,.panel-composer,.composer-field,#guide-launcher,.lang-picker,#theme-toggle,.terminal-toggle,#motion-toggle,.project-filters button,.project-live,#project-search,.guide-contact :is(input,textarea),.contact-actions button,.guide-recommendations,.guide-recommendation-card,.guide-recommendation-controls button,.guide-comparison-scroll,.guide-comparison-table th,.guide-path-choice,.guide-path-launch,.guide-project-search input,.guide-project-results,em,.eyebrow,.hero-copy,.section-heading>p,.section-note,.project-info p,.project-meta,.case-body :is(dt,dd),.lab-intro>p,.library-heading>p,.skill-card>p,.shipped-list :is(p,time),.now-grid p,.about-intro>p,.work-detail>p,.practice details p,.source-language,.now-listening,footer>span,.site-header nav){transition:background-color 420ms var(--ease),color 420ms var(--ease),border-color 420ms var(--ease)!important}
+html.theme-fade:not(.motion-off):not(.page-hidden) :is(body,dialog,.about-section,.project-card,.replay,.replay-picker select,.skill-card,.skill-card pre,.listening-panel,.page-contact,.now-grid article,.panel-composer,.composer-field,#guide-launcher,.lang-picker,#theme-toggle,.terminal-toggle,#motion-toggle,.project-filters button,.project-live,#project-search,.guide-contact :is(input,textarea),.contact-actions button,.guide-recommendations,.guide-recommendation-card,.guide-recommendation-controls button,.guide-comparison-scroll,.guide-comparison-table th,.guide-path-choice,.guide-path-launch,.guide-project-search input,.guide-project-results,em,.eyebrow,.hero-copy,.section-heading>p,.section-note,.project-info p,.project-meta,.case-body :is(dt,dd),.lab-intro>p,.library-heading>p,.skill-card>p,.shipped-list :is(p,time),.now-grid p,.about-intro>p,.work-detail>p,.practice details p,.source-language,.now-listening,footer>span,.site-header nav){transition:background-color 420ms var(--ease),color 420ms var(--ease),border-color 420ms var(--ease)!important}
 @keyframes theme-halo{0%{opacity:0;transform:scale(.72)}28%{opacity:.72;transform:scale(.96)}100%{opacity:0;transform:scale(1.35)}}
 @keyframes theme-arc{0%{opacity:0;transform:rotate(8deg) translateY(-3px) scale(.68)}24%{opacity:.88;transform:rotate(8deg) translateY(0) scale(1)}48%{opacity:.24;transform:rotate(8deg) translateY(1px) scale(.94)}100%{opacity:0;transform:rotate(8deg) translateY(3px) scale(.82)}}
 .motion-off #theme-toggle::before,.motion-off #theme-toggle::after,.page-hidden #theme-toggle::before,.page-hidden #theme-toggle::after{display:none;animation:none!important}
@@ -717,6 +720,23 @@ html.js .now-listening:not([data-state]) .listening-status,.now-listening[data-s
   .listening-listen:not([aria-expanded="true"])::before{margin-left:2px}
   html.js .listening-controls{min-height:40px}
 }
+/* On my desk notes: the following note beside one quiet listening card (live line, visitor player and the
+   night-rotation playlist) in the project and skill card surface. Narrower screens stack the two. */
+.listening-panel{margin-top:20px;padding:18px 20px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.listening-panel .now-listening{margin:0;max-width:none}
+.listening-panel .listening-controls{max-width:none}
+.listening-panel .listening-player{max-width:none;margin:14px 0 2px}
+.listening-panel .listening-frame{background:var(--bg)}
+.listening-panel .listening-note{max-width:none;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+/* The playlist line opens with a small label, like the Spotify label above it. */
+.listening-note>[data-i18n]:first-child{font:500 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;vertical-align:1px}
+:where(:lang(ar),:lang(ur),:lang(hi),:lang(bn)) .listening-note>[data-i18n]:first-child{letter-spacing:normal}
+@media(min-width:901px){
+  .now-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;align-items:start}
+  /* Starts on the card's first line: its border plus top padding. */
+  .now-notes>.section-note{margin:0;padding-top:19px}
+  .listening-panel{margin-top:0}
+}
 
 /* Field notes reuse the site's moonlight palette and one sans face for headings. The replay is deliberately still. */
 .field-section{border-bottom:1px solid var(--line)}
@@ -791,6 +811,14 @@ html.js .now-listening:not([data-state]) .listening-status,.now-listening[data-s
   .library-heading{display:block}
   .library-heading>p{margin-top:16px;max-width:none}
   .skill-library{margin-top:72px}
+}
+/* Tablets: one wide card per row, so "Read skill" and the copy and download links share a row while the
+   skill is closed. Opened, the source takes the full width and the links follow it (reading order kept). */
+@media(min-width:601px) and (max-width:800px){
+  .skill-card{flex-flow:row wrap;align-items:center;column-gap:24px}
+  .skill-card>:is(h4,p){flex-basis:100%}
+  .skill-card details{flex:1 1 auto}
+  .skill-card details[open]{flex-basis:100%}
 }
 @media(max-width:480px){
   .case-study summary{gap:12px;padding:20px 0}
