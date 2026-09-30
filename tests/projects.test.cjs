@@ -23,7 +23,7 @@ test('new project opens at the top and a source-only project clears the prior pr
  const {node,show}=setup();show('thinkroom');
  assert.equal(node('#project-dialog').scrollTop,0);
  assert.equal(node('#project-preview').hidden,false);
- assert.match(node('#project-link').href,/thinkroom/);
+ assert.equal(node('#project-link').href,'https://solve.khns.dev/');
  node('#project-dialog').open=false;node('#project-dialog').scrollTop=240;show('calculator');
  assert.equal(node('#project-dialog').scrollTop,0);
  assert.equal(node('#project-preview').hidden,true);
