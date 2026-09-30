@@ -59,6 +59,24 @@ test('HTTP boundary rejects cross-origin, unsupported methods and oversized payl
  ]){const result=await run(req);assert.equal(result.statusCode,status);assert.equal(result.headers['Cache-Control'],'no-store');}
 });
 
+test('HTTP boundary supports the custom domain and retains exact origin checks',async()=>{
+ const handler=require('../api/chat.js');
+ for(const [origin,status] of [
+  ['https://khns.dev',400],
+  ['https://khons-hu.vercel.app',400],
+  ['http://localhost:4173',400],
+  ['http://127.0.0.1:4173',400],
+  ['https://khns.dev.attacker.example',403],
+  ['http://khns.dev',403],
+  ['https://attacker.example',403]
+ ]){
+  const res={setHeader(){},end(value){this.body=JSON.parse(value);}};
+  await handler({method:'POST',headers:{origin,'content-type':'application/json'},body:{}},res);
+  assert.equal(res.statusCode,status,origin);
+  assert.equal(res.body.error,status===400?'invalid_request':'origin',origin);
+ }
+});
+
 test('the guide speaks about Patrick in the third person and only from public facts',()=>{
  const {system}=require('../api/chat.js');
  assert.match(system,/portfolio, not Patrick\./);

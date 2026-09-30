@@ -1,6 +1,6 @@
 # khonsu / personal portfolio
 
-Published on Vercel Hobby: https://khons-hu.vercel.app/
+Portfolio: https://khns.dev/
 
 Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. The GitHub repository is public: https://github.com/khons-hu/portfolio. GitHub autodeploy is connected to khons-hu/portfolio. Pushes to main create Production deployments and update khons-hu.vercel.app. Verified with commit 26466a4 on 2026-09-20. The initial khonsu-ochre.vercel.app address redirects to the clean address.
 
@@ -12,7 +12,7 @@ Run `python3 -m http.server 4173 --bind 127.0.0.1` from this directory, then vis
 
 ## Vercel
 
-The public repository khons-hu/portfolio is connected to the existing Vercel project. Static files deploy without a build step. Vercel provides the `vercel.app` address. No paid services are needed for this static personal site within Hobby limits.
+The public repository khons-hu/portfolio is connected to the existing Vercel project. Static files deploy without a build step. `khns.dev` is the custom domain, registered through Netim. The existing `khons-hu.vercel.app` address remains available. Hosting stays on Vercel Hobby; the domain has its own yearly registration fee.
 
 ## Interaction
 
@@ -24,7 +24,7 @@ Ordinary navigation works throughout. Compact project cards (three, two or one p
 
 The header stays at the top of the window: clear over the photo, then frosted glass once the page scrolls under it, with a small moon under the link of the section in view. On phones the section links fold away while scrolling and come back at the top or on keyboard focus. Each section label carries a moon that waxes down the page, from a thin crescent at the field notes to a full moon at Contact. With a mouse, a soft light follows the pointer across a project card. On phones, project notes rise as a sheet from the bottom edge.
 
-Cards open keyboard-accessible notes. The notes put their outside links (demo, playlist or itch.io page, public source, Android preview) above the longer text. “Copy project link” gives a direct address such as https://khons-hu.vercel.app/#project/khonrelay. It opens those notes on arrival. If clipboard access is unavailable, the address remains selectable. Shared links exclude query parameters.
+Cards open keyboard-accessible notes. The notes put their outside links (demo, playlist or itch.io page, public source, Android preview) above the longer text. “Copy project link” gives a direct address such as https://khns.dev/#project/khonrelay. It opens those notes on arrival. If clipboard access is unavailable, the address remains selectable. Shared links exclude query parameters.
 
 ## Field notes and reusable skills
 
