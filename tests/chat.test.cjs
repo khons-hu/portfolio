@@ -104,7 +104,7 @@ test('site, project and contact facts match what the page shows',()=>{
  for(const [,topic,,text] of PROJECTS)if(topic)assert(system.includes(topics.find(t=>t.id===topic).en.slice(0,60)));else assert(system.includes(text));
  const commands=JSON.parse(terminal.match(/const commands = (\[[^\]]+\])/)[1].replace(/'/g,'"'));
  for(const command of commands)assert.match(SITE,new RegExp(`\\b${command}\\b`),`terminal command ${command}`);
- assert.match(SITE,/17 languages/);assert.match(SITE,/openai\/gpt-oss-20b/);
+ assert.match(SITE,/17 languages/);assert.match(SITE,/Guide: Groq when enabled/);
  const social=[...html.match(/<div class="social-links">([\s\S]*?)<\/div>/)[1].matchAll(/href="(https:[^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(social,['https://github.com/khons-hu','https://www.linkedin.com/in/patrick-obrtal/','https://x.com/ptr1337_']);
  for(const url of social)assert(CONTACT.some(line=>line.includes(url)),url);
@@ -131,7 +131,7 @@ test('a short provider rate-limit wait is passed on once as Retry-After; long or
 test('page facts come from the page itself',()=>{
  const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
  const {PAGE,system}=require('../api/chat.js');
- for(const phrase of ['background in backend and full-stack development','I build with OpenAI Codex and explore Claude 5.5 workflows','event collection','reproducible case','quiet AI update inbox','reinforcement learning','September 30, 2026'])assert(html.includes(phrase)||html.toUpperCase().includes(phrase.toUpperCase()),phrase);
+ for(const phrase of ['background in backend and full-stack development','I build and review projects with Codex and Claude','event collection','reproducible case','quiet AI update inbox','reinforcement learning','September 30, 2026'])assert(html.includes(phrase)||html.toUpperCase().includes(phrase.toUpperCase()),phrase);
  for(const line of PAGE)assert(system.includes(line));
  assert(PAGE.every(line=>!/\b(I|my|me)\b/.test(line)),'page facts are in the third person');
 });

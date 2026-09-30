@@ -11,6 +11,27 @@ test('all translation catalogs cover the same authored strings and all project n
   for(const [id,notes] of Object.entries(PROJECT_NOTES.en))assert.equal(PROJECT_NOTES[lang][id].length,notes.length);
  }
 });
+test('current workflow copy and guide answers avoid specific model names in every language',()=>{
+ const modelName=/(?:Claude|Opus|Sonnet)\s+\d|\bGPT-\d|\bnew dots\b|gpt-oss/i;
+ const workflow='I build and review projects with Codex and Claude. Jev helps with small decisions, candidate selection and relevance ordering. I check the results separately.';
+ const interests='I’m interested in reinforcement learning and multiplayer game ideas. I try new tools and agent workflows on real tasks before deciding what is worth keeping.';
+ const html=fs.readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
+ const now=html.match(/<section[^>]*id="now"[\s\S]*?<\/section>/)[0];
+ assert(now.includes(workflow)&&now.includes(interests));
+ assert.doesNotMatch(now,modelName);
+ const ai=topics.find(topic=>topic.id==='ai');
+ for(const lang of Object.keys(LANGUAGE_NAMES)){
+  const strings=lang==='en'?[workflow,interests]:[SITE_LOCALES[lang][workflow],SITE_LOCALES[lang][interests]];
+  const guide=EXTRA_LOCALE_PACKS[lang]?.guide.answers.ai||ai[lang];
+  for(const text of [...strings,guide]){
+   assert(text?.trim(),`${lang}: workflow and guide translation`);
+   assert.doesNotMatch(text,modelName,lang);
+  }
+ }
+ const {PAGE,SITE}=require('../api/chat.js');
+ assert.doesNotMatch(PAGE.join(' ')+SITE,modelName);
+ assert(html.includes('TASK 18 / JEV 1.13.0'),'recorded benchmark keeps its model version');
+});
 test('locale resolver, storage failure and switching preserve bindings and fallback',()=>{
  const events={},select={addEventListener:(k,v)=>events[k]=v},root={lang:''},node={nodeValue:' Work ',parentElement:{closest:()=>null}},written={};let step=0;
  const context={SITE_LOCALES,PROJECT_NOTES,LANGUAGE_NAMES,languageDirection,directionalText,navigator:{language:'hu-HU'},localStorage:{getItem(){throw Error('blocked')},setItem:(k,v)=>written[k]=v},NodeFilter:{SHOW_TEXT:4},CustomEvent:class{constructor(type,init){this.type=type;this.detail=init.detail}},document:{body:{},documentElement:root,createTreeWalker:()=>({nextNode:()=>step++===0,currentNode:node}),querySelector:()=>select,querySelectorAll:()=>[]},window:{addEventListener(){},dispatchEvent(){}}};
