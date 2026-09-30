@@ -103,6 +103,8 @@ test('all local assets share one cache version',()=>{
  const unversioned=[...html.matchAll(/(?:src|href)="(\/[\w-]+\.(?:js|css))"/g)].map(match=>match[1]);
  assert.equal(unversioned.length,0,unversioned.join(','));
  assert(versions.length>=11);assert.equal(new Set(versions).size,1);
+ const notFound=[...read('404.html').matchAll(/(?:src|href)="\/[\w-]+\.(?:js|css)\?v=([\w-]+)"/g)].map(match=>match[1]);
+ assert(notFound.length>=3);assert.deepEqual([...new Set(notFound)],[versions[0]],'the 404 page loads the same asset version');
 });
 
 test('switching panels focuses the matching tab unless a field was requested',()=>{

@@ -81,6 +81,19 @@ test('project cards catch a soft light only on hover-capable pointers',()=>{
  assert.match(app,/requestAnimationFrame/,'one style write per frame at most');
 });
 
+test('without JavaScript or on paper nothing covers, hides or splits the content',()=>{
+ assert.match(css,/html:not\(\.js\) \.site-header\{position:absolute\}/,'with no observer the header never turns to glass');
+ assert.match(css,/html:not\(\.js\) \.details-label\{visibility:hidden\}/,'the hidden Notes label keeps the row the outside link sits in');
+ assert.doesNotMatch(css,/html:not\(\.js\) :is\([^)]*\.details-label/,'removing the label would pull the link over the stack line');
+ const at=css.indexOf('@media print{');
+ assert.notEqual(at,-1,'the page has print rules');
+ const print=css.slice(at,css.indexOf('\n}',at));
+ assert.match(print,/\.site-header\{position:absolute\}/,'a fixed header would repeat over every printed page');
+ assert.match(print,/\.js-motion \.reveal,\.js-motion \.project-card\.reveal\{opacity:1;transform:none;transition:none\}/,'sections not yet scrolled into view still print, cards included');
+ assert.match(print,/\.project-card,\.skill-card\{break-inside:avoid\}/,'a page break never cuts a card in half');
+ assert.match(print,/#guide-launcher\{display:none\}/);
+});
+
 test('phones open project notes as a bottom sheet',()=>{
  const block=css.slice(css.indexOf('@media(max-width:600px){'));
  assert.match(block,/#project-dialog\{[^}]*margin:auto 0 0;[^}]*border-radius:22px 22px 0 0/);
