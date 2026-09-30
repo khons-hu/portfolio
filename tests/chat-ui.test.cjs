@@ -64,11 +64,11 @@ test('prepared project answers choose relevant fallback recommendations',()=>{
 
 test('project autocomplete ranks local card facts without matching every keystroke to Groq',()=>{
  const projects=[
-  {id:'proof',title:'Khonproof',summary:'Agent decision evaluation',meta:'JavaScript · Browser tasks'},
-  {id:'signal',title:'Khonrelay',summary:'AI news and releases',meta:'TypeScript · RSS / Atom'},
+  {id:'proof',title:'Trialkeep',summary:'Agent decision evaluation',meta:'JavaScript · Browser tasks'},
+  {id:'signal',title:'Feedcairn',summary:'AI news and releases',meta:'TypeScript · RSS / Atom'},
   {id:'dots',title:'Dots',summary:'A small React game',meta:'React · Spring Boot'}
  ];
- assert.deepEqual(rankProjectResults(projects,'khonrelay').map(item=>item.id),['signal']);
+ assert.deepEqual(rankProjectResults(projects,'feedcairn').map(item=>item.id),['signal']);
  assert.deepEqual(rankProjectResults(projects,'rss atom').map(item=>item.id),['signal']);
  assert.equal(rankProjectResults(projects,'dots').at(0).id,'dots');
  assert.deepEqual(rankProjectResults(projects,'no such project'),[]);

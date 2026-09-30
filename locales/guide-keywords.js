@@ -73,19 +73,23 @@
       "rotinas"
     ],
     "thinkroom": [
+      "reasonrook",
       "khonsolve",
       "exercícios"
     ],
     "signal": [
+      "feedcairn",
       "khonrelay",
       "notícias",
       "polymarket"
     ],
     "steam": [
+      "lootlatch",
       "khonstash",
       "steam"
     ],
     "proof": [
+      "trialkeep",
       "khonproof",
       "avaliação"
     ]
@@ -159,19 +163,23 @@
       "routines"
     ],
     "thinkroom": [
+      "reasonrook",
       "khonsolve",
       "exercices"
     ],
     "signal": [
+      "feedcairn",
       "khonrelay",
       "actualités",
       "polymarket"
     ],
     "steam": [
+      "lootlatch",
       "khonstash",
       "steam"
     ],
     "proof": [
+      "trialkeep",
       "khonproof",
       "évaluation"
     ]
@@ -244,19 +252,23 @@
       "рекомендации"
     ],
     "thinkroom": [
+      "reasonrook",
       "khonsolve",
       "упражнения"
     ],
     "signal": [
+      "feedcairn",
       "khonrelay",
       "новости",
       "polymarket"
     ],
     "steam": [
+      "lootlatch",
       "khonstash",
       "steam"
     ],
     "proof": [
+      "trialkeep",
       "khonproof",
       "оценка"
     ]
@@ -330,19 +342,23 @@
       "rekomendasi"
     ],
     "thinkroom": [
+      "reasonrook",
       "khonsolve",
       "latihan"
     ],
     "signal": [
+      "feedcairn",
       "khonrelay",
       "berita",
       "polymarket"
     ],
     "steam": [
+      "lootlatch",
       "khonstash",
       "steam"
     ],
     "proof": [
+      "trialkeep",
       "khonproof",
       "evaluasi"
     ]
@@ -416,19 +432,23 @@
       "おすすめ"
     ],
     "thinkroom": [
+      "reasonrook",
       "khonsolve",
       "練習"
     ],
     "signal": [
+      "feedcairn",
       "khonrelay",
       "ニュース",
       "polymarket"
     ],
     "steam": [
+      "lootlatch",
       "khonstash",
       "steam"
     ],
     "proof": [
+      "trialkeep",
       "khonproof",
       "評価"
     ]

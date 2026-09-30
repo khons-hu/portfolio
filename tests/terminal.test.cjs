@@ -21,7 +21,7 @@ class Element {
 function setup(){
  const nodes=new Map(),opened=[],panels=[];
  const node=key=>{if(!nodes.has(key))nodes.set(key,new Element());return nodes.get(key);};
- const projects={signal:{title:'Khonrelay',live:true,url:'https://example.com/relay'},dots:{title:'Dots',live:true,url:'https://example.com/dots'}};
+ const projects={signal:{title:'Feedcairn',live:true,url:'https://example.com/relay'},dots:{title:'Dots',live:true,url:'https://example.com/dots'}};
  const cards=Object.keys(projects).map(id=>({dataset:{project:id},querySelector:()=>new Element('p',id+' description')}));
  const context=vm.createContext({projects,EXTRA_LOCALE_PACKS,t:value=>value,PortfolioI18n:{language:'en'},matchMedia:()=>({matches:false}),showProject:id=>opened.push(id),
  document:{querySelector:node,querySelectorAll:selector=>selector==='[data-project]'?cards:[],addEventListener(){},createElement:tag=>new Element(tag),createTextNode:text=>new Element('text',text)},
@@ -30,15 +30,18 @@ function setup(){
  return {context,node,opened,panels,run:context.run,key(key){let prevented=false;node('#command').events.keydown({key,shiftKey:false,preventDefault(){prevented=true;}});return prevented;}};
 }
 test('terminal completes project names and offers bounded clickable suggestions',()=>{
- const s=setup();s.node('#command').value='open khonre';s.node('#command').events.input();
- assert.equal(s.node('#terminal-suggestions').textContent,'open khonrelay');assert(s.key('Tab'));
- assert.equal(s.node('#command').value,'open khonrelay');s.run(s.node('#command').value);assert.deepEqual(s.opened,['signal']);
+ const s=setup();s.node('#command').value='open feedc';s.node('#command').events.input();
+ assert.equal(s.node('#terminal-suggestions').textContent,'open feedcairn');assert(s.key('Tab'));
+ assert.equal(s.node('#command').value,'open feedcairn');s.run(s.node('#command').value);assert.deepEqual(s.opened,['signal']);
  s.node('#command').value='o';s.node('#command').events.input();assert(s.node('#terminal-suggestions').children.length<=5);
+});
+test('previous exact project commands remain usable after a rename',()=>{
+ const s=setup();s.run('open khonrelay');assert.deepEqual(s.opened,['signal']);
 });
 test('project results open notes rather than navigating away',()=>{
  const s=setup();s.run('projects');
  const entry=s.node('#terminal-output').children[0];const list=entry.children.find(child=>child.className==='terminal-projects');
- assert.equal(list.children.length,2);assert.match(list.children[0].textContent,/Khonrelay.*signal description/);
+ assert.equal(list.children.length,2);assert.match(list.children[0].textContent,/Feedcairn.*signal description/);
  list.children[0].events.click();assert.deepEqual(s.opened,['signal']);
 });
 test('history restores an unfinished command and clear empties output and history',()=>{

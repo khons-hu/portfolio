@@ -1,6 +1,7 @@
 /* Share public project notes without a service or a second copy of their content. */
 (() => {
-  const slugs = {proof:'khonproof', thinkroom:'khonsolve', signal:'khonrelay', market:'khonodds', steam:'khonstash', portfolio:'portfolio', rotation:'spotify', dots:'dots', receipts:'receipts-after-dark', 'save-democracy':'save-democracy', calculator:'arduino-calculator', bot:'discord-bot', ipc:'between-processes'};
+  const slugs = {proof:'trialkeep', thinkroom:'reasonrook', signal:'feedcairn', market:'stakeglass', steam:'lootlatch', portfolio:'portfolio', rotation:'spotify', dots:'dots', receipts:'receipts-after-dark', 'save-democracy':'save-democracy', calculator:'arduino-calculator', bot:'discord-bot', ipc:'between-processes'};
+  const legacySlugs = {khonproof:'proof', khonsolve:'thinkroom', khonrelay:'signal', khonodds:'market', khonstash:'steam'};
   const status = document.querySelector('#project-share-status');
   const fallback = document.querySelector('#project-share-address');
   let openedFromLink = false;
@@ -8,7 +9,8 @@
 
   function projectFromHash() {
     const slug = location.hash.slice('#project/'.length);
-    return location.hash.startsWith('#project/') ? Object.keys(slugs).find(id => slugs[id] === slug) : null;
+    if (!location.hash.startsWith('#project/')) return null;
+    return Object.keys(slugs).find(id => slugs[id] === slug) || (Object.hasOwn(legacySlugs, slug) ? legacySlugs[slug] : null);
   }
 
   function openLinkedProject() {

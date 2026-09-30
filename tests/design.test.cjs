@@ -24,7 +24,7 @@ class Element {
 const walk=(node,found=[])=>{if(node&&typeof node==='object'){found.push(node);(node.children||[]).forEach(child=>walk(child,found));}return found;};
 function terminal(language='en'){
  const nodes=new Map();const node=key=>{if(!nodes.has(key))nodes.set(key,new Element());return nodes.get(key);};
- const projects={signal:{title:'Khonrelay',live:true,url:'https://example.com/relay'},dots:{title:'Dots',live:true,url:'https://example.com/dots'}};
+ const projects={signal:{title:'Feedcairn',live:true,url:'https://example.com/relay'},dots:{title:'Dots',live:true,url:'https://example.com/dots'}};
  const cards=Object.keys(projects).map(id=>({dataset:{project:id},querySelector:()=>new Element('p',id+' description')}));
  const i18n={language};
  const context=vm.createContext({projects,EXTRA_LOCALE_PACKS,t:value=>value,PortfolioI18n:i18n,matchMedia:()=>({matches:false}),showProject(){},
@@ -71,7 +71,7 @@ function dialog(){
 }
 test('project notes label the main outside link by what it is',()=>{
  const d=dialog();
- const expect={signal:['live','Open app ↗',/quiet-signal/],receipts:['live','Play on itch.io ↗',/itch\.io/],'save-democracy':['external','View on itch.io ↗',/itch\.io/],rotation:['external','Open playlist ↗',/open\.spotify\.com/]};
+ const expect={signal:['live','Open app ↗',/^https:\/\/relay\.khns\.dev\/$/],receipts:['live','Play on itch.io ↗',/itch\.io/],'save-democracy':['external','View on itch.io ↗',/itch\.io/],rotation:['external','Open playlist ↗',/open\.spotify\.com/]};
  for(const [id,[kind,label,href]] of Object.entries(expect)){d.show(id);assert.equal(d.link().attributes['data-kind'],kind,id);assert.equal(d.link().textContent,label,id);assert.match(d.link().href,href,id);assert.equal(d.link().hidden,false,id);}
  d.show('calculator');assert.equal(d.link().hidden,true);assert.equal(d.source().hidden,false);
  d.show('portfolio');assert.equal(d.link().hidden,true);assert.equal(d.source().hidden,false);assert.equal(d.source().href,'https://github.com/khons-hu/portfolio');

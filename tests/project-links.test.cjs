@@ -17,15 +17,21 @@ function setup(hash='',clipboardFails=false){
 }
 
 test('shared links open known project notes and closing returns to the project shelf',()=>{
- const s=setup('#project/khonrelay');assert.deepEqual(s.opened,['signal']);
+ const s=setup('#project/feedcairn');assert.deepEqual(s.opened,['signal']);
  s.dialog.close();assert.equal(s.location.hash,'#projects');assert.equal(s.node('[data-project="signal"]').focused,true);
 });
 test('unknown and malformed links do not open arbitrary content',()=>{
  for(const hash of ['#project/__proto__','#project/discovery','#project/%E0%A4%A','#projects'])assert.deepEqual(setup(hash).opened,[]);
 });
+test('previous project links still open the same notes and copy the new public name',async()=>{
+ for(const [oldName,newName,id] of [['khonrelay','feedcairn','signal'],['khonproof','trialkeep','proof'],['khonsolve','reasonrook','thinkroom'],['khonodds','stakeglass','market'],['khonstash','lootlatch','steam']]){
+  const s=setup('#project/'+oldName);assert.deepEqual(s.opened,[id]);
+  await s.node('#project-copy-link').click();assert.deepEqual(s.writes,['https://example.com/#project/'+newName]);
+ }
+});
 test('copy links omit query parameters and use public names',async()=>{
- const s=setup('#project/khonrelay');await s.node('#project-copy-link').click();
- assert.deepEqual(s.writes,['https://example.com/#project/khonrelay']);
+ const s=setup('#project/feedcairn');await s.node('#project-copy-link').click();
+ assert.deepEqual(s.writes,['https://example.com/#project/feedcairn']);
  assert.equal(s.node('#project-share-status').textContent,'Link copied.');
 });
 test('clipboard failure leaves a selectable address without claiming success',async()=>{
@@ -35,6 +41,6 @@ test('clipboard failure leaves a selectable address without claiming success',as
  assert.equal(s.node('#project-share-status').textContent,'Copy the address below.');
 });
 test('back or section navigation closes linked notes without overwriting the destination',()=>{
- const s=setup('#project/khonsolve');s.location.hash='#about';s.events.hashchange();
+ const s=setup('#project/reasonrook');s.location.hash='#about';s.events.hashchange();
  assert.equal(s.dialog.open,false);assert.equal(s.location.hash,'#about');
 });

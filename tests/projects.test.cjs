@@ -40,7 +40,7 @@ test('switching project links resets the notes to their beginning',()=>{
 });
 function filters(){
  const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
- const cards=[['tools','Khonsolve Python coding'],['games','Dots React game'],['earlier','Calculator C++ Arduino'],['games','Receipts Godot game']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
+ const cards=[['tools','Reasonrook Python coding'],['games','Dots React game'],['earlier','Calculator C++ Arduino'],['games','Receipts Godot game']].map(([projectGroup,textContent])=>({dataset:{projectGroup},textContent,hidden:false}));
  const buttons=['all','tools','games','earlier'].map(projectFilter=>({dataset:{projectFilter},attributes:{},setAttribute(k,v){this.attributes[k]=v;},addEventListener(k,fn){this[k]=fn;}}));
  const nodes=new Map();
  function node(key){if(!nodes.has(key))nodes.set(key,{value:'',hidden:true,textContent:'',disabled:false,dataset:{},addEventListener(k,fn){this[k]=fn;},focus(){this.focused=true;}});return nodes.get(key);}
