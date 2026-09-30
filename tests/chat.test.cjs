@@ -113,7 +113,7 @@ test('a short provider rate-limit wait is passed on once as Retry-After; long or
 test('page facts come from the page itself',()=>{
  const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
  const {PAGE,system}=require('../api/chat.js');
- for(const phrase of ['background in backend and full-stack development','bounded agent workflows with OpenAI coding agents and Jev','event collection','reproducible case','quiet AI update inbox','reinforcement learning','September 2026'])assert(html.includes(phrase)||html.toUpperCase().includes(phrase.toUpperCase()),phrase);
+ for(const phrase of ['background in backend and full-stack development','I build with OpenAI Codex and explore Claude 5.5 workflows','event collection','reproducible case','quiet AI update inbox','reinforcement learning','September 30, 2026'])assert(html.includes(phrase)||html.toUpperCase().includes(phrase.toUpperCase()),phrase);
  for(const line of PAGE)assert(system.includes(line));
  assert(PAGE.every(line=>!/\b(I|my|me)\b/.test(line)),'page facts are in the third person');
 });

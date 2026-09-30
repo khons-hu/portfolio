@@ -30,7 +30,7 @@ const GUIDE_LOCALES = {
       "Khonproof · Khonrelay · Khonsolve. A Khonsolve ingyenes gyakorlóműhely 15 saját feladattal: kódolás, hibakeresés, logika, promptok és agent skillek. Helyi JavaScript-, TypeScript- és Python-teszteket, fokozatos segítséget, önértékelést és mentett jegyzeteket kínál. A forráskód nyilvános a GitHubon.",
       "GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Megmutathatom az elérhetőségeket, de nem küldhetek üzenetet Patrick nevében.",
       "Patrick Obrtal · khonsu. Patrick Customer Support Partner L2 munkakörben dolgozik a Luigi’s Boxnál. Patrick a TUKE-n szerzett informatikai mesterdiplomát. Diplomamunkájában PPO-alapú megerősítéses tanuló ágenseket és LLM-alapú pályagenerálást kapcsolt össze egy többjátékos játékhoz.",
-      "Az AGI-t, a rekurzív önfejlesztést és az új modelleket követi. Kódoló ágenseket próbál ki a saját munkájában, a diplomamunkájában pedig PPO-val foglalkozott.",
+      "Patrick OpenAI Codexszel dolgozik, és Claude 5.5 munkafolyamatait is kipróbálja; a Claude-modellek közül az Opus 5.5-öt részesíti előnyben. A Jev kisebb döntésekben, jelöltek kiválasztásában és relevancia szerinti rendezésben segít. Az eredményeket külön ellenőrzi.",
       "Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával. Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A böngészős változat online játszható, az eredeti forráskód is elérhető."
     ]
   },
@@ -64,7 +64,7 @@ const GUIDE_LOCALES = {
       "Khonproof · Khonrelay · Khonsolve. Khonsolve to bezpłatny warsztat z 15 autorskimi zadaniami z programowania, debugowania, logiki, promptów i agent skills. Ma lokalne testy JavaScript, TypeScript i Python, stopniowe podpowiedzi, samoocenę i zapisane notatki. Kod jest publiczny na GitHubie.",
       "GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Mogę pokazać linki, ale nie wysyłam wiadomości ani nie wypowiadam się w jego imieniu.",
       "Patrick Obrtal · khonsu. Patrick pracuje jako Customer Support Partner L2 w Luigi’s Box. Patrick ma tytuł magistra informatyki z TUKE. W pracy dyplomowej połączył agentów uczenia ze wzmocnieniem PPO z generowaniem map przez LLM dla gry wieloosobowej.",
-      "Śledzi AGI, rekurencyjne samodoskonalenie i nowe modele. Testuje agentów programistycznych we własnej pracy. W pracy dyplomowej zajmował się też PPO.",
+      "Patrick pracuje z OpenAI Codex i poznaje przepływy pracy z Claude 5.5. Wśród modeli Claude woli Opus 5.5. Jev pomaga mu w małych decyzjach, wyborze kandydatów i porządkowaniu według trafności. Wyniki sprawdza osobno.",
       "Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry. Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Wersja przeglądarkowa działa online, dostępny jest też oryginalny kod."
     ]
   },
@@ -98,7 +98,7 @@ const GUIDE_LOCALES = {
       "Khonproof · Khonrelay · Khonsolve. Khonsolve je bezplatná dílna s 15 původními úlohami na programování, debugging, logiku, prompty a agent skills. Má místní JavaScript, TypeScript a Python testy, postupné nápovědy, vlastní hodnocení a uložené poznámky. Kód je veřejný na GitHubu.",
       "GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Ukážu odkazy, ale nemůžu poslat zprávu ani mluvit jeho jménem.",
       "Patrick Obrtal · khonsu. Patrick pracuje jako Customer Support Partner L2 v Luigi’s Box. Patrick má magisterské vzdělání v informatice z TUKE. V diplomové práci spojil PPO agenty s generováním map pomocí LLM pro multiplayerovou hru.",
-      "Sleduje AGI, rekurzivní sebezdokonalování a nové modely. Coding agenty zkouší ve vlastní práci. V diplomové práci se věnoval PPO.",
+      "Patrick pracuje s OpenAI Codex a zkoumá postupy s Claude 5.5. Z modelů Claude dává přednost Opus 5.5. Jev mu pomáhá s menšími rozhodnutími, výběrem kandidátů a řazením podle relevance. Výsledky ověřuje samostatně.",
       "Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou. Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Prohlížečovou verzi si můžeš zahrát online nebo si prohlédnout původní kód."
     ]
   },
@@ -132,7 +132,7 @@ const GUIDE_LOCALES = {
       "Khonproof · Khonrelay · Khonsolve. Khonsolve ist eine kostenlose Übungswerkstatt mit 15 eigenen Aufgaben zu Programmierung, Debugging, Logik, Prompts und Agent Skills. Sie bietet lokale JavaScript-, TypeScript- und Python-Tests, schrittweise Hinweise, Selbstbewertung und gespeicherte Notizen. Der Quellcode ist auf GitHub öffentlich.",
       "GitHub: khons-hu. X: @ptr1337_. Discord: khons.hu. Ich kann die Links zeigen, aber keine Nachrichten senden oder für Patrick sprechen.",
       "Patrick Obrtal · khonsu. Patrick arbeitet als Customer Support Partner L2 bei Luigi’s Box. Patrick hat einen Master in Informatik von der TUKE. Seine Abschlussarbeit kombinierte PPO-Agenten für bestärkendes Lernen mit LLM-basierter Kartengenerierung für ein Mehrspielerspiel.",
-      "Er verfolgt AGI, rekursive Selbstverbesserung und neue Modelle und testet Coding-Agenten bei eigenen Aufgaben. Auch seine Abschlussarbeit mit PPO behandelte lernende Systeme.",
+      "Patrick arbeitet mit OpenAI Codex und erkundet Abläufe mit Claude 5.5. Bei Claude bevorzugt er Opus 5.5. Jev unterstützt ihn bei kleinen Entscheidungen, der Kandidatenauswahl und der Relevanzsortierung. Die Ergebnisse prüft er separat.",
       "2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik. Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Die Browser-Version ist online spielbar, der ursprüngliche Quellcode ist ebenfalls verfügbar."
     ]
   },
@@ -166,7 +166,7 @@ const GUIDE_LOCALES = {
       "Khonproof · Khonrelay · Khonsolve. Khonsolve es un taller gratuito con 15 ejercicios de código, depuración, lógica, prompts y agent skills. Ofrece pruebas locales de JavaScript, TypeScript y Python, pistas graduales y notas. Código público en GitHub.",
       "Puedes escribir a Patrick mediante «Escribir a Patrick» abajo. FormSubmit envía solo el formulario, no esta conversación. También está en GitHub, LinkedIn, X y Discord.",
       "Patrick Obrtal · khonsu. Patrick trabaja como Customer Support Partner L2 en Luigi’s Box. Patrick tiene un máster en Informática de TUKE. Su tesis combinó agentes PPO de aprendizaje por refuerzo con generación de mapas mediante LLM para un juego multijugador.",
-      "Sigue la AGI, la automejora recursiva y los nuevos modelos. Prueba agentes de programación en sus proyectos. También trabajó con PPO en su tesis.",
+      "Patrick trabaja con OpenAI Codex y explora flujos de trabajo con Claude 5.5. De los modelos Claude, prefiere Opus 5.5. Jev le ayuda con decisiones pequeñas, la selección de candidatos y el orden por relevancia. Verifica los resultados por separado.",
       "Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local. Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. La versión de navegador se puede jugar online y el código original está disponible."
     ]
   }
