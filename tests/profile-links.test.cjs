@@ -7,6 +7,7 @@ const {LANGUAGE_NAMES}=require('../language-data.js');
 for(const code of ['pt','fr','zh','hi','ar','bn','ru','ur','id','ja'])require(`../locales/${code}.js`);
 const {answer,ui}=require('../guide.js');
 const LINKEDIN='https://www.linkedin.com/in/patrick-obrtal/';
+const UNBENCHMARK='https://unbenchmark.com/user/khons-hu?tab=reviews';
 
 test('LinkedIn sits with the other contact links and opens safely',()=>{
  const html=read('index.html');
@@ -19,7 +20,25 @@ test('LinkedIn sits with the other contact links and opens safely',()=>{
 });
 
 test('the terminal contact command lists the LinkedIn handle',()=>{
- assert.match(read('terminal.js'),/'GitHub: khons-hu\\nLinkedIn: patrick-obrtal\\nX: @ptr1337_\\nDiscord: khons\.hu\\n\\n'/);
+ assert.match(read('terminal.js'),/'GitHub: khons-hu\\nLinkedIn: patrick-obrtal\\nX: @ptr1337_\\nDiscord: khons\.hu\\n/);
+});
+
+test('published model reviews are reachable from the page, terminal and both guide paths',()=>{
+ const html=read('index.html');
+ const links=html.match(/<div class="social-links">([\s\S]*?)<\/div>/)[1];
+ assert(links.includes(`<a href="${UNBENCHMARK}" target="_blank" rel="noopener noreferrer">Unbenchmark `));
+ assert(html.includes(`<a href="${UNBENCHMARK}" target="_blank" rel="noopener noreferrer">Read the model reviews`));
+ assert(html.includes('https://unbenchmark.com/reviews/124'),'preserve the direct Sonnet pilot link');
+ assert(read('terminal.js').includes(`Unbenchmark: ${UNBENCHMARK}\\n`));
+ const {CONTACT}=require('../api/chat.js');
+ assert(CONTACT.some(fact=>fact.includes(UNBENCHMARK)&&fact.startsWith('Model reviews: ')));
+ for(const language of Object.keys(LANGUAGE_NAMES)){
+  for(const question of ['unbenchmark','model reviews']){
+   const result=answer(question,language);
+   assert.equal(result.section,'contact',`${language}: ${question}`);
+   assert(result.text.includes(UNBENCHMARK),`${language}: ${question}`);
+  }
+ }
 });
 
 test('the guide mentions LinkedIn when asked, in every language',()=>{

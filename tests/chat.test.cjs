@@ -106,7 +106,7 @@ test('site, project and contact facts match what the page shows',()=>{
  for(const command of commands)assert.match(SITE,new RegExp(`\\b${command}\\b`),`terminal command ${command}`);
  assert.match(SITE,/17 languages/);assert.match(SITE,/Guide: Groq when enabled/);
  const social=[...html.match(/<div class="social-links">([\s\S]*?)<\/div>/)[1].matchAll(/href="(https:[^"]+)"/g)].map(m=>m[1]);
- assert.deepEqual(social,['https://github.com/khons-hu','https://www.linkedin.com/in/patrick-obrtal/','https://x.com/ptr1337_']);
+ assert.deepEqual(social,['https://github.com/khons-hu','https://www.linkedin.com/in/patrick-obrtal/','https://x.com/ptr1337_','https://unbenchmark.com/user/khons-hu?tab=reviews']);
  for(const url of social)assert(CONTACT.some(line=>line.includes(url)),url);
  assert(CONTACT.some(line=>line.includes('khons.hu')));
 });
