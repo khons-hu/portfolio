@@ -3,7 +3,7 @@ const terminal = document.querySelector('#terminal-dialog');
 const input = document.querySelector('#command');
 const output = document.querySelector('#terminal-output');
 const commands = ['help', 'about', 'projects', 'work', 'now', 'contact', 'status', 'lore', 'theme', 'ask', 'email', 'open', 'clear', 'close'];
-const projectAliases = {proof:'proof',trialkeep:'proof',reasonrook:'thinkroom',thinkroom:'thinkroom',feedcairn:'signal',signal:'signal',stakeglass:'market',market:'market',lootlatch:'steam',steam:'steam',dots:'dots',receipts:'receipts','receipts-after-dark':'receipts','save-democracy':'save-democracy',save:'save-democracy',portfolio:'portfolio',spotify:'rotation',rotation:'rotation',calculator:'calculator',arduino:'calculator',bot:'bot',ipc:'ipc'};
+const projectAliases = {moonlight:'moonlight','khonsu-moonlight':'moonlight',proof:'proof',trialkeep:'proof',reasonrook:'thinkroom',thinkroom:'thinkroom',feedcairn:'signal',signal:'signal',stakeglass:'market',market:'market',lootlatch:'steam',steam:'steam',dots:'dots',receipts:'receipts','receipts-after-dark':'receipts','save-democracy':'save-democracy',save:'save-democracy',portfolio:'portfolio',spotify:'rotation',rotation:'rotation',calculator:'calculator',arduino:'calculator',bot:'bot',ipc:'ipc'};
 const publicProjectIds = [...document.querySelectorAll('[data-project]')].map(card => card.dataset.project);
 const projectNames = {proof:'trialkeep',thinkroom:'reasonrook',signal:'feedcairn',market:'stakeglass',steam:'lootlatch'};
 Object.assign(projectAliases, {khonproof:'proof',khonsolve:'thinkroom',khonrelay:'signal',khonodds:'market',khonstash:'steam'});
