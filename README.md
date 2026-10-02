@@ -4,7 +4,7 @@ Portfolio: https://khns.dev/
 
 Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. The GitHub repository is public: https://github.com/khons-hu/portfolio. GitHub autodeploy is connected to khons-hu/portfolio. Pushes to main create Production deployments and update khons-hu.vercel.app. Verified with commit 26466a4 on 2026-09-20. The initial khonsu-ochre.vercel.app address redirects to the clean address.
 
-Static HTML, CSS, and JavaScript, without a frontend framework or build step. No analytics or background model calls. Project artwork is illustrative. Some project dialogs also include screenshots. Moonlight includes its optional setup menu, original companion and separate VSCodeVim and VSCode Neovim profiles, plus captioned close-ups of the prompt, syntax and public profile settings, with links to full-size images. The contact form sends only the visitor’s email and message through FormSubmit when submitted.
+Static HTML, CSS, and JavaScript, without a frontend framework or build step. No analytics or background model calls. Project artwork is illustrative. Some project dialogs also include screenshots. Moonlight includes its optional setup menu, interactive local pets and separate VSCodeVim and VSCode Neovim profiles, plus captioned close-ups of the prompt, syntax and public profile settings, with links to full-size images. The contact form sends only the visitor’s email and message through FormSubmit when submitted.
 
 ## Preview
 
@@ -65,6 +65,8 @@ Credentials live only in Vercel environment variables: `SPOTIFY_CLIENT_ID`, `SPO
 Edit index.html for the page and project groups, app.js for project notes, project-links.js for public link slugs, and site-locales.js for translations. Edit terminal.js for commands and panels.js for the shared tool navigation. The terminal derives its project catalog from the cards. `ask <question>` opens Ask khonsu with the question prefilled; `ask projects` and `ask agents` are shortcuts. No private client details, CV download, invented results, or unpublished source links are included.
 
 ## Verified locally
+
+2026-10-02 Moonlight 0.5.0 portfolio copy: interactive pet behavior and privacy boundaries reviewed against the release implementation. The release passed 38 runtime checks, live-fixture testing and a VS Code 1.140 extension-host smoke test. The pet description covers click or hold-and-stroke interaction, breathing and blinking, tail or antenna movement, ball chase, rest and wake, keyboard access, remembered local motion preference, reduced-motion handling and hidden-tab pause. Pet play stays local, with no network requests or access to your code.
 
 2026-10-01 review pass: no-JS and print. Without JavaScript the fixed header no longer covers the page while scrolling and a card's outside link no longer sits over its stack line; in print the header no longer repeats over every page, unrevealed sections print, cards stay whole and the guide button is left out. `node --test tests/*.test.cjs` (128 tests). Chrome headless against the local server: A4 PDFs in both themes straight after load, no-JS at 1280 and 390px (index and 404), a text-overlap scan at 1280, 1024, 768, 390 and 320px with and without JavaScript, and axe (no violations) at 1280 dark/light, 390 light and 390 dark Arabic. The earlier sweep of all 17 languages at five widths, the three panels, every project's notes, keyboard focus, forced colours and 2560px found nothing else to change. Chrome only; Safari and Firefox printing not checked.
 
