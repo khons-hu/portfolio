@@ -140,7 +140,7 @@ test('each project fact names the card’s outside link, so availability is neve
  const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
  const {PROJECTS,system}=require('../api/chat.js');
  assert.deepEqual([...html.matchAll(/<button class="project-details" data-project="([^"]+)"/g)].map(match=>match[1]),PROJECTS.map(project=>project[4]));
- const phrase={'Download release ↗':'GitHub release','Open app ↗':'live app','View source ↗':'GitHub source','Play on itch.io ↗':'playable on itch.io','View on itch.io ↗':'itch.io page','Open playlist ↗':'Spotify playlist'};
+ const phrase={'Download theme ↗':'GitHub download','Open app ↗':'live app','View source ↗':'GitHub source','Play on itch.io ↗':'playable on itch.io','View on itch.io ↗':'itch.io page','Open playlist ↗':'Spotify playlist'};
  for(const [card] of html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)){
   const title=card.match(/<h3>([^<]+)<\/h3>/)[1],label=card.match(/class="project-live"[^>]*>([^<]+)<\/a>/)[1];
   const entry=PROJECTS.find(p=>p[0]===title);assert.match(entry[2],new RegExp(`; ${phrase[label]}$`),`${title}: ${entry[2]}`);

@@ -10,7 +10,7 @@ const configured=env=>Boolean(env.GROQ_API_KEY);
 // with the project cards in index.html, and the contact links and terminal commands with the page.
 // PROJECTS: [card title, guide topic that holds its details ('' if none), type and the card's outside link, card text when no topic covers it].
 const PROJECTS=[
- ['Khonsu Moonlight','','VS Code theme and terminal; GitHub release','My midnight VS Code theme, formatter profile and lunar zsh terminal setup.','moonlight'],
+ ['Khonsu Moonlight','','VS Code color theme; GitHub source; GitHub download','A declarative VS Code color theme; optional formatter and terminal setup in source.','moonlight'],
  ['Trialkeep','proof','current project, JavaScript, agent evaluation; GitHub source',null,'proof'],
  ['Reasonrook','thinkroom','current project, JavaScript, browser sandbox; live app',null,'thinkroom'],
  ['Feedcairn','signal','current project, TypeScript, RSS / Atom; live app',null,'signal'],
@@ -37,7 +37,7 @@ const FACTS=[
 ].join('\n');
 const SITE="Portfolio: https://khns.dev; source https://github.com/khons-hu/portfolio; HTML/CSS/JS, Vercel. Project search and shareable notes. Terminal: help, about, projects, work, now, contact, status, lore, theme, ask, email, open, clear, close. Guide: Groq when enabled, prepared answers otherwise, public project-ID tool, local autocomplete and agent/RAG/PPO path. Compare three locally: status, tech, purpose, links; optional Groq explanation. 17 languages, light/dark and motion. Spotify position and player. Email sends only the form. No chat storage; questions and context go to Groq.";
 // Page sections the topics above do not cover (About, Luigi's Box practice, On my desk), in the third person.
-const PAGE=['About: master\'s in Computer Science from TUKE and a background in backend and full-stack development; now trying models, coding tools and agent workflows.','How he works: reproduce real user journeys, audit storefront behaviour, feeds, mapping and event collection, verify fixes, and give engineering reproducible cases.','On his desk, September 30, 2026: builds and reviews with Codex and Claude; Jev helps with decisions, candidate selection and relevance ordering, checked separately. Tries tools and agent workflows on real tasks. Interests: reinforcement learning and multiplayer games. Refining an AI inbox, agent evaluation lab and practice workshop.'];
+const PAGE=['About: master\'s in Computer Science from TUKE and a background in backend and full-stack development; now trying models, coding tools and agent workflows.','How he works: reproduce real user journeys, audit storefront behaviour, feeds, mapping and event collection, verify fixes, and give engineering reproducible cases.','On his desk: builds and reviews with Codex and Claude; Jev helps with decisions, candidate selection and relevance ordering, checked separately. Tries tools and agent workflows on real tasks. Interests: reinforcement learning and multiplayer games. Refining an AI inbox, agent evaluation lab and practice workshop.'];
 const CONTACT=['Email: the Email tab or Contact form (FormSubmit sends only the form, never this chat); address ptr.obrtal@gmail.com','GitHub: https://github.com/khons-hu','LinkedIn: https://www.linkedin.com/in/patrick-obrtal/','X: https://x.com/ptr1337_ (@ptr1337_)','Discord: khons.hu',"Model reviews: https://unbenchmark.com/user/khons-hu?tab=reviews"];
 const system=[
  'You are Ask khonsu, the guide on Patrick Obrtal\'s portfolio, not Patrick. khonsu is his handle; the site itself is written by Patrick in the first person.',
