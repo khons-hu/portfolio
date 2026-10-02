@@ -10,7 +10,7 @@ const configured=env=>Boolean(env.GROQ_API_KEY);
 // with the project cards in index.html, and the contact links and terminal commands with the page.
 // PROJECTS: [card title, guide topic that holds its details ('' if none), type and the card's outside link, card text when no topic covers it].
 const PROJECTS=[
- ['Khonsu Moonlight','','VS Code color theme; GitHub source; GitHub download','A declarative VS Code color theme; optional formatter and terminal setup in source.','moonlight'],
+ ['Khonsu Moonlight','','VS Code color theme; GitHub source; VS Code Marketplace','A dark VS Code color theme with optional formatter and terminal setup in source.','moonlight'],
  ['Trialkeep','proof','current project, JavaScript, agent evaluation; GitHub source',null,'proof'],
  ['Reasonrook','thinkroom','current project, JavaScript, browser sandbox; live app',null,'thinkroom'],
  ['Feedcairn','signal','current project, TypeScript, RSS / Atom; live app',null,'signal'],
