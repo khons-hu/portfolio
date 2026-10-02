@@ -4,7 +4,7 @@ Portfolio: https://khns.dev/
 
 Deployed via Vercel Drop to Deploy on 2026-09-20 in NextWave (next-wave10), project khonsu. The GitHub repository is public: https://github.com/khons-hu/portfolio. GitHub autodeploy is connected to khons-hu/portfolio. Pushes to main create Production deployments and update khons-hu.vercel.app. Verified with commit 26466a4 on 2026-09-20. The initial khonsu-ochre.vercel.app address redirects to the clean address.
 
-Static HTML, CSS, and JavaScript, without a frontend framework or build step. No analytics or background model calls. Project artwork is illustrative. Some project dialogs also include screenshots. Moonlight includes captioned close-ups of the prompt, syntax and public profile settings, with links to full-size images. The contact form sends only the visitor’s email and message through FormSubmit when submitted.
+Static HTML, CSS, and JavaScript, without a frontend framework or build step. No analytics or background model calls. Project artwork is illustrative. Some project dialogs also include screenshots. Moonlight includes its optional setup menu and original companion, plus captioned close-ups of the prompt, syntax and public profile settings, with links to full-size images. The contact form sends only the visitor’s email and message through FormSubmit when submitted.
 
 ## Preview
 

@@ -42,7 +42,7 @@ test('detail screenshots have captions, local full-size images and clear when an
  const {node,show}=setup();show('moonlight');
  const gallery=node('#project-gallery');
  assert.equal(gallery.hidden,false);
- assert.equal(gallery.children.length,3);
+ assert.equal(gallery.children.length,5);
  for(const figure of gallery.children){
   const [link,caption]=figure.children;
   const image=link.children[0];
