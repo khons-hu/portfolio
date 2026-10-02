@@ -75,7 +75,11 @@ filterProjects();
 window.addEventListener('portfolio:language', filterProjects);
 
 const projects = {
-  moonlight: { title: 'Khonsu Moonlight', category: 'CURRENT PROJECT · EDITOR / TERMINAL', description: 'My midnight VS Code theme, formatter profile and lunar zsh terminal setup.', notes: ['Midnight navy, ice blue, lavender and mint across the editor and shell. The VS Code theme remains declarative.', 'Optional Prettier and Ruff profile, plus a two-line Starship prompt with Git status, runtime detection and command timing. JetBrains Mono Nerd Font, zsh completions, suggestions and syntax colours were checked in VS Code on macOS.', 'Codex and native macOS Terminal presets are included for manual import. Neither has been visually tested in its app. Release notes are in English.'], live: true, url: 'https://github.com/khons-hu/khonsu-moonlight/releases/tag/v0.2.0', source: 'https://github.com/khons-hu/khonsu-moonlight', linkLabel: 'Download release ↗', linkKind: 'source' },
+  moonlight: { title: 'Khonsu Moonlight', category: 'CURRENT PROJECT · EDITOR / TERMINAL', description: 'My midnight VS Code theme, formatter profile and lunar zsh terminal setup.', notes: ['Midnight navy, ice blue, lavender and mint across the editor and shell. The VS Code theme remains declarative.', 'Optional Prettier and Ruff profile, plus a two-line Starship prompt with Git status, runtime detection and command timing. JetBrains Mono Nerd Font, zsh completions, suggestions and syntax colours were checked in VS Code on macOS.', 'Codex and native macOS Terminal presets are included for manual import. Neither has been visually tested in its app. Release notes are in English.'], screenshots: [
+    { src: 'assets/previews/moonlight-prompt.png', width: 1440, height: 480, caption: 'The two-line prompt with Git branch, Node version, a timed command and exit code 1 from the harmless false command.' },
+    { src: 'assets/previews/moonlight-syntax.png', width: 1480, height: 710, caption: 'TypeScript up close: lavender keywords, mint strings, ice-blue functions and quiet bracket guides. This is the included sample file.' },
+    { src: 'assets/previews/moonlight-settings.png', width: 1480, height: 944, caption: 'The public profile settings: JetBrains Mono Nerd Font at 14 px, a line cursor and Prettier on save.' }
+  ], live: true, url: 'https://github.com/khons-hu/khonsu-moonlight/releases/tag/v0.2.0', source: 'https://github.com/khons-hu/khonsu-moonlight', linkLabel: 'Download release ↗', linkKind: 'source' },
   proof: {"title":"Trialkeep","category":"CURRENT PROJECT · JAVASCRIPT","description":"A small lab for agent decisions, browser tasks, skill comparisons, deploy checks and claims.","notes":["20 browser tasks and measured report imports. Published Jev and keyword-baseline results include failures.","Model tests run locally with your own API key. A small sample, not a general model ranking."],"url":"https://github.com/khons-hu/trialkeep"},
   calculator: {"title": "Arduino calculator", "category": "UNIVERSITY TEAM PROJECT · ARDUINO", "description": "A calculator with a keypad, an LCD and a small bomb-defusal game. A university team build.", "notes": ["Built with a team at TUKE using an Arduino Uno, a keypad and an LCD. It evaluates arithmetic expressions with brackets and keeps calculation history.", "The repository includes the source and circuit diagram. There is also a small bomb-defusal game. This is earlier hardware work, not a browser demo."], "url": "https://github.com/khons-hu/Scientific-Calculator-Simplified---Semestral-Hardware-project"},
   steam: {"title": "Lootlatch", "category": "CURRENT PROJECT · JAVASCRIPT / STEAM MARKET", "description": "A small Steam item watchlist with room for your own reasoning.", "notes": ["Check EUR listing prices, record purchase costs and see estimated Steam Wallet proceeds after fees. No Steam login or trading.", "Keep up to 12 items, target-price notices, local notes and your own observation history. Export a backup to move between browsers.", "Price checks are manual and depend on an undocumented Steam endpoint. No background monitoring or closed-app notifications. Source is public; hosted deployment is awaiting GitHub access setup."], "url": "https://github.com/khons-hu/lootlatch"},
@@ -107,6 +111,27 @@ function showProject(id) {
   preview.hidden = !previewUrl;
   if (previewUrl) preview.src = previewUrl;
   else preview.removeAttribute('src');
+  const gallery = document.querySelector('#project-gallery');
+  gallery.hidden = !project.screenshots?.length;
+  gallery.replaceChildren(...(project.screenshots || []).map(shot => {
+    const figure = document.createElement('figure');
+    const imageLink = document.createElement('a');
+    imageLink.href = shot.src;
+    imageLink.target = '_blank';
+    imageLink.rel = 'noopener noreferrer';
+    imageLink.setAttribute('aria-label', t('Open full-size screenshot') + ': ' + t(shot.caption));
+    const image = document.createElement('img');
+    image.src = shot.src;
+    image.alt = t(shot.caption);
+    image.width = shot.width;
+    image.height = shot.height;
+    image.loading = 'lazy';
+    imageLink.append(image);
+    const caption = document.createElement('figcaption');
+    caption.textContent = t(shot.caption);
+    figure.append(imageLink, caption);
+    return figure;
+  }));
   // One primary outside link: a live demo is filled, other destinations stay outlined.
   const link = document.querySelector('#project-link');
   const liveUrl = project.live ? project.url : null;

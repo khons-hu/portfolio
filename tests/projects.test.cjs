@@ -6,14 +6,14 @@ const vm=require('node:vm');
 function setup(){
  const nodes=new Map();
  function node(selector){
-  if(!nodes.has(selector))nodes.set(selector,{textContent:'',hidden:false,open:false,scrollTop:180,attributes:{},replaceChildren(){},showModal(){this.open=true;},removeAttribute(key){delete this.attributes[key];delete this[key];},setAttribute(key,value){this.attributes[key]=String(value);},getAttribute(key){return this.attributes[key]??null;}});
+  if(!nodes.has(selector))nodes.set(selector,{textContent:'',hidden:false,open:false,scrollTop:180,attributes:{},children:[],replaceChildren(...children){this.children=children;},showModal(){this.open=true;},removeAttribute(key){delete this.attributes[key];delete this[key];},setAttribute(key,value){this.attributes[key]=String(value);},getAttribute(key){return this.attributes[key]??null;}});
   return nodes.get(selector);
  }
  const document={querySelector(selector){
   if(selector.includes('.dialog-preview-hidden'))return selector.includes('thinkroom')?{getAttribute:()=> 'assets/previews/reasonrook.webp'}:null;
   if(selector.includes('.project-info p'))return null;
   return node(selector);
- },querySelectorAll:()=>[],createElement:()=>({textContent:''})};
+ },querySelectorAll:()=>[],createElement:()=>({textContent:'',children:[],append(...children){this.children.push(...children);},setAttribute(key,value){this[key]=String(value);}})};
  const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
  const context=vm.createContext({document,t:x=>x});
  vm.runInContext(source.slice(source.indexOf('const projects = {'),source.indexOf("window.addEventListener('portfolio:language'",source.indexOf('const projects = {'))),context);
@@ -37,6 +37,25 @@ test('rerendering an already open project preserves the reading position',()=>{
 });
 test('switching project links resets the notes to their beginning',()=>{
  const {node,show}=setup();show('thinkroom');node('#project-dialog').scrollTop=170;show('calculator');assert.equal(node('#project-dialog').scrollTop,0);
+});
+test('detail screenshots have captions, local full-size images and clear when another project opens',()=>{
+ const {node,show}=setup();show('moonlight');
+ const gallery=node('#project-gallery');
+ assert.equal(gallery.hidden,false);
+ assert.equal(gallery.children.length,3);
+ for(const figure of gallery.children){
+  const [link,caption]=figure.children;
+  const image=link.children[0];
+  assert.equal(image.src,link.href);
+  assert.equal(link.target,'_blank');
+  assert.equal(link.rel,'noopener noreferrer');
+  assert.equal(image.alt,caption.textContent);
+  assert(caption.textContent.length>0);
+  assert(fs.existsSync(path.join(__dirname,'..',image.src)));
+ }
+ show('calculator');
+ assert.equal(gallery.hidden,true);
+ assert.equal(gallery.children.length,0);
 });
 function filters(){
  const source=fs.readFileSync(path.join(__dirname,'../app.js'),'utf8');
