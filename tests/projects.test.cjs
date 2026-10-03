@@ -38,21 +38,28 @@ test('rerendering an already open project preserves the reading position',()=>{
 test('switching project links resets the notes to their beginning',()=>{
  const {node,show}=setup();show('thinkroom');node('#project-dialog').scrollTop=170;show('calculator');assert.equal(node('#project-dialog').scrollTop,0);
 });
-test('detail screenshots have captions, local full-size images and clear when another project opens',()=>{
+test('detail media have captions, local full-size targets and clear when another project opens',()=>{
  const {node,show}=setup();show('moonlight');
  const gallery=node('#project-gallery');
  assert.equal(gallery.hidden,false);
- assert.equal(gallery.children.length,8);
+ assert.equal(gallery.children.length,9);
+ let videoLinks=0;
  for(const figure of gallery.children){
   const [link,caption]=figure.children;
   const image=link.children[0];
-  assert.equal(image.src,link.href);
+  if(link.href.endsWith('.mp4')){
+   videoLinks++;
+   assert(image.src.endsWith('-poster.jpg'));
+   assert(fs.existsSync(path.join(__dirname,'..',link.href)));
+   assert.match(link['aria-label'],/^Watch pet demo:/);
+  }else assert.equal(image.src,link.href);
   assert.equal(link.target,'_blank');
   assert.equal(link.rel,'noopener noreferrer');
   assert.equal(image.alt,caption.textContent);
   assert(caption.textContent.length>0);
   assert(fs.existsSync(path.join(__dirname,'..',image.src)));
  }
+ assert.equal(videoLinks,1);
  show('calculator');
  assert.equal(gallery.hidden,true);
  assert.equal(gallery.children.length,0);
