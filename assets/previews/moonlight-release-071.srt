@@ -1,0 +1,54 @@
+1
+00:00:00,000 --> 00:00:18,458
+Khonsu Moonlight
+Write, correct and format. Typing passages paced to about 130 WPM.
+
+2
+00:00:18,458 --> 00:00:29,542
+Python + terminal
+Distinct syntax colours and real output from the synthetic sample.
+
+3
+00:00:29,542 --> 00:00:36,125
+Choose your tools
+22 optional extensions. This is a picker preview, not an installation.
+
+4
+00:00:36,125 --> 00:00:47,083
+Settings you can undo
+Apply appearance settings, then restore the previous values.
+
+5
+00:00:47,083 --> 00:01:01,000
+Focus when you need it
+Start, pause and resume a local timer from the status bar.
+
+6
+00:01:01,000 --> 00:01:10,958
+A pet break
+Touch your companion, play with the ball or tap the cushion. OS reduced motion is on.
+
+7
+00:01:10,958 --> 00:01:23,958
+Make it yours
+Choose a Labrador, give it a name and pick its colour.
+
+8
+00:01:23,958 --> 00:01:40,958
+Direct play, animated
+Separate motion-enabled production-webview preview. System settings stay unchanged.
+
+9
+00:01:40,958 --> 00:01:52,292
+Back to work
+Hide the pet, stop focus and preview the optional Vim or Neovim choices.
+
+10
+00:01:52,292 --> 00:02:06,667
+Your setup, your choice
+Bundled guides and terminal setup. The prepared installer is not run in this demo.
+
+11
+00:02:06,667 --> 00:02:11,167
+A matching workspace
+Wallpaper, editor profiles and terminal colours are included.
