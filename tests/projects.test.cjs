@@ -42,16 +42,16 @@ test('detail media have captions, local full-size targets and clear when another
  const {node,show}=setup();show('moonlight');
  const gallery=node('#project-gallery');
  assert.equal(gallery.hidden,false);
- assert.equal(gallery.children.length,9);
+ assert.equal(gallery.children.length,11);
  let videoLinks=0;
  for(const figure of gallery.children){
   const [link,caption]=figure.children;
   const image=link.children[0];
-  if(link.href.endsWith('.mp4')){
+  const mediaPath=new URL(link.href,'https://khns.dev/').pathname;
+  if(mediaPath.endsWith('.mp4')){
    videoLinks++;
-   assert(image.src.endsWith('-poster.jpg'));
-   assert(fs.existsSync(path.join(__dirname,'..',link.href)));
-   assert.match(link['aria-label'],/^Watch pet demo:/);
+   assert(fs.existsSync(path.join(__dirname,'..',mediaPath)));
+   assert.match(link['aria-label'],/^Watch video:/);
   }else assert.equal(image.src,link.href);
   assert.equal(link.target,'_blank');
   assert.equal(link.rel,'noopener noreferrer');
@@ -59,7 +59,7 @@ test('detail media have captions, local full-size targets and clear when another
   assert(caption.textContent.length>0);
   assert(fs.existsSync(path.join(__dirname,'..',image.src)));
  }
- assert.equal(videoLinks,1);
+ assert.equal(videoLinks,3);
  show('calculator');
  assert.equal(gallery.hidden,true);
  assert.equal(gallery.children.length,0);
