@@ -194,7 +194,7 @@ document.querySelector('#copy-discord').addEventListener('click', async () => {
   new IntersectionObserver(([entry]) => document.documentElement.classList.toggle('header-stuck', !entry.isIntersecting)).observe(sentinel);
   const links = new Map([...header.querySelectorAll('nav a[href^="#"]')].map(link => [link.getAttribute('href').slice(1), link]));
   // Each section belongs to the nav entry it sits under: the work to Work, the personal notes to About.
-  const owner = { 'field-notes': 'field-notes', projects: 'field-notes', about: 'about', shipped: 'about', now: 'about', contact: 'contact' };
+  const owner = { projects: 'projects', 'field-notes': 'projects', about: 'about', shipped: 'about', now: 'about', contact: 'contact' };
   const mark = id => links.forEach((link, key) => key === owner[id] ? link.setAttribute('aria-current', 'true') : link.removeAttribute('aria-current'));
   // A thin band just above the middle of the viewport decides which section is in view.
   const inView = new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) mark(entry.target.id); }, { rootMargin: '-45% 0px -54% 0px' });

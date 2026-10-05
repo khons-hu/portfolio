@@ -57,7 +57,7 @@ img{max-width:100%}
 .eyebrow>span{padding:0 .7em;color:var(--faint)}
 /* A moon before each section label, waxing from the field notes to a full moon at Contact. */
 :is(#field-notes,#projects,#shipped,#now)>.section-heading .eyebrow::before,#about .about-intro>.eyebrow::before,#contact .contact-intro>.eyebrow::before{content:"";display:inline-block;width:9px;height:9px;margin-inline-end:11px;border-radius:50%;vertical-align:-.5px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 55%,transparent),inset var(--phase,-4px) 0 0 0 var(--accent)}
-#field-notes{--phase:-2px}#projects{--phase:-3.5px}#about{--phase:-5px}#shipped{--phase:-6.5px}#now{--phase:-8px}#contact{--phase:-10px}
+#projects{--phase:-2px}#field-notes{--phase:-3.5px}#about{--phase:-5px}#shipped{--phase:-6.5px}#now{--phase:-8px}#contact{--phase:-10px}
 h2{font:400 clamp(36px,4.3vw,56px)/1.1 var(--sans);letter-spacing:-.035em;margin-bottom:0;text-wrap:balance}
 h3{font-weight:500;letter-spacing:-.015em}
 /* Keep the serif accent in the opening title. Section headings share one face. */
@@ -106,6 +106,12 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .primary-link span{color:var(--accent);transition:transform .2s ease}
 .primary-link:hover span{transform:translateY(3px)}
 .text-button{min-height:44px;color:var(--muted);font-size:14px}
+/* Three direct ways into the work. Each opens its project notes through the shared #project/ links. */
+.hero-start{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:28px 0 0;font-size:13px;color:var(--muted)}
+.hero-start>span{font:500 11px/1.8 var(--sans);letter-spacing:.08em;text-transform:uppercase;margin-inline-end:4px}
+.hero-start a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink-soft);background:var(--glass);text-decoration:none;transition:border-color .2s ease,color .2s ease}
+.hero-start a:hover{border-color:var(--accent);color:var(--ink)}
+.hero-start a:first-of-type{border-color:color-mix(in srgb,var(--status) 55%,var(--line-strong))}
 .text-button span{margin-left:8px;font-family:var(--mono);color:var(--accent)}
 .text-button:hover{color:var(--ink)}
 
@@ -164,6 +170,14 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .project-meta{column-gap:14px}
 .project-meta>span:first-child{font-size:11px;line-height:1.9;letter-spacing:.02em;color:var(--muted)}
 .dialog-preview-hidden{display:none!important}
+/* The flagship card: wider, with one real editor screenshot. Narrow screens keep the regular card. */
+.featured-shot{display:none}
+@media(min-width:760px){
+  .project-featured{grid-column:span 2}
+  .project-featured .project-details{grid-template-columns:auto minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:"sigil title shot" "desc desc shot" "meta meta shot" "notes notes .";column-gap:18px}
+  .project-featured .featured-shot{display:block;grid-area:shot;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:left top;border-radius:10px;border:1px solid var(--line);margin:0 0 18px;margin-inline-start:6px;align-self:start}
+  .project-featured{border-color:color-mix(in srgb,var(--status) 30%,var(--line));box-shadow:inset 0 1px 0 var(--rim),inset 3px 0 0 color-mix(in srgb,var(--status) 70%,transparent)}
+}
 .details-label{grid-area:notes;justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:40px;margin-top:14px;font-size:14px;font-weight:500;color:var(--ink)}
 .details-label::after{content:"→";content:"→"/"";color:var(--accent-secondary);transition:transform .2s ease}
 @media(hover:hover){.project-details:hover .details-label::after{transform:translateX(3px)}}
@@ -490,7 +504,7 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 
 /* ---------- Motion: finite, optional, never looping ---------- */
 .entrance{animation:arrive .75s ease-out both}
-.hero h1{animation-delay:.07s}.hero-copy{animation-delay:.14s}.hero-actions{animation-delay:.21s}
+.hero h1{animation-delay:.07s}.hero-copy{animation-delay:.14s}.hero-actions{animation-delay:.21s}.hero-start{animation-delay:.28s}
 .js-motion .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .js-motion .project-card.reveal{transition:opacity .6s ease,transform .6s ease,border-color .25s ease,background-color .25s ease,translate .25s var(--ease),--spot-now .4s ease}
 /* Cards in one row settle one after another, only on their first reveal. */

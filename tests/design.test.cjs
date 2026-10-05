@@ -79,7 +79,7 @@ test('project notes label the main outside link by what it is',()=>{
 
 test('every card separates on-page notes from a typed outside link',()=>{
  const cards=html.match(/<article class="project-card[\s\S]*?<\/article>/g);
- assert.equal(cards.length,13);
+ assert.equal(cards.length,14);
  for(const card of cards){
   assert.match(card,/<span class="details-label">Notes<\/span><\/div><\/button>/);
   for(const [,kind,href] of card.matchAll(/<a class="project-live" data-kind="(\w+)" href="([^"]+)"/g)){
@@ -88,7 +88,7 @@ test('every card separates on-page notes from a typed outside link',()=>{
    if(kind==='live')assert.doesNotMatch(href,/github\.com/);
   }
  }
- assert.equal((html.match(/class="project-live"/g)||[]).length,13);
+ assert.equal((html.match(/class="project-live"/g)||[]).length,14);
 });
 
 test('visible card labels and taglines are translated in every catalog',()=>{

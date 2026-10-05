@@ -12,9 +12,9 @@ function header(){
  class IntersectionObserver{constructor(callback,options={}){this.callback=callback;this.options=options;this.targets=[];observers.push(this);}observe(target){this.targets.push(target);}unobserve(){}disconnect(){}}
  const classes=new Set();
  const link=href=>({href,attributes:{},getAttribute(key){return key==='href'?href:this.attributes[key];},setAttribute(key,value){this.attributes[key]=value;},removeAttribute(key){delete this.attributes[key];}});
- const links=['#field-notes','#about','#contact'].map(link);
+ const links=['#projects','#about','#contact'].map(link);
  const siteHeader={querySelectorAll:selector=>selector==='nav a[href^="#"]'?links:[]};
- const sections=['','field-notes','projects','about','shipped','now','contact'].map(id=>({id}));
+ const sections=['','projects','field-notes','about','shipped','now','contact'].map(id=>({id}));
  const prepended=[];
  const document={
   documentElement:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key),contains:key=>classes.has(key)}},
@@ -47,8 +47,8 @@ test('the nav marks the section in view, grouping work and personal sections',()
  assert(view,'every section is observed');
  assert.match(view.options.rootMargin,/%/,'a thin band across the viewport decides the section');
  const show=id=>{view.callback([{isIntersecting:true,target:{id}}]);return h.current();};
- assert.deepEqual(show('field-notes'),['#field-notes']);
- assert.deepEqual(show('projects'),['#field-notes'],'projects belong to Work');
+ assert.deepEqual(show('projects'),['#projects']);
+ assert.deepEqual(show('field-notes'),['#projects'],'field notes belong to Work');
  assert.deepEqual(show('about'),['#about']);
  assert.deepEqual(show('shipped'),['#about']);
  assert.deepEqual(show('now'),['#about'],'the desk notes belong to About');
@@ -66,7 +66,7 @@ test('the header is fixed and gains glass only when stuck, with a folding nav on
 });
 
 test('each section label carries a moon that waxes down the page',()=>{
- const order=['field-notes','projects','about','shipped','now','contact'];
+ const order=['projects','field-notes','about','shipped','now','contact'];
  const phases=order.map(id=>{const match=css.match(new RegExp(`#${id}\\{--phase:(-?[\\d.]+)px\\}`));assert(match,`${id} has a phase`);return Number(match[1]);});
  for(let i=1;i<phases.length;i++)assert(phases[i]<phases[i-1],`${order[i]} is fuller than ${order[i-1]}`);
  assert(phases.at(-1)<=-9,'a full moon at Contact');
