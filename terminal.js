@@ -123,7 +123,7 @@ function run(raw) {
   }));
   const responses = {
     help: ['', [], [], helpRows()],
-    about: ['Patrick Obrtal. Online, khonsu.\nThe name dates to around 2022, inspired by Moon Knight.\nMaster’s in Computer Science from TUKE. Started in backend and full-stack.\nNow a Customer Support Partner L2 at Luigi’s Box.\nEvenings: Moonlight, Feedcairn and coding-agent evaluations.', [['Read about me ↗', '#about']]],
+    about: ['Patrick Obrtal. Online, khonsu.\nThe name dates to around 2022, inspired by Moon Knight.\nMaster’s in Computer Science from TUKE. Started in backend and full-stack.\nNow a Customer Support Partner L2 at Luigi’s Box.\nPersonal projects: Moonlight, Feedcairn and coding-agent evaluations.', [['Read about me ↗', '#about']]],
     projects: [t('Pick a project to read its notes.'), [], catalog],
     work: ['Customer Support Partner L2 at Luigi’s Box.\nBrowser debugging, APIs, feeds, audits, and analytics.\nAWS and Sentry for service issues and error reports.\nReproduce → trace → fix → verify.', [['More about my work ↗', '#about']]],
     now: [[...document.querySelectorAll('.now-grid article p')].map(p => p.textContent).join('\n\n'), [['On my desk ↗', '#now']]],

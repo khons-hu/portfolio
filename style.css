@@ -814,6 +814,7 @@ input[type=email],#project-share-address{direction:ltr;text-align:start}
 
 /* 404: the hero, quieter. */
 .not-found{min-height:clamp(540px,86svh,760px)}
+.not-found .hero-content{display:block}
 .not-found h1{font-size:clamp(46px,6.4vw,84px);line-height:1.05;max-width:14ch;text-wrap:balance}
 .not-found .hero-copy{max-width:34em}
 .not-found-page .site-header{grid-template-columns:1fr}
