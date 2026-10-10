@@ -238,8 +238,9 @@
       const metaParts=[...(source?.querySelectorAll('.project-meta span')||[])].map(part=>part.textContent.trim()).filter(Boolean),meta=metaParts.join(' · ');
       const outside=source?.querySelector('.project-live');
       const href=outside?.href;
-      if(!source||!title||!summary||!meta||!href||new URL(href,location.href).protocol!=='https:')return null;
-      return {id,title,summary,meta,metaParts,href,label:outside.textContent.trim(),kind:outside.dataset.kind||'external'};
+      if(!source||!title||!summary||!meta)return null;
+      if(outside){try{if(!href||new URL(href,location.href).protocol!=='https:')return null;}catch{return null;}}
+      return {id,title,summary,meta,metaParts,href,label:outside?.textContent.trim()||'',kind:outside?.dataset.kind||'external'};
     }).filter(Boolean);
     if(!projects.length)return;
     const carousel=document.createElement('section');carousel.className='guide-recommendations';carousel.setAttribute('role','region');carousel.setAttribute('aria-roledescription','carousel');carousel.setAttribute('aria-label',copy.heading);carousel.lang=language;carousel.dir=localeData.languageDirection(language);
@@ -268,13 +269,14 @@
       const toggle=document.createElement('button');toggle.type='button';toggle.className='guide-recommendation-compare-toggle';toggle.textContent=copy.addToCompare;toggle.setAttribute('aria-pressed','false');
       const notes=document.createElement('button');notes.type='button';notes.className='guide-recommendation-notes';notes.textContent=copy.notes;
       notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
-      const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);
       toggle.addEventListener('click',()=>{
         if(selected.has(project.id))selected.delete(project.id);
         else if(selected.size<3)selected.add(project.id);
         updateComparison();
       });
-      actions.append(toggle,notes,link);slide.append(meta,name,description,actions);return {slide,project,toggle};
+      actions.append(toggle,notes);
+      if(project.href){const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);actions.append(link);}
+      slide.append(meta,name,description,actions);return {slide,project,toggle};
     });
     track.append(...slides.map(item=>item.slide));carousel.append(heading,why,track,comparison);row.append(carousel);
     const updateComparison=()=>{
@@ -304,8 +306,8 @@
       const actionsFor=project=>{
         const actions=document.createElement('div');actions.className='guide-comparison-actions';
         const notes=document.createElement('button');notes.type='button';notes.className='guide-comparison-notes';notes.textContent=copy.notes;notes.addEventListener('click',()=>{dialog.close();window.PortfolioProjects?.open(project.id);});
-        const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);link.setAttribute('aria-label',`${project.title}: ${project.label}`);
-        actions.append(link,notes);return actions;
+        if(project.href){const link=document.createElement('a');link.href=project.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=localeData.directionalText(project.label,language);link.setAttribute('aria-label',`${project.title}: ${project.label}`);actions.append(link);}
+        actions.append(notes);return actions;
       };
       const rows=[
         [feature.compareRows[0],stage],

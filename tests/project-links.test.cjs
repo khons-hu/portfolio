@@ -17,8 +17,10 @@ function setup(hash='',clipboardFails=false){
 }
 
 test('shared links open known project notes and closing returns to the project shelf',()=>{
- const s=setup('#project/feedcairn');assert.deepEqual(s.opened,['signal']);
- s.dialog.close();assert.equal(s.location.hash,'#projects');assert.equal(s.node('[data-project="signal"]').focused,true);
+ for(const [slug,id] of [['feedcairn','signal'],['queuefolk','queuefolk'],['moonshift','moonshift'],['moonhold','moonhold'],['lantern-divide','lantern-divide'],['feled-after-last-bus','feled'],['last-credit','last-credit'],['pager-panic','pager-panic'],['human-loop','human-loop']]){
+  const s=setup('#project/'+slug);assert.deepEqual(s.opened,[id]);
+  s.dialog.close();assert.equal(s.location.hash,'#projects');assert.equal(s.node(`[data-project="${id}"]`).focused,true);
+ }
 });
 test('unknown and malformed links do not open arbitrary content',()=>{
  for(const hash of ['#project/__proto__','#project/discovery','#project/%E0%A4%A','#projects'])assert.deepEqual(setup(hash).opened,[]);

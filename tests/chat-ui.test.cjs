@@ -62,6 +62,57 @@ test('prepared project answers choose relevant fallback recommendations',()=>{
  assert.match(read('style.css'),/\.guide-recommendation-track\{[^}]*overflow-x:auto[^}]*scroll-snap-type:x mandatory/);
 });
 
+test('private project recommendations and comparisons keep notes without external links',()=>{
+ const element=tagName=>({tagName,children:[],dataset:{},attributes:{},events:{},
+  append(...children){this.children.push(...children);},replaceChildren(...children){this.children=children;},
+  setAttribute(name,value){this.attributes[name]=String(value);},addEventListener(name,callback){this.events[name]=callback;}
+ });
+ const descendants=node=>[node,...node.children.flatMap(descendants)];
+ const byClass=(node,name)=>descendants(node).filter(child=>child.className===name);
+ const project=(id,href)=>({
+  querySelector(selector){return {
+   '.project-details':{dataset:{project:id}},'.project-info h3':{textContent:id},
+   '.project-info p':{textContent:`Notes about ${id}`},
+   '.project-live':href===undefined?null:{href,textContent:'View source ↗',dataset:{kind:'source'}}
+  }[selector];},
+  querySelectorAll(){return [{textContent:href===undefined?'PRIVATE PROTOTYPE':'PUBLIC PROJECT'},{textContent:'JavaScript'}];}
+ });
+ const opened=[],dialog={close(){}},cards=[project('private'),project('public','https://example.com/source')];
+ const source=read('guide.js'),start=source.indexOf('  function renderRecommendations('),end=source.indexOf('  // A reply taller',start);
+ assert(start>=0&&end>start);
+ const context={CHAT_COPY,URL,location:{href:'https://example.com/'},dialog,busy:false,
+  localeData:{languageDirection:()=> 'ltr',directionalText:text=>text},
+  document:{querySelectorAll:()=>cards,createElement:element,createDocumentFragment:()=>element('fragment'),createTextNode:text=>({...element('text'),textContent:text})},
+  window:{PortfolioProjects:{open:id=>opened.push(id)}},requestAnimationFrame:callback=>callback(),reveal(){}
+ };
+ require('node:vm').runInNewContext(source.slice(start,end),context);
+ const row=element('div');context.renderRecommendations(row,['private','public'],'en');
+ const slides=byClass(row,'guide-recommendation-card');
+ assert.equal(slides.length,2,'a private card without an outside link stays recommended');
+ assert.equal(descendants(slides[0]).filter(node=>node.tagName==='a').length,0);
+ const publicLink=descendants(slides[1]).find(node=>node.tagName==='a');
+ assert.equal(publicLink.href,'https://example.com/source');
+ assert.equal(publicLink.target,'_blank');assert.equal(publicLink.rel,'noopener noreferrer');
+ byClass(slides[0],'guide-recommendation-notes')[0].events.click();
+ assert.deepEqual(opened,['private']);
+ byClass(row,'guide-recommendation-compare-toggle').forEach(toggle=>toggle.events.click());
+ const compare=byClass(row,'guide-recommendation-compare')[0];assert.equal(compare.disabled,false);compare.events.click();
+ const comparison=byClass(row,'guide-comparison')[0];assert.equal(comparison.hidden,false);
+ const actions=byClass(comparison,'guide-comparison-actions');assert.equal(actions.length,4,'table and compact comparison both render');
+ for(const [index,action] of actions.entries()){
+  const links=descendants(action).filter(node=>node.tagName==='a');
+  assert.equal(links.length,index%2,`only the public project has an external link in action ${index}`);
+  if(links.length)assert.equal(links[0].href,'https://example.com/source');
+ }
+ byClass(actions[0],'guide-comparison-notes')[0].events.click();assert.deepEqual(opened,['private','private']);
+ for(const href of ['http://example.com/','javascript:alert(1)','https://[invalid','']){
+  cards.splice(0,cards.length,project('invalid',href));
+  const invalidRow=element('div');
+  assert.doesNotThrow(()=>context.renderRecommendations(invalidRow,['invalid'],'en'));
+  assert.equal(invalidRow.children.length,0,`reject the supplied invalid/non-HTTPS URL: ${href}`);
+ }
+});
+
 test('project autocomplete ranks local card facts without matching every keystroke to Groq',()=>{
  const projects=[
   {id:'proof',title:'Trialkeep',summary:'Agent decision evaluation',meta:'JavaScript · Browser tasks'},

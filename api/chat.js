@@ -18,6 +18,14 @@ const PROJECTS=[
  ['Lootlatch','steam','current project, JavaScript, Steam Market; GitHub source',null,'steam'],
  ['This little corner of the web','','current project, HTML, CSS, JavaScript; this portfolio; GitHub source','A personal site with a terminal, a multilingual guide and a quieter approach to motion.','portfolio'],
  ['Spotify rotation','spotify','private rotation on Mac, opt-in Jev selection; linked public night list is separate; Spotify playlist',null,'rotation'],
+ ["Moonshift: Salvage Crew", "", "private prototype, Godot, Python / Multi-agent RL", "A salvage-robot game prototype and a lab for learning how a team can work together.", "moonshift"],
+ ["Moonhold", "", "private prototype, HTML, CSS, JavaScript", "A small pause before sending something impulsively: set a timer, write, then decide.", "moonhold"],
+ ["Queuefolk: Support Team", "", "private alpha, Godot, GDScript / Co-op", "A workplace-comedy game about a fictional support queue, then unwinding with the crew at a lodge.", "queuefolk"],
+ ["Lantern Divide", "", "private prototype, Godot, GDScript / LAN", "An early first-person LAN arena game about holding a lantern relay.", "lantern-divide"],
+ ["Feled: After the Last Bus", "", "private prototype, Godot, Browser prototype", "A fictional village mystery about gathering clues and restoring power after the last bus leaves.", "feled"],
+ ["Last Credit", "", "private prototype, Godot, Browser prototype", "A fictional campus comedy about fixing three technical problems before a midnight deadline.", "last-credit"],
+ ["Pager Panic", "", "private prototype, Godot, Local co-op", "An earlier party-game prototype for one or two players handling a fictional support queue.", "pager-panic"],
+ ["Human Loop", "", "private prototype, Godot, Browser prototype", "A fictional AI-lab comedy about keeping a robot lab useful while ordinary decisions become benchmarks.", "human-loop"],
  ['Dots','dots','earlier project, React, Spring Boot; live app',null,'dots'],
  ['Receipts After Dark','','current game prototype, Godot 4, web; playable on itch.io','A tiny moonlit market game. Move, inspect what matters, then make the call.','receipts'],
  ['SAVE DEMOCRACY','','game jam team project, Unreal Engine, Windows; itch.io page','A team-made horror exploration prototype about finding a missing journalist and getting them to safety.','save-democracy'],
@@ -26,7 +34,7 @@ const PROJECTS=[
  ['Between processes','','university team project, systems; GitHub source','Exploring how independent processes communicate and coordinate.','ipc']
 ];
 const PROJECT_IDS=PROJECTS.map(project=>project[4]);
-const recommendationTool={type:'function',function:{name:'recommend_projects',description:'For a visitor asking which portfolio projects fit their interests, goal, or skill level, or asking to see projects, choose the best matching public project IDs. Return 1 to 4 IDs in relevance order. Never invent projects or return names, URLs, or facts.',parameters:{type:'object',properties:{project_ids:{type:'array',items:{type:'string',enum:PROJECT_IDS},minItems:1,maxItems:4}},required:['project_ids'],additionalProperties:false}}};
+const recommendationTool={type:'function',function:{name:'recommend_projects',description:'For a visitor asking which portfolio projects fit their interests, goal, or skill level, or asking to see projects, choose the best matching portfolio project IDs. Return 1 to 4 IDs in relevance order. Never invent projects or return names, URLs, or facts.',parameters:{type:'object',properties:{project_ids:{type:'array',items:{type:'string',enum:PROJECT_IDS},minItems:1,maxItems:4}},required:['project_ids'],additionalProperties:false}}};
 // Left out: 'discovery' (first run unverified), 'projects' and 'contact' (covered by the card and contact
 // lines), 'site' (replaced by SITE), and 'games' (covered by Dots). Kept compact: Groq's Free plan allows 8K tokens per minute and
 // counts each request's prompt plus its declared max_completion_tokens against that budget.

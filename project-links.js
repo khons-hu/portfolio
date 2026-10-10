@@ -1,6 +1,6 @@
 /* Share public project notes without a service or a second copy of their content. */
 (() => {
-  const slugs = {moonlight:'khonsu-moonlight', proof:'trialkeep', thinkroom:'reasonrook', signal:'feedcairn', market:'stakeglass', steam:'lootlatch', portfolio:'portfolio', rotation:'spotify', dots:'dots', receipts:'receipts-after-dark', 'save-democracy':'save-democracy', calculator:'arduino-calculator', bot:'discord-bot', ipc:'between-processes'};
+  const slugs = {moonlight:'khonsu-moonlight', proof:'trialkeep', thinkroom:'reasonrook', signal:'feedcairn', market:'stakeglass', steam:'lootlatch', portfolio:'portfolio', rotation:'spotify', "moonshift":"moonshift", "moonhold":"moonhold", "queuefolk":"queuefolk", "lantern-divide":"lantern-divide", "feled":"feled-after-last-bus", "last-credit":"last-credit", "pager-panic":"pager-panic", "human-loop":"human-loop", dots:'dots', receipts:'receipts-after-dark', 'save-democracy':'save-democracy', calculator:'arduino-calculator', bot:'discord-bot', ipc:'between-processes'};
   const legacySlugs = {khonproof:'proof', khonsolve:'thinkroom', khonrelay:'signal', khonodds:'market', khonstash:'steam'};
   const status = document.querySelector('#project-share-status');
   const fallback = document.querySelector('#project-share-address');

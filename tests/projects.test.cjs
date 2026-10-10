@@ -32,6 +32,18 @@ test('new project opens at the top and a source-only project clears the prior pr
  assert.equal(node('#project-link').href,undefined);
  assert.match(node('#project-source').href,/Scientific-Calculator/);
 });
+test('private project notes clear every previous public destination',()=>{
+ const {node,show}=setup();
+ for(const id of ['queuefolk','moonshift','moonhold','lantern-divide','feled','last-credit','pager-panic','human-loop']){
+  show('thinkroom');show(id);
+  assert.match(node('#project-category').textContent,/PRIVATE/,id);
+  for(const selector of ['#project-link','#project-source','#project-android']){
+   assert.equal(node(selector).hidden,true,`${id}: ${selector}`);
+   assert.equal(node(selector).href,undefined,`${id}: stale destination`);
+  }
+  assert(node('#project-notes').children.length>0,id);
+ }
+});
 test('rerendering an already open project preserves the reading position',()=>{
  const {node,show}=setup();show('thinkroom');node('#project-dialog').scrollTop=170;show('thinkroom');assert.equal(node('#project-dialog').scrollTop,170);
 });

@@ -28,6 +28,10 @@ The header stays at the top of the window: clear over the photo, then frosted gl
 
 Cards open keyboard-accessible notes. The notes put their outside links (demo, playlist or itch.io page, public source, Android preview) above the longer text. “Copy project link” gives a direct address such as https://khns.dev/#project/feedcairn. It opens those notes on arrival. If clipboard access is unavailable, the address remains selectable. Shared links exclude query parameters.
 
+## Private personal projects
+
+The shelf also describes Queuefolk, Moonshift / Khonsu Agent Lab, Moonhold, Lantern Divide, Feled, Last Credit, Pager Panic and Human Loop. Queuefolk is a private alpha. The others are local prototypes, with their limits in the notes. These entries have shareable portfolio notes and work in search, terminal navigation and guide comparisons, without linking private source or downloads. Project descriptions and notes use English originals. Employer and client tools are excluded.
+
 ## Field notes and reusable skills
 
 The field notes section contains three evidence-linked case studies, a five-step recorded Trialkeep decision and three original public skill templates. The replay is a published text-choice failure, not live browser execution. It makes no model requests. The unchanged public report fixture in `tests/fixtures/khonproof-benchmark.json` is pinned to trialkeep commit `a82360c7f37915cd4edac1d138a228f7ec8410d7`, SHA-256 `fe9b53ff86d8e726d19823c258517f5a0598fcf966c24a1cfb2db3df1e8a8e0e`.

@@ -77,9 +77,9 @@ test('project notes label the main outside link by what it is',()=>{
  d.show('portfolio');assert.equal(d.link().hidden,true);assert.equal(d.source().hidden,false);assert.equal(d.source().href,'https://github.com/khons-hu/portfolio');
 });
 
-test('every card separates on-page notes from a typed outside link',()=>{
+test('every card has notes and only public destinations have outside links',()=>{
  const cards=html.match(/<article class="project-card[\s\S]*?<\/article>/g);
- assert.equal(cards.length,14);
+ assert.equal(cards.length,22);
  for(const card of cards){
   assert.match(card,/<span class="details-label">Notes<\/span><\/div><\/button>/);
   for(const [,kind,href] of card.matchAll(/<a class="project-live" data-kind="(\w+)" href="([^"]+)"/g)){

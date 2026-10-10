@@ -92,7 +92,7 @@ test('the guide speaks about Patrick in the third person and only from public fa
 test('site, project and contact facts match what the page shows',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),terminal=fs.readFileSync(path.join(__dirname,'../terminal.js'),'utf8');
- const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<8400,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
+ const {system,PROJECTS,CONTACT,SITE}=require('../api/chat.js');assert(system.length<10000,`system prompt ${system.length} chars`);const {topics}=require('../guide.js');
  const strip=s=>s.replace(/<[^>]+>/g,'');
  const cards=[...html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)].map(([a])=>({title:strip(a.match(/<h3>([\s\S]*?)<\/h3>/)[1]),text:strip(a.match(/<\/h3><p>([\s\S]*?)<\/p>/)[1])}));
  assert.equal(cards.length,PROJECTS.length);
@@ -136,14 +136,20 @@ test('page facts come from the page itself',()=>{
  assert(PAGE.every(line=>!/\b(I|my|me)\b/.test(line)),'page facts are in the third person');
 });
 
-test('each project fact names the card’s outside link, so availability is never generalized',()=>{
+test('project facts distinguish public destinations from private notes-only projects',()=>{
  const html=require('node:fs').readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
  const {PROJECTS,system}=require('../api/chat.js');
  assert.deepEqual([...html.matchAll(/<button class="project-details" data-project="([^"]+)"/g)].map(match=>match[1]),PROJECTS.map(project=>project[4]));
  const phrase={'Install theme ↗':'VS Code Marketplace','Install Moonlight ↗':'VS Code Marketplace','Open app ↗':'live app','View source ↗':'GitHub source','Play on itch.io ↗':'playable on itch.io','View on itch.io ↗':'itch.io page','Open playlist ↗':'Spotify playlist'};
  for(const [card] of html.matchAll(/<article class="project-card[\s\S]*?<\/article>/g)){
-  const title=card.match(/<h3>([^<]+)<\/h3>/)[1],label=card.match(/class="project-live"[^>]*>([^<]+)<\/a>/)[1];
-  const entry=PROJECTS.find(p=>p[0]===title);assert.match(entry[2],new RegExp(`; ${phrase[label]}$`),`${title}: ${entry[2]}`);
+  const title=card.match(/<h3>([^<]+)<\/h3>/)[1],outside=card.match(/class="project-live"[^>]*>([^<]+)<\/a>/);
+  const entry=PROJECTS.find(p=>p[0]===title);
+  if(outside)assert.match(entry[2],new RegExp(`; ${phrase[outside[1]]}$`),`${title}: ${entry[2]}`);
+  else {
+   assert.match(card,/PRIVATE (?:ALPHA|PROTOTYPE|CONCEPT)/,title);
+   assert.match(entry[2],/private (?:alpha|prototype|concept)/,title);
+   assert.doesNotMatch(entry[2],/live app|GitHub source/,title);
+  }
  }
  assert.match(system,/"What are you working on\?" gets "Patrick is working on…", never "I'm working on…"/);
  assert.match(system,/do not generalize a fact about one project to others/);
