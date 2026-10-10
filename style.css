@@ -188,6 +188,7 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .hero-index li+li{border-top:1px solid var(--line)}
 .hero-index a{display:grid;grid-template-columns:4.6em minmax(0,1fr);align-items:baseline;gap:12px;min-height:48px;padding:12px 0;color:var(--ink);font-size:15px;line-height:1.4}
 .hero-index time,.hero-index-when{font:12px/1.4 var(--mono);color:var(--faint)}
+.hero-index time,.story-kicker time,.ledger{direction:ltr;unicode-bidi:isolate}
 .hero-index a>span:last-child{text-wrap:balance;transition:color .18s ease}
 .hero-index a:hover>span:last-child{color:var(--accent)}
 .hero-index li:first-child a>span:last-child::after{content:"";display:inline-block;width:6px;height:6px;margin-inline-start:9px;border-radius:50%;background:var(--status);vertical-align:2px}
