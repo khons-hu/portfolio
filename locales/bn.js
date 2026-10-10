@@ -113,7 +113,7 @@
     "My master's thesis brought together PPO reinforcement-learning agents and LLM-driven map generation for a multiplayer game.": "আমার স্নাতকোত্তর গবেষণায় মাল্টিপ্লেয়ার গেমের জন্য PPO রিইনফোর্সমেন্ট লার্নিং এজেন্ট ও LLM দিয়ে মানচিত্র তৈরি একসঙ্গে ছিল।",
     "What's next": "এরপর কী",
     "rotation lately —": "ইদানীং যা শুনছি —",
-    "Hungarian and Central European tracks for late coding, walking, and reset time.": "রাতে কোডিং, হাঁটা ও বিশ্রামের জন্য হাঙ্গেরি ও মধ্য ইউরোপের গান।",
+    "Hungarian favourites, alternative and pop-punk for coding, walking and switching off.": "কোডিং, হাঁটা আর মন হালকা করার জন্য প্রিয় হাঙ্গেরীয় গান, অল্টারনেটিভ আর পপ-পাঙ্ক।",
     "I follow AGI and recursive self-improvement, alongside model releases. I’m interested in what I can actually try, as well as where the research is going.": "AGI, নিজেকে বারবার উন্নত করা এবং নতুন মডেল অনুসরণ করি। গবেষণা কোথায় যাচ্ছে আর নিজে কী পরীক্ষা করতে পারি, দুটোই জানতে চাই।",
     "I’m currently following": "এখন আমি",
     "closely. I like the pace of his work at OpenAI and how he talks about what they’re building.": "-কে কাছ থেকে অনুসরণ করি। OpenAI-তে তাঁর কাজের গতি ও কাজটি বোঝানোর ধরন ভালো লাগে।",

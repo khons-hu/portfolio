@@ -113,7 +113,7 @@
     "My master's thesis brought together PPO reinforcement-learning agents and LLM-driven map generation for a multiplayer game.": "Tesis magister saya menggabungkan agen pembelajaran penguatan PPO dan pembuatan peta berbasis LLM untuk game multipemain.",
     "What's next": "Selanjutnya",
     "rotation lately —": "belakangan ini —",
-    "Hungarian and Central European tracks for late coding, walking, and reset time.": "lagu Hungaria dan Eropa Tengah untuk pemrograman malam, berjalan kaki, dan beristirahat.",
+    "Hungarian favourites, alternative and pop-punk for coding, walking and switching off.": "Lagu favorit dari Hungaria, musik alternatif, dan pop punk untuk ngoding, jalan kaki, dan melepas penat.",
     "I follow AGI and recursive self-improvement, alongside model releases. I’m interested in what I can actually try, as well as where the research is going.": "Saya mengikuti AGI, peningkatan diri rekursif, dan rilis model baru. Saya tertarik pada hal yang bisa langsung saya coba serta arah risetnya.",
     "I’m currently following": "Saat ini saya mengikuti",
     "closely. I like the pace of his work at OpenAI and how he talks about what they’re building.": "secara dekat. Saya suka cepatnya ia bekerja di OpenAI dan cara ia bercerita tentang hal yang mereka buat.",

@@ -113,7 +113,7 @@
     "My master's thesis brought together PPO reinforcement-learning agents and LLM-driven map generation for a multiplayer game.": "我的硕士论文结合了 PPO 强化学习智能体与 LLM 驱动的多人游戏地图生成。",
     "What's next": "接下来",
     "rotation lately —": "最近常听的歌单 —",
-    "Hungarian and Central European tracks for late coding, walking, and reset time.": "适合深夜编程、散步和放松的匈牙利及中欧音乐。",
+    "Hungarian favourites, alternative and pop-punk for coding, walking and switching off.": "喜欢的匈牙利歌曲、另类音乐和流行朋克，陪我编程、散步和放松。",
     "I follow AGI and recursive self-improvement, alongside model releases. I’m interested in what I can actually try, as well as where the research is going.": "我关注 AGI、递归自我改进和模型发布。我既关心研究方向，也关心哪些东西能亲自试用。",
     "I’m currently following": "我最近密切关注",
     "closely. I like the pace of his work at OpenAI and how he talks about what they’re building.": "。我喜欢他在 OpenAI 的工作节奏，也喜欢他介绍团队正在构建的东西的方式。",

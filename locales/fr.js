@@ -113,7 +113,7 @@
     "My master's thesis brought together PPO reinforcement-learning agents and LLM-driven map generation for a multiplayer game.": "Mon mémoire de master associait des agents d’apprentissage par renforcement PPO et la génération de cartes par LLM pour un jeu multijoueur.",
     "What's next": "Et ensuite",
     "rotation lately —": "ces derniers temps —",
-    "Hungarian and Central European tracks for late coding, walking, and reset time.": "des morceaux hongrois et d’Europe centrale pour coder tard, marcher et faire une pause.",
+    "Hungarian favourites, alternative and pop-punk for coding, walking and switching off.": "Mes morceaux hongrois préférés, de l’alternatif et du pop-punk pour coder, marcher et déconnecter.",
     "I follow AGI and recursive self-improvement, alongside model releases. I’m interested in what I can actually try, as well as where the research is going.": "Je suis l’AGI et l’auto-amélioration récursive, ainsi que les sorties de modèles. Je m’intéresse autant à ce que je peux essayer qu’à la recherche.",
     "I’m currently following": "Je suis actuellement",
     "closely. I like the pace of his work at OpenAI and how he talks about what they’re building.": "avec attention. J’aime le rythme de son travail chez OpenAI et sa façon de parler de ce qu’ils créent.",

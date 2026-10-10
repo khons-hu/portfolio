@@ -113,7 +113,7 @@
     "My master's thesis brought together PPO reinforcement-learning agents and LLM-driven map generation for a multiplayer game.": "جمعت رسالتي للماجستير بين وكلاء التعلّم المعزز PPO وتوليد خرائط بالـ LLM للعبة متعددة اللاعبين.",
     "What's next": "ماذا بعد",
     "rotation lately —": "ما أستمع إليه مؤخرًا —",
-    "Hungarian and Central European tracks for late coding, walking, and reset time.": "أغانٍ مجرية وأوروبية وسطى للبرمجة ليلًا والمشي والاستراحة.",
+    "Hungarian favourites, alternative and pop-punk for coding, walking and switching off.": "أغانٍ مجرية مفضلة وموسيقى بديلة وبوب بانك للبرمجة والمشي والاسترخاء.",
     "I follow AGI and recursive self-improvement, alongside model releases. I’m interested in what I can actually try, as well as where the research is going.": "أتابع AGI والتحسين الذاتي المتكرر إلى جانب إصدارات النماذج. يهمني ما أستطيع تجربته بنفسي وإلى أين يتجه البحث.",
     "I’m currently following": "أتابع حاليًا",
     "closely. I like the pace of his work at OpenAI and how he talks about what they’re building.": "عن كثب. تعجبني وتيرة عمله في OpenAI وطريقته في الحديث عمّا يبنونه.",
