@@ -78,7 +78,7 @@
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Une sélection hebdomadaire de comptes X et de profils GitHub, selon mes centres d’intérêt du moment.",
     "REACT · SPRING BOOT WEB GAME": "JEU WEB REACT · SPRING BOOT",
     "EARLIER PROJECT": "PROJET ANTÉRIEUR",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Mon jeu React de 2023, adapté pour jouer dans le navigateur avec son apparence d’origine.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Mon jeu React de 2023, adapté au navigateur avec une interface claire et sombre repensée.",
     "A Discord bot with music playback, built as an earlier personal project.": "Un bot Discord qui lit de la musique, créé pour un ancien projet personnel.",
     "UNIVERSITY TEAM PROJECT": "PROJET UNIVERSITAIRE EN ÉQUIPE",
     "Between processes": "Entre les processus",
@@ -258,7 +258,7 @@
       "La playlist gérée est privée et vérifiée après chaque actualisation. L’outil tourne sur mon Mac ; son code n’est pas public."
     ],
     "dots": [
-      "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale.",
+      "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. L’interface reprend désormais les thèmes clair et sombre du portfolio.",
       "Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine."
     ],
     "bot": [
@@ -308,7 +308,7 @@
     "answers": {
       "work": "Patrick travaille comme Customer Support Partner L2 chez Luigi’s Box. Il analyse le comportement du navigateur, les API, les flux de produits et l’analytique, audite les intégrations, vérifie les corrections et prépare les transmissions aux ingénieurs. Luigi’s Box développe la recherche et la découverte de produits pour le commerce en ligne. Le travail comprend aussi l’implémentation, la refactorisation, l’analyse du backend et l’optimisation des collecteurs et du traitement des événements. Les corrections analytiques concernent GTM, dataLayer, les achats en double et l’attribution, y compris les anciennes intégrations Persoo. Il utilise aussi AWS et Sentry pour examiner les problèmes des services, analyser les erreurs et vérifier les correctifs.",
       "spotify": "Lors d’une actualisation manuelle avec IA, Jev utilise uniquement les noms des titres et artistes pour choisir une direction et classer jusqu’à 18 résultats Spotify. Il n’analyse pas l’audio. Le classement est conservé sept jours. Les playlists d’humeur sont séparées et créées à la demande à partir de la recherche Spotify et de préférences locales d’artistes. La playlist gérée est privée et vérifiée après chaque actualisation. L’outil tourne sur mon Mac ; son code n’est pas public.",
-      "dots": "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine.",
+      "dots": "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine. L’interface reprend désormais les thèmes clair et sombre du portfolio.",
       "bot": "Un ancien bot musical Discord en JavaScript. Dépôt historique ; compatibilité actuelle avec Discord et les services de musique non vérifiée.",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Trialkeep, Feedcairn, Reasonrook.",
       "openai": "Il suit Tibo de près pour le rythme de son travail chez OpenAI et sa façon de parler de ce qu’ils créent. C’est un intérêt personnel, pas une affiliation.",
@@ -317,7 +317,7 @@
       "contact": "Tu peux écrire à Patrick dans l’onglet E-mail. FormSubmit envoie uniquement le formulaire, pas cette conversation. Tu peux aussi le trouver sur GitHub, LinkedIn, X et Discord.",
       "about": "Patrick Obrtal · khonsu. Patrick travaille comme Customer Support Partner L2 chez Luigi’s Box. Patrick a un master en informatique de la TUKE. Son mémoire associait des agents d’apprentissage par renforcement PPO et la génération de cartes par LLM pour un jeu multijoueur.",
       "ai": "Patrick utilise Codex et Claude pour créer et relire des projets. Jev aide à prendre de petites décisions, sélectionner des candidats et classer par pertinence. Il vérifie les résultats séparément.",
-      "games": "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine.",
+      "games": "Créé en React et Spring Boot en 2023. La version navigateur réutilise les écrans React et les images d’origine, avec une logique de jeu locale. Cinq niveaux, boutique d’améliorations et jeu invité. Sans connexion ni classement partagé. Joue en ligne ou consulte le code d’origine. L’interface reprend désormais les thèmes clair et sombre du portfolio.",
       "calculator": "Réalisée en équipe à la TUKE avec un Arduino Uno, un clavier et un écran LCD. Elle évalue des expressions avec parenthèses et conserve l’historique.",
       "site": "Ce portfolio utilise HTML, CSS et JavaScript, avec navigation par terminal, thèmes clair et sombre et un guide en plusieurs langues. Quand il est disponible, un modèle d’IA répond via Groq ; sinon, des réponses préparées prennent le relais. Les mises à jour passent de GitHub à Vercel.",
       "discovery": "Recommandations hebdomadaires sur X et jusqu’à trois abonnements GitHub pertinents. Un agent IA examine les candidats. La première exécution programmée n’a pas encore été vérifiée. Exécutions limitées, vérification des doublons et motifs de chaque choix.",

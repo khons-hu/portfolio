@@ -78,7 +78,7 @@
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "根据我正在探索的方向，每周挑选 X 账号，并有选择地关注 GitHub 开发者。",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT 网页游戏",
     "EARLIER PROJECT": "早期项目",
-    "My 2023 React game, adapted for browser-only play with its original look.": "我 2023 年的 React 游戏，保留原有外观并改为纯浏览器游玩。",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "我 2023 年的 React 游戏，改为纯浏览器游玩，并更新了浅色和深色界面。",
     "A Discord bot with music playback, built as an earlier personal project.": "早期个人项目：支持播放音乐的 Discord 机器人。",
     "UNIVERSITY TEAM PROJECT": "大学团队项目",
     "Between processes": "进程之间",
@@ -258,7 +258,7 @@
       "管理的歌单为私人歌单，每次刷新后都会检查。工具在我的 Mac 本地运行，源代码未公开。"
     ],
     "dots": [
-      "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。",
+      "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 界面现在与作品集使用相同的浅色和深色主题。",
       "五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。"
     ],
     "bot": [
@@ -308,7 +308,7 @@
     "answers": {
       "work": "Patrick 在 Luigi’s Box 担任 Customer Support Partner L2。他调查浏览器行为、API、商品数据源和分析，审查集成、验证修复，并准备工程交接。Luigi’s Box 为电商提供搜索和商品发现功能。 工作还包括功能实现、代码重构、后端分析，以及数据采集器和事件处理的性能优化。分析数据修复涉及 GTM、dataLayer、重复购买事件和归因，也包括旧版 Persoo 集成。 他也使用 AWS 和 Sentry 排查服务问题、查看错误并验证修复。",
       "spotify": "手动启动 AI 刷新时，Jev 只使用歌曲名和艺人名来选择方向，并为最多 18 个 Spotify 搜索结果排序。它不会分析音频。 排序结果会缓存七天。心情歌单是独立的按需功能，使用 Spotify 搜索和本地艺人偏好。 管理的歌单为私人歌单，每次刷新后都会检查。工具在我的 Mac 本地运行，源代码未公开。",
-      "dots": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。",
+      "dots": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。 界面现在与作品集使用相同的浅色和深色主题。",
       "bot": "早期的 JavaScript Discord 音乐机器人。仓库是历史项目，当前 Discord 和音乐服务兼容性未经验证。",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Trialkeep, Feedcairn, Reasonrook.",
       "openai": "他关注 Tibo 在 OpenAI 的工作节奏和分享工作进展的方式。这只是个人兴趣，并非工作关系。",
@@ -317,7 +317,7 @@
       "contact": "可以在邮件标签页给 Patrick 写信。FormSubmit 只发送表单内容，不发送这段对话。也可以在 GitHub、LinkedIn、X 和 Discord 找到他。",
       "about": "Patrick Obrtal · khonsu. Patrick 在 Luigi’s Box 担任 Customer Support Partner L2。 Patrick 拥有 TUKE 计算机科学硕士学位。论文结合了 PPO 强化学习智能体与面向多人游戏的 LLM 地图生成。",
       "ai": "Patrick 用 Codex 和 Claude 开发和审查项目。Jev 帮助处理小型决策、候选项选择和相关性排序。他会单独验证结果。",
-      "games": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。",
+      "games": "最初于 2023 年用 React 和 Spring Boot 开发。浏览器版沿用原始 React 界面和圆点图像，游戏逻辑在本地运行。 五个关卡、道具商店和游客模式。无需登录，也没有共享排行榜。可在线玩浏览器版或查看原始源码。 界面现在与作品集使用相同的浅色和深色主题。",
       "calculator": "在 TUKE 与团队使用 Arduino Uno、键盘和 LCD 制作。可计算带括号的算式并保存计算历史。",
       "site": "这个作品集使用 HTML、CSS 和 JavaScript，具有终端导航、浅色与深色主题，以及支持多种语言的向导。可用时由 AI 模型通过 Groq 回答，否则显示预设答案。更新从 GitHub 部署到 Vercel。",
       "discovery": "每周推荐 X 账号，并最多关注三位相关的 GitHub 开发者。AI 智能体评估候选人。首次定时运行尚未核实。每次运行都有范围限制、重复检查和选择理由。",

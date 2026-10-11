@@ -78,7 +78,7 @@
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "関心のある分野に沿って、XのアカウントとGitHubの開発者を毎週少数選びます。",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOTのウェブゲーム",
     "EARLIER PROJECT": "以前のプロジェクト",
-    "My 2023 React game, adapted for browser-only play with its original look.": "2023年に作ったReactゲーム。元の見た目を保ち、ブラウザーだけで遊べるようにしました。",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "2023年に作ったReactゲーム。ブラウザーで遊べるようにし、ライトとダークの画面デザインを一新しました。",
     "A Discord bot with music playback, built as an earlier personal project.": "音楽を再生するDiscordボット。以前の個人プロジェクトです。",
     "UNIVERSITY TEAM PROJECT": "大学のチーム制作",
     "Between processes": "プロセス間",
@@ -258,7 +258,7 @@
       "管理対象のプレイリストは非公開で、更新後に確認されます。ツールはMac上で動作し、ソースコードは公開していません。"
     ],
     "dots": [
-      "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。",
+      "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 画面にはポートフォリオと共通のライト・ダークテーマを使っています。",
       "5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。"
     ],
     "bot": [
@@ -308,7 +308,7 @@
     "answers": {
       "work": "PatrickはLuigi’s BoxのCustomer Support Partner L2です。ブラウザーの動作、API、商品フィード、分析を調査し、連携を監査し、修正を検証してエンジニアリングへの引き継ぎを準備します。Luigi’s BoxはEC向けの商品検索と発見を提供します。 実装やリファクタリング、バックエンドの分析、データ収集処理とイベント処理のパフォーマンス最適化も担当しています。分析データの修正では、GTM、dataLayer、購入イベントの重複、アトリビューションを扱い、旧Persooの連携にも対応しています。 AWS と Sentry も使い、サービスの問題調査、エラーの確認、修正の検証を行っています。",
       "spotify": "手動でAI更新すると、Jevは曲名とアーティスト名だけを使って方向性を選び、Spotifyの検索結果を最大18件まで順位付けします。音声は分析しません。 順位は7日間キャッシュされます。気分別プレイリストは別機能で、Spotify検索とローカルのアーティスト設定を使って依頼時に作成します。 管理対象のプレイリストは非公開で、更新後に確認されます。ツールはMac上で動作し、ソースコードは公開していません。",
-      "dots": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
+      "dots": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。 画面にはポートフォリオと共通のライト・ダークテーマを使っています。",
       "bot": "以前作ったJavaScript製のDiscord音楽ボット。古いリポジトリのため、現在のDiscordや音楽サービスとの互換性は未確認です。",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Trialkeep, Feedcairn, Reasonrook.",
       "openai": "TiboのOpenAIでの仕事の速さと、開発中のものについての話し方に関心があり、注目しています。個人的な関心であり、仕事上の関係ではありません。",
@@ -317,7 +317,7 @@
       "contact": "メールタブからPatrickに連絡できます。FormSubmitで送信されるのはフォームだけで、この会話は含まれません。GitHub、LinkedIn、X、Discordでも見つけられます。",
       "about": "Patrick Obrtal · khonsu. PatrickはLuigi’s BoxのCustomer Support Partner L2です。 PatrickはTUKEでコンピューターサイエンスの修士号を取得しました。論文では、PPOの強化学習エージェントとLLMによるマップ生成をマルチプレイヤーゲームに組み合わせました。",
       "ai": "Patrick はプロジェクトの開発とレビューに Codex と Claude を使っています。Jev は小さな判断、候補の選択、関連性による並べ替えに役立ちます。結果は別途確認しています。",
-      "games": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。",
+      "games": "2023年にReactとSpring Bootで制作。ブラウザー版は元のReact画面とドット画像を再利用し、ゲームの処理をローカルで動かします。 5つのレベル、強化アイテムの店、ゲストプレイに対応。ログインや共有ランキングはありません。オンラインで遊ぶか、元のソースを確認できます。 画面にはポートフォリオと共通のライト・ダークテーマを使っています。",
       "calculator": "TUKEのチームでArduino Uno、キーパッド、LCDを使って制作。括弧を含む算術式を計算し、履歴を保存します。",
       "site": "このポートフォリオはHTML、CSS、JavaScriptで作られています。ターミナル操作、ライト・ダークテーマ、複数言語のガイドがあります。利用できるときはGroq経由のAIモデルが答え、使えないときは用意した回答を表示します。更新はGitHubからVercelにデプロイされます。",
       "discovery": "Xのおすすめアカウントと最大3人の関連するGitHub開発者を毎週選びます。AIエージェントが候補を確認します。最初の定期実行はまだ検証されていません。実行回数を制限し、重複を確認し、選定理由を残します。",

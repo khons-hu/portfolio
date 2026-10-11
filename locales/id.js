@@ -78,7 +78,7 @@
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Pilihan mingguan akun X dan beberapa akun GitHub sesuai hal yang sedang saya pelajari.",
     "REACT · SPRING BOOT WEB GAME": "GAME WEB REACT · SPRING BOOT",
     "EARLIER PROJECT": "PROYEK LAMA",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Game React buatan saya dari 2023, diadaptasi agar bisa dimainkan di peramban dengan tampilan aslinya.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Game React buatan saya dari 2023, diadaptasi untuk dimainkan di peramban dengan antarmuka terang dan gelap yang diperbarui.",
     "A Discord bot with music playback, built as an earlier personal project.": "Bot Discord pemutar musik dari proyek pribadi terdahulu.",
     "UNIVERSITY TEAM PROJECT": "PROYEK TIM KAMPUS",
     "Between processes": "Antarproses",
@@ -258,7 +258,7 @@
       "Playlist yang dikelola bersifat privat dan diperiksa setiap kali diperbarui. Alat ini berjalan lokal di Mac saya; kodenya tidak dipublikasikan."
     ],
     "dots": [
-      "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal.",
+      "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Antarmukanya kini memakai tema terang dan gelap yang sama dengan portofolio.",
       "Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya."
     ],
     "bot": [
@@ -308,7 +308,7 @@
     "answers": {
       "work": "Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Ia menyelidiki perilaku peramban, API, feed produk, dan analitik, mengaudit integrasi, memeriksa perbaikan, dan menyiapkan serah terima ke tim engineering. Luigi’s Box membuat pencarian dan penemuan produk untuk e-commerce. Pekerjaan juga mencakup implementasi, refactoring, analisis backend, serta optimasi kinerja kolektor dan pemrosesan event. Perbaikan analitik meliputi GTM, dataLayer, pembelian duplikat dan atribusi, termasuk integrasi Persoo lama. Ia juga menggunakan AWS dan Sentry untuk menyelidiki masalah layanan, meninjau error, dan memverifikasi perbaikan.",
       "spotify": "Saat pembaruan AI manual, Jev hanya memakai nama lagu dan artis untuk memilih arah serta mengurutkan hingga 18 hasil pencarian Spotify. Audio tidak dianalisis. Urutan disimpan selama tujuh hari. Playlist suasana hati dibuat terpisah sesuai permintaan, menggunakan pencarian Spotify dan preferensi artis lokal. Playlist yang dikelola bersifat privat dan diperiksa setiap kali diperbarui. Alat ini berjalan lokal di Mac saya; kodenya tidak dipublikasikan.",
-      "dots": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
+      "dots": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya. Antarmukanya kini memakai tema terang dan gelap yang sama dengan portofolio.",
       "bot": "Bot musik Discord lama berbasis JavaScript. Repositori historis; kompatibilitas saat ini dengan Discord dan layanan musik belum diverifikasi.",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Trialkeep, Feedcairn, Reasonrook.",
       "openai": "Ia mengikuti Tibo karena cepatnya ia bekerja di OpenAI dan caranya membahas apa yang sedang mereka buat. Ini minat pribadi, bukan hubungan kerja.",
@@ -317,7 +317,7 @@
       "contact": "Anda bisa menulis kepada Patrick melalui tab Email. FormSubmit hanya mengirim formulir, bukan percakapan ini. Patrick juga ada di GitHub, LinkedIn, X, dan Discord.",
       "about": "Patrick Obrtal · khonsu. Patrick bekerja sebagai Customer Support Partner L2 di Luigi’s Box. Patrick memiliki gelar magister Ilmu Komputer dari TUKE. Tesisnya menggabungkan agen pembelajaran penguatan PPO dan pembuatan peta berbasis LLM untuk game multipemain.",
       "ai": "Patrick memakai Codex dan Claude untuk membuat dan meninjau proyek. Jev membantu keputusan kecil, pemilihan kandidat, dan pengurutan berdasarkan relevansi. Hasilnya ia periksa secara terpisah.",
-      "games": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya.",
+      "games": "Awalnya dibuat dengan React dan Spring Boot pada 2023. Edisi peramban memakai layar React dan gambar titik asli, dengan logika game lokal. Lima level, toko peningkatan, dan bermain sebagai tamu. Tanpa login atau papan peringkat bersama. Mainkan secara online atau lihat kode aslinya. Antarmukanya kini memakai tema terang dan gelap yang sama dengan portofolio.",
       "calculator": "Dibuat bersama tim di TUKE dengan Arduino Uno, keypad, dan LCD. Menghitung ekspresi aritmetika dengan tanda kurung serta menyimpan riwayat.",
       "site": "Portofolio ini memakai HTML, CSS, dan JavaScript, dengan navigasi terminal, tema terang dan gelap, serta panduan dalam berbagai bahasa. Jika tersedia, model AI menjawab melalui Groq; jika tidak, jawaban yang telah disiapkan ditampilkan. Pembaruan diterbitkan dari GitHub ke Vercel.",
       "discovery": "Rekomendasi X mingguan dan hingga tiga akun GitHub yang relevan. Agen AI meninjau kandidat. Jalannya jadwal pertama belum diverifikasi. Proses dibatasi, pemeriksaan duplikat, serta alasan untuk setiap pilihan.",

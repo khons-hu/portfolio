@@ -78,7 +78,7 @@
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Uma seleção semanal para o X e alguns perfis do GitHub, baseada no que estou a explorar.",
     "REACT · SPRING BOOT WEB GAME": "JOGO WEB EM REACT · SPRING BOOT",
     "EARLIER PROJECT": "PROJETO ANTERIOR",
-    "My 2023 React game, adapted for browser-only play with its original look.": "O meu jogo em React de 2023, adaptado para jogar no navegador com o aspeto original.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "O meu jogo React de 2023, adaptado para jogar no navegador com uma interface clara e escura renovada.",
     "A Discord bot with music playback, built as an earlier personal project.": "Um bot de Discord com música, criado como projeto pessoal anterior.",
     "UNIVERSITY TEAM PROJECT": "PROJETO UNIVERSITÁRIO EM EQUIPA",
     "Between processes": "Entre processos",
@@ -258,7 +258,7 @@
       "A playlist gerida é privada e verificada após cada atualização. A ferramenta corre localmente no meu Mac; o código não é público."
     ],
     "dots": [
-      "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local.",
+      "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. A interface partilha agora os temas claro e escuro do portefólio.",
       "Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original."
     ],
     "bot": [
@@ -308,7 +308,7 @@
     "answers": {
       "work": "Patrick trabalha como Customer Support Partner L2 na Luigi’s Box. Investiga o comportamento no navegador, APIs, feeds de produtos e análises, audita integrações, verifica correções e prepara passagens para engenharia. A Luigi’s Box desenvolve pesquisa e descoberta de produtos para comércio eletrónico. O trabalho inclui também implementação, refatorização, análise do backend e otimização do desempenho dos coletores e do processamento de eventos. As correções de analítica abrangem GTM, dataLayer, compras duplicadas e atribuição, incluindo integrações antigas da Persoo. Também usa AWS e Sentry para investigar problemas nos serviços, analisar erros e verificar correções.",
       "spotify": "Numa atualização manual com IA, o Jev usa apenas nomes de músicas e artistas para escolher uma direção e ordenar até 18 resultados da pesquisa do Spotify. Não analisa áudio. A ordenação fica guardada durante sete dias. As playlists por estado de espírito são separadas e feitas a pedido, usando a pesquisa do Spotify e preferências locais de artistas. A playlist gerida é privada e verificada após cada atualização. A ferramenta corre localmente no meu Mac; o código não é público.",
-      "dots": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original.",
+      "dots": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original. A interface partilha agora os temas claro e escuro do portefólio.",
       "bot": "Um antigo bot de música para Discord em JavaScript. Repositório histórico; a compatibilidade atual com Discord e serviços de música não foi verificada.",
       "cpp": "AI harnessing · AI agents · reusable skills · workflow automation · evaluation. Trialkeep, Feedcairn, Reasonrook.",
       "openai": "Acompanha Tibo de perto pelo ritmo do trabalho dele na OpenAI e pela forma como fala do que estão a criar. É um interesse pessoal, não uma ligação profissional.",
@@ -317,7 +317,7 @@
       "contact": "Podes escrever ao Patrick no separador Email. Só o formulário é enviado pelo FormSubmit, não esta conversa. Também o encontras no GitHub, LinkedIn, X e Discord.",
       "about": "Patrick Obrtal · khonsu. Patrick trabalha como Customer Support Partner L2 na Luigi’s Box. Patrick tem um mestrado em Informática da TUKE. A sua tese combinou agentes de aprendizagem por reforço PPO e geração de mapas com LLM para um jogo multijogador.",
       "ai": "Patrick usa Codex e Claude para criar e rever projetos. O Jev ajuda com decisões pequenas, seleção de candidatos e ordenação por relevância. Verifica os resultados separadamente.",
-      "games": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original.",
+      "games": "Criado originalmente em React e Spring Boot em 2023. A edição para navegador reutiliza ecrãs e imagens originais, com lógica de jogo local. Cinco níveis, loja de melhorias e jogo como convidado. Sem login ou classificação partilhada. Joga online ou consulta o código original. A interface partilha agora os temas claro e escuro do portefólio.",
       "calculator": "Criado em equipa na TUKE com Arduino Uno, teclado e LCD. Calcula expressões aritméticas com parênteses e guarda o histórico.",
       "site": "Este portfólio usa HTML, CSS e JavaScript, com navegação por terminal, temas claro e escuro e um guia em várias línguas. Quando disponível, responde um modelo de IA através do Groq; caso contrário, respostas preparadas. As atualizações vão do GitHub para o Vercel.",
       "discovery": "Recomendações semanais para X e até três perfis relevantes do GitHub. Um agente de IA analisa candidatos. A primeira execução agendada ainda não foi verificada. Execuções limitadas, verificação de duplicados e justificação de cada escolha.",

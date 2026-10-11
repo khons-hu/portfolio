@@ -61,7 +61,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Týždenný výber účtov na X a vývojárov na GitHube podľa toho, čo práve skúšam.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBOVÁ HRA",
     "EARLIER PROJECT": "STARŠÍ PROJEKT",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Moja React hra z roku 2023, upravená na hranie v prehliadači s pôvodným vzhľadom.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Moja React hra z roku 2023, upravená na hranie v prehliadači s vynoveným svetlým a tmavým rozhraním.",
     "A Discord bot with music playback, built as an earlier personal project.": "Starší osobný projekt: Discord bot s prehrávaním hudby.",
     "UNIVERSITY TEAM PROJECT": "UNIVERZITNÝ TÍMOVÝ PROJEKT",
     "Between processes": "Medzi procesmi",
@@ -281,7 +281,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Heti válogatás X-fiókokból és GitHub-fejlesztőkből az aktuális érdeklődésem szerint.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBES JÁTÉK",
     "EARLIER PROJECT": "KORÁBBI PROJEKT",
-    "My 2023 React game, adapted for browser-only play with its original look.": "A 2023-as React játékom, böngészős játékra átalakítva, az eredeti megjelenéssel.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "A 2023-as React játékom, böngészős játékra átalakítva, megújult világos és sötét felülettel.",
     "A Discord bot with music playback, built as an earlier personal project.": "Korábbi saját projekt: Discord-bot zenelejátszással.",
     "UNIVERSITY TEAM PROJECT": "EGYETEMI CSAPATPROJEKT",
     "Between processes": "Folyamatok között",
@@ -501,7 +501,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Cotygodniowy wybór kont X i programistów GitHuba według moich zainteresowań.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT GRA WEBOWA",
     "EARLIER PROJECT": "WCZEŚNIEJSZY PROJEKT",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Moja gra React z 2023 roku, przystosowana do przeglądarki z oryginalnym wyglądem.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Moja gra React z 2023 roku, przystosowana do przeglądarki z odświeżonym jasnym i ciemnym interfejsem.",
     "A Discord bot with music playback, built as an earlier personal project.": "Wcześniejszy projekt osobisty: bot Discord z muzyką.",
     "UNIVERSITY TEAM PROJECT": "UCZELNIANY PROJEKT ZESPOŁOWY",
     "Between processes": "Między procesami",
@@ -721,7 +721,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Wöchentliche Auswahl von X-Konten und GitHub-Entwicklern passend zu meinen Interessen.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBSPIEL",
     "EARLIER PROJECT": "FRÜHERES PROJEKT",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Mein React-Spiel von 2023, für den Browser angepasst und im ursprünglichen Design.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Mein React-Spiel von 2023, für den Browser angepasst, mit überarbeiteter heller und dunkler Oberfläche.",
     "A Discord bot with music playback, built as an earlier personal project.": "Ein früheres persönliches Projekt: Discord-Bot mit Musikwiedergabe.",
     "UNIVERSITY TEAM PROJECT": "TEAMPROJEKT AN DER UNI",
     "Between processes": "Zwischen Prozessen",
@@ -941,7 +941,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Selección semanal de cuentas de X y desarrolladores de GitHub según mis intereses.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT JUEGO WEB",
     "EARLIER PROJECT": "PROYECTO ANTERIOR",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Mi juego React de 2023, adaptado al navegador con su aspecto original.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Mi juego React de 2023, adaptado al navegador con una interfaz clara y oscura renovada.",
     "A Discord bot with music playback, built as an earlier personal project.": "Un proyecto personal anterior: bot de Discord con música.",
     "UNIVERSITY TEAM PROJECT": "PROYECTO UNIVERSITARIO EN EQUIPO",
     "Between processes": "Entre procesos",
@@ -1161,7 +1161,7 @@ const SITE_LOCALES = {
     "A weekly shortlist for X and selective GitHub follows, built around what I’m exploring.": "Týdenní výběr účtů na X a vývojářů na GitHubu podle toho, co právě zkouším.",
     "REACT · SPRING BOOT WEB GAME": "REACT · SPRING BOOT WEBOVÁ HRA",
     "EARLIER PROJECT": "STARŠÍ PROJEKT",
-    "My 2023 React game, adapted for browser-only play with its original look.": "Moje React hra z roku 2023, upravená pro hraní v prohlížeči s původním vzhledem.",
+    "My 2023 React game, adapted for browser-only play with a refreshed light and dark interface.": "Moje React hra z roku 2023, upravená pro hraní v prohlížeči s obnoveným světlým a tmavým rozhraním.",
     "A Discord bot with music playback, built as an earlier personal project.": "Starší osobní projekt: Discord bot s přehráváním hudby.",
     "UNIVERSITY TEAM PROJECT": "UNIVERZITNÍ TÝMOVÝ PROJEKT",
     "Between processes": "Mezi procesy",
@@ -1357,7 +1357,7 @@ const PROJECT_NOTES = {
       "The managed playlist is private and checked after each refresh. The tool runs locally on my Mac; its source is not public."
     ],
     "dots": [
-      "Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic.",
+      "Originally built with React and Spring Boot in 2023. The browser edition reuses the original React screens and dot images, with local game logic. The interface now shares the portfolio’s light and dark themes.",
       "Five levels, a power-up shop and guest play. No login or shared leaderboard. Play the browser edition online or explore the original source."
     ],
     "bot": [
@@ -1420,7 +1420,7 @@ const PROJECT_NOTES = {
       "Spravovaný playlist je súkromný a po obnovení sa kontroluje. Nástroj beží lokálne na mojom Macu; zdrojový kód nie je verejný."
     ],
     "dots": [
-      "Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne.",
+      "Pôvodne vytvorená v roku 2023 v Reacte a Spring Boote. Browser verzia používa pôvodné React obrazovky a obrázky bodiek, herná logika beží lokálne. Rozhranie teraz používa svetlú a tmavú tému portfólia.",
       "Päť úrovní, obchod s bonusmi a hranie bez účtu. Bez prihlásenia a spoločného rebríčka. Browser verziu si môžeš zahrať online alebo si pozrieť pôvodný kód."
     ],
     "bot": [
@@ -1483,7 +1483,7 @@ const PROJECT_NOTES = {
       "A kezelt lejátszási lista privát, és frissítés után ellenőrzöm. Az eszköz a Macemen fut; a forráskód nem nyilvános."
     ],
     "dots": [
-      "Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával.",
+      "Eredetileg React és Spring Boot használatával készült 2023-ban. A böngészős változat az eredeti React képernyőket és pontképeket használja, helyben futó játéklogikával. A felület most a portfólió világos és sötét témáját használja.",
       "Öt szint, bónuszbolt és vendégjáték. Nincs bejelentkezés vagy közös ranglista. A böngészős változat online játszható, az eredeti forráskód is elérhető."
     ],
     "bot": [
@@ -1546,7 +1546,7 @@ const PROJECT_NOTES = {
       "Zarządzana playlista jest prywatna i sprawdzana po każdym odświeżeniu. Narzędzie działa lokalnie na moim Macu; kod nie jest publiczny."
     ],
     "dots": [
-      "Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry.",
+      "Pierwotnie zbudowana w React i Spring Boot w 2023 roku. Wersja przeglądarkowa korzysta z oryginalnych ekranów React i grafik kropek, z lokalną logiką gry. Interfejs korzysta teraz z jasnego i ciemnego motywu portfolio.",
       "Pięć poziomów, sklep z bonusami i gra jako gość. Bez logowania i wspólnego rankingu. Wersja przeglądarkowa działa online, dostępny jest też oryginalny kod."
     ],
     "bot": [
@@ -1609,7 +1609,7 @@ const PROJECT_NOTES = {
       "Die verwaltete Playlist ist privat und wird nach jeder Aktualisierung geprüft. Das Tool läuft lokal auf meinem Mac; der Quellcode ist nicht öffentlich."
     ],
     "dots": [
-      "2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik.",
+      "2023 mit React und Spring Boot entwickelt. Die Browser-Version verwendet die ursprünglichen React-Ansichten und Punktgrafiken mit lokaler Spiellogik. Die Oberfläche nutzt jetzt das helle und dunkle Design des Portfolios.",
       "Fünf Level, ein Power-up-Shop und Spielen als Gast. Keine Anmeldung oder gemeinsame Bestenliste. Die Browser-Version ist online spielbar, der ursprüngliche Quellcode ist ebenfalls verfügbar."
     ],
     "bot": [
@@ -1672,7 +1672,7 @@ const PROJECT_NOTES = {
       "La lista gestionada es privada y se verifica tras cada actualización. La herramienta funciona en mi Mac; el código no es público."
     ],
     "dots": [
-      "Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local.",
+      "Creado con React y Spring Boot en 2023. La versión de navegador reutiliza las pantallas React y las imágenes originales, con lógica de juego local. La interfaz ahora comparte los temas claro y oscuro del portafolio.",
       "Cinco niveles, tienda de mejoras y juego como invitado. Sin inicio de sesión ni clasificación compartida. La versión de navegador se puede jugar online y el código original está disponible."
     ],
     "bot": [
@@ -1735,7 +1735,7 @@ const PROJECT_NOTES = {
       "Spravovaný playlist je soukromý a po každé aktualizaci se kontroluje. Nástroj běží lokálně na mém Macu; zdrojový kód není veřejný."
     ],
     "dots": [
-      "Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou.",
+      "Původně vytvořená v roce 2023 v Reactu a Spring Bootu. Prohlížečová verze používá původní React obrazovky a obrázky teček s lokální herní logikou. Rozhraní nyní používá světlé a tmavé téma portfolia.",
       "Pět úrovní, obchod s bonusy a hraní bez účtu. Bez přihlášení a společného žebříčku. Prohlížečovou verzi si můžeš zahrát online nebo si prohlédnout původní kód."
     ],
     "bot": [
