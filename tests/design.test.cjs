@@ -88,7 +88,7 @@ test('every card has notes and only public destinations have outside links',()=>
    if(kind==='live')assert.doesNotMatch(href,/github\.com/);
   }
  }
- assert.equal((html.match(/class="project-live"/g)||[]).length,14);
+ assert.equal((html.match(/class="project-live"/g)||[]).length,15);
 });
 
 test('visible card labels and taglines are translated in every catalog',()=>{

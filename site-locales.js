@@ -1344,7 +1344,7 @@ const PROJECT_NOTES = {
       "Free to use, public source. No account or paid AI calls."
     ],
     "discovery": [
-      "Weekly X recommendations and up to three relevant GitHub follows. An AI agent reviews candidates. The first scheduled run remains unverified.",
+      "An earlier experiment that prepared X recommendations and up to three relevant GitHub follows a week, with an AI agent reviewing candidates. It is paused now.",
       "Topics: developer tools, coding agents, AI research Bounded runs, duplicate checks and reasons for each selection."
     ],
     "portfolio": [
@@ -1407,7 +1407,7 @@ const PROJECT_NOTES = {
       "Zadarmo, s verejným kódom. Bez účtu a platených AI volaní."
     ],
     "discovery": [
-      "Týždenné odporúčania pre X a sledovanie najviac troch relevantných vývojárov na GitHube. Kandidátov posudzuje AI agent. Prvý plánovaný beh ešte nie je overený.",
+      "Skorší experiment, ktorý každý týždeň pripravoval odporúčania účtov na X a najviac tri relevantné sledovania na GitHube. Kandidátov posudzoval AI agent. Teraz je pozastavený.",
       "Témy: vývojárske nástroje, coding agenti, AI výskum Obmedzené behy, kontrola duplicít a dôvod každého výberu."
     ],
     "portfolio": [
@@ -1470,7 +1470,7 @@ const PROJECT_NOTES = {
       "Ingyenes, nyilvános forráskóddal. Nincs fiók vagy fizetős AI-hívás."
     ],
     "discovery": [
-      "Heti X-ajánlások és legfeljebb három releváns GitHub-fejlesztő követése. AI-ágens értékeli a jelölteket. Az első ütemezett futás még nincs ellenőrizve.",
+      "Korábbi kísérlet, amely hetente X-ajánlásokat és legfeljebb három releváns GitHub-követést készített elő. A jelölteket AI-ágens értékelte. Jelenleg szünetel.",
       "Témák: fejlesztői eszközök, kódoló ágensek, AI-kutatás Korlátozott futások, duplikációellenőrzés és indoklás."
     ],
     "portfolio": [
@@ -1533,7 +1533,7 @@ const PROJECT_NOTES = {
       "Bezpłatne, z publicznym kodem. Bez konta i płatnych wywołań AI."
     ],
     "discovery": [
-      "Cotygodniowe rekomendacje X i maksymalnie trzy nowe obserwacje na GitHubie. Kandydatów ocenia agent AI. Pierwszy zaplanowany przebieg niepotwierdzony.",
+      "Wcześniejszy eksperyment, który co tydzień przygotowywał rekomendacje kont na X i maksymalnie trzy trafne obserwacje na GitHubie. Kandydatów oceniał agent AI. Obecnie jest wstrzymany.",
       "Tematy: narzędzia, agenci, badania AI Ograniczone przebiegi, kontrola duplikatów i uzasadnienia wyboru."
     ],
     "portfolio": [
@@ -1596,7 +1596,7 @@ const PROJECT_NOTES = {
       "Kostenlos, mit öffentlichem Code. Kein Konto oder kostenpflichtige KI-Aufrufe."
     ],
     "discovery": [
-      "Wöchentliche X-Empfehlungen und bis zu drei passende GitHub-Follows. Ein KI-Agent prüft Kandidaten. Der erste geplante Lauf ist noch unbestätigt.",
+      "Ein früheres Experiment, das wöchentlich X-Empfehlungen und bis zu drei passende GitHub-Follows vorbereitete. Ein KI-Agent prüfte die Kandidaten. Derzeit ist es pausiert.",
       "Themen: Entwicklerwerkzeuge, Coding-Agenten, KI-Forschung Begrenzte Läufe, Dublettenprüfung und Begründungen."
     ],
     "portfolio": [
@@ -1659,7 +1659,7 @@ const PROJECT_NOTES = {
       "Gratis y con código público. Sin cuenta ni llamadas de IA de pago."
     ],
     "discovery": [
-      "Recomendaciones semanales de X y hasta tres desarrolladores relevantes en GitHub. Un agente de IA revisa candidatos. La primera ejecución programada sigue sin verificarse.",
+      "Un experimento anterior que preparaba cada semana recomendaciones de X y hasta tres seguimientos relevantes en GitHub. Un agente de IA revisaba candidatos. Ahora está en pausa.",
       "Temas: herramientas, agentes, investigación de IA Ejecuciones limitadas, comprobación de duplicados y motivos de selección."
     ],
     "portfolio": [
@@ -1722,7 +1722,7 @@ const PROJECT_NOTES = {
       "Zdarma, s veřejným kódem. Bez účtu a placených AI volání."
     ],
     "discovery": [
-      "Týdenní doporučení pro X a sledování nejvýše tří relevantních vývojářů na GitHubu. Kandidáty posuzuje AI agent. První plánovaný běh ještě není ověřený.",
+      "Dřívější experiment, který každý týden připravoval doporučení účtů na X a nejvýše tři relevantní sledování na GitHubu. Kandidáty posuzoval AI agent. Nyní je pozastavený.",
       "Témata: vývojářské nástroje, coding agenti, AI výzkum Omezené běhy, kontrola duplicit a důvod každého výběru."
     ],
     "portfolio": [

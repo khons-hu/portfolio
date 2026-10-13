@@ -34,7 +34,7 @@ test('new project opens at the top and a source-only project clears the prior pr
 });
 test('private project notes clear every previous public destination',()=>{
  const {node,show}=setup();
- for(const id of ['queuefolk','moonshift','moonhold','lantern-divide','feled','last-credit','pager-panic','human-loop']){
+ for(const id of ['queuefolk','moonshift','lantern-divide','feled','last-credit','pager-panic','human-loop']){
   show('thinkroom');show(id);
   assert.match(node('#project-category').textContent,/PRIVATE/,id);
   for(const selector of ['#project-link','#project-source','#project-android']){
