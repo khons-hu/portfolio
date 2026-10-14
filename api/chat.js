@@ -1,6 +1,6 @@
 'use strict';
 const {createHash}=require('node:crypto');
-const {topics}=require('../guide.js');
+const {topics,readEventStream}=require('../guide.js');
 const CHAT_COPY=require('../chat-copy.js');
 const LANGUAGES=new Set(['en','sk','hu','pl','cs','de','es','pt','fr','zh','hi','ar','bn','ru','ur','id','ja']);
 const recent=new Map();
@@ -76,14 +76,14 @@ function parseRecommendationCall(message){
   return [...new Set(args.project_ids)];
  }catch{return null;}
 }
-async function reply(body,{env=process.env,fetcher=fetch}={}){
+async function reply(body,{env=process.env,fetcher=fetch,onText}={}){
  const input=validate(body);
  if(!input)return {status:400,body:{error:'invalid_request'}};
  if(!configured(env))return {status:503,body:{error:'unavailable'}};
  try{
   const response=await fetcher('https://api.groq.com/openai/v1/chat/completions',{
    method:'POST',headers:{Authorization:`Bearer ${env.GROQ_API_KEY}`,'Content-Type':'application/json'},
-   body:JSON.stringify({model:'openai/gpt-oss-20b',messages:[{role:'system',content:system+`\nReply in language code ${input.language}.`},...input.messages],tools:[recommendationTool],tool_choice:'auto',parallel_tool_calls:false,max_completion_tokens:800,reasoning_effort:'low',temperature:0.2}),signal:AbortSignal.timeout(12000)
+   body:JSON.stringify({model:'openai/gpt-oss-20b',messages:[{role:'system',content:system+`\nReply in language code ${input.language}.`},...input.messages],tools:[recommendationTool],tool_choice:'auto',parallel_tool_calls:false,max_completion_tokens:800,reasoning_effort:'low',temperature:0.2,...(onText?{stream:true}:{})}),signal:AbortSignal.timeout(12000)
   });
   if(response.status===429){
    // A short provider wait (the per-minute token budget refilling) is passed on so the page can retry once.
@@ -91,7 +91,31 @@ async function reply(body,{env=process.env,fetcher=fetch}={}){
    return {status:429,body:{error:'unavailable'},...(wait>0&&wait<=10?{retryAfter:wait}:{})};
   }
   if(!response.ok)return {status:503,body:{error:'unavailable'}};
-  const data=await response.json(),choice=data.choices?.[0],message=choice?.message,text=message?.content;
+  let choice;
+  if(onText){
+   let content='',finish_reason=null;const calls=new Map();
+   await readEventStream(response.body,frame=>{
+    if(frame.data==='[DONE]')return;
+    const part=JSON.parse(frame.data).choices?.[0];if(!part)return;
+    if(part.finish_reason)finish_reason=part.finish_reason;
+    const delta=part.delta||{};
+    if(typeof delta.content==='string'){
+     const visible=delta.content.slice(0,Math.max(0,2000-content.length));content+=visible;
+     if(visible)onText(visible);
+    }
+    for(const item of delta.tool_calls||[]){
+     if(!Number.isInteger(item.index)||item.index<0||item.index>3)throw new Error('invalid tool');
+     const call=calls.get(item.index)||{function:{name:'',arguments:''}};
+     if(item.type)call.type=item.type;
+     if(typeof item.function?.name==='string')call.function.name+=item.function.name;
+     if(typeof item.function?.arguments==='string')call.function.arguments+=item.function.arguments;
+     if(call.function.arguments.length>8192)throw new Error('large tool');
+     calls.set(item.index,call);
+    }
+   });
+   choice={finish_reason,message:{content,tool_calls:[...calls.values()]}};
+  }else choice=(await response.json()).choices?.[0];
+  const message=choice?.message,text=message?.content;
   if(choice?.finish_reason==='tool_calls'){
    const recommendations=parseRecommendationCall(message);
    if(!recommendations?.length)return {status:503,body:{error:'unavailable'}};
@@ -105,7 +129,7 @@ async function reply(body,{env=process.env,fetcher=fetch}={}){
 async function handler(req,res){
  res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');res.setHeader('X-Robots-Tag','noindex');
  const send=(status,body)=>{res.statusCode=status;res.end(JSON.stringify(body));};
- if(req.method==='GET')return send(200,{available:configured(process.env)});
+ if(req.method==='GET'){res.setHeader('Cache-Control','public, max-age=0, s-maxage=300');return send(200,{available:configured(process.env)});}
  if(req.method!=='POST'){res.setHeader('Allow','GET, POST');return send(405,{error:'method'});}
  if(!['https://khns.dev','https://khons-hu.vercel.app','http://localhost:4173','http://127.0.0.1:4173'].includes(req.headers.origin))return send(403,{error:'origin'});
  if(!String(req.headers['content-type']||'').startsWith('application/json'))return send(415,{error:'content_type'});
@@ -118,6 +142,18 @@ async function handler(req,res){
  const key=createHash('sha256').update(ip).digest('hex');
  if(active>=2||recent.size>=1000||now-(recent.get(key)||0)<5000){res.setHeader('Retry-After','5');return send(429,{error:'unavailable'});}
  recent.set(key,now);active++;
- try{const result=await reply(req.body);if(result.retryAfter)res.setHeader('Retry-After',String(result.retryAfter));return send(result.status,result.body);}finally{active--;}
+ const streaming=String(req.headers.accept||'').includes('text/event-stream')&&typeof res.write==='function';
+ let started=false;
+ const event=(name,data)=>{
+  if(!started){res.setHeader('Content-Type','text/event-stream; charset=utf-8');res.statusCode=200;res.flushHeaders?.();started=true;}
+  res.write(`event: ${name}\ndata: ${JSON.stringify(data)}\n\n`);
+ };
+ try{
+  const result=await reply(req.body,streaming?{onText:delta=>event('text',{delta})}:{});
+  if(result.status===200&&streaming){event('result',result.body);return res.end();}
+  if(started){event('error',{error:'unavailable'});return res.end();}
+  if(result.retryAfter)res.setHeader('Retry-After',String(result.retryAfter));
+  return send(result.status,result.body);
+ }finally{active--;}
 }
 module.exports=handler;module.exports.reply=reply;module.exports.validate=validate;module.exports.parseRecommendationCall=parseRecommendationCall;module.exports.recommendationTool=recommendationTool;module.exports.system=system;module.exports.PROJECTS=PROJECTS;module.exports.CONTACT=CONTACT;module.exports.SITE=SITE;module.exports.PAGE=PAGE;

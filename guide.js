@@ -106,7 +106,33 @@
       .replace(/`([^`\n]+)`/g,'$1').replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,'$1 ($2)')
       .replace(/[ \t]+$/gm,'').replace(/\n{3,}/g,'\n\n').trim();
   }
-  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui,tidy,localRecommendations,rankProjectResults};
+  // Shared by the browser and API so split UTF-8 characters and fragmented events work the same way.
+  async function readEventStream(body,onEvent){
+    if(!body?.getReader)throw new Error('missing stream');
+    const reader=body.getReader(),decoder=new TextDecoder();let buffer='';
+    const frame=raw=>{
+      let event='message';const data=[];
+      for(const line of raw.split(/\r?\n/)){
+        if(line.startsWith('event:'))event=line.slice(6).trim();
+        else if(line.startsWith('data:'))data.push(line.slice(5).replace(/^ /,''));
+      }
+      if(data.length)onEvent({event,data:data.join('\n')});
+    };
+    try{
+      while(true){
+        const {value,done}=await reader.read();buffer+=decoder.decode(value,{stream:!done});
+        let boundary;
+        while((boundary=/\r?\n\r?\n/.exec(buffer))){
+          if(boundary.index>32768)throw new Error('large event');
+          frame(buffer.slice(0,boundary.index));buffer=buffer.slice(boundary.index+boundary[0].length);
+        }
+        if(buffer.length>32768)throw new Error('large event');
+        if(done){if(buffer.trim())frame(buffer);break;}
+      }
+    }catch(error){await reader.cancel().catch(()=>{});throw error;}
+    finally{reader.releaseLock();}
+  }
+  if (typeof module !== 'undefined' && module.exports) module.exports={answer,topics,ui,tidy,localRecommendations,rankProjectResults,readEventStream};
   if (typeof document === 'undefined') return;
   const dialog=document.querySelector('#guide-dialog'),log=document.querySelector('#guide-log'),input=document.querySelector('#guide-question'),lang=document.querySelector('#guide-language');
   const body=dialog.querySelector('.guide-body'),submit=document.querySelector('#guide-form button'),status=document.querySelector('#guide-status'),chips=[...document.querySelectorAll('[data-question]')];
@@ -395,18 +421,26 @@
     if(ms<=0)return resolve();
     const timer=setTimeout(resolve,ms);signal.addEventListener('abort',()=>{clearTimeout(timer);reject(new DOMException('Aborted','AbortError'));},{once:true});
   });
-  async function request(payload,signal,retried=false){
+  async function request(payload,signal,retried=false,onText=()=>{}){
     await pause(lastSent+SPACING-Date.now(),signal);
     lastSent=Date.now();
     const attempt=new AbortController(),stop=()=>attempt.abort();
     signal.addEventListener('abort',stop,{once:true});const timer=setTimeout(stop,ATTEMPT_TIMEOUT);
     try{
-      const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:attempt.signal});
+      const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json','Accept':'text/event-stream'},body:JSON.stringify(payload),signal:attempt.signal});
       // The server's own spacing answers 429 with Retry-After; wait that long once. Provider limits carry no header and fall back.
       const wait=response.status===429&&!retried?Number(response.headers.get('Retry-After')):0;
-      if(wait>0&&wait<=RETRY_LIMIT){clearTimeout(timer);await pause(wait*1000,signal);return await request(payload,signal,true);}
+      if(wait>0&&wait<=RETRY_LIMIT){clearTimeout(timer);await pause(wait*1000,signal);return await request(payload,signal,true,onText);}
       if(!response.ok)throw Object.assign(new Error('unavailable'),{status:response.status});
-      const data=await response.json();
+      let data;
+      if(response.headers.get('Content-Type')?.startsWith('text/event-stream')){
+        await readEventStream(response.body,frame=>{
+          const value=JSON.parse(frame.data);
+          if(frame.event==='text'&&typeof value.delta==='string')onText(value.delta);
+          else if(frame.event==='result')data=value;
+          else if(frame.event==='error')throw new Error('unavailable');
+        });
+      }else data=await response.json();
       if(typeof data?.text!=='string'||!data.text.trim())throw new Error('empty');
       const recommendations=Array.isArray(data.recommendations)?data.recommendations.filter(id=>typeof id==='string').slice(0,4):[];
       return {text:data.text,recommendations};
@@ -425,15 +459,23 @@
     if(!aiAvailable){const result=prepared();reveal(append(result.text,'guide',result,language));return;}
     setBusy(true,language);showPending(language);
     const current=controller=new AbortController();
+    let streamRow,streamText='';
     try{
-      const reply=await request({message,language,history:conversation.slice(-4)},current.signal);
+      const reply=await request({message,language,history:conversation.slice(-4)},current.signal,false,delta=>{
+        if(id!==requestId)return;
+        streamText=(streamText+delta).slice(0,2000);
+        if(!streamText)return;
+        if(!streamRow){settle();streamRow=append(' ','guide',null,language);streamRow.setAttribute('aria-live','off');}
+        streamRow.querySelector('p').textContent=streamText;reveal(streamRow);
+      });
       if(id!==requestId)return;
       const shown=tidy(reply.text)||reply.text.trim();
       const result={};if(reply.recommendations.length)result.recommendations=reply.recommendations;else if(Array.isArray(options.recommendations))result.recommendations=options.recommendations;if(options.section)result.section=options.section;
-      settle();reveal(append(shown,'guide',Object.keys(result).length?result:null,language));
+      streamRow?.remove();settle();reveal(append(shown,'guide',Object.keys(result).length?result:null,language));
       conversation.push({role:'user',content:message},{role:'assistant',content:shown.slice(0,2000)});conversation=conversation.slice(-4);
     }catch(error){
       if(id!==requestId)return;
+      streamRow?.remove();
       // A rejected request cannot be retried with the same history; other failures keep the context for the next question.
       if(error?.status===400)conversation=[];
       const result=prepared();settle();reveal(append(result.text,'guide',result,language,aiCopy(language)[4]));
