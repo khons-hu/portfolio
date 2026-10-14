@@ -12,7 +12,7 @@ The user's goal, authorized scope, and a fresh list of visible candidates with t
 3. Exclude disabled controls and actions outside the authorized scope.
 4. If no candidate fits, or the labels are ambiguous, choose none and name the missing observation.
 5. Return one candidate ID and a brief reason. Selection does not execute the action or grant permission.
-6. After execution by the host, inspect the resulting UI before claiming success. Never blindly retry.
+6. After execution by the host, inspect the resulting UI before claiming success. If an action may have created, sent or published something but its outcome is uncertain, inspect the current state before retrying to avoid duplicates.
 
 ## Output
 Candidate ID or none. Reason. Evidence used. What to verify next.
