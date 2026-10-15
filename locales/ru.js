@@ -6,6 +6,7 @@
   "site": {
     "Lately": "Недавнее",
     "Reading": "Чтение",
+    "Moonshift, robots learning with PPO": "Moonshift, роботы учатся с помощью PPO",
     "Haiku and Luna, 192 outcomes": "Haiku и Luna, 192 результата",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Я Customer Support Partner L2 в Luigi’s Box. Я прослеживаю интеграции поиска для интернет-магазинов через браузер, API, товарные фиды и Analytics.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "Я также создаю свою тему для программирования, небольшие приложения и тесты агентов, с которыми работаю.",

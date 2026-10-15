@@ -189,3 +189,20 @@ test('reading direction is set before first paint and matches the language regis
  assert.equal(run.last.head[0].src,'/locales/fr.js?v=test','an added language starts loading in <head> with the page version');
  run(null,['sk-SK']);assert.equal(run.last.head.length,0,'built-in languages need no extra request');
 });
+
+test('the Moonshift film leads the selected work and loads only when played',()=>{
+ const work=html.slice(html.indexOf('id="projects"'));
+ assert.equal(work.match(/<article class="story[^"]*" id="([^"]+)"/)[1],'moonshift-story','the first feature after the hero');
+ assert.match(html.match(/<nav class="hero-index[\s\S]*?<\/nav>/)[0],/<ol>\s*<li><a href="#moonshift-story">/,'Lately leads with the film');
+ const article=html.match(/<article[^>]*id="moonshift-story"[\s\S]*?<\/article>/)[0];
+ assert.match(article.slice(0,article.indexOf('>')),/data-source-language lang="en" dir="ltr"/,'an English original keeps its own reading direction');
+ const video=article.match(/<video\b[^>]*>/)[0];
+ assert.match(video,/\bcontrols\b/);assert.match(video,/\bplaysinline\b/,'iPhone keeps playback inline');assert.match(video,/preload="none"/);assert.match(video,/width="1280" height="720"/);assert.match(video,/poster="assets\//);
+ assert.doesNotMatch(video,/\b(?:autoplay|loop|muted)\b/,'nothing plays or downloads before a visitor asks');
+ assert.match(article,/<track kind="captions" src="assets\/[^"]+\.vtt" srclang="en"/);
+ assert.match(article,/<details class="film-transcript">/);
+ const files=new Set([...article.matchAll(/(?:src|poster|href)="(assets\/[^"]+)"/g),...read('app.js').matchAll(/"(assets\/previews\/moonshift-[^"]+)"/g)].map(match=>match[1]));
+ assert(files.size>=3);
+ for(const file of files)assert(fs.existsSync(path.join(__dirname,'..',file)),file);
+ assert.match(read('assets/previews/moonshift-motion-36s.en.vtt'),/^WEBVTT\n/);
+});

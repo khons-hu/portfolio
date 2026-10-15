@@ -3,6 +3,7 @@ const SITE_LOCALES = {
   "sk": {
     "Lately": "Naposledy",
     "Reading": "Čítanie",
+    "Moonshift, robots learning with PPO": "Moonshift, roboty sa učia pomocou PPO",
     "Haiku and Luna, 192 outcomes": "Haiku a Luna, 192 výsledkov",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Pracujem ako Customer Support Partner L2 v Luigi’s Box. Sledujem e-commerce integrácie vyhľadávania naprieč prehliadačom, API, produktovými feedmi a Analytics.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "Robím aj vlastnú tému na programovanie, malé aplikácie a testy agentov na kódovanie, s ktorými pracujem.",
@@ -223,6 +224,7 @@ const SITE_LOCALES = {
   "hu": {
     "Lately": "Mostanában",
     "Reading": "Olvasás",
+    "Moonshift, robots learning with PPO": "Moonshift, PPO-val tanuló robotok",
     "Haiku and Luna, 192 outcomes": "Haiku és Luna, 192 eredmény",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Customer Support Partner L2 vagyok a Luigi’s Boxnál. E-kereskedelmi keresőintegrációkat követek végig böngészőn, API-kon, termékfeedeken és az Analyticsen.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "Saját kódolási témát, kis appokat és teszteket is készítek a kódoló ágensekhez, amelyekkel dolgozom.",
@@ -443,6 +445,7 @@ const SITE_LOCALES = {
   "pl": {
     "Lately": "Ostatnio",
     "Reading": "Do czytania",
+    "Moonshift, robots learning with PPO": "Moonshift, roboty uczące się z PPO",
     "Haiku and Luna, 192 outcomes": "Haiku i Luna, 192 wyniki",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Jestem Customer Support Partner L2 w Luigi’s Box. Śledzę integracje wyszukiwarek e-commerce w przeglądarce, API, feedach produktowych i Analytics.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "Tworzę też własny motyw do kodowania, małe aplikacje i testy agentów do kodowania, z którymi pracuję.",
@@ -663,6 +666,7 @@ const SITE_LOCALES = {
   "de": {
     "Lately": "Zuletzt",
     "Reading": "Lektüre",
+    "Moonshift, robots learning with PPO": "Moonshift, Roboter lernen mit PPO",
     "Haiku and Luna, 192 outcomes": "Haiku und Luna, 192 Ergebnisse",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Ich bin Customer Support Partner L2 bei Luigi’s Box. Ich verfolge E-Commerce-Suchintegrationen durch Browser, APIs, Produktfeeds und Analytics.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "Ich baue auch mein Coding-Theme, kleine Apps und Tests der Coding-Agenten, mit denen ich arbeite.",
@@ -883,6 +887,7 @@ const SITE_LOCALES = {
   "es": {
     "Lately": "Últimamente",
     "Reading": "Lectura",
+    "Moonshift, robots learning with PPO": "Moonshift, robots que aprenden con PPO",
     "Haiku and Luna, 192 outcomes": "Haiku y Luna, 192 resultados",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Soy Customer Support Partner L2 en Luigi’s Box. Sigo integraciones de búsqueda de e-commerce a través del navegador, APIs, feeds de productos y Analytics.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "También creo mi tema para programar, pequeñas apps y pruebas de los agentes de programación con los que trabajo.",
@@ -1103,6 +1108,7 @@ const SITE_LOCALES = {
   "cs": {
     "Lately": "Naposledy",
     "Reading": "Čtení",
+    "Moonshift, robots learning with PPO": "Moonshift, roboti se učí pomocí PPO",
     "Haiku and Luna, 192 outcomes": "Haiku a Luna, 192 výsledků",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "Pracuji jako Customer Support Partner L2 v Luigi’s Box. Sleduji e-commerce integrace vyhledávání napříč prohlížečem, API, produktovými feedy a Analytics.",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "Dělám také vlastní téma pro programování, malé aplikace a testy agentů pro kódování, se kterými pracuji.",

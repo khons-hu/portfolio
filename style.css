@@ -177,7 +177,7 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 #project-reset,#project-copy-link{min-height:40px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;font:500 13px var(--sans)}
 #project-reset:hover,#project-copy-link:hover{border-color:var(--accent)}
 
-/* ---------- Hero index: three real artifacts, newest first ---------- */
+/* ---------- Hero index: recent artifacts, newest first ---------- */
 .hero{min-height:clamp(600px,84svh,760px);padding-bottom:96px}
 .hero-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,300px);align-items:end;gap:48px 64px}
 .hero-copy{margin-bottom:0}
@@ -197,7 +197,7 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .work-section{padding-bottom:88px}
 .work-heading{margin-bottom:56px}
 .story{margin-bottom:128px}
-.story-text>p:not(.story-kicker){font-size:16.5px;line-height:1.75;color:var(--ink-soft);max-width:54ch;text-wrap:pretty;margin-bottom:14px}
+.story-text>p:not(.story-kicker,.story-footnote){font-size:16.5px;line-height:1.75;color:var(--ink-soft);max-width:54ch;text-wrap:pretty;margin-bottom:14px}
 .story-text h3{font:400 clamp(34px,3.6vw,48px)/1.08 var(--serif);letter-spacing:-.03em;margin:0 0 22px}
 .story-kicker{display:flex;flex-wrap:wrap;gap:4px 16px;margin:0 0 14px;font:12px/1.6 var(--mono);color:var(--muted)}
 .story-kicker time{color:var(--faint)}
@@ -214,6 +214,27 @@ h1{font:400 clamp(64px,8.2vw,112px)/1 var(--serif);letter-spacing:-.045em;margin
 .story-play{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;font-size:13px;font-weight:500;color:var(--ink);line-height:1.35}
 .story-play>span{color:var(--status);font-size:11px}
 .story-video:hover .story-play{color:var(--accent)}
+
+/* Moonshift leads with the film itself. The player loads nothing but its poster until it is played. */
+.story-moonshift{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);grid-template-areas:"head film" "body film";column-gap:64px;align-items:start}
+.story-moonshift-head{grid-area:head}
+.story-moonshift-body{grid-area:body}
+.story-film{grid-area:film;min-width:0}
+.story-film figure{margin:0}
+.story-film video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid var(--line-strong);border-radius:12px;background:var(--tile-bottom);box-shadow:var(--shadow-soft)}
+.story-film figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px;margin-top:8px}
+.film-stages{display:flex;flex-wrap:wrap;gap:2px 10px;margin:0;padding:0;list-style:none;font:12px/1.6 var(--mono);color:var(--muted)}
+.film-stages li+li::before{content:"→";content:"→"/"";margin-inline-end:10px;color:var(--accent-secondary)}
+.film-file{display:inline-flex;align-items:center;min-height:40px;font-size:13px;color:var(--muted);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:4px}
+.film-file:hover{color:var(--accent);text-decoration-color:var(--accent)}
+.film-transcript{margin-top:10px;border-block:1px solid var(--line)}
+.film-transcript summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:48px;cursor:pointer;list-style:none;font-size:14px;font-weight:500}
+.film-transcript summary::-webkit-details-marker{display:none}
+.film-transcript summary::after{content:"+";content:"+"/"";color:var(--accent);font:18px var(--mono);transition:transform .2s ease}
+.film-transcript[open] summary::after{transform:rotate(45deg)}
+.film-transcript p{margin:0 0 14px;font-size:14px;line-height:1.7;color:var(--ink-soft);text-wrap:pretty}
+.film-time{display:block;font:12px/1.6 var(--mono);color:var(--muted)}
+.story-moonshift .story-footnote{margin-top:16px}
 
 .story-eval{padding-block:80px;background:var(--bg-band);border-block:1px solid var(--line)}
 .story-eval-inner{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"text ledger" "case ledger" "links links" "foot foot";gap:0 64px;align-items:start}
@@ -269,6 +290,9 @@ html.js-motion .story-window{transition:rotate .5s var(--ease)}
   .hero-content{grid-template-columns:1fr;gap:40px}
   .hero-index{max-width:420px}
   .story-moonlight,.story-feedcairn{grid-template-columns:1fr;gap:36px}
+  /* One column: the heading, then the film, then the notes. */
+  .story-moonshift{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "film" "body"}
+  .story-film{margin-bottom:32px}
   .story-eval-inner{grid-template-columns:1fr;grid-template-areas:"text" "ledger" "case" "links" "foot"}
   .ledger{margin-top:18px}
   .story-video{inset-inline-start:auto;inset-inline-end:-12px}
@@ -280,7 +304,9 @@ html.js-motion .story-window{transition:rotate .5s var(--ease)}
   .work-heading{margin-bottom:36px}
   .story{margin-bottom:88px}
   .story-text h3{margin-bottom:16px}
-  .story-text>p:not(.story-kicker){font-size:15.5px}
+  .story-text>p:not(.story-kicker,.story-footnote){font-size:15.5px}
+  /* The film stays inside the margins, clear of edge swipes, so its native controls keep their full size. */
+  .story-film video{border-radius:10px;box-shadow:none}
   /* On a phone the real screens run edge to edge and the demo becomes a plain row under them. */
   .story-media{margin-inline:calc(-1 * var(--gutter));padding-bottom:0}
   .story-shot{border-radius:0;border-inline:0;box-shadow:none}
@@ -626,7 +652,7 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 .js-motion .terminal-entry,.js-motion .guide-message{animation:entry-in .22s cubic-bezier(.2,.7,.2,1) both}
 @keyframes entry-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 /* Opened disclosures settle in once, alongside the height change where supported. */
-.js-motion :is(.practice details,.case-study)[open]>:not(summary),.js-motion .skill-card details[open]>pre{animation:entry-in .28s var(--ease) .04s both}
+.js-motion :is(.practice details,.case-study,.film-transcript)[open]>:not(summary),.js-motion .skill-card details[open]>pre{animation:entry-in .28s var(--ease) .04s both}
 /* One small press for buttons and pills, only while motion is allowed. Instant, so nothing lingers. */
 .js-motion :is(.project-live,.dialog-link,.project-filters button,.replay-controls button:not(:disabled),.field-links button,#project-reset,#project-copy-link,.contact-actions button:not(:disabled),.listening-listen,.composer-field>button:not([aria-disabled=true]),.terminal-shortcuts button,#terminal-suggestions button,.guide-suggestions button:not([aria-disabled=true]),#motion-toggle,.terminal-toggle,.listening-close):active{scale:.97}
 /* The waiting line appears only if a reply takes longer than a moment, so quick answers never flash it. */
@@ -634,8 +660,8 @@ html[data-theme=light] .panel-composer{background:var(--bg-band)}
 /* The About accordion opens by height where the browser can interpolate it. */
 @supports (interpolate-size:allow-keywords){
   :root{interpolate-size:allow-keywords}
-  .practice details::details-content,.case-study::details-content{block-size:0;overflow:clip;transition:block-size .3s var(--ease),content-visibility .3s allow-discrete}
-  .practice details[open]::details-content,.case-study[open]::details-content{block-size:auto}
+  .practice details::details-content,.case-study::details-content,.film-transcript::details-content{block-size:0;overflow:clip;transition:block-size .3s var(--ease),content-visibility .3s allow-discrete}
+  .practice details[open]::details-content,.case-study[open]::details-content,.film-transcript[open]::details-content{block-size:auto}
   /* Separate rules: an unknown pseudo-element must not invalidate the main motion switches. */
   .motion-off ::details-content,.page-hidden ::details-content{transition:none!important}
 }
@@ -830,7 +856,7 @@ html:not(.js) .site-header{position:absolute}
 /* On paper: the header prints once instead of over every page, sections not yet scrolled to still print,
    cards stay whole across page breaks, and the floating guide button stays off. */
 @media print{
-  .story-video,.story-window{box-shadow:none}.story{break-inside:avoid}
+  .story-video,.story-window,.story-film video{box-shadow:none}.story{break-inside:avoid}
   .site-header{position:absolute}
   .js-motion .reveal,.js-motion .project-card.reveal{opacity:1;transform:none;transition:none}
   .project-card,.skill-card{break-inside:avoid}

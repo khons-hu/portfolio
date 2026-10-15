@@ -6,6 +6,7 @@
   "site": {
     "Lately": "حال ہی میں",
     "Reading": "مطالعہ",
+    "Moonshift, robots learning with PPO": "Moonshift، PPO کے ساتھ سیکھتے روبوٹ",
     "Haiku and Luna, 192 outcomes": "Haiku اور Luna، 192 نتائج",
     "I’m a Customer Support Partner L2 at Luigi’s Box. I trace e-commerce search integrations through browsers, APIs, product feeds and Analytics.": "میں Luigi’s Box میں Customer Support Partner L2 ہوں۔ میں براؤزر، API، پروڈکٹ فیڈز اور Analytics کے ذریعے ای کامرس سرچ انٹیگریشنز کا سراغ لگاتا ہوں۔",
     "I also build my coding theme, small apps and tests of the coding agents I work with.": "میں اپنی کوڈنگ تھیم، چھوٹی ایپس اور ان کوڈنگ ایجنٹس کے ٹیسٹ بھی بناتا ہوں جن کے ساتھ کام کرتا ہوں۔",

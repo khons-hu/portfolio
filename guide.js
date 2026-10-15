@@ -215,9 +215,9 @@
         {id:'retrieval',prompt:'Explain how RAG retrieves and reranks source chunks. Relate it to public portfolio facts. Feedcairn collects official feeds but is not a RAG answer system. Do not overclaim.'},
         {id:'grounding',prompt:'Explain how RAG grounds an answer in retrieved sources and why citations matter. Relate it only to public portfolio facts; distinguish a real feature from an analogy.'}
       ]},
-      {id:'rl',section:'now',angles:[
+      {id:'rl',section:'moonshift-story',angles:[
         {id:'reward',prompt:'Explain how reward feedback updates a reinforcement-learning policy. Relate it to Patrick’s public facts, and do not imply other projects use RL.'},
-        {id:'ppo',prompt:'Explain PPO in plain terms and relate it to Patrick’s TUKE thesis with PPO agents and LLM-generated maps, keeping their roles distinct.'}
+        {id:'ppo',prompt:'Explain PPO in plain terms. Relate it to Patrick’s current Moonshift PPO research and, separately, to his TUKE thesis, where PPO agents and LLM-generated maps had distinct roles.'}
       ]}
     ];
     const direction=localeData.languageDirection(language);
@@ -246,7 +246,7 @@
       const buttons=path.angles.map((angle,angleIndex)=>choice(feature.pathAngles[index][angleIndex],()=>{
         const prompt=`${angle.prompt} Recommend at most two directly relevant portfolio projects when available.`;
         const displayText=`${feature.pathSubjects[index]} · ${feature.pathAngles[index][angleIndex]}`;
-        const fallback={fallbackText:feature.pathFallback[index],recommendations:index===0?['proof','thinkroom']:index===1?['signal','proof']:undefined,section:path.section};
+        const fallback={fallbackText:feature.pathFallback[index],recommendations:index===0?['proof','thinkroom']:index===1?['signal','proof']:['moonshift'],section:path.section};
         ask(prompt,{...fallback,displayText});
       },true));
       const back=document.createElement('button');back.type='button';back.className='guide-path-back';back.textContent=`${direction==='rtl'?'→':'←'} ${feature.pathBack}`;back.addEventListener('click',()=>showTopics(index));

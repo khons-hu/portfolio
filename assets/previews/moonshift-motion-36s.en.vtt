@@ -1,0 +1,20 @@
+WEBVTT
+
+NOTE
+Stage notes for a silent film. The picture carries its own labels along the bottom, so these sit at the top right.
+
+00:00.000 --> 00:13.367 line:0 position:97% size:50% align:end
+Training demonstrations, sped up
+Teacher runs, not PPO results
+
+00:13.367 --> 00:19.367 line:0 position:97% size:50% align:end
+PPO updates, animated from real logs
+Run counters, not a success rate
+
+00:19.367 --> 00:34.367 line:0 position:97% size:50% align:end
+Learned evaluation, four robots
+Frozen policies, no teacher or script
+
+00:34.367 --> 00:36.367 line:0 position:97% size:50% align:end
+Partial progress, not a full mission
+0 of 4 full hard-map missions completed
